@@ -1,0 +1,10 @@
+Xft.dpi: 144
+Xft.autohint: 0
+Xft.lcdfilter; lcddefault
+Xft.hintstyle: hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rbg
+
+export QT_SCALE_FACTOR=1.5
+export GDK_SCALE=1.5

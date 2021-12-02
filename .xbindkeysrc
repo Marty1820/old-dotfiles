@@ -1,0 +1,41 @@
+# For the benefit of emacs users: -*- shell-script -*-
+# ########################### xbindkeys configuration #
+# By defaults, xbindkeys does not pay attention with the modifiers
+# NumLock, CapsLock and ScrollLock.
+# Uncomment the lines above if you want to pay attention to them.
+
+#keystate_numlock = enable
+#keystate_capslock = enable
+#keystate_scrolllock= enable
+
+# ~/.bashrc defined
+#"$VISUAL"
+#    m:0x40 + c:38
+#    Mod4 + a
+
+#"$TERM"
+#    m:0x40 + c:36
+#    Mod4 + Return
+
+#"$FILEMANAGER"
+#    m:0x40 + c:26
+#    Mod4 + e
+
+#"$BROSWER"
+#    m:0x40 + c:56
+#    Mod4 + b
+
+### Audio Controls
+# Increase volume
+#"amixer -D pulse sset Master 2%+"
+#   XF86AudioRaiseVolume
+# Decrease volume
+#"amixer -D pulse sset Master 2%-"
+#  XF86AudioLowerVolume
+# Mute volume
+#"amixer -D pulse set Master 1+ toggle"
+#   XF86AudioMute
+
+##################################
+# End of xbindkeys configuration #
+##################################
