@@ -10,3 +10,4 @@ I've modified most of the configs to fit my needs, original sources can be found
 
 * WillPower3309 for his [Awesome WM config](https://github.com/WillPower3309/awesome-dotfiles)
 * [Distro Tube](https://distro.tube/) and his [dotfiles](https://gitlab.com/dwt1/dotfiles)
+* And of course [Dracula Theme](https://github.com/dracula/dracula-theme) since I tend to use it on everthing I possibly can.
