@@ -30,7 +30,6 @@ apps = {
    power_manager = "xfce4-power-manager-settings",
    terminal = "alacritty",
    launcher = "rofi -modi drun -show drun -theme '~/.config/rofi/config.rasi'",
---   launcher = "rofi -normal-window -modi drun -show drun -theme " .. theme_config_dir .. "rofi.rasi",
    lock = "dm-tool lock",
    screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'",
    filebrowser = "thunar",
