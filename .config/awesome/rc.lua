@@ -33,7 +33,7 @@ apps = {
    lock = "dm-tool lock",
    screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'",
    filebrowser = "thunar",
-   browser = "microsoft-edge-stable",
+   browser = "vivaldi",
    visual = "atom"
 }
 
