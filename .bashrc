@@ -10,7 +10,6 @@
 export TERM="xterm-256color"
 export EDITOR="nano"
 export VISUAL="atom"
-export BROWSER="vivaldi"
 export FILEMANAGER="thunar"
 export HISTCONTROL=ignoreboth
 HISTSIZE=1000
