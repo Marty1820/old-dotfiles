@@ -258,6 +258,14 @@ keys.globalkeys = gears.table.join(
       {description = "toggle exit screen", group = "hotkeys"}
    ),
 
+    -- Lock AWESOME
+    awful.key({modkey}, "l",
+      function()
+       awful.spawn(apps.lock)
+    end,
+    {description = "lock awesome", group = "hotkeys"}
+    ),
+
    awful.key({}, "XF86PowerOff",
       function()
          -- emit signal to show the exit screen
