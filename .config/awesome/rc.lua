@@ -34,7 +34,7 @@ apps = {
    screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'",
    filebrowser = "thunar",
    browser = "vivaldi-stable",
-   visual = "atom"
+   visual = "gedit"
 }
 
 -- define wireless and ethernet interface names for the network widget
