@@ -29,8 +29,8 @@
   <defs
      id="defs12" />
   <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
+     pagecolor="#f8f8f2"
+     bordercolor="#44475a"
      borderopacity="1"
      objecttolerance="10"
      gridtolerance="10"
@@ -53,12 +53,12 @@
      id="g824"
      transform="matrix(1.7907692,0,0,1.7907692,0.7200004,-384.29538)">
     <path
-       style="fill:#ffffff;fill-opacity:0.4"
+       style="fill:#f8f8f2;fill-opacity:0.4"
        inkscape:connector-curvature="0"
        id="path2"
        d="m 24.24,224 1.35,-1.68 C 25.1,221.96 20.26,218 13,218 5.74,218 0.9,221.96 0.42,222.32 L 12.99,237.98 13,238 13.01,237.99 20,229.28 V 224 Z" />
     <path
-       style="fill:#ffffff;fill-opacity:1"
+       style="fill:#f8f8f2;fill-opacity:1"
        inkscape:connector-curvature="0"
        id="path4"
        d="m 20,229.28 v -4.57 C 18.35,223.87 15.94,223 13,223 c -5.44,0 -9.07,2.97 -9.44,3.24 l 9.43,11.75 0.01,0.01 0.01,-0.01 z m 2,6.72 h 2 v 2 h -2 z m 0,-10 h 2 v 8 h -2 z" />

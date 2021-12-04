@@ -29,8 +29,8 @@
   <defs
      id="defs10" />
   <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
+     pagecolor="#f8f8f2"
+     bordercolor="#44475a"
      borderopacity="1"
      objecttolerance="10"
      gridtolerance="10"
@@ -53,5 +53,5 @@
      d="m 40.639143,42.498211 h 3.699641 V 38.79857 H 40.639143 Z M 23.990751,5.5017888 C 10.561049,5.5017888 1.607914,12.827078 0.72,13.493014 l 23.252253,28.9682 0.01851,0.037 0.01851,-0.01851 12.93025,-16.111943 v -9.767054 h 7.843241 L 47.28,13.493014 C 46.373589,12.827078 37.420452,5.5017888 23.990751,5.5017888 Z M 40.639143,35.098926 h 3.699641 v -14.79857 h -3.699641 z"
      id="path2"
      inkscape:connector-curvature="0"
-     style="fill:#ffffff;fill-opacity:1;stroke-width:1.84982121" />
+     style="fill:#f8f8f2;fill-opacity:1;stroke-width:1.84982121" />
 </svg>
