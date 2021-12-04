@@ -32,7 +32,7 @@ apps = {
    launcher = "rofi -modi drun -show drun -theme '~/.config/rofi/config.rasi'",
    lock = "dm-tool lock",
    screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'",
-   filebrowser = "thunar",
+   filebrowser = "pcmanfm",
    browser = "vivaldi-stable",
    visual = "gedit"
 }

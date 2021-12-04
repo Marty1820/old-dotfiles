@@ -10,7 +10,7 @@
 export TERM="xterm-256color"
 export EDITOR="nano"
 export VISUAL="gedit"
-export FILEMANAGER="thunar"
+export FILEMANAGER="pcmanfm"
 export HISTCONTROL=ignoreboth
 HISTSIZE=1000
 HISTFILESIZE=2000
