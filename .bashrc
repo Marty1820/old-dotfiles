@@ -9,7 +9,7 @@
 ### EXPORT
 export TERM="xterm-256color"
 export EDITOR="nano"
-export VISUAL="atom"
+export VISUAL="gedit"
 export FILEMANAGER="thunar"
 export HISTCONTROL=ignoreboth
 HISTSIZE=1000
