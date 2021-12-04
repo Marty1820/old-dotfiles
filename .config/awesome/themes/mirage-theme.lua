@@ -43,7 +43,7 @@ theme.fg_urgent = "#f8f8f2"
 theme.fg_minimize = "#f8f8f2"
 
 -- Gaps
-theme.useless_gap = dpi(7)
+theme.useless_gap = dpi(4)
 theme.gap_single_client = true
 
 -- Corner Radius of Rounded Windows
