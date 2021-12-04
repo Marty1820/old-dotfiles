@@ -23,7 +23,14 @@ local mirage = {}
 
 mirage.initialize = function()
   -- Set Wallpaper
-  gears.wallpaper.maximized(gears.filesystem.get_configuration_dir() .. "/wallpaper/mirage.png")
+--  gears.wallpaper.maximized(gears.filesystem.get_configuration_dir() .. "/wallpaper/mirage.png")
+local f = io.popen("sh -c \"find ~/Pictures/wallpapers -name '*.jpg' | shuf -n 1 | xargs echo -n\"")
+local wallpaper = f:read("*all")
+f:close()
+for s = 1, screen.count() do
+  gears.wallpaper.maximized(wallpaper, s, true)
+end
+
 
    -- Import components
    require("components.exit-screen")
