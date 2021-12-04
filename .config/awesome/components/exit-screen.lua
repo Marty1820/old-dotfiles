@@ -79,6 +79,11 @@ local function lock_command()
    awful.spawn.with_shell("sleep 1 && " .. apps.lock)
 end
 
+local function hibernate_command()
+   exit_screen.hide()
+   awful.spawn.with_shell(apps.lock .. " & systemctl hibernate")
+end
+
 local function poweroff_command()
    awful.spawn.with_shell("poweroff")
    awful.keygrabber.stop(exit_screen_grabber)
@@ -149,6 +154,8 @@ awesome.connect_signal("show_exit_screen",
                poweroff_command()
             elseif key == "r" then
                reboot_command()
+            elseif key == "h" then
+               hibernate_command()
             elseif key == "Escape" or key == "q" or key == "x" then
                exit_screen.hide()
             end
