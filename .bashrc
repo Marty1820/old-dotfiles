@@ -11,7 +11,7 @@ export TERM="xterm-256color"
 export EDITOR="nano"
 export VISUAL="gedit"
 export FILEMANAGER="pcmanfm"
-export HISTCONTROL=ignoreboth
+export HISTCONTROL=ignoreboth:erasedups
 HISTSIZE=1000
 HISTFILESIZE=2000
 
