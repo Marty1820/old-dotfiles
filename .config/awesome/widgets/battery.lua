@@ -72,8 +72,8 @@ local function show_battery_warning()
       timeout = 5,
       hover_timeout = 0.5,
       position = "top_right",
-      bg = "#282a36",
-      fg = "#ff5555",
+      bg = "#ff5555",
+      fg = "#f8f8f2",
       width = 248
    }
 end
