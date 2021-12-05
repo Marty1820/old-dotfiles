@@ -20,6 +20,7 @@ Trying to reduce the dependencies the best I can but as of now they are:
 |`feh`|Fast image viewer used as wallpaper setting utility|
 |`picom-ibhagwan`|Window compositor, eliminates screen tearing and allows for cool fade effects.|
 |`rofi`|Application launcher|
+|`conky`|Auto launches and shows most keybindings|
 
 ## Optional Dependencies
 These are just what I have setting
