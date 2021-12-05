@@ -36,7 +36,7 @@ function build(widget)
   container:connect_signal(
     'mouse::enter',
     function()
-      container.bg = '#ffffff11'
+      container.bg = '#6272a4'
       local w = _G.mouse.current_wibox
       if w then
         old_cursor, old_wibox = w.cursor, w
@@ -48,7 +48,7 @@ function build(widget)
   container:connect_signal(
     'mouse::leave',
     function()
-      container.bg = '#f8f8f200'
+      container.bg = '#44475a'
       if old_wibox then
         old_wibox.cursor = old_cursor
         old_wibox = nil
@@ -59,14 +59,14 @@ function build(widget)
   container:connect_signal(
     'button::press',
     function()
-      container.bg = '#f8f8f222'
+      container.bg = '#bd93f9'
     end
   )
 
   container:connect_signal(
     'button::release',
     function()
-      container.bg = '#f8f8f211'
+      container.bg = '#44475a'
     end
   )
 

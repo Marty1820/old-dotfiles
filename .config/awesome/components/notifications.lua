@@ -63,8 +63,8 @@ naughty.config.presets.low = {
 
 naughty.config.presets.critical = {
    font = "SF Display Bold 10",
-   fg = "#ffffff",
-   bg = "#ff0000",
+   fg = "#f8f8f2",
+   bg = "#282a36",
    position = "top_right",
    timeout = 0
 }
