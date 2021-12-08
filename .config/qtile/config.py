@@ -10,12 +10,15 @@
 
 # IMPORTS
 import os
+import re
+import subprocess
 from typing import List  # noqa: F401
 
 from libqtile import qtile, bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, KeyChord, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from libqtile.widget.battery import Battery, BatteryState
 
 mod = "mod4"				# Sets mod key to SUPER
 myTerm = "alacritty"
@@ -24,6 +27,19 @@ myFilemgr = "pcmanfm"
 myEditor = "gedit"
 #screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
 lock = "dm-tool lock"
+
+#Dracula color theme
+colors = [["#282a36"], # Background Dark Grey
+          ["#44475a"], # Current Line/Selection Grey
+          ["#f8f8f2"], # Foreground Whitish
+          ["#6272a4"], # Comment Blue/Grey
+          ["#8be9fd"], # Cyan
+          ["#50fa7b"], # Green
+          ["#ffb86c"], # Orange
+          ["#ff79c6"], # Pink
+          ["#bd93f9"], # Purple
+          ["#ff5555"], # Red
+          ["#f1fa8c"]] # Yellow
 
 keys = [
 	### Essentials
@@ -133,18 +149,102 @@ keys = [
     	lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"
         ),
+        
+    # Function keys
+    # Screen
+    Key([], 'XF86MonBrightnessUp',
+    	lazy.spawn('xbacklight -inc 10')
+    	),
+    Key([], 'XF86MonBrightnessDown',
+    	lazy.spawn('xbacklight -dec 10')
+    	),
+    # Audio
+    Key([], 'XF86AudioMute',
+    	lazy.spawn('amixer -D pulse set Master 1+ toggle')
+    	),
+    Key([], 'XF86AudioRaiseVolume',
+    	lazy.spawn('amixer -D pulse sset Master 2%+')
+    	),
+    Key([], 'XF86AudioLowerVolume',
+    	lazy.spawn('amixer -D pulse sset Master 2%-')
+    	),
+    
+    #Screenshots
+    Key([], 'Print',
+    	lazy.spawn('scrot -e "mv $f ~/Pictures/Screenshot 2>/dev/null"')
+    	),
 ]
 
+# Battery Icon & %
+class MyBattery(Battery):
+	def build_string(self, status):
+		if status.state == BatteryState.DISCHARGING:
+			if status.percent >= 1:
+				char = ''
+			elif status.percent > 0.90:
+				char = ''
+			elif status.percent > 0.80:
+				char = ''
+			elif status.percent > 0.70:
+				char = ''
+			elif status.percent > 0.60:
+				char = ''
+			elif status.percent > 0.50:
+				char = ''
+			elif status.percent > 0.40:
+				char = ''
+			elif status.percent > 0.30:
+				char = ''
+			elif status.percent > 0.20:
+				char = ''
+			else:
+				char = ''
+		elif status.percent >= 1 or status.state == BatteryState.FULL:
+			char = ''
+		elif status.state == BatteryState.EMPTY or \
+				(status.state == BatteryState.UNKNOWN and status.percent == 0):
+			char = ''
+		else:
+			char = ''
+		return self.format.format(char=char, percent=status.percent)
+	
+	def restore(self):
+		self.format = '{char}{percent:2.0%}'
+		self.timer_setup()
 
-groups = [Group("DEV"),
-          Group("WWW"),
-          Group("SYS"),
-          Group("DOC"),
-          Group("VBOX"),
-          Group("CHAT"),
-          Group("MUS"),
-          Group("VID"),
-          Group("GFX")]
+battery = MyBattery(
+	format = '{char} {percent:2.0%}',
+    foreground = colors[0],
+    background = colors[10],
+)
+
+# Audio Volume
+#class MyVolume(widget.Volume):
+#	def _configure(self, qtile, bar):
+#		widget.Volume._configure(self, qtile, bar)
+#		self.volume = self.get_volume()
+#		if self.volume <= 0:
+#			self.text = '奄'
+#		elif self.volume <= 50:
+#			self.text = '奔'
+#		else:
+#			self.text = '墳'
+		
+#	def restore(self):
+#		self.format = '{char} {volume}'
+#		self.timer_setup()
+
+#volume = MyVolume(
+#	foreground = colors[0],
+#    background = colors[8],
+#    fmt = '{}',
+#)
+
+groups = [Group(""),
+          Group(""),
+          Group(""),
+          Group("爵"),
+          Group("")]
 
 # Allow MODKEY+[0 through 9] to bind to groups, see https://docs.qtile.org/en/stable/manual/config/groups.html
 # MOD4 + index Number : Switch to Group[index]
@@ -176,21 +276,9 @@ layouts = [
     layout.Floating(),
 ]
 
-colors = [["#282a36"], # Background Dark Grey
-          ["#44475a"], # Current Line/Selection Grey
-          ["#f8f8f2"], # Foreground Whitish
-          ["#6272a4"], # Comment Blue/Grey
-          ["#8be9fd"], # Cyan
-          ["#50fa7b"], # Green
-          ["#ffb86c"], # Orange
-          ["#ff79c6"], # Pink
-          ["#bd93f9"], # Purple
-          ["#ff5555"], # Red
-          ["#f1fa8c"]] # Yellow
-
 widget_defaults = dict(
     font='mononoki Nerd Font Mono',
-    fontsize=22,
+    fontsize=24,
     padding=2,
     background = colors[0]
 )
@@ -200,26 +288,26 @@ screens = [
     Screen(
         top=bar.Bar(
             [
+				widget.CurrentLayoutIcon(
+					),
 				widget.GroupBox(
                     active = colors[2],
+                    fontsize = 32,
                     block_highlight_text_color = colors[8],
-                    highlight_method = "line",
+                    highlight_method = "block",
                     ),
                 widget.Prompt(),
                 widget.Sep(
                 	linewidth = 0,
-                    padding = 40,
-                    foreground = colors[2],
-                    background = colors[0],
+                    foreground = colors[3],
+                    size_percent = 80,
                     ),
                 widget.WindowName(
                 	format = '{name}',
-                	max_chars = 20,
                 	),
                 widget.TextBox(
                 	text = '',
                 	foreground = colors[3],
-                	background = colors[0],
                 	padding = 0,
                 	fontsize = 28,
                 	),
@@ -236,31 +324,36 @@ screens = [
                 	padding = 0,
                 	fontsize = 28,
                 	),
-              widget.TextBox(
-                    text = "⟳ ",
-                    padding = 2,
-                    foreground = colors[0],
-                    background = colors[9],
-                    ),
               widget.CheckUpdates(
                     update_interval = 1800,
                     distro = "Arch_checkupdates",
-                    display_format = "{updates} Updates",
+                    display_format = "{updates} ",
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
                     foreground = colors[0],
                     background = colors[9],
                     ),
                 widget.TextBox(
                 	text = '',
-                	foreground = colors[5],
+                	foreground = colors[4],
                 	background = colors[9],
+                	padding = 0,
+                	fontsize = 28,
+                	),
+                widget.Bluetooth(
+                	background = colors[4],
+                	foreground = colors[0],
+                	fmt = '{}',
+                	),
+                widget.TextBox(
+                	text = '',
+                	foreground = colors[5],
+                	background = colors[4],
                 	padding = 0,
                 	fontsize = 28,
                 	),
                 widget.Net(
                 	interface = "wlp170s0",
-                	format = '{down}↓↑{up}',
-                	padding = 5,
+                	format = '直{down}↓↑{up}',
                 	foreground = colors[0],
                 	background = colors[5],
                 	),
@@ -273,9 +366,9 @@ screens = [
                 	),
               	widget.ThermalSensor(
                     threshold = 90,
-                    padding = 5,
                     foreground = colors[0],
-                    background = colors[6]
+                    background = colors[6],
+                    fmt = '{}',
                     ),
                 widget.TextBox(
                 	text = '',
@@ -286,9 +379,11 @@ screens = [
                 	),
               	widget.Memory(
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
-                    padding = 5,
                     foreground = colors[0],
                     background = colors[7],
+                    fmt = '{}',
+                    measure_mem = 'G',
+                    format = '{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}',
                     ),
                 widget.TextBox(
                 	text = '',
@@ -297,16 +392,11 @@ screens = [
                 	padding = 0,
                 	fontsize = 28,
                 	),
-                widget.TextBox(
-                	text = 'Vol:',
-                	foreground = colors[0],
-                	background = colors[8],
-                	padding = 0,
-                	),
+                #volume,
               	widget.Volume(
-                    padding = 5,
                     foreground = colors[0],
                     background = colors[8],
+                    fmt = '墳{}',
                     ),
 				widget.TextBox(
                 	text = '',
@@ -315,10 +405,18 @@ screens = [
                 	padding = 0,
                 	fontsize = 28,
                 	),
+               # widget.Wttr(
+               # 	foreground = colors[0],
+               # 	background = colors[2],
+               # 	location = 'Minot',
+               # 	units = 'u',
+               # 	format = '%t(%f)',
+               # 	),
                 widget.Clock(
-                	format='%a, %b %d %I:%M %p',
+                	format='%b %d %I:%M%p',
                 	foreground = colors[0],
                 	background = colors[2],
+                    #mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -hold -e cal -3')},
                 	),
                	widget.TextBox(
                 	text = '',
@@ -327,16 +425,16 @@ screens = [
                 	padding = 0,
                 	fontsize = 28,
                 	),
-                widget.Battery(
-                	charge_char = '',
-                	discharge_char = '',
-                	empty_char = '',
-                	full_char = '',
-                	format = '{char}{percent:2.0%}',
-                	foreground = colors[0],
-                	background = colors[10],
-                	),
-				widget.CurrentLayout(),
+                battery,
+                #widget.Battery(
+                	#charge_char = '',
+                	#discharge_char = '',
+                	#empty_char = '',
+                	#full_char = '',
+                	#format = '{char} {percent:2.0%}',
+                	#foreground = colors[0],
+                	#background = colors[10],
+                	#),
             ],
             24,
         ),
