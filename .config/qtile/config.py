@@ -25,8 +25,11 @@ myTerm = "alacritty"
 myBrowser = "vivaldi-stable"
 myFilemgr = "pcmanfm"
 myEditor = "gedit"
-#screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
+myAppLauncher = "rofi -modi drun -show drun -theme '~/.config/rofi/config.rasi'"
+screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
 lock = "dm-tool lock"
+myPower = "xfce4-power-manager-settings"
+myConnections = "nm-connection-editor"
 
 #Dracula color theme
 colors = [["#282a36"], # Background Dark Grey
@@ -67,10 +70,6 @@ keys = [
         lazy.restart(),
         desc="Restart Qtile"
         ),
-    Key([mod, "shift"], "x",
-    	lazy.spawn(lock),
-    	desc="Locks computer"
-    	),
     Key([mod, "shift"], "c",
         lazy.window.kill(),
         desc="Kill focused window"
@@ -79,6 +78,14 @@ keys = [
         lazy.next_layout(),
         desc="Toggle between layouts"
         ),
+    Key([mod], "d",
+        lazy.spawn(myAppLauncher),
+        desc="Application Launcher"
+        ),
+    Key([mod, "shift"], "x",
+    	lazy.spawn(lock),
+    	desc="Locks computer"
+    	),
     # Switch between windows
     Key([mod], "h",
         lazy.layout.left(),
@@ -171,7 +178,7 @@ keys = [
     
     #Screenshots
     Key([], 'Print',
-    	lazy.spawn('scrot -e "mv $f ~/Pictures/Screenshot 2>/dev/null"')
+    	lazy.spawn(screenshot)
     	),
 ]
 
@@ -216,6 +223,7 @@ battery = MyBattery(
 	format = '{char} {percent:2.0%}',
     foreground = colors[0],
     background = colors[10],
+    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myPower)},
 )
 
 # Audio Volume
@@ -339,11 +347,11 @@ screens = [
                 	padding = 0,
                 	fontsize = 28,
                 	),
-                widget.Bluetooth(
-                	background = colors[4],
-                	foreground = colors[0],
-                	fmt = '{}',
-                	),
+                #widget.Bluetooth(
+                #	background = colors[4],
+                #	foreground = colors[0],
+                #	fmt = '{}',
+                #	),
                 widget.TextBox(
                 	text = '',
                 	foreground = colors[5],
@@ -356,6 +364,7 @@ screens = [
                 	format = '直{down}↓↑{up}',
                 	foreground = colors[0],
                 	background = colors[5],
+                	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myConnections)},
                 	),
                 widget.TextBox(
                 	text = '',
@@ -455,6 +464,14 @@ follow_mouse_focus = True
 bring_front_click = True
 cursor_warp = False
 floating_layout = layout.Floating(float_rules=[
+	Match(wm_class='confirm'),
+	Match(wm_class='dialog'),
+    Match(wm_class='download'),
+    Match(wm_class='error'),
+    Match(wm_class='file_progress'),
+    Match(wm_class='notification'),
+    Match(wm_class='nm-connection-editor'),
+    Match(wm_class='xfce4-power-manager-settings'),
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
     Match(wm_class='confirmreset'),  # gitk
