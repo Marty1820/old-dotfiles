@@ -166,6 +166,12 @@ keys = [
     Key([], 'XF86AudioLowerVolume',
     	lazy.spawn('amixer -D pulse sset Master 2%-')
     	),
+    Key([mod], 'XF86AudioRaiseVolume',
+    	lazy.spawn('amixer -D pulse sset Master 10%+')
+    	),
+    Key([mod], 'XF86AudioLowerVolume',
+    	lazy.spawn('amixer -D pulse sset Master 10%-')
+    	),
     
     #Screenshots
     Key([], 'Print',
