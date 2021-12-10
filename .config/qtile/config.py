@@ -62,7 +62,7 @@ keys = [
         lazy.spawn(myEditor),
         desc="Launches Text Editor"
         ),
-    Key([mod, "shift"], "q",
+    Key([mod], "Escape",
         lazy.shutdown(),
         desc="Shutdown Qtile"
         ),
@@ -82,27 +82,10 @@ keys = [
         lazy.spawn(myAppLauncher),
         desc="Application Launcher"
         ),
-    Key([mod, "shift"], "x",
+    Key([mod], "l",
     	lazy.spawn(lock),
     	desc="Locks computer"
     	),
-    # Switch between windows
-    Key([mod], "h",
-        lazy.layout.left(),
-        desc="Move focus to left"
-        ),
-    Key([mod], "l",
-        lazy.layout.right(),
-        desc="Move focus to right"
-        ),
-    Key([mod], "j",
-        lazy.layout.up(),
-        desc="Move focus up"
-        ),
-    Key([mod], "k",
-        lazy.layout.down(),
-        desc="Move focus down"
-        ),
     # Moving out of range in Columns layout will create new column.
     Key([mod, "shift"], "h",
         lazy.layout.shuffle_left(),
@@ -123,12 +106,12 @@ keys = [
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
     Key([mod, "control"], "h",
-    	lazy.layout.grow_left(),
-        desc="Grow window to the left"
+    	lazy.layout.shrink(),
+        desc="Shrink window"
         ),
     Key([mod, "control"], "l",
-    	lazy.layout.grow_right(),
-        desc="Grow window to the right"
+    	lazy.layout.grow(),
+        desc="Grow window"
         ),
     Key([mod, "control"], "j",
     	lazy.layout.grow_up(),
@@ -142,6 +125,14 @@ keys = [
     	lazy.layout.normalize(),
     	desc="Reset all window sizes"
     	),
+    Key([mod], "m",
+        lazy.layout.maximize(),
+        desc='toggle window between minimum and maximum sizes'
+        ),
+    Key([mod], "f",
+        lazy.window.toggle_fullscreen(),
+        desc='toggle fullscreen'
+        ),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
@@ -269,19 +260,19 @@ layout_theme = {"border_width": 2,
 
 layouts = [
     # layout.Columns(border_focus_stack=['#bd93f9', '#ff5555'], border_width=2),
+    layout.MonadTall(),
     layout.Max(),
+    layout.TreeTab(),
+	layout.Floating(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
-    layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
-    layout.Floating(),
 ]
 
 widget_defaults = dict(
