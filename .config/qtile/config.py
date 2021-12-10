@@ -257,19 +257,29 @@ groups = [Group(""),
 from libqtile.dgroups import simple_key_binder
 dgroups_key_binder = simple_key_binder("mod4")
 
-layout_theme = {"border_width": 2,
-                "margin": 8,
-                "border_focus": "bd93f9",
-                "border_normal": "282a36"
+layout_theme = {"border_width": 4,
+                "margin": 6,
+                "border_focus": colors[8],
+                "border_normal": colors[1],
                 }
 
 
 layouts = [
     # layout.Columns(border_focus_stack=['#bd93f9', '#ff5555'], border_width=2),
-    layout.MonadTall(),
-    layout.Max(),
-    layout.TreeTab(),
-	layout.Floating(),
+    layout.MonadTall(**layout_theme),
+    layout.Max(**layout_theme),
+	layout.Floating(**layout_theme),
+	layout.TreeTab(
+		font = "mononoki Nerd Font Mono",
+		fontsize = 24,
+		border_width = 2,
+		bg_color = colors[0],
+		active_bg = colors[1],
+		active_fg = colors[8],
+		inactive_bg = colors[0],
+		inactive_fg = colors[2],
+		panel_width = 190,
+		),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -282,9 +292,9 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='mononoki Nerd Font Mono',
-    fontsize=24,
-    padding=2,
+    font = 'mononoki Nerd Font Mono',
+    fontsize = 24,
+    padding = 2,
     background = colors[0]
 )
 extension_defaults = widget_defaults.copy()
@@ -299,9 +309,11 @@ screens = [
 					),
 				widget.GroupBox(
                     active = colors[2],
+                    inactive = colors[3],
                     fontsize = 32,
                     block_highlight_text_color = colors[8],
                     highlight_method = "block",
+                    highlight_color = colors[1],
                     ),
                 widget.Prompt(),
                 widget.Sep(
