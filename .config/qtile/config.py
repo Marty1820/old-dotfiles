@@ -327,9 +327,9 @@ screens = [
                 	),
               widget.CheckUpdates(
                     update_interval = 1800,
-                    distro = "Arch_checkupdates",
-                    display_format = "{updates} ",
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
+                    distro = "Arch",
+                    display_format = "{updates} Updates",
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e parusyu')},
                     foreground = colors[0],
                     background = colors[9],
                     ),
@@ -339,6 +339,11 @@ screens = [
                 	background = colors[9],
                 	padding = 0,
                 	fontsize = 28,
+                	),
+                widget.TextBox(
+                	text = 'config',
+                	foreground = colors[0],
+                	background = colors[4],
                 	),
                 #widget.Bluetooth(
                 #	background = colors[4],
@@ -448,6 +453,8 @@ follow_mouse_focus = True
 bring_front_click = True
 cursor_warp = False
 floating_layout = layout.Floating(float_rules=[
+    # Run the utility of `xprop` to see the wm class and name of an X client.
+    *layout.Floating.default_float_rules,
 	Match(wm_class='confirm'),
 	Match(wm_class='dialog'),
     Match(wm_class='download'),
@@ -456,15 +463,14 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='notification'),
     Match(wm_class='nm-connection-editor'),
     Match(wm_class='xfce4-power-manager-settings'),
-    # Run the utility of `xprop` to see the wm class and name of an X client.
-    *layout.Floating.default_float_rules,
-    Match(wm_class='confirmreset'),  # gitk
-    Match(wm_class='makebranch'),  # gitk
-    Match(wm_class='maketag'),  # gitk
-    Match(wm_class='ssh-askpass'),  # ssh-askpass
-    Match(title='branchdialog'),  # gitk
-    Match(title='pinentry'),  # GPG key password entry
-    Match(title='conky'),
+    Match(wm_class='bitwarden'),
+    Match(wm_class='blueman-manager'),
+    Match(wm_class='Conky'),
+    Match(wm_class='kdeconnect-app'),
+    Match(wm_class='VirtualBox Machine'),
+    Match(wm_class='lxappearance'),
+    Match(wm_class='qt5ct'),
+    Match(wm_class='xarchiver'),
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
