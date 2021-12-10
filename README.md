@@ -6,7 +6,7 @@ These are pretty basic configs with nothing special.
 I've modified most of the configs to fit my needs, original sources can be found below for most.
 
 ## Details
-* WM: Awesome
+* WM: qtile
 * Theme: Dracula
 * Cursor: BreezeX-Black
 * Terminal: Alacritty
@@ -16,9 +16,9 @@ Trying to reduce the dependencies the best I can but as of now they are:
 
 |Dependency|Description|
 |:----------:|:-------------:|
-|`awesome`|Window manager|
+|`qtile`|Window manager|
 |`feh`|Fast image viewer used as wallpaper setting utility|
-|`picom-ibhagwan`|Window compositor, eliminates screen tearing and allows for cool fade effects.|
+|`picom`|Window compositor.|
 |`rofi`|Application launcher|
 |`conky`|Auto launches and shows most keybindings|
 
@@ -29,10 +29,10 @@ These are just what I have setting
 + 'bluez', 'bluez-utils', & 'blueman': All your bluetooth needs
 + 'scrot': for screenshots. Saves in ~/Pictures/Screenshots by default
 + 'alsa-utils': Kernel sound drivers
-+ 'xbacklight' Controls display brightness
-+ Hack fonts...you can change these but I like them for everything
++ 'xbacklight' : Controls display brightness
++ 'mononoki' : fonts.
++ 'redshift' : helps with limiting blue light at night
 
 ## Thanks to/Original Sources...
-* WillPower3309 for his [Awesome WM config](https://github.com/WillPower3309/awesome-dotfiles)
 * [Distro Tube](https://distro.tube/) and his [dotfiles](https://gitlab.com/dwt1/dotfiles)
 * And of course [Dracula Theme](https://github.com/dracula/dracula-theme) since I tend to use it on everthing I possibly can.
