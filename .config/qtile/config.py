@@ -268,13 +268,13 @@ layout_theme = {"border_width": 2,
 
 
 layouts = [
-    layout.Columns(border_focus_stack=['#bd93f9', '#ff5555'], border_width=2),
+    # layout.Columns(border_focus_stack=['#bd93f9', '#ff5555'], border_width=2),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    # layout.MonadTall(),
+    layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -297,6 +297,8 @@ screens = [
         top=bar.Bar(
             [
 				widget.CurrentLayoutIcon(
+					custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
+					scale = 0.8,
 					),
 				widget.GroupBox(
                     active = colors[2],
@@ -414,18 +416,18 @@ screens = [
                 	padding = 0,
                 	fontsize = 28,
                 	),
-               # widget.Wttr(
-               # 	foreground = colors[0],
-               # 	background = colors[2],
-               # 	location = 'Minot',
-               # 	units = 'u',
-               # 	format = '%t(%f)',
-               # 	),
+               	#widget.Wttr(
+                #	foreground = colors[0],
+                #	background = colors[2],
+                #	location = '',
+                #	#units = 'u',
+                #	format = '%c+%t',
+                #	update_interval=30,
+                #	),
                 widget.Clock(
                 	format='%b %d %I:%M%p',
                 	foreground = colors[0],
                 	background = colors[2],
-                    #mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -hold -e cal -3')},
                 	),
                	widget.TextBox(
                 	text = '',
@@ -435,15 +437,6 @@ screens = [
                 	fontsize = 28,
                 	),
                 battery,
-                #widget.Battery(
-                	#charge_char = '',
-                	#discharge_char = '',
-                	#empty_char = '',
-                	#full_char = '',
-                	#format = '{char} {percent:2.0%}',
-                	#foreground = colors[0],
-                	#background = colors[10],
-                	#),
             ],
             24,
         ),
