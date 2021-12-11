@@ -152,9 +152,10 @@ alias utftest="curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt"
 ### RANDOM COLOR SCRIPT ###
 # Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
 # Or install it from the Arch User Repository: shell-color-scripts
-if [ -d /opt/shell-color-scripts/colorscripts ]; then
-  colorscript random
-fi
+#if [ -d /opt/shell-color-scripts/colorscripts ]; then
+#  colorscript random
+#fi
+pokemon-colorscripts.sh -r
 
 ### BASH INSULTER ###
 # sudo wget -O /etc/bash.command-not-found https://gitlab.com/dwt1/bash-insulter/-/raw/master/src/bash.command-not-found
