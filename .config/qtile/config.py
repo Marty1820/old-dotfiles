@@ -6,7 +6,6 @@
 # ╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░
 #
 # qtile config
-# -*- coding: utf-8 -*-
 
 # IMPORTS
 import os
@@ -113,14 +112,6 @@ keys = [
     	lazy.layout.grow(),
         desc="Grow window"
         ),
-    Key([mod, "control"], "j",
-    	lazy.layout.grow_up(),
-        desc="Grow window up"
-        ),
-    Key([mod, "control"], "k",
-    	lazy.layout.grow_down(),
-    	desc="Grow window down"
-    	),
     Key([mod], "n",
     	lazy.layout.normalize(),
     	desc="Reset all window sizes"
@@ -249,8 +240,8 @@ groups = [Group(""),
           Group(""),
           Group(""),
           Group("爵"),
-          Group("")]
-
+          Group("", layout='floating')]
+          
 # Allow MODKEY+[0 through 9] to bind to groups, see https://docs.qtile.org/en/stable/manual/config/groups.html
 # MOD4 + index Number : Switch to Group[index]
 # MOD4 + shift + index Number : Send active window to another Group
@@ -315,7 +306,11 @@ screens = [
                     highlight_method = "block",
                     highlight_color = colors[1],
                     ),
-                widget.Prompt(),
+                widget.Prompt(
+                	prompt = 'Run: ',
+                	padding = 5,
+                	foreground = colors[8],
+                	),
                 widget.Sep(
                 	linewidth = 0,
                     foreground = colors[3],
