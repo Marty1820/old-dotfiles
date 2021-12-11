@@ -27,8 +27,6 @@ myEditor = "gedit"
 myAppLauncher = "rofi -modi drun -show drun -theme '~/.config/rofi/config.rasi'"
 screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
 lock = "dm-tool lock"
-myPower = "xfce4-power-manager-settings"
-myConnections = "nm-connection-editor"
 
 #Dracula color theme
 colors = [["#282a36"], # Background Dark Grey
@@ -211,7 +209,7 @@ battery = MyBattery(
 	format = '{char} {percent:2.0%}',
     foreground = colors[0],
     background = colors[10],
-    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myPower)},
+    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('xfce4-power-manager-settings')},
 )
 
 def parse_func(text):
@@ -335,7 +333,7 @@ screens = [
                 	),
                 widget.Systray(
                 	icon_size = 26,
-                	padding = 10,
+                	padding = 0,
                 	foreground = colors[0],
                 	background = colors[3],
                 	),
@@ -361,16 +359,18 @@ screens = [
                 	padding = 0,
                 	fontsize = 28,
                 	),
-                widget.TextBox(
-                	text = 'config',
-                	foreground = colors[0],
-                	background = colors[4],
-                	),
-                #widget.Bluetooth(
-                #	background = colors[4],
+                #widget.TextBox(
+                #	text = 'config',
                 #	foreground = colors[0],
-                #	fmt = '{}',
+                #	background = colors[4],
                 #	),
+                widget.Bluetooth(
+                	background = colors[4],
+                	foreground = colors[0],
+                	fmt = '{}',
+                	hci = '/dev_EF_BA_FD_8F_CC_30',
+                	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('blueman-manager')},
+                	),
                 widget.TextBox(
                 	text = '',
                 	foreground = colors[5],
@@ -380,10 +380,10 @@ screens = [
                 	),
                 widget.Net(
                 	interface = "wlp170s0",
-                	format = '直{down}↓↑{up}',
+                	format = '{down}↓↑{up}',
                 	foreground = colors[0],
                 	background = colors[5],
-                	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myConnections)},
+                	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('nm-connection-editor')},
                 	),
                 widget.TextBox(
                 	text = '',
