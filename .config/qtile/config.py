@@ -214,6 +214,11 @@ battery = MyBattery(
     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myPower)},
 )
 
+def parse_func(text):
+	for string in [" - Vivaldi", " - gedit"]:
+		text = text.replace(string, "")
+	return text
+
 # Audio Volume
 #class MyVolume(widget.Volume):
 #	def _configure(self, qtile, bar):
@@ -318,6 +323,9 @@ screens = [
                     ),
                 widget.WindowName(
                 	format = '{name}',
+                	foreground = colors[2],
+                	#max_chars = 40,
+                	parse_text = parse_func,
                 	),
                 widget.TextBox(
                 	text = '',
@@ -493,6 +501,7 @@ reconfigure_screens = True
 # focus, should we respect this or not?
 auto_minimize = True
 
+# Functions
 def window_to_prev_group(qtile):
 	if qtile.currentWindow is not None:
 		i = qtile.groups.index(qtile.currentGroup)
@@ -501,7 +510,6 @@ def window_to_next_group(qtile):
     if qtile.currentWindow is not None:
         i = qtile.groups.index(qtile.currentGroup)
         qtile.currentWindow.togroup(qtile.groups[i + 1].name)
-
 
 @hook.subscribe.startup_once
 def start_once():
