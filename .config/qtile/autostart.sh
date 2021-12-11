@@ -1,7 +1,7 @@
 #!/usr/bin/env bash 
 
-conky &
-feh --bg-fill --randomize ~/Pictures/wallpapers/* &
 picom &
+feh --bg-fill --randomize ~/Pictures/wallpapers/* &
+conky &
 redshift &
 xfce4-power-manager &
