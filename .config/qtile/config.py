@@ -12,13 +12,13 @@ import os
 import re
 import subprocess
 from typing import List  # noqa: F401
-
 from libqtile import qtile, bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, KeyChord, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile.widget.battery import Battery, BatteryState
 
+# defaults
 mod = "mod4"				# Sets mod key to SUPER
 myTerm = "alacritty"
 myBrowser = "vivaldi-stable"
@@ -29,6 +29,19 @@ screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
 lock = "dm-tool lock"
 
 #Dracula color theme
+#theme = [["background" = "#282a36"],
+#		 ["current" = "#44475a"],
+#		 ["selection" = "#44475a"],
+#		 ["foreground" = "#f8f8f2"],
+#		 ["comment" = "#6272a4"],
+#		 ["cyan" = "#8be9fd"],
+#		 ["green" = "#50fa7b"],
+#		 ["orange" = "#ffb86c"],
+#		 ["pink" = "#ff79c6"],
+#		 ["purple" = "#bd93f9"],
+#		 ["red" = "#ff5555"],
+#		 ["yellow" = "#f1fa8c"]]
+
 colors = [["#282a36"], # Background Dark Grey
           ["#44475a"], # Current Line/Selection Grey
           ["#f8f8f2"], # Foreground Whitish
@@ -41,6 +54,7 @@ colors = [["#282a36"], # Background Dark Grey
           ["#ff5555"], # Red
           ["#f1fa8c"]] # Yellow
 
+# Keybindings
 keys = [
 	### Essentials
     Key([mod], "Return",
@@ -206,12 +220,13 @@ class MyBattery(Battery):
 		self.timer_setup()
 
 battery = MyBattery(
-	format = '{char} {percent:2.0%}',
+	format = '{percent:2.0%}{char}',
     foreground = colors[0],
     background = colors[10],
     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('xfce4-power-manager-settings')},
 )
 
+# Remove portions of windows name
 def parse_func(text):
 	for string in [" - Vivaldi", " - gedit"]:
 		text = text.replace(string, "")
@@ -239,24 +254,24 @@ def parse_func(text):
 #    fmt = '{}',
 #)
 
-groups = [Group(""),
-          Group(""),
+# Groups using Names istead of numbers
+groups = [Group(""),
+		  Group("爵"),
           Group(""),
-          Group("爵"),
-          Group("", layout='floating')]
+          Group(""),
+          Group("", layout='floating')]
           
-# Allow MODKEY+[0 through 9] to bind to groups, see https://docs.qtile.org/en/stable/manual/config/groups.html
-# MOD4 + index Number : Switch to Group[index]
-# MOD4 + shift + index Number : Send active window to another Group
+# See https://docs.qtile.org/en/stable/manual/config/groups.html
+# allow mod4+1 through mod4+0 to bind to groups; if you bind your groups by hand in your config, you don't need to do this.
 from libqtile.dgroups import simple_key_binder
 dgroups_key_binder = simple_key_binder("mod4")
 
+# Default layout theme
 layout_theme = {"border_width": 4,
                 "margin": 6,
                 "border_focus": colors[8],
                 "border_normal": colors[1],
                 }
-
 
 layouts = [
     # layout.Columns(border_focus_stack=['#bd93f9', '#ff5555'], border_width=2),
@@ -285,14 +300,16 @@ layouts = [
     # layout.Zoomy(),
 ]
 
+# Widget defaults
 widget_defaults = dict(
     font = 'mononoki Nerd Font Mono',
-    fontsize = 24,
+    fontsize = 20,
     padding = 2,
-    background = colors[0]
+    background = colors[0],
 )
 extension_defaults = widget_defaults.copy()
 
+#Setup main bar
 screens = [
     Screen(
         top=bar.Bar(
@@ -302,12 +319,13 @@ screens = [
 					scale = 0.8,
 					),
 				widget.GroupBox(
-                    active = colors[2],
-                    inactive = colors[3],
-                    fontsize = 32,
+                    active = colors[5],
+                    background = colors[0],
                     block_highlight_text_color = colors[8],
-                    highlight_method = "block",
+                    fontsize = 32,
                     highlight_color = colors[1],
+                    highlight_method = "block",
+                    inactive = colors[2],
                     ),
                 widget.Prompt(
                 	prompt = 'Run: ',
@@ -344,7 +362,7 @@ screens = [
                 	padding = 0,
                 	fontsize = 28,
                 	),
-              widget.CheckUpdates(
+				widget.CheckUpdates(
                     update_interval = 1800,
                     distro = "Arch",
                     display_format = "{updates} Updates",
@@ -392,6 +410,12 @@ screens = [
                 	padding = 0,
                 	fontsize = 28,
                 	),
+                widget.CPU(
+                	background = colors[6],
+                	foreground = colors[0],
+                	fmt = '{}',
+                	format = '龍{freq_current}GHz ',
+                	),
               	widget.ThermalSensor(
                     threshold = 90,
                     foreground = colors[0],
@@ -413,6 +437,15 @@ screens = [
                     measure_mem = 'G',
                     format = '{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}',
                     ),
+                widget.DF(
+                	background = colors[7],
+                	foreground = colors[0],
+                	warn_color = colors[0],
+                	format = ' {uf}{m}|{r:.0f}%',
+                	partition = '/',
+                	measure = 'G',
+                	warn_space = 999
+                	),
                 widget.TextBox(
                 	text = '',
                 	foreground = colors[8],
@@ -442,9 +475,10 @@ screens = [
                 #	update_interval=30,
                 #	),
                 widget.Clock(
-                	format='%b %d %I:%M%p',
+                	format=' %b %d %I:%M%p',
                 	foreground = colors[0],
                 	background = colors[2],
+                	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('vivaldi-stable https://calendar.google.com')},
                 	),
                	widget.TextBox(
                 	text = '',
@@ -473,6 +507,7 @@ dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = True
 cursor_warp = False
+# Set floating for certain apps
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
@@ -511,17 +546,12 @@ def window_to_next_group(qtile):
         i = qtile.groups.index(qtile.currentGroup)
         qtile.currentWindow.togroup(qtile.groups[i + 1].name)
 
+# Hooks
+#Runs startup applications
 @hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/autostart.sh'])
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
+# java UI toolkits/whitelist
 wmname = "LG3D"
