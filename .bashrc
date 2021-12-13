@@ -20,7 +20,7 @@ HISTFILESIZE=2000
 
 ### PROMPT
 #https://bashrcgenerator.com/
-PS1="\[\033[38;5;196m\]\u\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;255m\]:\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;177m\][\w]\[$(tput sgr0)\]\n\[$(tput sgr0)\]\[\033[38;5;154m\]>\[$(tput sgr0)\]"
+PS1="\[\033[38;5;196m\]\u\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;255m\]:\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;177m\][\w]\[$(tput sgr0)\]\[\033[38;5;11m\]\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')\[$(tput sgr0)\]\n\[$(tput sgr0)\]\[\033[38;5;154m\]>\[$(tput sgr0)\]"
 PS2="\[\033[38;5;154m\]>>\[$(tput sgr0)\]"
 
 ### PATH
