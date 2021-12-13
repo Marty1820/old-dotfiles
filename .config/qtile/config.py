@@ -390,13 +390,12 @@ screens = [
                 #	foreground = colors[0],
                 #	background = colors[4],
                 #	),
-                widget.Bluetooth(
-                	background = colors[4],
-                	foreground = colors[0],
-                	fmt = '{}',
-                	hci = '/dev_EF_BA_FD_8F_CC_30',
-                	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('blueman-manager')},
-                	),
+                #widget.Bluetooth(
+                #	background = colors[4],
+                #	foreground = colors[0],
+                #	fmt = '{}',
+                #	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('blueman-manager')},
+                #	),
                 widget.TextBox(
                 	text = '',
                 	foreground = colors[5],
