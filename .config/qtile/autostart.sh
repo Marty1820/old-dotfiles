@@ -1,6 +1,6 @@
 #!/usr/bin/env bash 
 
-picom &
+#picom &
 feh --bg-fill --randomize ~/Pictures/wallpapers/* &
 conky &
 redshift &
