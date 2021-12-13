@@ -73,10 +73,10 @@ keys = [
         lazy.spawn(myEditor),
         desc="Launches Text Editor"
         ),
-    Key([mod], "Escape",
-        lazy.shutdown(),
-        desc="Shutdown Qtile"
-        ),
+    #Key([mod], "Escape",
+    #    lazy.shutdown(),
+    #    desc="Shutdown Qtile"
+    #    ),
     Key([mod, "shift"], "r",
         lazy.restart(),
         desc="Restart Qtile"
@@ -97,6 +97,17 @@ keys = [
     	lazy.spawn(lock),
     	desc="Locks computer"
     	),
+    
+    #Power management keychords
+    KeyChord([mod], "Escape", [
+        Key([], "l", lazy.spawn(lock)),
+        Key([], "p", lazy.spawn('systemctl poweroff')),
+        Key([], "r", lazy.spawn('systemctl reboot')),
+        #Currently not working/still figuring things out
+        #Key([], "s", lazy.spawn(lock + '; sleep 1 ; systemctl suspend')),
+        #Key([], "h", lazy.spawn(lock + '; sleep 1 ; systemctl hibernate')),
+    ]),
+
     # Moving out of range in Columns layout will create new column.
     Key([mod, "shift"], "h",
         lazy.layout.shuffle_left(),
@@ -114,6 +125,10 @@ keys = [
     	lazy.layout.shuffle_down(),
     	desc="Move window down"
     	),
+    Key([mod], "r",
+    	lazy.spawncmd(),
+        desc="Spawn a command using a prompt widget"
+        ),
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
     Key([mod, "control"], "h",
@@ -143,14 +158,7 @@ keys = [
     Key([mod, "shift"], "Return",
     	lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack"
-        ),
-    
-    
-    Key([mod], "r",
-    	lazy.spawncmd(),
-        desc="Spawn a command using a prompt widget"
-        ),
-        
+        ),        
     # Function keys
     # Screen
     Key([], 'XF86MonBrightnessUp',
@@ -232,7 +240,7 @@ def parse_func(text):
 		text = text.replace(string, "")
 	return text
 
-# Audio Volume
+# Audio Volume/still needs work
 #class MyVolume(widget.Volume):
 #	def _configure(self, qtile, bar):
 #		widget.Volume._configure(self, qtile, bar)
