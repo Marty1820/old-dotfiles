@@ -27,6 +27,7 @@ myEditor = "gedit"
 myAppLauncher = "rofi -modi drun -show drun -theme '~/.config/rofi/config.rasi'"
 screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
 lock = "dm-tool lock"
+home = os.path.expanduser("~")
 
 #Dracula color theme
 #theme = [["background" = "#282a36"],
@@ -56,6 +57,10 @@ colors = [["#282a36"], # Background Dark Grey
 
 # Keybindings
 keys = [
+    #Work in progress/upload when complete
+    Key([mod, "shift"], "q", 
+        lazy.spawn([home + '/.config/rofi/powermenu.sh'])
+        ),
 	### Essentials
     Key([mod], "Return",
         lazy.spawn(myTerm),
@@ -169,19 +174,19 @@ keys = [
     	),
     # Audio
     Key([], 'XF86AudioMute',
-    	lazy.spawn('amixer -D pulse set Master 1+ toggle')
+    	lazy.spawn('amixer set Master 1+ toggle')
     	),
     Key([], 'XF86AudioRaiseVolume',
-    	lazy.spawn('amixer -D pulse sset Master 2%+')
+    	lazy.spawn('amixer set Master 2%+ unmute')
     	),
     Key([], 'XF86AudioLowerVolume',
-    	lazy.spawn('amixer -D pulse sset Master 2%-')
+    	lazy.spawn('amixer set Master 2%- unmute')
     	),
     Key([mod], 'XF86AudioRaiseVolume',
-    	lazy.spawn('amixer -D pulse sset Master 10%+')
+    	lazy.spawn('amixer set Master 10%+ unmute')
     	),
     Key([mod], 'XF86AudioLowerVolume',
-    	lazy.spawn('amixer -D pulse sset Master 10%-')
+    	lazy.spawn('amixer set Master 10%- unmute')
     	),
     
     #Screenshots
@@ -278,7 +283,7 @@ dgroups_key_binder = simple_key_binder("mod4")
 layout_theme = {"border_width": 2,
                 "margin": 4,
                 "border_focus": colors[8],
-                "border_normal": colors[1],
+                "border_normal": colors[0],
                 }
 
 layouts = [
@@ -450,8 +455,7 @@ screens = [
                 	warn_color = colors[0],
                 	format = ' {uf}{m}|{r:.0f}%',
                 	partition = '/',
-                	measure = 'G',
-                	warn_space = 999
+                	visible_on_warn = False,
                 	),
                 widget.TextBox(
                 	text = '',
