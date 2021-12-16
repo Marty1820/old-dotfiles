@@ -104,8 +104,8 @@ keys = [
         Key([], "p", lazy.spawn('systemctl poweroff')),
         Key([], "r", lazy.spawn('systemctl reboot')),
         #Currently not working/still figuring things out
-        #Key([], "s", lazy.spawn(lock + '; sleep 1 ; systemctl suspend')),
-        #Key([], "h", lazy.spawn(lock + '; sleep 1 ; systemctl hibernate')),
+        #Key([], "s", lazy.spawn(lock + ' ; systemctl suspend')),
+        #Key([], "h", lazy.spawncmd(lock + ' ; systemctl hibernate')),
     ]),
 
     # Moving out of range in Columns layout will create new column.
