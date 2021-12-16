@@ -275,8 +275,8 @@ from libqtile.dgroups import simple_key_binder
 dgroups_key_binder = simple_key_binder("mod4")
 
 # Default layout theme
-layout_theme = {"border_width": 4,
-                "margin": 6,
+layout_theme = {"border_width": 2,
+                "margin": 4,
                 "border_focus": colors[8],
                 "border_normal": colors[1],
                 }
