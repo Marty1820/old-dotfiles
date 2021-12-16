@@ -6,12 +6,13 @@
 # ╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░
 # BASH CONFIGUARATION
 
-### EXPORT
+### EXPORTS
 export TERM="xterm-256color"
 export EDITOR="nano"
 export VISUAL="gedit"
-export FILEMANAGER="pcmanfm"
 export HISTCONTROL=ignoreboth:erasedups
+
+# History file sizes
 HISTSIZE=1000
 HISTFILESIZE=2000
 
@@ -23,7 +24,7 @@ HISTFILESIZE=2000
 PS1="\[\033[38;5;196m\]\u\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;255m\]:\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;177m\][\w]\[$(tput sgr0)\]\[\033[38;5;11m\]\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')\[$(tput sgr0)\]\n\[$(tput sgr0)\]\[\033[38;5;154m\]>\[$(tput sgr0)\]"
 PS2="\[\033[38;5;154m\]>>\[$(tput sgr0)\]"
 
-### PATH
+### SET PATHS
 if [ -d "$HOME/.bin" ] ;
   then PATH="$HOME/.bin:$PATH"
 fi
@@ -40,7 +41,7 @@ if [ -d "$HOME/Scripts" ] ;
   then PATH="$HOME/Scripts:${PATH}"
 fi
 
-### CHANGE TITLE OF TERMINALS
+### CHANGE TITLE OF TERMINALS username@hostname:pwd
 case ${TERM} in
   xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty*|st|konsole*)
     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
@@ -59,7 +60,7 @@ shopt -s histappend # do not overwrite history
 shopt -s expand_aliases # expand aliases
 
 # IGNORE CAPITALIZATION W/TAB COMPLETION
-bind 'set completion-ignore-case on'
+bind 'set completion-ignore-case on' # Ignore case on auto-completion
 #bind 'TAB:menu-complete'
 
 
@@ -91,16 +92,22 @@ ex ()
 }
 
 ### ALIASES
+# Commented out due to using exa instead of ls
 #alias ll='ls -alF'
 #alias la='ls -A'
 #alias l='ls -CF'
 alias ..='cd ..'
+alias cd..='cd ..'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 alias df='df -h'        # human-readable sizes
 alias free='free -h'    # show sizes in human readable
+alias tree='tree -C'
+alias mkdir='mkdir -p'
 alias psa='ps auxf'
+alias ping='ping -c 5'
+alias cls='clear'
 alias grep='grep --color=auto'
 alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias psmem='ps auxf | sort -nr -k 4'
@@ -155,6 +162,7 @@ alias utftest="curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt"
 #if [ -d /opt/shell-color-scripts/colorscripts ]; then
 #  colorscript random
 #fi
+# Downloaded and mofidied from https://github.com/nuke-dash/pokemon-colorscripts-mac
 pokemon-colorscripts.sh -r
 
 ### BASH INSULTER ###
