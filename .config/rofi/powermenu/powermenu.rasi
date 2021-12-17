@@ -1,0 +1,124 @@
+configuration {
+    font: "mononoki Nerd Font Mono 12";
+    disable-history: false;
+    fullscreen: false;
+    hide-scrollbar: true;
+    sidebar-mode: false;
+}
+
+@import "./colorscheme.rasi"
+
+* {
+    background-color: @background;
+    text-color: @foreground;
+}
+
+window {
+    transparency: "real";
+    border: 2px;
+    border-color: @purple;
+    border-radius: 0px;
+    location: center;
+    width: 800px;
+    x-offset: 0px;
+    y-offset: 0px;
+}
+
+prompt {
+    enabled: true;
+    padding: 10px;
+    background-color: @selection;
+    text-color: @foreground;
+    border: 2px 2px 3px 2px;
+    border-radius: 0px;
+    border-color: @purple;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: " Power Management ";
+    background-color: @purple;
+    text-color: @foreground;
+    padding: 12px 10px 0px 10px;
+    font: "mononoki Nerd Font Mono 14";
+}
+
+inputbar {
+	children: [ textbox-prompt-colon, prompt ];
+    spacing: 0px;
+    background-color: @background;
+    text-color: @foreground;
+    expand: false;
+    border: 0px;
+    border-radius: 0px;
+    border-color: @accent;
+    margin: 0px 0px 0px 0px;
+    padding: 0px;
+    position: center;
+}
+
+listview {
+    columns: 5;
+    lines: 1;
+    spacing: 15px;
+    cycle: true;
+    dynamic: true;
+    layout: vertical;
+}
+
+mainbox {
+    background-color: @background;
+    children: [ inputbar, listview ];
+    spacing: 15px;
+    margin: 40px;
+}
+
+element {
+    background-color: @selection;
+    text-color: @foreground;
+    orientation: vertical;
+    border-radius: 0px;
+}
+
+element-text {
+	font: "mononoki Nerd Font Mono 32";
+    background-color: @selection;
+    expand: true;
+    horizontal-align: 0.5;
+    vertical-align: 0;
+    margin: 40px 0px 40px 0px;
+}
+
+element normal.urgent,
+element alternate.urgent {
+    background-color: @red;
+    text-color: @background;
+    border-radius: 0px;
+}
+
+element normal.active,
+element alternate.active {
+    background-color: @green;
+    text-color: @background;
+}
+
+element selected {
+    background-color: @purple;
+    text-color: @foreground;
+    border: 0px;
+    border-radius: 0px;
+    border-color: @red;
+}
+
+element selected.urgent {
+    background-color: @red;
+    text-color: @background;
+}
+
+element selected.active {
+    background-color: @green;
+    color: @background;
+}
+element-text selected {
+    background-color: @purple;
+}
