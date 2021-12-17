@@ -57,10 +57,6 @@ colors = [["#282a36"], # Background Dark Grey
 
 # Keybindings
 keys = [
-    #Work in progress/upload when complete
-    Key([mod, "shift"], "q", 
-        lazy.spawn([home + '/.config/rofi/powermenu.sh'])
-        ),
 	### Essentials
     Key([mod], "Return",
         lazy.spawn(myTerm),
@@ -78,10 +74,10 @@ keys = [
         lazy.spawn(myEditor),
         desc="Launches Text Editor"
         ),
-    #Key([mod], "Escape",
-    #    lazy.shutdown(),
-    #    desc="Shutdown Qtile"
-    #    ),
+    #Work in progress/files upload when complete
+    Key([mod], "Escape",
+        lazy.spawn([home + '/.config/rofi/powermenu.sh'])
+        ),
     Key([mod, "shift"], "r",
         lazy.restart(),
         desc="Restart Qtile"
@@ -102,17 +98,6 @@ keys = [
     	lazy.spawn(lock),
     	desc="Locks computer"
     	),
-    
-    #Power management keychords
-    KeyChord([mod], "Escape", [
-        Key([], "l", lazy.spawn(lock)),
-        Key([], "p", lazy.spawn('systemctl poweroff')),
-        Key([], "r", lazy.spawn('systemctl reboot')),
-        #Currently not working/still figuring things out
-        #Key([], "s", lazy.spawn(lock + ' ; systemctl suspend')),
-        #Key([], "h", lazy.spawncmd(lock + ' ; systemctl hibernate')),
-    ]),
-
     # Moving out of range in Columns layout will create new column.
     Key([mod, "shift"], "h",
         lazy.layout.shuffle_left(),
