@@ -6,24 +6,23 @@ configuration {
     drun-display-format: "{name}";
 }
 
+@import "./powermenu/colorscheme.rasi"
 * {
     background-color: transparent;
-    background: #282a36;
-    background-alt: #44475a;
-    text-color: #f8f8f2;
-    primary: #bd93f9;
-    urgent: #ff5555;
+    text-color: @foreground;
 }
 
 window {
-    height: 65.5%;
+    height: 65%;
     width: 40%;
     transparency: "real";
     background-color: @background;
+    border: 2px;
+    border-color: @purple;
 }
 
 inputbar {
-    background-color: @background-alt;
+    background-color: @selection;
     text-color: @foreground;
     border-radius: 2%;
     padding: 1%;
@@ -36,7 +35,7 @@ prompt {
 
 entry {
     font: "mononoki Nerd Font Mono 12";
-    placeholder-color: @text-color;
+    placeholder-color: @foreground;
     placeholder: "Search Applications";
     blink: true;
 }
@@ -44,7 +43,7 @@ entry {
 
 mainbox {
     children: [ inputbar, listview ];
-    margin: 5% 1% 0 3.5%;
+    margin: 3.5% 1% 0 3.5%;
 }
 
 listview {
@@ -61,24 +60,24 @@ element {
 }
 
 element normal.urgent, element alternate.urgent {
-    background-color: @urgent;
+    background-color: @red;
 }
 
 element normal.active, element alternate.active {
-    background-color: @background-alt;
-    color: @selected-text-color;
+    background-color: @selection;
+    color: @foreground;
 }
 
 element selected {
-    background-color: @background-alt;
+    background-color: @selection;
 }
 
 element selected.urgent {
-    background-color: @urgent;
+    background-color: @red;
 }
 
 element selected.active {
-    background-color: @background-alt;
+    background-color: @selection;
 }
 
 element-icon {
