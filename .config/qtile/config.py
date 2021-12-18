@@ -233,7 +233,7 @@ class MyBattery(Battery):
 		self.timer_setup()
 
 battery = MyBattery(
-	format = '{char}{percent:2.0%}',
+	format = '{char} {percent:2.0%}',
     foreground = colors[0],
     background = colors[4],
     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('xfce4-power-manager-settings')},
