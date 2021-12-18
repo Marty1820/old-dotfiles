@@ -206,6 +206,21 @@ class MyBattery(Battery):
 				char = ''
 		elif status.percent >= 1 or status.state == BatteryState.FULL:
 			char = ''
+		elif status.state == BatteryState.CHARGING:
+		    if status.percent > 0.90:
+		        char = ''
+		    elif status.percent > 0.80:
+		        char = ''
+		    elif status.percent > 0.60:
+		        char = ''
+		    elif status.percent > 0.40:
+		        char = ''
+		    elif status.percent > 0.30:
+		        char = ''
+		    elif status.percent > 0.20:
+		        char = ''
+		    else:
+		        char = ''
 		elif status.state == BatteryState.EMPTY or \
 				(status.state == BatteryState.UNKNOWN and status.percent == 0):
 			char = ''
@@ -214,13 +229,13 @@ class MyBattery(Battery):
 		return self.format.format(char=char, percent=status.percent)
 	
 	def restore(self):
-		self.format = '{char}{percent:2.0%}'
+		self.format = '{char} {percent:2.0%}'
 		self.timer_setup()
 
 battery = MyBattery(
-	format = '{percent:2.0%}{char}',
+	format = '{char}{percent:2.0%}',
     foreground = colors[0],
-    background = colors[10],
+    background = colors[4],
     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('xfce4-power-manager-settings')},
 )
 
@@ -298,7 +313,7 @@ layouts = [
     # layout.Zoomy(),
 ]
 
-# Widget defaults
+# Widget default settings
 widget_defaults = dict(
     font = 'mononoki Nerd Font Mono',
     fontsize = 20,
@@ -364,38 +379,20 @@ screens = [
                     update_interval = 1800,
                     distro = "Arch",
                     display_format = "{updates} Updates",
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e parusyu')},
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
                     foreground = colors[0],
                     background = colors[9],
                     ),
                 widget.TextBox(
                 	text = '',
-                	foreground = colors[4],
-                	background = colors[9],
-                	padding = 0,
-                	fontsize = 28,
-                	),
-                #widget.TextBox(
-                #	text = 'config',
-                #	foreground = colors[0],
-                #	background = colors[4],
-                #	),
-                #widget.Bluetooth(
-                #	background = colors[4],
-                #	foreground = colors[0],
-                #	fmt = '{}',
-                #	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('blueman-manager')},
-                #	),
-                widget.TextBox(
-                	text = '',
                 	foreground = colors[5],
-                	background = colors[4],
+                	background = colors[9],
                 	padding = 0,
                 	fontsize = 28,
                 	),
                 widget.Net(
                 	interface = "wlp170s0",
-                	format = '{down}↓↑{up}',
+                	format = '{down}{up}',
                 	foreground = colors[0],
                 	background = colors[5],
                 	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('nm-connection-editor')},
@@ -411,13 +408,13 @@ screens = [
                 	background = colors[6],
                 	foreground = colors[0],
                 	fmt = '{}',
-                	format = '龍{freq_current}GHz ',
+                	format = '{freq_current}GHz ',
                 	),
               	widget.ThermalSensor(
                     threshold = 90,
                     foreground = colors[0],
                     background = colors[6],
-                    fmt = '{}',
+                    fmt = '{}',
                     ),
                 widget.TextBox(
                 	text = '',
@@ -430,7 +427,7 @@ screens = [
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
                     foreground = colors[0],
                     background = colors[7],
-                    fmt = '{}',
+                    fmt = '{}',
                     measure_mem = 'G',
                     format = '{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}',
                     ),
@@ -478,7 +475,7 @@ screens = [
                 	),
                	widget.TextBox(
                 	text = '',
-                	foreground = colors[10],
+                	foreground = colors[4],
                 	background = colors[2],
                 	padding = 0,
                 	fontsize = 28,
