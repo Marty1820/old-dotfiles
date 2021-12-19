@@ -244,11 +244,9 @@ def parse_func(text):
 		text = text.replace(string, "")
 	return text
 
-# Audio Volume/still needs work | Replaces widget.Volume
+# Audio Volume/still needs work | compliments widget.Volume
 class MyVolume(Volume):
     def _update_drawer(self):
-        #if self.theme_path:
-            #self.drawer.clear(self.background or self.bar.background)
         if self.volume <= 0:
             self.text = '婢'
         elif self.volume < 30:
@@ -263,8 +261,6 @@ class MyVolume(Volume):
         self.timer_setup()
         
 volume = MyVolume(
-    #fmt = '{self.volume} {}'
-    #format = '{img_name}',
     foreground = colors[0],
     background = colors[8],
 )
@@ -347,11 +343,6 @@ screens = [
                 	padding = 5,
                 	foreground = colors[8],
                 	),
-                widget.Sep(
-                	linewidth = 0,
-                    foreground = colors[3],
-                    size_percent = 80,
-                    ),
                 widget.WindowName(
                 	format = '{name}',
                 	foreground = colors[2],
@@ -365,8 +356,8 @@ screens = [
                 	fontsize = 28,
                 	),
                 widget.Systray(
-                	icon_size = 26,
-                	padding = 0,
+                	icon_size = 22,
+                	padding = 2,
                 	foreground = colors[0],
                 	background = colors[3],
                 	),
@@ -378,11 +369,14 @@ screens = [
                 	fontsize = 28,
                 	),
 				widget.CheckUpdates(
-                    update_interval = 1800,
-                    distro = "Arch",
+                    update_interval = 300,
+                    distro = "Arch_paru",
                     display_format = "{updates} Updates",
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
+                    no_update_string = " Updated",
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo paru -Syu')},
                     foreground = colors[0],
+                    colour_no_updates = colors[0],
+                    colour_have_updates = colors[0],
                     background = colors[9],
                     ),
                 widget.TextBox(
@@ -394,7 +388,7 @@ screens = [
                 	),
                 widget.Net(
                 	interface = "wlp170s0",
-                	format = '{down}{up}',
+                	format = '直{down}{up}',
                 	foreground = colors[0],
                 	background = colors[5],
                 	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('nm-connection-editor')},
@@ -432,12 +426,13 @@ screens = [
                     fmt = '{}',
                     measure_mem = 'G',
                     format = '{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}',
+                    update_interval = '5',
                     ),
                 widget.DF(
                 	background = colors[7],
                 	foreground = colors[0],
-                	warn_color = colors[0],
-                	format = ' {uf}{m}|{r:.0f}%',
+                	warn_color = colors[2],
+                	format = ' {uf}{m}|{r:.0f}',
                 	partition = '/',
                 	visible_on_warn = False,
                 	),
@@ -452,7 +447,6 @@ screens = [
               	widget.Volume(
                     foreground = colors[0],
                     background = colors[8],
-                    fmt = '{}',
                     ),
 				widget.TextBox(
                 	text = '',
@@ -460,6 +454,12 @@ screens = [
                 	background = colors[8],
                 	padding = 0,
                 	fontsize = 28,
+                	),
+                widget.Clock(
+                	format=' %b %d %I:%M%p',
+                	foreground = colors[0],
+                	background = colors[2],
+                	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('vivaldi-stable https://calendar.google.com')},
                 	),
                	#widget.Wttr(
                 #	foreground = colors[0],
@@ -469,12 +469,6 @@ screens = [
                 #	format = '%c+%t',
                 #	update_interval=30,
                 #	),
-                widget.Clock(
-                	format=' %b %d %I:%M%p',
-                	foreground = colors[0],
-                	background = colors[2],
-                	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('vivaldi-stable https://calendar.google.com')},
-                	),
                	widget.TextBox(
                 	text = '',
                 	foreground = colors[4],
