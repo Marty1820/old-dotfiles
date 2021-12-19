@@ -17,6 +17,7 @@ from libqtile.config import Click, Drag, Group, KeyChord, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile.widget.battery import Battery, BatteryState
+from libqtile.widget.volume import Volume
 
 # defaults
 mod = "mod4"				# Sets mod key to SUPER
@@ -180,7 +181,7 @@ keys = [
     	),
 ]
 
-# Battery Icon & %
+# Battery Icon & % | Replaces widget.Battery
 class MyBattery(Battery):
 	def build_string(self, status):
 		if status.state == BatteryState.DISCHARGING:
@@ -221,11 +222,9 @@ class MyBattery(Battery):
 		        char = ''
 		    else:
 		        char = ''
-		elif status.state == BatteryState.EMPTY or \
-				(status.state == BatteryState.UNKNOWN and status.percent == 0):
+		else: #status.state == BatteryState.EMPTY or \
+				#(status.state == BatteryState.UNKNOWN and status.percent == 0):
 			char = ''
-		else:
-			char = ''
 		return self.format.format(char=char, percent=status.percent)
 	
 	def restore(self):
@@ -245,27 +244,30 @@ def parse_func(text):
 		text = text.replace(string, "")
 	return text
 
-# Audio Volume/still needs work
-#class MyVolume(widget.Volume):
-#	def _configure(self, qtile, bar):
-#		widget.Volume._configure(self, qtile, bar)
-#		self.volume = self.get_volume()
-#		if self.volume <= 0:
-#			self.text = '奄'
-#		elif self.volume <= 50:
-#			self.text = '奔'
-#		else:
-#			self.text = '墳'
-		
-#	def restore(self):
-#		self.format = '{char} {volume}'
-#		self.timer_setup()
-
-#volume = MyVolume(
-#	foreground = colors[0],
-#    background = colors[8],
-#    fmt = '{}',
-#)
+# Audio Volume/still needs work | Replaces widget.Volume
+class MyVolume(Volume):
+    def _update_drawer(self):
+        #if self.theme_path:
+            #self.drawer.clear(self.background or self.bar.background)
+        if self.volume <= 0:
+            self.text = '婢'
+        elif self.volume < 30:
+            self.text = '奄'
+        elif self.volume < 80:
+            self.text = '奔'
+        else: # self.volume >=80:
+            self.text = '墳'
+        
+    def restore(self):
+        self.format = '{img_name}'
+        self.timer_setup()
+        
+volume = MyVolume(
+    #fmt = '{self.volume} {}'
+    #format = '{img_name}',
+    foreground = colors[0],
+    background = colors[8],
+)
 
 # Groups using Names istead of numbers
 groups = [Group(""),
@@ -446,11 +448,11 @@ screens = [
                 	padding = 0,
                 	fontsize = 28,
                 	),
-                #volume,
+                volume,
               	widget.Volume(
                     foreground = colors[0],
                     background = colors[8],
-                    fmt = '墳{}',
+                    fmt = '{}',
                     ),
 				widget.TextBox(
                 	text = '',
