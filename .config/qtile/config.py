@@ -370,7 +370,7 @@ screens = [
                 	),
 				widget.CheckUpdates(
                     update_interval = 300,
-                    distro = "Arch_paru",
+                    distro = "Arch",
                     display_format = "{updates} Updates",
                     no_update_string = " Updated",
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo paru -Syu')},
@@ -426,7 +426,7 @@ screens = [
                     fmt = '{}',
                     measure_mem = 'G',
                     format = '{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}',
-                    update_interval = '5',
+                    update_interval = '1',
                     ),
                 widget.DF(
                 	background = colors[7],
