@@ -1,9 +1,9 @@
 #!/bin/sh
 
+# Original location of files:
+# https://gitlab.com/phoneybadger/pokemon-colorscripts
 
-#PROGRAM=$(greadlink -f "$0")
-#PROGRAM_DIR=$(dirname "$PROGRAM")
-PROGRAM_DIR="/home/marty/.fun/pokemon"
+PROGRAM_DIR="$HOME/.fun/pokemon"
 # directory where all the art files exist
 POKEART_DIR="$PROGRAM_DIR/colorscripts"
 # formatting for the help strings
