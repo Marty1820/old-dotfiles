@@ -20,10 +20,10 @@ _help(){
         "-h, --help, help" "Print this help." \
         "-l, --list, list" "Print list of all pokemon"\
         "-r, --random, random" "Show a random pokemon"\
-        "-n, --name" "Select pokemon by name. Generally spelled like in the games.
-                        a few exceptions are nidoran-f,nidoran-m,mr-mime,farfetchd,flabebe
-                        type-null etc. Perhaps grep the output of --list if in
-                        doubt"
+        "-n, --name" "Select pokemon by name. 
+        Generally spelled like in the games. 
+        Some exceptions are nidoran-f,nidoran-m,mr-mime,farfetchd,flabebe type-null etc. 
+        grep the output of --list if in doubt"
     echo "Example: 'pokemon-colorscripts --name pikachu'"
 }
 
