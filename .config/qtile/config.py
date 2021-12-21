@@ -27,7 +27,6 @@ myFilemgr = "pcmanfm"
 myEditor = "gedit"
 myAppLauncher = "rofi -modi drun -show drun -theme '~/.config/rofi/config.rasi'"
 screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
-lock = "dm-tool lock"
 home = os.path.expanduser("~")
 
 #Dracula color theme
@@ -95,10 +94,6 @@ keys = [
         lazy.spawn(myAppLauncher),
         desc="Application Launcher"
         ),
-    Key([mod], "l",
-    	lazy.spawn(lock),
-    	desc="Locks computer"
-    	),
     # Moving out of range in Columns layout will create new column.
     Key([mod, "shift"], "h",
         lazy.layout.shuffle_left(),
