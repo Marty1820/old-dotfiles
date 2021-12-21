@@ -28,14 +28,14 @@ case $chosen in
         systemctl reboot
         ;;
     $lock)
-		dm-tool lock
+		light-locker-command -l
         ;;
     $suspend)
         if [[ $(cat /sys/class/power_supply/BAT1/status) == Discharging ]]; then
-		    dm-tool lock
+		    light-locker-command -l
 		    systemctl hibernate
 		else
-		    dm-tool lock
+		    light-locker-command -l
 		    systemctl suspend
 		fi
         ;;
