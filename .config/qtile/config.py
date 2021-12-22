@@ -19,16 +19,6 @@ from libqtile.utils import guess_terminal
 from libqtile.widget.battery import Battery, BatteryState
 from libqtile.widget.volume import Volume
 
-# defaults
-mod = "mod4"				# Sets mod key to SUPER
-myTerm = "alacritty"
-myBrowser = "vivaldi-stable"
-myFilemgr = "pcmanfm"
-myEditor = "gedit"
-myAppLauncher = "rofi -modi drun -show drun -theme '~/.config/rofi/config.rasi'"
-screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
-home = os.path.expanduser("~")
-
 #Dracula color theme
 theme = dict(background = "#282a36",
 		 current = "#44475a",
@@ -42,6 +32,15 @@ theme = dict(background = "#282a36",
 		 purple = "#bd93f9",
 		 red = "#ff5555",
 		 yellow = "#f1fa8c")
+
+mod = "mod4"				# Sets mod key to SUPER
+home = os.path.expanduser('~') # Allow using 'home +' to expand ~
+myTerm = "alacritty"
+myBrowser = "vivaldi-stable"
+myFilemgr = "pcmanfm"
+myEditor = "gedit"
+myAppLauncher = "rofi -modi drun -show drun -theme '~/.config/rofi/config.rasi'"
+screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
 
 # Keybindings
 keys = [
@@ -191,20 +190,24 @@ class MyBattery(Battery):
 		elif status.percent >= 1 or status.state == BatteryState.FULL:
 			char = ''
 		elif status.state == BatteryState.CHARGING:
-		    if status.percent > 0.90:
-		        char = ''
-		    elif status.percent > 0.80:
-		        char = ''
-		    elif status.percent > 0.60:
-		        char = ''
-		    elif status.percent > 0.40:
-		        char = ''
-		    elif status.percent > 0.30:
-		        char = ''
-		    elif status.percent > 0.20:
-		        char = ''
-		    else:
-		        char = ''
+			if status.percent > 0.90:
+				char = ''
+			elif status.percent > 0.80:
+				char = ''
+			elif status.percent > 0.70:
+				char = ''
+			elif status.percent > 0.60:
+				char = ''
+			elif status.percent > 0.50:
+				char = ''
+			elif status.percent > 0.40:
+				char = ''
+			elif status.percent > 0.30:
+				char = ''
+			elif status.percent > 0.20:
+				char = ''
+			else:
+				char = ''
 		else: #status.state == BatteryState.EMPTY or \
 				#(status.state == BatteryState.UNKNOWN and status.percent == 0):
 			char = ''
@@ -227,7 +230,7 @@ def parse_func(text):
 		text = text.replace(string, "")
 	return text
 
-# Audio Volume/still needs work | compliments widget.Volume
+# Audio Volume/still needs work | Sets icon for widget.Volume
 class MyVolume(Volume):
     def _update_drawer(self):
         if self.volume <= 0:
@@ -256,17 +259,18 @@ groups = [Group(""),
           Group("", layout='floating')]
           
 # See https://docs.qtile.org/en/stable/manual/config/groups.html
-# allow mod4+1 through mod4+0 to bind to groups; if you bind your groups by hand in your config, you don't need to do this.
+# allow [S]mod4+1 through [S]mod4+0 to bind to groups; if you bind your groups by hand in your config, you don't need to do this.
 from libqtile.dgroups import simple_key_binder
 dgroups_key_binder = simple_key_binder("mod4")
 
-# Default layout theme
+# Default layout theme settings
 layout_theme = {"border_width": 2,
                 "margin": 4,
                 "border_focus": theme["purple"],
                 "border_normal": theme["background"],
                 }
 
+#Used layouts
 layouts = [
     # layout.Columns(border_focus_stack=['#bd93f9', '#ff5555'], border_width=2),
     layout.MonadTall(**layout_theme),
@@ -283,7 +287,6 @@ layouts = [
 		inactive_fg = theme["foreground"],
 		panel_width = 190,
 		),
-    # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
@@ -309,7 +312,7 @@ screens = [
         top=bar.Bar(
             [
 				widget.CurrentLayoutIcon(
-					custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
+					custom_icon_paths = [(home + "/.config/qtile/icons")],
 					scale = 0.8,
 					),
 				widget.GroupBox(
@@ -329,7 +332,6 @@ screens = [
                 widget.WindowName(
                 	format = '{name}',
                 	foreground = theme["foreground"],
-                	#max_chars = 40,
                 	parse_text = parse_func,
                 	),
                 widget.TextBox(
@@ -353,8 +355,8 @@ screens = [
                 	),
 				widget.CheckUpdates(
                     update_interval = 300,
-                    distro = "Arch",
-                    display_format = "{updates} Updates",
+                    distro = "Arch_checkupdates",
+                    display_format = " {updates} Updates",
                     no_update_string = " Updated",
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo paru -Syu')},
                     foreground = theme["background"],
@@ -458,7 +460,7 @@ screens = [
     ),
 ]
 
-# Drag floating layouts.
+# Allows dragging floating layouts.
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),
          start=lazy.window.get_position()),
@@ -471,6 +473,7 @@ dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = True
 cursor_warp = False
+
 # Set floating for certain apps
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
@@ -496,11 +499,10 @@ auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 
-# If things like steam games want to auto-minimize themselves when losing
-# focus, should we respect this or not?
+# Allows auto-minimize when losing focus for apps that need it
 auto_minimize = True
 
-# Functions
+# Functions for changing groups
 def window_to_prev_group(qtile):
 	if qtile.currentWindow is not None:
 		i = qtile.groups.index(qtile.currentGroup)
@@ -514,7 +516,6 @@ def window_to_next_group(qtile):
 #Runs startup applications
 @hook.subscribe.startup_once
 def start_once():
-    home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/autostart.sh'])
 
 # java UI toolkits/whitelist
