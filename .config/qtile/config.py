@@ -30,30 +30,18 @@ screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
 home = os.path.expanduser("~")
 
 #Dracula color theme
-#theme = [["background" = "#282a36"],
-#		 ["current" = "#44475a"],
-#		 ["selection" = "#44475a"],
-#		 ["foreground" = "#f8f8f2"],
-#		 ["comment" = "#6272a4"],
-#		 ["cyan" = "#8be9fd"],
-#		 ["green" = "#50fa7b"],
-#		 ["orange" = "#ffb86c"],
-#		 ["pink" = "#ff79c6"],
-#		 ["purple" = "#bd93f9"],
-#		 ["red" = "#ff5555"],
-#		 ["yellow" = "#f1fa8c"]]
-
-colors = [["#282a36"], # Background Dark Grey
-          ["#44475a"], # Current Line/Selection Grey
-          ["#f8f8f2"], # Foreground Whitish
-          ["#6272a4"], # Comment Blue/Grey
-          ["#8be9fd"], # Cyan
-          ["#50fa7b"], # Green
-          ["#ffb86c"], # Orange
-          ["#ff79c6"], # Pink
-          ["#bd93f9"], # Purple
-          ["#ff5555"], # Red
-          ["#f1fa8c"]] # Yellow
+theme = dict(background = "#282a36",
+		 current = "#44475a",
+		 selection = "#44475a",
+		 foreground = "#f8f8f2",
+		 comment = "#6272a4",
+		 cyan = "#8be9fd",
+		 green = "#50fa7b",
+		 orange = "#ffb86c",
+		 pink = "#ff79c6",
+		 purple = "#bd93f9",
+		 red = "#ff5555",
+		 yellow = "#f1fa8c")
 
 # Keybindings
 keys = [
@@ -228,8 +216,8 @@ class MyBattery(Battery):
 
 battery = MyBattery(
 	format = '{char} {percent:2.0%}',
-    foreground = colors[0],
-    background = colors[4],
+    foreground = theme["background"],
+    background = theme["cyan"],
     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('xfce4-power-manager-settings')},
 )
 
@@ -256,8 +244,8 @@ class MyVolume(Volume):
         self.timer_setup()
         
 volume = MyVolume(
-    foreground = colors[0],
-    background = colors[8],
+    foreground = theme["background"],
+    background = theme["purple"],
 )
 
 # Groups using Names istead of numbers
@@ -275,8 +263,8 @@ dgroups_key_binder = simple_key_binder("mod4")
 # Default layout theme
 layout_theme = {"border_width": 2,
                 "margin": 4,
-                "border_focus": colors[8],
-                "border_normal": colors[0],
+                "border_focus": theme["purple"],
+                "border_normal": theme["background"],
                 }
 
 layouts = [
@@ -288,11 +276,11 @@ layouts = [
 		font = "mononoki Nerd Font Mono",
 		fontsize = 24,
 		border_width = 2,
-		bg_color = colors[0],
-		active_bg = colors[1],
-		active_fg = colors[8],
-		inactive_bg = colors[0],
-		inactive_fg = colors[2],
+		bg_color = theme["background"],
+		active_bg = theme["selection"],
+		active_fg = theme["purple"],
+		inactive_bg = theme["background"],
+		inactive_fg = theme["foreground"],
 		panel_width = 190,
 		),
     # Try more layouts by unleashing below layouts.
@@ -311,7 +299,7 @@ widget_defaults = dict(
     font = 'mononoki Nerd Font Mono',
     fontsize = 20,
     padding = 2,
-    background = colors[0],
+    background = theme["background"],
 )
 extension_defaults = widget_defaults.copy()
 
@@ -325,41 +313,41 @@ screens = [
 					scale = 0.8,
 					),
 				widget.GroupBox(
-                    active = colors[5],
-                    background = colors[0],
-                    block_highlight_text_color = colors[8],
+                    active = theme["green"],
+                    background = theme["background"],
+                    block_highlight_text_color = theme["purple"],
                     fontsize = 32,
-                    highlight_color = colors[1],
+                    highlight_color = theme["current"],
                     highlight_method = "block",
-                    inactive = colors[2],
+                    inactive = theme["foreground"],
                     ),
                 widget.Prompt(
                 	prompt = 'Run: ',
                 	padding = 5,
-                	foreground = colors[8],
+                	foreground = theme["purple"],
                 	),
                 widget.WindowName(
                 	format = '{name}',
-                	foreground = colors[2],
+                	foreground = theme["foreground"],
                 	#max_chars = 40,
                 	parse_text = parse_func,
                 	),
                 widget.TextBox(
                 	text = '',
-                	foreground = colors[3],
+                	foreground = theme["comment"],
                 	padding = 0,
                 	fontsize = 28,
                 	),
                 widget.Systray(
                 	icon_size = 22,
                 	padding = 2,
-                	foreground = colors[0],
-                	background = colors[3],
+                	foreground = theme["background"],
+                	background = theme["comment"],
                 	),
                 widget.TextBox(
                 	text = '',
-                	foreground = colors[9],
-                	background = colors[3],
+                	foreground = theme["red"],
+                	background = theme["comment"],
                 	padding = 0,
                 	fontsize = 28,
                 	),
@@ -369,105 +357,97 @@ screens = [
                     display_format = "{updates} Updates",
                     no_update_string = " Updated",
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo paru -Syu')},
-                    foreground = colors[0],
-                    colour_no_updates = colors[0],
-                    colour_have_updates = colors[0],
-                    background = colors[9],
+                    foreground = theme["background"],
+                    colour_no_updates = theme["background"],
+                    colour_have_updates = theme["background"],
+                    background = theme["red"],
                     ),
                 widget.TextBox(
                 	text = '',
-                	foreground = colors[5],
-                	background = colors[9],
+                	foreground = theme["green"],
+                	background = theme["red"],
                 	padding = 0,
                 	fontsize = 28,
                 	),
                 widget.Net(
                 	interface = "wlp170s0",
                 	format = '直{down}{up}',
-                	foreground = colors[0],
-                	background = colors[5],
+                	foreground = theme["background"],
+                	background = theme["green"],
                 	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('nm-connection-editor')},
                 	),
                 widget.TextBox(
                 	text = '',
-                	foreground = colors[6],
-                	background = colors[5],
+                	foreground = theme["orange"],
+                	background = theme["green"],
                 	padding = 0,
                 	fontsize = 28,
                 	),
                 widget.CPU(
-                	background = colors[6],
-                	foreground = colors[0],
+                	background = theme["orange"],
+                	foreground = theme["background"],
                 	fmt = '{}',
                 	format = '{freq_current}GHz ',
                 	),
               	widget.ThermalSensor(
                     threshold = 90,
-                    foreground = colors[0],
-                    background = colors[6],
+                    foreground = theme["background"],
+                    background = theme["orange"],
                     fmt = '{}',
                     ),
                 widget.TextBox(
                 	text = '',
-                	foreground = colors[7],
-                	background = colors[6],
+                	foreground = theme["pink"],
+                	background = theme["orange"],
                 	padding = 0,
                 	fontsize = 28,
                 	),
               	widget.Memory(
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
-                    foreground = colors[0],
-                    background = colors[7],
+                    foreground = theme["background"],
+                    background = theme["pink"],
                     fmt = '{}',
                     measure_mem = 'G',
                     format = '{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}',
                     update_interval = '1',
                     ),
                 widget.DF(
-                	background = colors[7],
-                	foreground = colors[0],
-                	warn_color = colors[2],
+                	background = theme["pink"],
+                	foreground = theme["background"],
+                	warn_color = theme["foreground"],
                 	format = ' {uf}{m}|{r:.0f}',
                 	partition = '/',
                 	visible_on_warn = False,
                 	),
                 widget.TextBox(
                 	text = '',
-                	foreground = colors[8],
-                	background = colors[7],
+                	foreground = theme["purple"],
+                	background = theme["pink"],
                 	padding = 0,
                 	fontsize = 28,
                 	),
                 volume,
               	widget.Volume(
-                    foreground = colors[0],
-                    background = colors[8],
+                    foreground = theme["background"],
+                    background = theme["purple"],
                     ),
 				widget.TextBox(
                 	text = '',
-                	foreground = colors[2],
-                	background = colors[8],
+                	foreground = theme["foreground"],
+                	background = theme["purple"],
                 	padding = 0,
                 	fontsize = 28,
                 	),
                 widget.Clock(
                 	format=' %b %d %I:%M%p',
-                	foreground = colors[0],
-                	background = colors[2],
+                	foreground = theme["background"],
+                	background = theme["foreground"],
                 	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('vivaldi-stable https://calendar.google.com')},
                 	),
-               	#widget.Wttr(
-                #	foreground = colors[0],
-                #	background = colors[2],
-                #	location = '',
-                #	#units = 'u',
-                #	format = '%c+%t',
-                #	update_interval=30,
-                #	),
                	widget.TextBox(
                 	text = '',
-                	foreground = colors[4],
-                	background = colors[2],
+                	foreground = theme["cyan"],
+                	background = theme["foreground"],
                 	padding = 0,
                 	fontsize = 28,
                 	),
