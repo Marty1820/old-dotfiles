@@ -39,7 +39,8 @@ myTerm = "alacritty"
 myBrowser = "vivaldi-stable"
 myFilemgr = "pcmanfm"
 myEditor = "gedit"
-myAppLauncher = "rofi -modi drun -show drun -theme '~/.config/rofi/config.rasi'"
+#myAppLauncher = "rofi -modi drun -show drun -theme '~/.config/rofi/config.rasi'"
+myAppLauncher = "rofi -show drun -theme '~/.config/rofi/config.rasi'"
 screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
 
 # Keybindings
