@@ -21,7 +21,7 @@ HISTFILESIZE=2000
 
 ### PROMPT
 #https://bashrcgenerator.com/
-PS1="\033[38;5;177m\][\w]\[$(tput sgr0)\]\[\033[38;5;11m\]\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')\[$(tput sgr0)\] \[\033[38;5;154m\]>\[$(tput sgr0)\]"
+PS1="\[\033[38;5;135m\][\w]\[$(tput sgr0)\]\[\033[38;5;220m\]\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')\[$(tput sgr0)\]\[\033[38;5;10m\]->\[$(tput sgr0)\]"
 
 ### SET PATHS
 if [ -d "$HOME/.bin" ] ;
