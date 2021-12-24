@@ -21,8 +21,7 @@ HISTFILESIZE=2000
 
 ### PROMPT
 #https://bashrcgenerator.com/
-PS1="\[\033[38;5;196m\]\u\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;255m\]:\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;177m\][\w]\[$(tput sgr0)\]\[\033[38;5;11m\]\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')\[$(tput sgr0)\]\n\[$(tput sgr0)\]\[\033[38;5;154m\]>\[$(tput sgr0)\]"
-PS2="\[\033[38;5;154m\]>>\[$(tput sgr0)\]"
+PS1="\033[38;5;177m\][\w]\[$(tput sgr0)\]\[\033[38;5;11m\]\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')\[$(tput sgr0)\] \[\033[38;5;154m\]>\[$(tput sgr0)\]"
 
 ### SET PATHS
 if [ -d "$HOME/.bin" ] ;
@@ -139,15 +138,8 @@ alias jctl="journalctl -p 3 -xb"
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # youtube-dl
-alias yta-aac="youtube-dl --extract-audio --audio-format aac "
-alias yta-best="youtube-dl --extract-audio --audio-format best "
-alias yta-flac="youtube-dl --extract-audio --audio-format flac "
-alias yta-m4a="youtube-dl --extract-audio --audio-format m4a "
-alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 "
-alias yta-opus="youtube-dl --extract-audio --audio-format opus "
-alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
-alias yta-wav="youtube-dl --extract-audio --audio-format wav "
-alias ytv-best="youtube-dl -f bestvideo+bestaudio "
+alias yta="youtube-dl --extract-audio --audio-format best "
+alias ytv="youtube-dl -f bestvideo+bestaudio "
 
 ### FUN STUFF ###
 
