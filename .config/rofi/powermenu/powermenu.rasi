@@ -1,5 +1,5 @@
 configuration {
-    font: "mononoki Nerd Font Mono 12";
+    font: "Hack 12";
     disable-history: false;
     fullscreen: false;
     hide-scrollbar: true;
@@ -40,7 +40,7 @@ textbox-prompt-colon {
     background-color: @purple;
     text-color: @foreground;
     padding: 12px 10px 0px 10px;
-    font: "mononoki Nerd Font Mono 14";
+    font: "Hack 14";
 }
 
 inputbar {
@@ -81,7 +81,7 @@ element {
 }
 
 element-text {
-	font: "mononoki Nerd Font Mono 32";
+	font: "Hack 32";
     background-color: @selection;
     expand: true;
     horizontal-align: 0.5;
