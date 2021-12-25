@@ -21,6 +21,7 @@ HISTFILESIZE=2000
 
 ### PROMPT
 #https://bashrcgenerator.com/
+#Using Synth shell at bottom
 PS1="\[\033[38;5;135m\][\w]\[$(tput sgr0)\]\[\033[38;5;220m\]\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')\[$(tput sgr0)\]\[\033[38;5;10m\]->\[$(tput sgr0)\]"
 
 ### SET PATHS
@@ -184,4 +185,10 @@ if [ "$TERM" = "linux" ]; then
         printf %b '\e]P7f8f8f2'    # redefine 'white'          as 'dracula-fg'
         printf %b '\e]PFffffff'    # redefine 'bright-white'   as '#ffffff'
         clear
+fi
+
+##-----------------------------------------------------
+## synth-shell-prompt.sh
+if [ -f $HOME/.config/synth-shell/synth-shell-prompt.sh ] && [ -n "$( echo $- | grep i )" ]; then
+	source $HOME/.config/synth-shell/synth-shell-prompt.sh
 fi
