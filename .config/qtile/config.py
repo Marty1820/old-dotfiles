@@ -39,7 +39,6 @@ myTerm = "alacritty"
 myBrowser = "vivaldi-stable"
 myFilemgr = "pcmanfm"
 myEditor = "gedit"
-#myAppLauncher = "rofi -modi drun -show drun -theme '~/.config/rofi/config.rasi'"
 myAppLauncher = "rofi -show drun -theme '~/.config/rofi/config.rasi'"
 screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
 
@@ -253,10 +252,11 @@ volume = MyVolume(
 )
 
 # Groups using Names istead of numbers
-groups = [Group(""),
+groups = [Group(""),
 		  Group("爵"),
           Group(""),
-          Group(""),
+          Group(""),
+          Group("", layout='treetab'),
           Group("", layout='floating')]
           
 # See https://docs.qtile.org/en/stable/manual/config/groups.html
@@ -273,29 +273,23 @@ layout_theme = {"border_width": 2,
 
 #Used layouts
 layouts = [
-    # layout.Columns(border_focus_stack=['#bd93f9', '#ff5555'], border_width=2),
     layout.MonadTall(**layout_theme),
     layout.Max(**layout_theme),
 	layout.Floating(**layout_theme),
 	layout.TreeTab(
-		font = "mononoki Nerd Font Mono",
-		fontsize = 24,
+		font = "Hack",
+		fontsize = 20,
 		border_width = 2,
+		sections = ['Open Windows'],
 		bg_color = theme["background"],
-		active_bg = theme["selection"],
+		active_bg = theme["current"],
 		active_fg = theme["purple"],
 		inactive_bg = theme["background"],
 		inactive_fg = theme["foreground"],
-		panel_width = 190,
+		urgent_bg = theme["background"],
+		urgent_fg = theme["red"],
+		panel_width = 185,
 		),
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
 ]
 
 # Widget default settings
