@@ -374,7 +374,7 @@ screens = [
                 	),
                 widget.Net(
                 	interface = "wlp170s0",
-                	format = '直{down}{up}',
+                	format = '直{total}',
                 	foreground = theme["background"],
                 	background = theme["green"],
                 	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('nm-connection-editor')},
@@ -393,7 +393,8 @@ screens = [
                 	format = '{freq_current}GHz ',
                 	),
               	widget.ThermalSensor(
-                    threshold = 90,
+                    threshold = 70,
+                    foreground_alert = theme["red"],
                     foreground = theme["background"],
                     background = theme["orange"],
                     fmt = '{}',
