@@ -124,23 +124,15 @@ keys = [
         lazy.window.toggle_fullscreen(),
         desc='toggle fullscreen'
         ),
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
-    Key([mod, "shift"], "Return",
-    	lazy.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack"
-        ),        
     # Function keys
-    # Screen
+    # Screen Brightness
     Key([], 'XF86MonBrightnessUp',
     	lazy.spawn('xbacklight -inc 10')
     	),
     Key([], 'XF86MonBrightnessDown',
     	lazy.spawn('xbacklight -dec 10')
     	),
-    # Audio
+    # Audio/Volume
     Key([], 'XF86AudioMute',
     	lazy.spawn('amixer set Master 1+ toggle')
     	),
@@ -156,11 +148,27 @@ keys = [
     Key([mod], 'XF86AudioLowerVolume',
     	lazy.spawn('amixer set Master 10%- unmute')
     	),
-    
     #Screenshots
     Key([], 'Print',
     	lazy.spawn(screenshot)
     	),
+    #Unset Keys
+#    Key([], 'XF86AudioMedia',
+#        lazy.spawn(),
+#        desc='Gear logo fn + F12'
+#        ),
+#    Key([], 'XF86AudioPrev',
+#        lazy.spawn(),
+#        desc='Previous Track fn + F4'
+#        ),
+#    Key([], 'XF86AudioNext',
+#        lazy.spawn(),
+#        desc='Next Track fn + F6'
+#        ),
+#    Key([], 'XF86AudioPlay',
+#        lazy.spawn(),
+#        desc='Play|Pause fn + F5'
+#        ),
 ]
 
 # Battery Icon & % | Replaces widget.Battery
@@ -256,6 +264,7 @@ groups = [Group(""),
 		  Group("爵"),
           Group(""),
           Group(""),
+          Group(""),
           Group("", layout='treetab'),
           Group("", layout='floating')]
           
@@ -274,7 +283,7 @@ layout_theme = {"border_width": 2,
 #Used layouts
 layouts = [
     layout.MonadTall(**layout_theme),
-    layout.Max(**layout_theme),
+    layout.Max(),
 	layout.Floating(**layout_theme),
 	layout.TreeTab(
 		font = "Hack",
