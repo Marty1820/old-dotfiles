@@ -2,14 +2,14 @@
 
 # Simple calculator script
 # Use it by adding a new mode, e.g.:
-# rofi -show run -modi calc: ~/.config/rofi/calculator.sh
+# rofi -show run -modi calc: ~/.config/rofi/scripts/calculator.sh
 ROFI_CALC_HISTORY_FILE=~/.local/share/rofi/calc_history
 ROFI_CALC_HISTORY_MAXCOUNT=10 # maximum number of history entries
 
 # Create the directory for the files of the script
-if [ ! -d $(dirname "${CALC_HISTORY_FILE}") ]
+if [ ! -d $(dirname "${ROFI_CALC_HISTORY_FILE}") ]
 then
-    mkdir -p "$(dirname "${CALC_HISTORY_FILE}")"
+    mkdir -p "$(dirname "${ROFI_CALC_HISTORY_FILE}")"
 fi
 
 if [ -z $@ ]
