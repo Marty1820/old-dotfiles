@@ -10,6 +10,8 @@ Otherwise these are pretty basic configs with nothing special.
 
 ![screenshot](.screenshots/desktop.png)
 ![screenshot](.screenshots/term-fetch.png)
+![screenshot](.screenshots/logout-menu.png)
+![screenshot](.screenshots/apps-menu.png)
 
 ## Dependencies
 Trying to reduce the dependencies the best I can but as of now they are:
