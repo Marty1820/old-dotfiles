@@ -6,3 +6,4 @@ conky &
 redshift &
 xfce4-power-manager &
 light-locker &
+/usr/lib/kdeconnectd &
