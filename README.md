@@ -4,37 +4,38 @@
 Otherwise these are pretty basic configs with nothing special.
 
 ## Details
-* WM: qtile
-* Colors/Themes: Dracula
+* WM: [qtile](http://www.qtile.org)
+* Colors/Themes: [Dracula](https://draculatheme.com)
 * Terminal: Alacritty
+* Application launcher/logout screen: [rofi](https://github.com/davatorium/rofi)
 
 ![screenshot](.screenshots/desktop.png)
 ![screenshot](.screenshots/term-fetch.png)
 ![screenshot](.screenshots/logout-menu.png)
 ![screenshot](.screenshots/apps-menu.png)
 
-## Dependencies
-Trying to reduce the dependencies the best I can but as of now they are:
-
-|Dependency|Description|
+## Programs my dots use
+|Name|Description|
 |:----------:|:-------------:|
-|`qtile`|Window manager|
-|`feh`|Fast image viewer used as wallpaper setting utility|
-|`picom`|Window compositor.|
-|`rofi`|Application launcher & Exit menu|
-|`conky`|Auto launches and shows most keybindings(not always correct)|
+|`scrot`|Print Screen key takes screenshot|
+|`xbacklight`|Laptop brightness keys|
+|`lightdm`|change in qtile config & rofi powermenu.sh|
+|Fonts|`mononoki` for panel & `hack` for everything else|
+|`vivaldi-stable`|ctrl + b to open|
+|`pcmanfm`|ctrl + e to open|
+|`gedit`|ctrl + a to open|
 
-## Optional Dependencies
-These are just what I have setting
-+ 'lightdm': Used for the 'dm-tools' to lock the computer
-+ 'acpi': used for the battery management
-+ 'bluez', 'bluez-utils', & 'blueman': All your bluetooth needs
-+ 'scrot': for screenshots. Saves in ~/Pictures/Screenshots by default
-+ 'alsa-utils': Kernel sound drivers
-+ 'xbacklight' : Controls display brightness
-+ 'mononoki & hack' : fonts.
-+ 'redshift' : helps with limiting blue light at night
+## Autostarted/change in [.config/qtile/autostart.sh](https://github.com/Marty1820/dotfiles/blob/master/.config/qtile/autostart.sh)
+
++ `picom` : transparency & blur
++ `feh` : sets wallpaper
++ `conky` : shows keybindings (X means I haven't implimented it yet)
++ `redshift` : limits blue light
++ `xfce4-power-manager` : laptop powermangement (there are better ways to do this/just google it)
++ `light-locker` : used to lock screen/replacement for dm-tools
++ `kdeconnectd` : phone integration
 
 ## Thanks to/Original Sources...
+* Anywhere I could I added a link to the original in the configs/I propbably missed a lot though.
 * [Distro Tube](https://distro.tube/) and his [dotfiles](https://gitlab.com/dwt1/dotfiles)
 * And of course [Dracula Theme](https://github.com/dracula/dracula-theme) since I tend to use it on everthing I possibly can.
