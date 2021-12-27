@@ -242,16 +242,16 @@ def parse_func(text):
 class MyVolume(Volume):
     def _update_drawer(self):
         if self.volume <= 0:
-            self.text = '婢'
+            self.volume = 'M'
+            self.text = '婢' + str(self.volume)
         elif self.volume < 30:
-            self.text = '奄'
+            self.text = '奄' + str(self.volume) + '%'
         elif self.volume < 80:
-            self.text = '奔'
+            self.text = '奔' + str(self.volume) + '%'
         else: # self.volume >=80:
-            self.text = '墳'
+            self.text = '墳' + str(self.volume) + '%'
         
     def restore(self):
-        self.format = '{img_name}'
         self.timer_setup()
         
 volume = MyVolume(
@@ -434,10 +434,6 @@ screens = [
                 	fontsize = 28,
                 	),
                 volume,
-              	widget.Volume(
-                    foreground = theme["background"],
-                    background = theme["purple"],
-                    ),
 				widget.TextBox(
                 	text = '',
                 	foreground = theme["foreground"],
