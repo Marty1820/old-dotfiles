@@ -6,7 +6,7 @@ configuration {
     sidebar-mode: false;
 }
 
-@import "./colorscheme.rasi"
+@import "../colorscheme/colorscheme.rasi"
 
 * {
     background-color: @background;

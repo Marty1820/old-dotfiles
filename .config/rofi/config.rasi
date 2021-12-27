@@ -11,7 +11,7 @@ configuration {
     display-calc: "";
 }
 
-@import "./powermenu/colorscheme.rasi"
+@import "./colorscheme/colorscheme.rasi"
 
 * {
     background-color: transparent;
