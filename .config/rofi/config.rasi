@@ -1,5 +1,5 @@
 configuration {
-    modi: "drun,ssh";
+    modi: "drun,ssh,calc:~/.config/rofi/scripts/calculator.sh";
     show-icons: true;
     icon-theme: "Dracula";
     font: "Hack 12";
@@ -8,6 +8,7 @@ configuration {
     display-ssh: "";
     ssh-client: "ssh";
     ssh-command: "alacritty -e {ssh-client} {host}";
+    display-calc: "";
 }
 
 @import "./powermenu/colorscheme.rasi"
