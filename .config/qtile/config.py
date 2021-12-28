@@ -199,41 +199,18 @@ keys = [
 
 ## WIDGET REPLACEMENTS
 # Battery Icon & % | Replaces widget.Battery
-# index = int(percent * 10) if index > 9: Index = 9 theIcon = icons[index] if isCharging: theIcon += "🔌"
 class MyBattery(Battery):
     def build_string(self, status):
-        #if status.state == BatteryState.DISCHARGING:
-        if status.percent >= 1:
-            char = baticon["10"]
-        elif status.percent > 0.90:
-            char = baticon["9"]
-        elif status.percent > 0.80:
-            char = baticon["8"]
-        elif status.percent > 0.70:
-            char = baticon["7"]
-        elif status.percent > 0.60:
-            char = baticon["6"]
-        elif status.percent > 0.50:
-            char = baticon["5"]
-        elif status.percent > 0.40:
-            char = baticon["4"]
-        elif status.percent > 0.30:
-            char = baticon["3"]
-        elif status.percent > 0.20:
-            char = baticon["2"]
-        elif status.percent > 0:
-            char = baticon["1"]
-        else:
-            char = baticon["er"]
-        if status.state ==BatteryState.CHARGING:
-            char = char + baticon["ch"]
-        else:
-            char = char
+        symbols = ""
+        index = int(status.percent * 10)
+        index = max(index, 0) # 0 or higher
+        index = min(index, 9) # 9 or lower start at 0
+        char = symbols[index]
+        if status.state == BatteryState.CHARGING:
+            char += ""
+        if status.state == BatteryState.UNKNOWN:
+            char = ""
         return self.format.format(char=char, percent=status.percent)
-	
-    def restore(self):
-        self.format = '{char} {percent:2.0%}'
-        self.timer_setup()
 
 battery = MyBattery(
 	format = '{char} {percent:2.0%}',
@@ -264,9 +241,9 @@ volume = MyVolume(
 )
 
 # WiFi strength icon used in widget.GenPollText | sets icon for widget.Net
-#Disabled due to using to much processor power/will attempt to fix later
+# Will find better icons and easier way for this...eventually
 #def wifi_strenght():
-#    command = "nmcli dev wifi | grep '*' | awk '{print $9}'"
+#    command = "nmcli -f IN-USE,BARS device wifi list | awk '/\*/{if (NR!=1) {print $2}}'"
 #    proc = subprocess.Popen(command, universal_newlines=True, shell=True, stdout=subprocess.PIPE)
 #    output = proc.stdout.read().rstrip("\n")
 #    if output == b'\xe2\x96\x82\xe2\x96\x84\xe2\x96\x86\xe2\x96\x88'.decode("utf-8"):
@@ -413,7 +390,6 @@ screens = [
                 	padding = 0,
                 	fontsize = 28,
                 	),
-                #Function using to much resources
 #                widget.GenPollText(
 #                    func = wifi_strenght,
 #                    background = theme["green"],
