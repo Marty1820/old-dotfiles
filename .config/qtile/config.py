@@ -44,7 +44,7 @@ screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
 
 # Keybindings
 keys = [
-	### Essentials
+	### Essentials/launching apps
     Key([mod], "Return",
         lazy.spawn(myTerm),
         desc="Launches My Terminal"
@@ -61,27 +61,31 @@ keys = [
         lazy.spawn(myEditor),
         desc="Launches Text Editor"
         ),
-    #Work in progress/files upload when complete
     Key([mod], "Escape",
         lazy.spawn([home + '/.config/rofi/powermenu.sh'])
-        ),
-    Key([mod, "shift"], "r",
-        lazy.restart(),
-        desc="Restart Qtile"
         ),
     Key([mod, "shift"], "c",
         lazy.window.kill(),
         desc="Kill focused window"
         ),
-    Key([mod], "space",
-        lazy.next_layout(),
-        desc="Toggle between layouts"
-        ),
     Key([mod], "d",
         lazy.spawn(myAppLauncher),
         desc="Application Launcher"
         ),
-    # Moving out of range in Columns layout will create new column.
+    Key([mod], "r",
+    	lazy.spawncmd(),
+        desc="Spawn a command using a prompt widget"
+        ),
+    # Qtile/layout commands
+    Key([mod], "space",
+        lazy.next_layout(),
+        desc="Toggle between layouts"
+        ),
+    Key([mod, "shift"], "r",
+        lazy.restart(),
+        desc="Restart Qtile"
+        ),
+    # Moving windows.
     Key([mod, "shift"], "h",
         lazy.layout.shuffle_left(),
         desc="Move window to the left"
@@ -98,12 +102,15 @@ keys = [
     	lazy.layout.shuffle_down(),
     	desc="Move window down"
     	),
-    Key([mod], "r",
-    	lazy.spawncmd(),
-        desc="Spawn a command using a prompt widget"
-        ),
-    # Grow windows. If current window is on the edge of screen and direction
-    # will be to screen edge - window would shrink.
+    # Window changing commands
+#    Key([mod, "shift"], "-",
+#        command,
+#        desc="expand margin between windows"
+#        ),
+#    Key([mod], "-",
+#        command,
+#        desc="shrink margin between windows"
+#        ),
     Key([mod, "control"], "h",
     	lazy.layout.shrink(),
         desc="Shrink window"
@@ -124,7 +131,7 @@ keys = [
         lazy.window.toggle_fullscreen(),
         desc='toggle fullscreen'
         ),
-    # Function keys
+    ## Function keys
     # Screen Brightness
     Key([], 'XF86MonBrightnessUp',
     	lazy.spawn('xbacklight -inc 10')
@@ -171,6 +178,7 @@ keys = [
 #        ),
 ]
 
+## WIDGET REPLACEMENTS
 # Battery Icon & % | Replaces widget.Battery
 class MyBattery(Battery):
 	def build_string(self, status):
@@ -232,13 +240,7 @@ battery = MyBattery(
     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('xfce4-power-manager-settings')},
 )
 
-# Remove portions of windows name
-def parse_func(text):
-	for string in [" - Vivaldi", " - gedit"]:
-		text = text.replace(string, "")
-	return text
-
-# Audio Volume/still needs work | Sets icon for widget.Volume
+# Audio Volume/still needs work | replacing widget.Volume
 class MyVolume(Volume):
     def _update_drawer(self):
         if self.volume <= 0:
@@ -259,7 +261,35 @@ volume = MyVolume(
     background = theme["purple"],
 )
 
+# WiFi strength icon used in widget.GenPollText | sets icon for widget.Net
+def strenght():
+    command = "nmcli dev wifi | grep '*' | awk '{print $9}'"
+    proc = subprocess.Popen(command, universal_newlines=True, shell=True, stdout=subprocess.PIPE)
+    output = proc.stdout.read().rstrip("\n")
+    if output == b'\xe2\x96\x82\xe2\x96\x84\xe2\x96\x86\xe2\x96\x88'.decode("utf-8"):
+    #▂▄▆█
+        icon = '直'
+    elif output == b'\xe2\x96\x82\xe2\x96\x84\xe2\x96\x86_'.decode("utf-8"):
+    #▂▄▆_
+        icon = '直'
+    elif output == b'\xe2\x96\x82\xe2\x96\x84__'.decode("utf-8"):
+    #▂▄__
+        icon = ''
+    elif output == b'\xe2\x96\x82___'.decode("utf-8"): 
+    #▂___
+        icon = ''
+    else: #No output
+        icon = '睊'
+    return icon
+
+# Remove portions of windows name
+def parse_func(text):
+	for string in [" - Vivaldi", " - gedit"]:
+		text = text.replace(string, "")
+	return text
+
 # Groups using Names istead of numbers
+# See https://docs.qtile.org/en/stable/manual/config/groups.html
 groups = [Group(""),
 		  Group("爵"),
           Group(""),
@@ -267,8 +297,6 @@ groups = [Group(""),
           Group(""),
           Group("", layout='treetab'),
           Group("", layout='floating')]
-          
-# See https://docs.qtile.org/en/stable/manual/config/groups.html
 # allow [S]mod4+1 through [S]mod4+0 to bind to groups; if you bind your groups by hand in your config, you don't need to do this.
 from libqtile.dgroups import simple_key_binder
 dgroups_key_binder = simple_key_binder("mod4")
@@ -279,7 +307,6 @@ layout_theme = {"border_width": 2,
                 "border_focus": theme["purple"],
                 "border_normal": theme["background"],
                 }
-
 #Used layouts
 layouts = [
     layout.MonadTall(**layout_theme),
@@ -375,9 +402,15 @@ screens = [
                 	padding = 0,
                 	fontsize = 28,
                 	),
+                widget.GenPollText(
+                    func=strenght,
+                    background = theme["green"],
+                    foreground = theme["background"],
+                    update_interval = 1,
+                    ),
                 widget.Net(
                 	interface = "wlp170s0",
-                	format = '直{total}',
+                	format = '{total}',
                 	foreground = theme["background"],
                 	background = theme["green"],
                 	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('nm-connection-editor')},
