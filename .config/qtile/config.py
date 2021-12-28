@@ -199,65 +199,36 @@ keys = [
 
 ## WIDGET REPLACEMENTS
 # Battery Icon & % | Replaces widget.Battery
-# icons = "🔋🔋🔋🔋🔋🔋🔋🔋🔋🔋" index = int(percent * 10) if index > 9: Index = 9 theIcon = icons[index] if isCharging: theIcon += "🔌"
+# index = int(percent * 10) if index > 9: Index = 9 theIcon = icons[index] if isCharging: theIcon += "🔌"
 class MyBattery(Battery):
     def build_string(self, status):
-	    #index = int(status.percent * 10)
-        if status.state == BatteryState.DISCHARGING:
-            if status.percent >= 1:
-                char = baticon["10"]
-				#char = ''
-            elif status.percent > 0.90:
-                char = baticon["9"]
-            elif status.percent > 0.80:
-                char = baticon["8"]
-            elif status.percent > 0.70:
-                char = baticon["7"]
-            elif status.percent > 0.60:
-                char = baticon["6"]
-            elif status.percent > 0.50:
-                char = baticon["5"]
-            elif status.percent > 0.40:
-                char = baticon["4"]
-            elif status.percent > 0.30:
-                char = baticon["3"]
-            elif status.percent > 0.20:
-                char = baticon["2"]
-            else:
-                char = baticon["1"]
-        elif status.percent >= 1 or status.state == BatteryState.FULL:
+        #if status.state == BatteryState.DISCHARGING:
+        if status.percent >= 1:
             char = baticon["10"]
-        elif status.state == BatteryState.CHARGING:
-            if status.percent > 0.90:
-                #char = ''
-                char = baticon["9"] + baticon["ch"]
-            elif status.percent > 0.80:
-                char = baticon["8"] + baticon["ch"]
-                #char = ''
-            elif status.percent > 0.70:
-                char = baticon["7"] + baticon["ch"]
-                #char = ''
-            elif status.percent > 0.60:
-                char = baticon["6"] + baticon["ch"]
-                #char = ''
-            elif status.percent > 0.50:
-                char = baticon["5"] + baticon["ch"]
-                #char = ''
-            elif status.percent > 0.40:
-                char = baticon["4"] + baticon["ch"]
-                #char = ''
-            elif status.percent > 0.30:
-                char = baticon["3"] + baticon["ch"]
-                #char = ''
-            elif status.percent > 0.20:
-                char = baticon["2"] + baticon["ch"]
-                #char = ''
-            else:
-                char = baticon["1"] + baticon["ch"]
-                #char = ''
-        else: #status.state == BatteryState.EMPTY or \
-				#(status.state == BatteryState.UNKNOWN and status.percent == 0):
+        elif status.percent > 0.90:
+            char = baticon["9"]
+        elif status.percent > 0.80:
+            char = baticon["8"]
+        elif status.percent > 0.70:
+            char = baticon["7"]
+        elif status.percent > 0.60:
+            char = baticon["6"]
+        elif status.percent > 0.50:
+            char = baticon["5"]
+        elif status.percent > 0.40:
+            char = baticon["4"]
+        elif status.percent > 0.30:
+            char = baticon["3"]
+        elif status.percent > 0.20:
+            char = baticon["2"]
+        elif status.percent > 0:
+            char = baticon["1"]
+        else:
             char = baticon["er"]
+        if status.state ==BatteryState.CHARGING:
+            char = char + baticon["ch"]
+        else:
+            char = char
         return self.format.format(char=char, percent=status.percent)
 	
     def restore(self):
