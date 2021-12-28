@@ -19,20 +19,35 @@ from libqtile.utils import guess_terminal
 from libqtile.widget.battery import Battery, BatteryState
 from libqtile.widget.volume import Volume
 
+##Dictionaries
 #Dracula color theme
-theme = dict(background = "#282a36",
-		 current = "#44475a",
-		 selection = "#44475a",
-		 foreground = "#f8f8f2",
-		 comment = "#6272a4",
-		 cyan = "#8be9fd",
-		 green = "#50fa7b",
-		 orange = "#ffb86c",
-		 pink = "#ff79c6",
-		 purple = "#bd93f9",
-		 red = "#ff5555",
-		 yellow = "#f1fa8c")
+theme = {"background": "#282a36",
+        "current": "#44475a",
+        "selection": "#44475a",
+        "foreground": "#f8f8f2",
+        "comment": "#6272a4",
+        "cyan": "#8be9fd",
+        "green": "#50fa7b",
+        "orange": "#ffb86c",
+        "pink": "#ff79c6",
+        "purple": "#bd93f9",
+        "red": "#ff5555",
+        "yellow": "#f1fa8c"}
+#Battery icons
+baticon = {"10": "",
+        "9": "",
+        "8": "",
+        "7": "",
+        "6": "",
+        "5": "",
+        "4": "",
+        "3": "",
+        "2": "",
+        "1": "",
+        "ch": "",
+        "er": ""}
 
+#Variables
 mod = "mod4"				# Sets mod key to SUPER
 home = os.path.expanduser('~') # Allow using 'home +' to expand ~
 myTerm = "alacritty"
@@ -104,11 +119,11 @@ keys = [
     	),
     # Window changing commands
 #    Key([mod, "shift"], "-",
-#        command,
+#        lazy.function(marg_plus),
 #        desc="expand margin between windows"
 #        ),
 #    Key([mod], "-",
-#        command,
+#        lazy.function(marg_minus),
 #        desc="shrink margin between windows"
 #        ),
     Key([mod, "control"], "h",
@@ -176,68 +191,84 @@ keys = [
 #        lazy.spawn(),
 #        desc='Play|Pause fn + F5'
 #        ),
+#    Key([mod], 'p',
+#        lazy.spawn(),
+#        desc='Screen fn + F9'
+#        ),
 ]
 
 ## WIDGET REPLACEMENTS
 # Battery Icon & % | Replaces widget.Battery
+# icons = "🔋🔋🔋🔋🔋🔋🔋🔋🔋🔋" index = int(percent * 10) if index > 9: Index = 9 theIcon = icons[index] if isCharging: theIcon += "🔌"
 class MyBattery(Battery):
-	def build_string(self, status):
-		if status.state == BatteryState.DISCHARGING:
-			if status.percent >= 1:
-				char = ''
-			elif status.percent > 0.90:
-				char = ''
-			elif status.percent > 0.80:
-				char = ''
-			elif status.percent > 0.70:
-				char = ''
-			elif status.percent > 0.60:
-				char = ''
-			elif status.percent > 0.50:
-				char = ''
-			elif status.percent > 0.40:
-				char = ''
-			elif status.percent > 0.30:
-				char = ''
-			elif status.percent > 0.20:
-				char = ''
-			else:
-				char = ''
-		elif status.percent >= 1 or status.state == BatteryState.FULL:
-			char = ''
-		elif status.state == BatteryState.CHARGING:
-			if status.percent > 0.90:
-				char = ''
-			elif status.percent > 0.80:
-				char = ''
-			elif status.percent > 0.70:
-				char = ''
-			elif status.percent > 0.60:
-				char = ''
-			elif status.percent > 0.50:
-				char = ''
-			elif status.percent > 0.40:
-				char = ''
-			elif status.percent > 0.30:
-				char = ''
-			elif status.percent > 0.20:
-				char = ''
-			else:
-				char = ''
-		else: #status.state == BatteryState.EMPTY or \
+    def build_string(self, status):
+	    #index = int(status.percent * 10)
+        if status.state == BatteryState.DISCHARGING:
+            if status.percent >= 1:
+                char = baticon["10"]
+				#char = ''
+            elif status.percent > 0.90:
+                char = baticon["9"]
+            elif status.percent > 0.80:
+                char = baticon["8"]
+            elif status.percent > 0.70:
+                char = baticon["7"]
+            elif status.percent > 0.60:
+                char = baticon["6"]
+            elif status.percent > 0.50:
+                char = baticon["5"]
+            elif status.percent > 0.40:
+                char = baticon["4"]
+            elif status.percent > 0.30:
+                char = baticon["3"]
+            elif status.percent > 0.20:
+                char = baticon["2"]
+            else:
+                char = baticon["1"]
+        elif status.percent >= 1 or status.state == BatteryState.FULL:
+            char = baticon["10"]
+        elif status.state == BatteryState.CHARGING:
+            if status.percent > 0.90:
+                #char = ''
+                char = baticon["9"] + baticon["ch"]
+            elif status.percent > 0.80:
+                char = baticon["8"] + baticon["ch"]
+                #char = ''
+            elif status.percent > 0.70:
+                char = baticon["7"] + baticon["ch"]
+                #char = ''
+            elif status.percent > 0.60:
+                char = baticon["6"] + baticon["ch"]
+                #char = ''
+            elif status.percent > 0.50:
+                char = baticon["5"] + baticon["ch"]
+                #char = ''
+            elif status.percent > 0.40:
+                char = baticon["4"] + baticon["ch"]
+                #char = ''
+            elif status.percent > 0.30:
+                char = baticon["3"] + baticon["ch"]
+                #char = ''
+            elif status.percent > 0.20:
+                char = baticon["2"] + baticon["ch"]
+                #char = ''
+            else:
+                char = baticon["1"] + baticon["ch"]
+                #char = ''
+        else: #status.state == BatteryState.EMPTY or \
 				#(status.state == BatteryState.UNKNOWN and status.percent == 0):
-			char = ''
-		return self.format.format(char=char, percent=status.percent)
+            char = baticon["er"]
+        return self.format.format(char=char, percent=status.percent)
 	
-	def restore(self):
-		self.format = '{char} {percent:2.0%}'
-		self.timer_setup()
+    def restore(self):
+        self.format = '{char} {percent:2.0%}'
+        self.timer_setup()
 
 battery = MyBattery(
 	format = '{char} {percent:2.0%}',
     foreground = theme["background"],
     background = theme["cyan"],
-    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('xfce4-power-manager-settings')},
+    mouse_callbacks = {'Button1': lazy.spawn('xfce4-power-manager-settings')},
 )
 
 # Audio Volume/still needs work | replacing widget.Volume
@@ -262,25 +293,26 @@ volume = MyVolume(
 )
 
 # WiFi strength icon used in widget.GenPollText | sets icon for widget.Net
-def strenght():
-    command = "nmcli dev wifi | grep '*' | awk '{print $9}'"
-    proc = subprocess.Popen(command, universal_newlines=True, shell=True, stdout=subprocess.PIPE)
-    output = proc.stdout.read().rstrip("\n")
-    if output == b'\xe2\x96\x82\xe2\x96\x84\xe2\x96\x86\xe2\x96\x88'.decode("utf-8"):
-    #▂▄▆█
-        icon = '直'
-    elif output == b'\xe2\x96\x82\xe2\x96\x84\xe2\x96\x86_'.decode("utf-8"):
-    #▂▄▆_
-        icon = '直'
-    elif output == b'\xe2\x96\x82\xe2\x96\x84__'.decode("utf-8"):
-    #▂▄__
-        icon = ''
-    elif output == b'\xe2\x96\x82___'.decode("utf-8"): 
-    #▂___
-        icon = ''
-    else: #No output
-        icon = '睊'
-    return icon
+#Disabled due to using to much processor power/will attempt to fix later
+#def wifi_strenght():
+#    command = "nmcli dev wifi | grep '*' | awk '{print $9}'"
+#    proc = subprocess.Popen(command, universal_newlines=True, shell=True, stdout=subprocess.PIPE)
+#    output = proc.stdout.read().rstrip("\n")
+#    if output == b'\xe2\x96\x82\xe2\x96\x84\xe2\x96\x86\xe2\x96\x88'.decode("utf-8"):
+#    #▂▄▆█
+#        icon = '直'
+#    elif output == b'\xe2\x96\x82\xe2\x96\x84\xe2\x96\x86_'.decode("utf-8"):
+#    #▂▄▆_
+#        icon = '直'
+#    elif output == b'\xe2\x96\x82\xe2\x96\x84__'.decode("utf-8"):
+#    #▂▄__
+#        icon = ''
+#    elif output == b'\xe2\x96\x82___'.decode("utf-8"): 
+#    #▂___
+#        icon = ''
+#    else: #No output
+#        icon = '睊'
+#    return icon
 
 # Remove portions of windows name
 def parse_func(text):
@@ -303,15 +335,23 @@ dgroups_key_binder = simple_key_binder("mod4")
 
 # Default layout theme settings
 layout_theme = {"border_width": 2,
-                "margin": 4,
                 "border_focus": theme["purple"],
                 "border_normal": theme["background"],
                 }
 #Used layouts
 layouts = [
-    layout.MonadTall(**layout_theme),
+    layout.MonadTall(
+        border_width = 2,
+        border_focus = theme["purple"],
+        border_normal = theme["background"],
+        margin = 4,
+        ),
     layout.Max(),
-	layout.Floating(**layout_theme),
+	layout.Floating(
+        border_width = 2,
+        border_focus = theme["purple"],
+        border_normal = theme["background"],
+        ),
 	layout.TreeTab(
 		font = "Hack",
 		fontsize = 20,
@@ -389,7 +429,7 @@ screens = [
                     distro = "Arch_checkupdates",
                     display_format = " {updates} Updates",
                     no_update_string = " Updated",
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo paru -Syu')},
+                    mouse_callbacks = {'Button1': lazy.spawn(myTerm + ' -e sudo paru -Syu')},
                     foreground = theme["background"],
                     colour_no_updates = theme["background"],
                     colour_have_updates = theme["background"],
@@ -402,18 +442,19 @@ screens = [
                 	padding = 0,
                 	fontsize = 28,
                 	),
-                widget.GenPollText(
-                    func=strenght,
-                    background = theme["green"],
-                    foreground = theme["background"],
-                    update_interval = 1,
-                    ),
+                #Function using to much resources
+#                widget.GenPollText(
+#                    func = wifi_strenght,
+#                    background = theme["green"],
+#                    foreground = theme["background"],
+#                    update_interval = 1,
+#                    ),
                 widget.Net(
                 	interface = "wlp170s0",
-                	format = '{total}',
+                	format = '直{total}',
                 	foreground = theme["background"],
                 	background = theme["green"],
-                	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('nm-connection-editor')},
+                	mouse_callbacks = {'Button1': lazy.spawn('nm-connection-editor')},
                 	),
                 widget.TextBox(
                 	text = '',
@@ -443,7 +484,7 @@ screens = [
                 	fontsize = 28,
                 	),
               	widget.Memory(
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
+                    mouse_callbacks = {'Button1': lazy.spawn(myTerm + ' -e btop')},
                     foreground = theme["background"],
                     background = theme["pink"],
                     fmt = '{}',
@@ -478,7 +519,7 @@ screens = [
                 	format=' %b %d %I:%M%p',
                 	foreground = theme["background"],
                 	background = theme["foreground"],
-                	mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('vivaldi-stable https://calendar.google.com')},
+                	mouse_callbacks = {'Button1': lazy.spawn('vivaldi-stable https://calendar.google.com')},
                 	),
                	widget.TextBox(
                 	text = '',
