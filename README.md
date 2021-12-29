@@ -58,6 +58,5 @@ Otherwise these are pretty basic configs with nothing special.
 
 ## Thanks to/Original Sources
 * Reddit [u/emanuelep57](https://www.reddit.com/user/emanuelep57) for help with the volume widget & [u/FrostCastor](https://www.reddit.com/user/FrostCastor) for help with the battery indicator code
-* Anywhere I could I added a link to the original in the configs/I propbably missed a lot though.
 * [Distro Tube](https://distro.tube/) and his [dotfiles](https://gitlab.com/dwt1/dotfiles)
 * And of course [Dracula Theme](https://github.com/dracula/dracula-theme) since I tend to use it on everthing I possibly can.
