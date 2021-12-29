@@ -123,7 +123,7 @@ alias l.='exa -a | egrep "^\."'
 
 # pacman and yay/paru
 alias pacsyu='sudo pacman -Syyu'                 # update only standard pkgs
-alias parusyu='paru -Syu --noconfirm'              # update standard pkgs and AUR pkgs (paru)
+alias parusyu='paru -Syu'              # update standard pkgs and AUR pkgs (paru)
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'  # remove orphaned packages
 
 # get fastest mirrors
