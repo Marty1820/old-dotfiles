@@ -397,7 +397,7 @@ screens = [
 #                    update_interval = 1,
 #                    ),
                 widget.Net(
-                	interface = "wlp170s0",
+                	interface = "wlan0",
                 	format = '直{total}',
                 	foreground = theme["background"],
                 	background = theme["green"],
