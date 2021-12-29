@@ -149,12 +149,6 @@ alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/mas
 # UTF-8 termnal display tester
 alias utftest="curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt"
 
-### RANDOM COLOR SCRIPT ###
-# Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
-# Or install it from the Arch User Repository: shell-color-scripts
-#if [ -d /opt/shell-color-scripts/colorscripts ]; then
-#  colorscript random
-#fi
 # Downloaded and mofidied from https://github.com/nuke-dash/pokemon-colorscripts-mac
 pokemon-colorscripts.sh -r
 
