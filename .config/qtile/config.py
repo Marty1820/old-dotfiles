@@ -216,7 +216,7 @@ battery = MyBattery(
 	format = '{char} {percent:2.0%}',
     foreground = theme["background"],
     background = theme["cyan"],
-    mouse_callbacks = {'Button1': lazy.spawn('xfce4-power-manager-settings')},
+    #mouse_callbacks = {'Button1': lazy.spawn('Need a new powermanagement software/or do something in terminal')},
 )
 
 # Audio Volume/still needs work | replacing widget.Volume
