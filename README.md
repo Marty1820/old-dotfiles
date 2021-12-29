@@ -14,28 +14,50 @@ Otherwise these are pretty basic configs with nothing special.
 ![screenshot](.screenshots/logout-menu.png)
 ![screenshot](.screenshots/apps-menu.png)
 
-## Programs my dots use
+## Programs used with keybindings
 |Name|Description|
 |:----------:|:-------------:|
+|`gedit`|ctrl + a|
+|`pcmanfm`|ctrl + e|
+|`vivaldi`|ctrl + b|
+|`rofi`|ctrl + d = applications & ctrl + esc = exit menu|
+|`light-locker` & `lightdm`|rofi uses it to lock the screen|
 |`scrot`|Print Screen key takes screenshot|
 |`xbacklight`|Laptop brightness keys|
-|`lightdm`|change in qtile config & rofi powermenu.sh|
-|Fonts|`mononoki` for panel & `hack` for everything else|
-|`vivaldi-stable`|ctrl + b to open|
-|`pcmanfm`|ctrl + e to open|
-|`gedit`|ctrl + a to open|
+|`btop`|click RAM to bring up|
+|`nm-connection-editor`|click WiFi|
+
+## Fonts
+|Name|Description|
+|:----------:|:-------------:|
+|`mononoki`|Used for bar installed with nerd-fonts|
+|`ttf-hack`|for everything else|
+|`nerd-fonts-complete`|from AUR for icons|
+
+## .bashrc alias's
+|Name|Description|
+|:----------:|:-------------:|
+|`exa`|ls replacement|
+|`pacman`|Arch package manager|
+|`paru`|Arch AUR package manager|
+|`reflector`|Updates mirrors on Arch|
+|`youtube-dl`|Download youtube videos/audio|
+|`synth-shell`|Changes the terminal prompt|
+
 
 ## Autostarted/change in [.config/qtile/autostart.sh](https://github.com/Marty1820/dotfiles/blob/master/.config/qtile/autostart.sh)
 
 + `picom` : transparency & blur
-+ `feh` : sets wallpaper
++ `gnome-keyring-daemon` : It's a keyring...yep
++ `blueman-applet` : So I can autoconnect my mouse
 + `conky` : shows keybindings (X means I haven't implimented it yet)
 + `redshift` : limits blue light
-+ `xfce4-power-manager` : laptop powermangement (there are better ways to do this/just google it)
 + `light-locker` : used to lock screen/replacement for dm-tools
 + `kdeconnectd` : phone integration
++ `feh` : sets wallpaper from "~/Pictures/wallpapers/FrameWork/*"
 
-## Thanks to/Original Sources...
+## Thanks to/Original Sources
+* Reddit [u/emanuelep57](https://www.reddit.com/user/emanuelep57) for help with the volume widget & [u/FrostCastor](https://www.reddit.com/user/FrostCastor) for help with the battery indicator code
 * Anywhere I could I added a link to the original in the configs/I propbably missed a lot though.
 * [Distro Tube](https://distro.tube/) and his [dotfiles](https://gitlab.com/dwt1/dotfiles)
 * And of course [Dracula Theme](https://github.com/dracula/dracula-theme) since I tend to use it on everthing I possibly can.
