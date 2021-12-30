@@ -13,6 +13,7 @@ uptime="$(uptime -p | sed 's/up //')"
 packages="$(pacman -Q | wc -l)"
 shell="$(basename "${SHELL}")"
 
+#ui
 if [ "$DESKTOP_SESSION" != "" ]; then
     ui="$DESKTOP_SESSION"
 else
@@ -20,6 +21,11 @@ else
 fi
 
 ui="$(basename "${ui}")"
+
+#memory
+memfree="$(free -h | grep Mem | awk '{print $3}')"
+memtotal="$(free -h | grep Mem | awk '{print $2}')"
+mem="$(echo "${memfree}/${memtotal}")"
 
 ## DEFINE COLORS
 
@@ -47,13 +53,13 @@ c0="${reset}${cyan}"                # first color
 
 cat <<EOF
 
-${c0}         .           ${nc}${USER}${ic}@${nc}${HOSTNAME}${reset}
-${c0}        / \\         ${reset}
-${c0}       /   \\        ${lc}OS:        ${ic}${os}${reset}
-${c0}      /^.   \\       ${lc}KERNEL:    ${ic}${kernel}${reset}
-${c0}     /  .-.  \\      ${lc}UPTIME:    ${ic}${uptime}${reset}
-${c0}    /  (   ) _\\     ${lc}PACKAGES:  ${ic}${packages}${reset}
-${c0}   / _.~   ~._^\\    ${lc}SHELL:     ${ic}${shell}${reset}
-${c0}  /.^         ^.\\   ${lc}DE/WM:     ${ic}${ui}${reset}
+${c0}         .          ${nc}${USER}${ic}@${nc}${HOSTNAME}${reset}
+${c0}        / \\         ${lc}OS:        ${ic}${os}${reset}
+${c0}       /   \\        ${lc}KERNEL:    ${ic}${kernel}${reset}
+${c0}      /^.   \\       ${lc}UPTIME:    ${ic}${uptime}${reset}
+${c0}     /  .-.  \\      ${lc}PACKAGES:  ${ic}${packages}${reset}
+${c0}    /  (   ) _\\     ${lc}SHELL:     ${ic}${shell}${reset}
+${c0}   / _.~   ~._^\\    ${lc}DE/WM:     ${ic}${ui}${reset}
+${c0}  /.^         ^.\\   ${lc}MEMORY:    ${ic}${mem}${reset}
 
 EOF
