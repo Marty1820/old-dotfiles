@@ -5,43 +5,18 @@
 ## INFO
 
 # user is already defined
-host="$(cat /etc/hostname)"
-os='Arch Linux'
-kernel="$(uname -sr)"
+# hostname is already defined original below
+#hostname="$(cat /etc/hostname)"
+os="$(cat /etc/os-release | grep PRETTY_NAME | sed -e 's/PRETTY_NAME=//' -e 's/"//g')"
+kernel="$(uname -sr | sed -e 's/-zen$//')"
 uptime="$(uptime -p | sed 's/up //')"
 packages="$(pacman -Q | wc -l)"
 shell="$(basename "${SHELL}")"
 
-## UI DETECTION
-
-parse_rcs() {
-	for f in "${@}"; do
-		wm="$(tail -n 1 "${f}" 2> /dev/null | cut -d ' ' -f 2)"
-		[ -n "${wm}" ] && echo "${wm}" && return
-	done
-}
-
-rcwm="$(parse_rcs "${HOME}/.xinitrc" "${HOME}/.xsession")"
-
-ui='unknown'
-uitype='UI'
-if [ -n "${DE}" ]; then
-	ui="${DE}"
-	uitype='DE'
-elif [ -n "${WM}" ]; then
-	ui="${WM}"
-	uitype='WM'
-elif [ -n "${XDG_CURRENT_DESKTOP}" ]; then
-	ui="${XDG_CURRENT_DESKTOP}"
-	uitype='DE'
-elif [ -n "${DESKTOP_SESSION}" ]; then
-	ui="${DESKTOP_SESSION}"
-	uitype='DE'
-elif [ -n "${rcwm}" ]; then
-	ui="${rcwm}"
-	uitype='WM'
-elif [ -n "${XDG_SESSION_TYPE}" ]; then
-	ui="${XDG_SESSION_TYPE}"
+if [ "$DESKTOP_SESSION" != "" ]; then
+    ui="$DESKTOP_SESSION"
+else
+    ui="$XDG_CURRENT_DESKTOP"
 fi
 
 ui="$(basename "${ui}")"
@@ -63,21 +38,22 @@ if [ -x "$(command -v tput)" ]; then
 fi
 
 # you can change these
-lc="${reset}${bold}${blue}"         # labels
+lc="${reset}${bold}${cyan}"         # labels
 nc="${reset}${bold}${blue}"         # user and hostname
 ic="${reset}"                       # info
-c0="${reset}${blue}"                # first color
+c0="${reset}${cyan}"                # first color
 
 ## OUTPUT
 
 cat <<EOF
 
-${c0}        /\\         ${nc}${USER}${ic}@${nc}${host}${reset}
-${c0}       /  \\        ${lc}OS:        ${ic}${os}${reset}
-${c0}      /\\   \\       ${lc}KERNEL:    ${ic}${kernel}${reset}
-${c0}     /  __  \\      ${lc}UPTIME:    ${ic}${uptime}${reset}
-${c0}    /  (  )  \\     ${lc}PACKAGES:  ${ic}${packages}${reset}
-${c0}   / __|  |__\\\\    ${lc}SHELL:     ${ic}${shell}${reset}
-${c0}  /.\`        \`.\\   ${lc}${uitype}:        ${ic}${ui}${reset}
+${c0}         .           ${nc}${USER}${ic}@${nc}${HOSTNAME}${reset}
+${c0}        / \\         ${reset}
+${c0}       /   \\        ${lc}OS:        ${ic}${os}${reset}
+${c0}      /^.   \\       ${lc}KERNEL:    ${ic}${kernel}${reset}
+${c0}     /  .-.  \\      ${lc}UPTIME:    ${ic}${uptime}${reset}
+${c0}    /  (   ) _\\     ${lc}PACKAGES:  ${ic}${packages}${reset}
+${c0}   / _.~   ~._^\\    ${lc}SHELL:     ${ic}${shell}${reset}
+${c0}  /.^         ^.\\   ${lc}DE/WM:     ${ic}${ui}${reset}
 
 EOF
