@@ -240,6 +240,18 @@ volume = MyVolume(
     background = theme["purple"],
 )
 
+# VPN connection | change wg0 to your VPN interface
+# widget.GenPollText
+def vpn_con():
+    command = "nmcli device status | grep wg0 | awk '{print $3}'"
+    proc = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
+    result = proc.stdout.decode("utf-8").strip('\n')
+    if result == 'connected':
+        vpn_icon = '嬨'
+    else:
+        vpn_icon = ''
+    return vpn_icon
+
 # WiFi strength icon used in widget.GenPollText | sets icon for widget.Net
 # Will find better icons and easier way for this...eventually
 #def wifi_strenght():
@@ -394,8 +406,14 @@ screens = [
 #                    func = wifi_strenght,
 #                    background = theme["green"],
 #                    foreground = theme["background"],
-#                    update_interval = 1,
+#                    update_interval = 5,
 #                    ),
+                widget.GenPollText(
+                    func = vpn_con,
+                    background = theme["green"],
+                    foreground = theme["background"],
+                    update_interval = 3,
+                    ),
                 widget.Net(
                 	interface = "wlan0",
                 	format = '直{total}',
