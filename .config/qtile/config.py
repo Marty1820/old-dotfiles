@@ -4,8 +4,6 @@
 # ██║╚██╔╝██║██╔══██║██╔══██╗░░░██║░░░░░╚██╔╝░░
 # ██║░╚═╝░██║██║░░██║██║░░██║░░░██║░░░░░░██║░░░
 # ╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░
-#
-# qtile config
 
 # IMPORTS
 import os
@@ -33,27 +31,14 @@ theme = {"background": "#282a36",
         "purple": "#bd93f9",
         "red": "#ff5555",
         "yellow": "#f1fa8c"}
-#Battery icons
-baticon = {"10": "",
-        "9": "",
-        "8": "",
-        "7": "",
-        "6": "",
-        "5": "",
-        "4": "",
-        "3": "",
-        "2": "",
-        "1": "",
-        "ch": "",
-        "er": ""}
 
-#Variables
-mod = "mod4"				# Sets mod key to SUPER
-home = os.path.expanduser('~') # Allow using 'home +' to expand ~
-myTerm = "alacritty"
-myBrowser = "vivaldi-stable"
-myFilemgr = "pcmanfm"
-myEditor = "gedit"
+#Variables/Programs
+mod = "mod4"                        # Sets mod key to SUPER
+home = os.path.expanduser('~')      # Allow using 'home +' to expand ~
+myTerm = "alacritty"                # Default Terminal application
+myBrowser = "vivaldi-stable"        # Web browser
+myFilemgr = "pcmanfm"               # File Manager
+myEditor = "gedit"                  # Text editor
 myAppLauncher = "rofi -show drun -theme '~/.config/rofi/config.rasi'"
 screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
 
@@ -216,8 +201,8 @@ battery = MyBattery(
 	format = '{char} {percent:2.0%}',
     foreground = theme["background"],
     background = theme["cyan"],
-    notify_below = 10
-    #mouse_callbacks = {'Button1': lazy.spawn('Need a new powermanagement software/or do something in terminal')},
+    notify_below = 10,
+    #mouse_callbacks = {'Button1': lazy.spawn(myTerm + ' -e ' home + '/Scripts/bat_info')},
 )
 
 # Audio Volume/still needs work | replacing widget.Volume
@@ -253,27 +238,41 @@ def vpn_con():
         vpn_icon = ''
     return vpn_icon
 
+# THIS IS MY TESTING SECTION | JUST TRYING SOME DIFFERENT THINGS OUT
 # WiFi strength icon used in widget.GenPollText | sets icon for widget.Net
 # Will find better icons and easier way for this...eventually
 #def wifi_strenght():
-#    command = "nmcli -f IN-USE,BARS device wifi list | awk '/\*/{if (NR!=1) {print $2}}'"
+    #command = "nmcli -f IN-USE,BARS device wifi list | awk '/\*/{if (NR!=1) {print $2}}'"
+#    command = "cat /proc/net/wireless | awk '{print $4}'"
+    #U+1F4F6=📶, can't find 4 tier wifi icon
 #    proc = subprocess.Popen(command, universal_newlines=True, shell=True, stdout=subprocess.PIPE)
 #    output = proc.stdout.read().rstrip("\n")
 #    if output == b'\xe2\x96\x82\xe2\x96\x84\xe2\x96\x86\xe2\x96\x88'.decode("utf-8"):
-#    #▂▄▆█
+    #▂▄▆█
 #        icon = '直'
 #    elif output == b'\xe2\x96\x82\xe2\x96\x84\xe2\x96\x86_'.decode("utf-8"):
-#    #▂▄▆_
+    #▂▄▆_
 #        icon = '直'
 #    elif output == b'\xe2\x96\x82\xe2\x96\x84__'.decode("utf-8"):
-#    #▂▄__
+    #▂▄__
 #        icon = ''
 #    elif output == b'\xe2\x96\x82___'.decode("utf-8"): 
-#    #▂___
+    #▂___
 #        icon = ''
 #    else: #No output
 #        icon = '睊'
 #    return icon
+#    if output < 30:
+#        icon = '直'
+#    elif output < 60:
+#        icon = 'good'
+#    elif output < 80:
+#        icon = ''
+#    else: # output >= 80 or no output
+#        icon = '睊'
+#    return icon
+
+## END OF TESTING GROUNDS
 
 # Remove portions of windows name
 def parse_func(text):
@@ -288,7 +287,7 @@ groups = [Group(""),
           Group(""),
           Group(""),
           Group(""),
-          Group("", layout='treetab'),
+          Group("碌", layout='treetab'),
           Group("", layout='floating')]
 # allow [S]mod4+1 through [S]mod4+0 to bind to groups; if you bind your groups by hand in your config, you don't need to do this.
 from libqtile.dgroups import simple_key_binder
