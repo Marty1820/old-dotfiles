@@ -9,7 +9,7 @@
 ### EXPORTS
 export TERM="xterm-256color"
 export EDITOR="nano"
-export VISUAL="gedit"
+#export VISUAL="gedit"
 export HISTCONTROL=ignoreboth:erasedups
 
 # History file sizes
@@ -93,16 +93,16 @@ ex ()
 
 ### ALIASES
 # Commented out due to using exa instead of ls
-#alias ll='ls -alF'
-#alias la='ls -A'
-#alias l='ls -CF'
 alias ..='cd ..'
 alias cd..='cd ..'
+# Interactive Mode
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
+# Human readable formate
 alias df='df -h'        # human-readable sizes
 alias free='free -h'    # show sizes in human readable
+# Colorize
 alias tree='tree -C'
 alias mkdir='mkdir -p'
 alias psa='ps auxf'
@@ -116,12 +116,12 @@ alias wifikey='sudo grep -r '^psk=' /etc/NetworkManager/system-connections/'
 
 # Changing "ls" to "exa"
 alias ls='exa -al --color=always --group-directories-first' # my preferred listing
-alias la='exa -a --color=always --group-directories-first'  # all files and dirs
-alias ll='exa -l --color=always --group-directories-first'  # long format
+alias la='exa -al --color=always --group-directories-first' # all files and dirs
+alias ll='exa -l --color=always --group-directories-first' # long format
 alias lt='exa -aT --color=always --group-directories-first' # tree listing
-alias l.='exa -a | egrep "^\."'
+alias l='exa -a | egrep "^\."' # Show only .dot files
 
-# pacman and yay/paru
+# pacman and paru
 alias pacsyu='sudo pacman -Syyu'                 # update only standard pkgs
 alias parusyu='paru -Syu'              # update standard pkgs and AUR pkgs (paru)
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'  # remove orphaned packages
@@ -143,7 +143,6 @@ alias yta="youtube-dl --extract-audio --audio-format best "
 alias ytv="youtube-dl -f bestvideo+bestaudio "
 
 ### FUN STUFF ###
-
 # the terminal rickroll
 alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
 # UTF-8 termnal display tester
