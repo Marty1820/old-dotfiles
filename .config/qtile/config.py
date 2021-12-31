@@ -216,6 +216,7 @@ battery = MyBattery(
 	format = '{char} {percent:2.0%}',
     foreground = theme["background"],
     background = theme["cyan"],
+    notify_below = 10
     #mouse_callbacks = {'Button1': lazy.spawn('Need a new powermanagement software/or do something in terminal')},
 )
 
