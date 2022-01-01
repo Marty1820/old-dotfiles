@@ -246,7 +246,7 @@ def wifi_strenght():
     proc = subprocess.Popen(command, universal_newlines=True, shell=True, stdout=subprocess.PIPE)
     output = proc.stdout.read().rstrip("\n")
     if not output:
-        icon = ' 睊'
+        icon = '睊'
     else:
         icon = '直'
     return icon
