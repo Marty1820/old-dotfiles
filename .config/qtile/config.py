@@ -238,41 +238,19 @@ def vpn_con():
         vpn_icon = ''
     return vpn_icon
 
-# THIS IS MY TESTING SECTION | JUST TRYING SOME DIFFERENT THINGS OUT
-# WiFi strength icon used in widget.GenPollText | sets icon for widget.Net
-# Will find better icons and easier way for this...eventually
-#def wifi_strenght():
-    #command = "nmcli -f IN-USE,BARS device wifi list | awk '/\*/{if (NR!=1) {print $2}}'"
-#    command = "cat /proc/net/wireless | awk '{print $4}'"
-    #U+1F4F6=📶, can't find 4 tier wifi icon
-#    proc = subprocess.Popen(command, universal_newlines=True, shell=True, stdout=subprocess.PIPE)
-#    output = proc.stdout.read().rstrip("\n")
-#    if output == b'\xe2\x96\x82\xe2\x96\x84\xe2\x96\x86\xe2\x96\x88'.decode("utf-8"):
-    #▂▄▆█
-#        icon = '直'
-#    elif output == b'\xe2\x96\x82\xe2\x96\x84\xe2\x96\x86_'.decode("utf-8"):
-    #▂▄▆_
-#        icon = '直'
-#    elif output == b'\xe2\x96\x82\xe2\x96\x84__'.decode("utf-8"):
-    #▂▄__
-#        icon = ''
-#    elif output == b'\xe2\x96\x82___'.decode("utf-8"): 
-    #▂___
-#        icon = ''
-#    else: #No output
-#        icon = '睊'
-#    return icon
-#    if output < 30:
-#        icon = '直'
-#    elif output < 60:
-#        icon = 'good'
-#    elif output < 80:
-#        icon = ''
-#    else: # output >= 80 or no output
-#        icon = '睊'
-#    return icon
-
-## END OF TESTING GROUNDS
+# WiFi icon used in widget.GenPollText | sets icon for widget.Net
+# Need to change no output to check if airplane mode or just disconnected
+def wifi_strenght():
+    command = "ip a s wlan0 | grep 'inet'"
+    #command = "cat /proc/net/wireless | grep wlan0 | awk '{print $4}' | sed -e 's/-//g' -e 's/.$//g'"
+    proc = subprocess.Popen(command, universal_newlines=True, shell=True, stdout=subprocess.PIPE)
+    output = proc.stdout.read().rstrip("\n")
+    if not output:
+        icon = ' 睊'
+    else:
+        icon = '直'
+    return icon
+#How to tell the difference between XF86RFKill and not connected to wifi/maybe something with bluetooth being enabled?
 
 # Remove portions of windows name
 def parse_func(text):
@@ -402,21 +380,21 @@ screens = [
                 	padding = 0,
                 	fontsize = 28,
                 	),
-#                widget.GenPollText(
-#                    func = wifi_strenght,
-#                    background = theme["green"],
-#                    foreground = theme["background"],
-#                    update_interval = 5,
-#                    ),
+                widget.GenPollText(
+                    func = wifi_strenght,
+                    background = theme["green"],
+                    foreground = theme["background"],
+                    update_interval = 5,
+                    ),
                 widget.GenPollText(
                     func = vpn_con,
                     background = theme["green"],
                     foreground = theme["background"],
-                    update_interval = 3,
+                    update_interval = 2,
                     ),
                 widget.Net(
                 	interface = "wlan0",
-                	format = '直{total}',
+                	format = '{total}',
                 	foreground = theme["background"],
                 	background = theme["green"],
                 	mouse_callbacks = {'Button1': lazy.spawn('nm-connection-editor')},

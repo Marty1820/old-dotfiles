@@ -9,7 +9,7 @@
 ### EXPORTS
 export TERM="xterm-256color"
 export EDITOR="nano"
-#export VISUAL="gedit"
+export VISUAL="gedit" #Needed for ranger
 export HISTCONTROL=ignoreboth:erasedups
 
 # History file sizes
