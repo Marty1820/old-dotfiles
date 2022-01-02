@@ -12,7 +12,7 @@ import subprocess
 from typing import List  # noqa: F401
 from libqtile import qtile, bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, KeyChord, Key, Match, Screen
-from libqtile.lazy import lazy
+from libqtile.command import lazy
 from libqtile.utils import guess_terminal
 from libqtile.widget.battery import Battery, BatteryState
 from libqtile.widget.volume import Volume
@@ -103,14 +103,6 @@ keys = [
     	desc="Move window down"
     	),
     # Window changing commands
-#    Key([mod, "shift"], "-",
-#        lazy.function(marg_plus),
-#        desc="expand margin between windows"
-#        ),
-#    Key([mod], "-",
-#        lazy.function(marg_minus),
-#        desc="shrink margin between windows"
-#        ),
     Key([mod, "control"], "h",
     	lazy.layout.shrink(),
         desc="Shrink window"
@@ -244,7 +236,7 @@ def wifi_strenght():
     command = "ip a s wlan0 | grep 'inet'"
     #command = "cat /proc/net/wireless | grep wlan0 | awk '{print $4}' | sed -e 's/-//g' -e 's/.$//g'"
     proc = subprocess.Popen(command, universal_newlines=True, shell=True, stdout=subprocess.PIPE)
-    output = proc.stdout.read().rstrip("\n")
+    output = proc.stdout.read()
     if not output:
         icon = '睊'
     else:
@@ -271,11 +263,36 @@ groups = [Group(""),
 from libqtile.dgroups import simple_key_binder
 dgroups_key_binder = simple_key_binder("mod4")
 
-# Default layout theme settings
-layout_theme = {"border_width": 2,
-                "border_focus": theme["purple"],
-                "border_normal": theme["background"],
-                }
+# Set margins aka gaps in monadtall
+# Not sure if this will work but I'll keep trying
+@lazy.function
+def gaps(qtile, margin):
+    change = input()
+    if change == "plus":
+        margin = margin + 1
+    elif change == "minus":
+        margin = margin - 1
+    else:
+        margin = margin
+    return margin;
+if __name__ == '__main__':
+    list = [0]
+    margin = 4
+    for i in list:
+        list.append(i+1)
+        margin = gaps(qtile, margin)
+        if margin < 0:
+            margin = 0
+        else:
+            margin = margin
+
+keys.append(Key([mod, "shift"], "minus",
+    gaps("plus")
+    ))
+keys.append(Key([mod], "minus",
+    gaps("minus")
+    ))
+
 #Used layouts
 layouts = [
     layout.MonadTall(
