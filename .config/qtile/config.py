@@ -201,14 +201,14 @@ battery = MyBattery(
 class MyVolume(Volume):
     def _update_drawer(self):
         if self.volume <= 0:
-            self.volume = 'M'
-            self.text = '婢' + str(self.volume)
+            self.volume = '0%'
+            self.text = '🔇' + str(self.volume)
         elif self.volume < 30:
-            self.text = '奄' + str(self.volume) + '%'
+            self.text = '🔈' + str(self.volume) + '%'
         elif self.volume < 80:
-            self.text = '奔' + str(self.volume) + '%'
+            self.text = '🔉' + str(self.volume) + '%'
         else: # self.volume >=80:
-            self.text = '墳' + str(self.volume) + '%'
+            self.text = '🔊' + str(self.volume) + '%'
         
     def restore(self):
         self.timer_setup()
@@ -218,30 +218,27 @@ volume = MyVolume(
     background = theme["purple"],
 )
 
-# VPN connection | change wg0 to your VPN interface
-# widget.GenPollText
-def vpn_con():
-    command = "nmcli device status | grep wg0 | awk '{print $3}'"
-    proc = subprocess.run(command, shell=True, stdout=subprocess.PIPE)
-    result = proc.stdout.decode("utf-8").strip('\n')
-    if result == 'connected':
-        vpn_icon = '嬨'
-    else:
-        vpn_icon = ''
-    return vpn_icon
-
 # WiFi icon used in widget.GenPollText | sets icon for widget.Net
 # Need to change no output to check if airplane mode or just disconnected
-def wifi_strenght():
-    command = "ip a s wlan0 | grep 'inet'"
-    #command = "cat /proc/net/wireless | grep wlan0 | awk '{print $4}' | sed -e 's/-//g' -e 's/.$//g'"
+def network_con():
+    wifi = "wlan0"
+    eth = "eth0"
+    vpn = "wg0"
+    icon = ''
+    command = "ip a | egrep 'wlan0|eth0|wg0' | grep 'inet'"
     proc = subprocess.Popen(command, universal_newlines=True, shell=True, stdout=subprocess.PIPE)
     output = proc.stdout.read()
-    if not output:
-        icon = '睊'
-    else:
-        icon = '直'
+    words = output.split()
+    if vpn in words:
+        icon = '旅'
+    if eth in words:
+        icon = icon + '歷'
+    if wifi in words:
+        icon = icon + ''
+    if icon == '':
+        icon = ''
     return icon
+
 #How to tell the difference between XF86RFKill and not connected to wifi/maybe something with bluetooth being enabled?
 
 # Remove portions of windows name
@@ -398,19 +395,12 @@ screens = [
                 	fontsize = 28,
                 	),
                 widget.GenPollText(
-                    func = wifi_strenght,
+                    func = network_con,
                     background = theme["green"],
                     foreground = theme["background"],
                     update_interval = 5,
                     ),
-                widget.GenPollText(
-                    func = vpn_con,
-                    background = theme["green"],
-                    foreground = theme["background"],
-                    update_interval = 2,
-                    ),
                 widget.Net(
-                	interface = "wlan0",
                 	format = '{total}',
                 	foreground = theme["background"],
                 	background = theme["green"],
