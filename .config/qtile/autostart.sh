@@ -7,4 +7,4 @@ conky &
 redshift &
 light-locker &
 /usr/lib/kdeconnectd &
-feh --bg-fill --randomize ~/Pictures/wallpapers/FrameWork/* &
+feh --bg-fill --randomize ~/wallpapers/* &
