@@ -6,7 +6,7 @@ Otherwise these are pretty basic configs with nothing special.
 ## Details
 * WM: [qtile](http://www.qtile.org)
 * Colors/Themes: [Dracula](https://draculatheme.com)
-* Terminal: Alacritty
+* Terminal: [Alacritty](https://github.com/alacritty/alacritty)
 * Application launcher/logout screen: [rofi](https://github.com/davatorium/rofi)
 
 ![screenshot](.screenshots/desktop.png)
@@ -19,13 +19,13 @@ Otherwise these are pretty basic configs with nothing special.
 |:----------:|:-------------:|
 |`gedit`|ctrl + a|
 |`pcmanfm`|ctrl + e|
-|`vivaldi`|ctrl + b|
+|`brave`|ctrl + b|
 |`rofi`|ctrl + d = applications & ctrl + esc = exit menu|
 |`light-locker` & `lightdm`|rofi uses it to lock the screen|
 |`scrot`|Print Screen key takes screenshot|
 |`xbacklight`|Laptop brightness keys|
 |`btop`|click RAM to bring up|
-|`nm-connection-editor`|click WiFi|
+|`nm-connection-editor`|click Network Widget|
 
 ## Fonts
 |Name|Description|
@@ -41,14 +41,15 @@ Otherwise these are pretty basic configs with nothing special.
 |`pacman`|Arch package manager|
 |`paru`|Arch AUR package manager|
 |`reflector`|Updates mirrors on Arch|
-|`youtube-dl`|Download youtube videos/audio|
+|`youtube-dl`|Download youtube videos/audio with `ytv` & `yta`|
 |`synth-shell`|Changes the terminal prompt|
+| Compression Tools|`ex filename.ext` extracts most compressed files|
 
 
 ## Autostarted/change in [.config/qtile/autostart.sh](https://github.com/Marty1820/dotfiles/blob/master/.config/qtile/autostart.sh)
 
 + `picom` : transparency & blur
-+ `gnome-keyring-daemon` : It's a keyring...yep
++ `gnome-keyring-daemon` : It's a keyring
 + `blueman-applet` : So I can autoconnect my mouse
 + `conky` : shows keybindings (X means I haven't implimented it yet)
 + `redshift` : limits blue light
