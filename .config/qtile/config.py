@@ -62,7 +62,7 @@ keys = [
         desc="Launches Text Editor"
         ),
     Key([mod], "Escape",
-        lazy.spawn([home + '/.config/rofi/powermenu.sh'])
+        lazy.spawn([home + '/.config/rofi/scripts/powermenu.sh'])
         ),
     Key([mod, "shift"], "c",
         lazy.window.kill(),
@@ -133,19 +133,19 @@ keys = [
     	),
     # Audio/Volume
     Key([], 'XF86AudioMute',
-    	lazy.spawn('amixer set Master 1+ toggle')
+    	lazy.spawn('amixer -q set Master toggle')
     	),
     Key([], 'XF86AudioRaiseVolume',
-    	lazy.spawn('amixer set Master 2%+ unmute')
+    	lazy.spawn('amixer -Mq set Master,0 2%+ unmute')
     	),
     Key([], 'XF86AudioLowerVolume',
-    	lazy.spawn('amixer set Master 2%- unmute')
+    	lazy.spawn('amixer -Mq set Master,0 2%- unmute')
     	),
     Key([mod], 'XF86AudioRaiseVolume',
-    	lazy.spawn('amixer set Master 10%+ unmute')
+    	lazy.spawn('amixer -Mq set Master,0 10%+ unmute')
     	),
     Key([mod], 'XF86AudioLowerVolume',
-    	lazy.spawn('amixer set Master 10%- unmute')
+    	lazy.spawn('amixer -Mq set Master,0 10%- unmute')
     	),
     #Screenshots
     Key([], 'Print',
@@ -262,33 +262,22 @@ dgroups_key_binder = simple_key_binder("mod4")
 
 # Set margins aka gaps in monadtall
 # Not sure if this will work but I'll keep trying
-@lazy.function
-def gaps(qtile, margin):
-    change = input()
-    if change == "plus":
-        margin = margin + 1
-    elif change == "minus":
-        margin = margin - 1
-    else:
-        margin = margin
-    return margin;
-if __name__ == '__main__':
-    list = [0]
-    margin = 4
-    for i in list:
-        list.append(i+1)
-        margin = gaps(qtile, margin)
-        if margin < 0:
-            margin = 0
-        else:
-            margin = margin
+#def gaps_expand(qtile):
+#    qtile.screens[0].cmd_resize(x+1, y+1, w+1, h+1)
+#    qtile.screens[0].cmd_reconfigure_screen()
 
-keys.append(Key([mod, "shift"], "minus",
-    gaps("plus")
-    ))
-keys.append(Key([mod], "minus",
-    gaps("minus")
-    ))
+#def gaps_shrink(qtile):
+#    qtile.screens[0].cmd_resize(x-1, y-1, w-1, h-1)
+#    qtile.screens[0].cmd_reconfigure_screen()
+
+#keys.append(
+#    Key([mod, "shift"], "equal",
+#    lazy.function(gaps_expand)
+#    ))
+#keys.append(
+#    Key([mod, "shift"], "minus",
+#    lazy.function(gaps_shrink)
+#    ))
 
 #Used layouts
 layouts = [
@@ -417,7 +406,7 @@ screens = [
                 	background = theme["orange"],
                 	foreground = theme["background"],
                 	fmt = '{}',
-                	format = '{freq_current}GHz ',
+                	format = '{freq_current}GHz {load_percent}% ',
                 	),
               	widget.ThermalSensor(
                     threshold = 70,
