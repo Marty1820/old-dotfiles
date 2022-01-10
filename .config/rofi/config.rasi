@@ -1,3 +1,9 @@
+/*
+ *
+ *
+ *
+ */
+
 configuration {
     modi: "drun,ssh,calc:~/.config/rofi/scripts/calculator.sh";
     show-icons: true;
