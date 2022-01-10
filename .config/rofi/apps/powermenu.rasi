@@ -1,3 +1,9 @@
+/*
+ *
+ *
+ *
+ */
+
 configuration {
     font: "Hack 12";
     disable-history: false;
@@ -51,7 +57,7 @@ inputbar {
     expand: false;
     border: 0px;
     border-radius: 0px;
-    border-color: @accent;
+    border-color: @purple;
     margin: 0px 0px 0px 0px;
     padding: 0px;
     position: center;
