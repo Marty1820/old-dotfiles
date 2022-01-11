@@ -9,6 +9,7 @@ uptime=$(uptime -p | sed -e 's/up //g')
 shutdown="襤"
 reboot="菱"
 lock=""
+
 if [[ $(cat /sys/class/power_supply/BAT1/status) == Discharging ]]; then
     suspend="⏼"
 else
@@ -19,7 +20,7 @@ logout="﫼"
 # Variable passed to rofi
 options="$shutdown\n$reboot\n$lock\n$suspend\n$logout"
 
-chosen="$(echo -e "$options" | $rofi_command -p "    $uptime" -dmenu -selected-row 2)"
+chosen="$(echo -e "$options" | $rofi_command -p "  祥  $uptime" -dmenu -selected-row 2)"
 case $chosen in
     $shutdown)
         systemctl poweroff
@@ -28,18 +29,19 @@ case $chosen in
         systemctl reboot
         ;;
     $lock)
-		light-locker-command -l
+        light-locker-command -l
         ;;
     $suspend)
         if [[ $(cat /sys/class/power_supply/BAT1/status) == Discharging ]]; then
 		    light-locker-command -l
 		    systemctl hibernate
 		else
+		    amixer -q set Master mute
 		    light-locker-command -l
 		    systemctl suspend
 		fi
         ;;
     $logout)
-		qtile cmd-obj -o cmd -f shutdown
+        qtile cmd-obj -o cmd -f shutdown
         ;;
 esac
