@@ -136,16 +136,16 @@ keys = [
     	lazy.spawn('amixer -q set Master toggle')
     	),
     Key([], 'XF86AudioRaiseVolume',
-    	lazy.spawn('amixer -Mq set Master,0 2%+ unmute')
+    	lazy.spawn('amixer -q set Master 1%+ unmute')
     	),
     Key([], 'XF86AudioLowerVolume',
-    	lazy.spawn('amixer -Mq set Master,0 2%- unmute')
+    	lazy.spawn('amixer -q set Master 1%- unmute')
     	),
     Key([mod], 'XF86AudioRaiseVolume',
-    	lazy.spawn('amixer -Mq set Master,0 10%+ unmute')
+    	lazy.spawn('amixer -q set Master 10%+ unmute')
     	),
     Key([mod], 'XF86AudioLowerVolume',
-    	lazy.spawn('amixer -Mq set Master,0 10%- unmute')
+    	lazy.spawn('amixer -q set Master 10%- unmute')
     	),
     #Screenshots
     Key([], 'Print',
