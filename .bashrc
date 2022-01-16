@@ -106,7 +106,6 @@ alias free='free -h'    # show sizes in human readable
 alias tree='tree -C'
 alias mkdir='mkdir -p'
 alias psa='ps auxf'
-alias ping='ping -c 5'
 alias cls='clear'
 alias grep='grep --color=auto'
 alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
