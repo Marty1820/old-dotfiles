@@ -406,7 +406,7 @@ screens = [
                 	background = theme["orange"],
                 	foreground = theme["background"],
                 	fmt = '{}',
-                	format = '{freq_current}GHz {load_percent}% ',
+                	format = '💻{load_percent}% ',
                 	),
               	widget.ThermalSensor(
                     threshold = 70,
@@ -428,7 +428,7 @@ screens = [
                     background = theme["pink"],
                     fmt = '{}',
                     measure_mem = 'G',
-                    format = '{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}',
+                    format = '{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}',
                     update_interval = '1',
                     ),
                 widget.DF(
