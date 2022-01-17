@@ -243,7 +243,7 @@ def network_con():
 
 # Remove portions of windows name
 def parse_func(text):
-	for string in [" - Vivaldi", " - gedit"]:
+	for string in [" - Brave", " - gedit"]:
 		text = text.replace(string, "")
 	return text
 
@@ -458,7 +458,7 @@ screens = [
                 	format=' %b %d %I:%M%p',
                 	foreground = theme["background"],
                 	background = theme["foreground"],
-                	mouse_callbacks = {'Button1': lazy.spawn('vivaldi-stable https://calendar.google.com')},
+                	mouse_callbacks = {'Button1': lazy.spawn(myBrowser + ' https://calendar.google.com')},
                 	),
                	widget.TextBox(
                 	text = '',
