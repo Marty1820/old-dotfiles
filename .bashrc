@@ -12,6 +12,12 @@ export EDITOR="nano"
 export VISUAL="gedit" #Needed for ranger
 export HISTCONTROL=ignoreboth:erasedups
 
+# XDG paths
+export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+
 # History file sizes
 HISTSIZE=1000
 HISTFILESIZE=2000
