@@ -112,7 +112,7 @@ alias free='free -h'    # show sizes in human readable
 alias tree='tree -C'
 alias mkdir='mkdir -p'
 alias psa='ps auxf'
-alias cls='clear && pokemon-colorscripts.sh random'
+alias cls='clear && color10bit.sh'
 alias grep='grep --color=auto'
 alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias psmem='ps auxf | sort -nr -k 4'
