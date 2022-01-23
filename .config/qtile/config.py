@@ -325,24 +325,32 @@ screens = [
             [
 				widget.CurrentLayoutIcon(
 					custom_icon_paths = [(home + "/.config/qtile/icons")],
+					foreground = theme["foreground"],
 					scale = 0.8,
 					),
 				widget.GroupBox(
                     active = theme["green"],
                     background = theme["background"],
                     block_highlight_text_color = theme["purple"],
+                    disable_drag = True,
+                    foreground = theme["foreground"],
                     fontsize = 32,
-                    highlight_color = theme["current"],
-                    highlight_method = "block",
+                    highlight_color = theme["selection"],
+                    highlight_method = "line",
                     inactive = theme["foreground"],
+                    urgent_border = theme["red"],
                     ),
                 widget.Prompt(
                 	prompt = 'Run: ',
                 	padding = 5,
                 	foreground = theme["purple"],
+                    bell_style = 'visual',
+                    visual_bell_color = theme["red"],
+                    ignore_dups_history = True,
                 	),
                 widget.WindowName(
                 	format = '{name}',
+                    empty_group_string = "Software is like sex; it's better when it's free. - Linux Torvald 1996",
                 	foreground = theme["foreground"],
                 	parse_text = parse_func,
                 	),
@@ -354,7 +362,6 @@ screens = [
                 	),
                 widget.Systray(
                 	icon_size = 22,
-                	padding = 2,
                 	foreground = theme["background"],
                 	background = theme["comment"],
                 	),
@@ -373,7 +380,7 @@ screens = [
                     mouse_callbacks = {'Button1': lazy.spawn(myTerm + ' -e paru -Syu')},
                     foreground = theme["background"],
                     colour_no_updates = theme["background"],
-                    colour_have_updates = theme["background"],
+                    colour_have_updates = theme["foreground"],
                     background = theme["red"],
                     ),
                 widget.TextBox(
@@ -406,7 +413,7 @@ screens = [
                 	background = theme["orange"],
                 	foreground = theme["background"],
                 	fmt = '{}',
-                	format = '💻{load_percent}% ',
+                    format = '💻{load_percent} ',
                 	),
               	widget.ThermalSensor(
                     threshold = 70,
