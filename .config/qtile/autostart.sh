@@ -1,11 +1,11 @@
 #!/usr/bin/env bash 
 
-picom &
-gnome-keyring-daemon &
-blueman-applet &
-conky &
-redshift &
-light-locker &
-/usr/lib/kdeconnectd &
+/usr/bin/picom &
+/usr/bin/gnome-keyring-daemon &
+/usr/bin/blueman-applet &
+/usr/bin/conky &
+/usr/bin/redshift &
+/usr/bin/light-locker &
+/usr/bin/kdeconnect-indicator &
 ~/.local/bin/notifications.py &
-feh --bg-fill --randomize ~/wallpapers/* &
+/usr/bin/feh --bg-fill --randomize ~/wallpapers/* &
