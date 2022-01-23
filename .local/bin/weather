@@ -1,0 +1,16 @@
+#!/bin/bash
+
+weather=$(curl -s wttr.in/?format="%t+%f+%S+%s+%l")
+
+location=$(echo "$weather" | awk '{print $5}')
+temp=$(echo "$weather" | awk '{print $1}')
+tempfeel=$(echo "$weather" | awk '{print $2}')
+sunrise=$(echo "$weather" | awk '{print $3}')
+sunset=$(echo "$weather" | awk '{print $4}')
+
+notify-send "$location Weather" \
+    "  Tempurature: $temp \
+    \n  Feels Like: $tempfeel \
+    \n  Sunrise: $sunrise \
+    \n  Sunset: $sunset" \
+    --urgency=normal --expire-time=15000 --icon=sunny
