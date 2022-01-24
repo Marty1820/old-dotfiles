@@ -133,13 +133,16 @@ keys = [
     	),
     # Audio/Volume
     Key([], 'XF86AudioMute',
-    	lazy.spawn('amixer -q set Master toggle')
+    	#lazy.spawn('amixer -q set Master toggle')
+    	lazy.spawn(home + '/.config/dunst/scripts/volume.sh mute')
     	),
     Key([], 'XF86AudioRaiseVolume',
-    	lazy.spawn('amixer -q set Master 1%+ unmute')
+    	#lazy.spawn('amixer -q set Master 1%+ unmute')
+    	lazy.spawn(home + '/.config/dunst/scripts/volume.sh up')
     	),
     Key([], 'XF86AudioLowerVolume',
-    	lazy.spawn('amixer -q set Master 1%- unmute')
+    	#lazy.spawn('amixer -q set Master 1%- unmute')
+    	lazy.spawn(home + '/.config/dunst/scripts/volume.sh down')
     	),
     Key([mod], 'XF86AudioRaiseVolume',
     	lazy.spawn('amixer -q set Master 10%+ unmute')
