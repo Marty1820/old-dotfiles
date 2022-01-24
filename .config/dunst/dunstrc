@@ -22,7 +22,7 @@
     ### Geometry ###
 
     # dynamic width from 0 to 300
-    width = (0, 800)
+    width = (300, 800)
     # constant width of 300
     #width = 300
     
@@ -292,14 +292,14 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#282a36"
+    background = "#44475a"
     foreground = "#f8f8f2"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     default_icon = ~/.config/dunst/normal.png
 
 [urgency_normal]
-    background = "#282a36"
+    background = "#44475a"
     foreground = "#f8f8f2"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
