@@ -126,10 +126,12 @@ keys = [
     ## Function keys
     # Screen Brightness
     Key([], 'XF86MonBrightnessUp',
-    	lazy.spawn('xbacklight -inc 10')
+    	#lazy.spawn('xbacklight -inc 10')
+    	lazy.spawn(home + '/.config/dunst/scripts/backlight.sh up')
     	),
     Key([], 'XF86MonBrightnessDown',
-    	lazy.spawn('xbacklight -dec 10')
+    	#lazy.spawn('xbacklight -dec 10')
+    	lazy.spawn(home + '/.config/dunst/scripts/backlight.sh down')
     	),
     # Audio/Volume
     Key([], 'XF86AudioMute',
