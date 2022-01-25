@@ -40,7 +40,6 @@ myBrowser = "brave"        # Web browser
 myFilemgr = "pcmanfm"               # File Manager
 myEditor = "gedit"                  # Text editor
 myAppLauncher = "rofi -show drun -theme '~/.config/rofi/config.rasi'"
-screenshot = "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
 
 # Keybindings
 keys = [
