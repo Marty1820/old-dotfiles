@@ -154,8 +154,10 @@ keys = [
     	),
     #Screenshots
     Key([], 'Print',
-    	lazy.spawn(screenshot)
+    	lazy.spawn("scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'")
     	),
+    Key(["mod1"], 'Print',
+        lazy.spawn("scrot -u -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"))
     #Unset Keys
 #    Key([], 'XF86AudioMedia',
 #        lazy.spawn(),
