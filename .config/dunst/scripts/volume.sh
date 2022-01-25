@@ -33,11 +33,11 @@ function send_notification {
 case $1 in
     up)
 	# Up the volume (+ 5%)
-	amixer -q set Master 5%+ unmute > /dev/null
+	amixer -q set Master 1%+ unmute > /dev/null
 	send_notification
 	;;
     down)
-	amixer -q set Master 5%- unmute > /dev/null
+	amixer -q set Master 1%- unmute > /dev/null
 	send_notification
 	;;
     mute)
