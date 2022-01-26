@@ -196,7 +196,7 @@
     max_icon_size = 30
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/:/usr/share/icons/Adwaita/16x16/status/:~/.local/share/icons/
+    icon_path = /usr/share/icons/Adwaita/32x32/status/:/usr/share/icons/Adwaita/32x32/devices/:/usr/share/icons/Adwaita/32x32/legacy/:~/.local/share/icons/
 
     ### History ###
 
@@ -296,14 +296,14 @@
     foreground = "#f8f8f2"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
-    default_icon = ~/.config/dunst/normal.png
+    default_icon = /usr/share/icons/Adwaita/32x32/status/dialog-question-symbolic.symbolic.png
 
 [urgency_normal]
     background = "#44475a"
     foreground = "#f8f8f2"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
-    default_icon = ~/.config/dunst/normal.png
+    default_icon = /usr/share/icons/Adwaita/32x32/status/user-available-symbolic.symbolic.png
 
 [urgency_critical]
     background = "#ff5555"
@@ -311,7 +311,7 @@
     frame_color = "#f8f8f2"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
-    default_icon = ~/.config/dunst/critical.png
+    default_icon = /usr/share/icons/Adwaita/32x32/status/dialog-warning-symbolic
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
