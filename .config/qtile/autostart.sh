@@ -7,5 +7,10 @@
 /usr/bin/redshift &
 /usr/bin/light-locker &
 /usr/bin/kdeconnect-indicator &
-~/.local/bin/notifications.py &
 /usr/bin/feh --bg-fill --randomize ~/wallpapers/* &
+
+## Custom made
+# allows seeing last notification with dunst/adds to systray
+~/.local/bin/notifications.py &
+# sends notification when battery is low
+~/.local/bin/low_bat &
