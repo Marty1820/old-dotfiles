@@ -1,4 +1,4 @@
-#!/usr/bin/env bash 
+#!/bin/bash 
 
 /usr/bin/picom &
 /usr/bin/gnome-keyring-daemon &
