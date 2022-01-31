@@ -32,7 +32,6 @@ function send_notification {
 
 case $1 in
     up)
-	# Up the volume (+ 5%)
 	amixer -q set Master 1%+ unmute > /dev/null
 	send_notification
 	;;
@@ -41,7 +40,6 @@ case $1 in
 	send_notification
 	;;
     mute)
-    	# Toggle mute
 	amixer -q set Master 1+ toggle > /dev/null
 	if is_mute ; then
 	    dunstify --raw_icon=/usr/share/icons/Adwaita/48x48/status/audio-volume-muted-symbolic.symbolic.png --timeout=4500 --replace=2593 --urgency=normal "Mute"
