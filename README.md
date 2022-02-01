@@ -57,7 +57,8 @@ Otherwise these are pretty basic configs with nothing special.
 + `light-locker` : used to lock screen/replacement for dm-tools
 + `kdeconnect-indicator` : phone integration
 + `feh` : sets wallpaper from "~/wallpapers/*"
-**Custom scripts
+
+**Custom scripts**
 + `notifications.py` : allows easily seeing previous Dunst notifications
 + `low_bat` : Monitors battery and sends warning when battery is low
 
