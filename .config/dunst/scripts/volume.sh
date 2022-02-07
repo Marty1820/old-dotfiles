@@ -6,11 +6,11 @@
 # $./volume.sh mute
 
 function get_volume {
-    amixer get Master | grep '%' | head -n 1 | cut -d '[' -f 2 | cut -d '%' -f 1
+    amixer -M get Master | grep '%' | head -n 1 | cut -d '[' -f 2 | cut -d '%' -f 1
 }
 
 function is_mute {
-    amixer get Master | grep '%' | grep -oE '[^ ]+$' | grep off > /dev/null
+    amixer -M get Master | grep '%' | grep -oE '[^ ]+$' | grep off > /dev/null
 }
 
 function send_notification {
@@ -32,15 +32,15 @@ function send_notification {
 
 case $1 in
     up)
-	amixer -q set Master 1%+ unmute > /dev/null
+	amixer -qM set Master 1%+ unmute > /dev/null
 	send_notification
 	;;
     down)
-	amixer -q set Master 1%- unmute > /dev/null
+	amixer -qM set Master 1%- unmute > /dev/null
 	send_notification
 	;;
     mute)
-	amixer -q set Master 1+ toggle > /dev/null
+	amixer -qM set Master 1+ toggle > /dev/null
 	if is_mute ; then
 	    dunstify --raw_icon=/usr/share/icons/Adwaita/48x48/status/audio-volume-muted-symbolic.symbolic.png --timeout=4500 --replace=2593 --urgency=normal "Mute"
 	else
