@@ -29,15 +29,13 @@ case $chosen in
         systemctl reboot
         ;;
     $lock)
-        light-locker-command -l
+        notify-send "Not locker installed"
         ;;
     $suspend)
         if [[ $(cat /sys/class/power_supply/BAT1/status) == Discharging ]]; then
-		    light-locker-command -l
 		    systemctl hibernate
 		else
 		    amixer -q set Master mute
-		    light-locker-command -l
 		    systemctl suspend
 		fi
         ;;
