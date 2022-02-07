@@ -6,6 +6,7 @@
 # ╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░
 
 # IMPORTS
+from imp import create_dynamic
 import os
 import re
 import subprocess
@@ -17,7 +18,6 @@ from libqtile.utils import guess_terminal
 from libqtile.widget.battery import Battery, BatteryState
 from libqtile.widget.volume import Volume
 
-##Dictionaries
 #Dracula color theme
 theme = {"background": "#282a36",
         "current": "#44475a",
@@ -36,7 +36,7 @@ theme = {"background": "#282a36",
 mod = "mod4"                        # Sets mod key to SUPER
 home = os.path.expanduser('~')      # Allow using 'home +' to expand ~
 myTerm = "alacritty"                # Default Terminal application
-myBrowser = "brave"        # Web browser
+myBrowser = "brave"                  # Web browser
 myFilemgr = "pcmanfm"               # File Manager
 myEditor = "gedit"                  # Text editor
 myAppLauncher = "rofi -show drun -theme '~/.config/rofi/config.rasi'"
@@ -157,30 +157,9 @@ keys = [
     	),
     Key(["mod1"], 'Print',
         lazy.spawn("scrot -u -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"))
-    #Unset Keys
-#    Key([], 'XF86AudioMedia',
-#        lazy.spawn(),
-#        desc='Gear logo fn + F12'
-#        ),
-#    Key([], 'XF86AudioPrev',
-#        lazy.spawn(),
-#        desc='Previous Track fn + F4'
-#        ),
-#    Key([], 'XF86AudioNext',
-#        lazy.spawn(),
-#        desc='Next Track fn + F6'
-#        ),
-#    Key([], 'XF86AudioPlay',
-#        lazy.spawn(),
-#        desc='Play|Pause fn + F5'
-#        ),
-#    Key([mod], 'p',
-#        lazy.spawn(),
-#        desc='Screen fn + F9'
-#        ),
 ]
 
-## WIDGET REPLACEMENTS
+### WIDGET REPLACEMENTS ###
 # Battery Icon & % | Replaces widget.Battery
 class MyBattery(Battery):
     def build_string(self, status):
@@ -197,14 +176,14 @@ class MyBattery(Battery):
 
 battery = MyBattery(
 	format = '{char} {percent:2.0%}',
-    foreground = theme["background"],
-    background = theme["cyan"],
+    foreground = theme["cyan"],
     notify_below = 10,
-    #mouse_callbacks = {'Button1': lazy.spawn(myTerm + ' -e ' home + '/Scripts/bat_info')},
 )
 
 # Audio Volume/still needs work | replacing widget.Volume
 class MyVolume(Volume):
+    def create_amixer_command(self, *args):
+        return super().create_amixer_command("-M")
     def _update_drawer(self):
         if self.volume <= 0:
             self.volume = '0%'
@@ -220,12 +199,10 @@ class MyVolume(Volume):
         self.timer_setup()
         
 volume = MyVolume(
-    foreground = theme["background"],
-    background = theme["purple"],
+    foreground = theme["purple"],
 )
 
 # WiFi icon used in widget.GenPollText | sets icon for widget.Net
-# Need to change no output to check if airplane mode or just disconnected
 def network_con():
     wifi = "wlan0"
     eth = "eth0"
@@ -245,11 +222,9 @@ def network_con():
         icon = ''
     return icon
 
-#How to tell the difference between XF86RFKill and not connected to wifi/maybe something with bluetooth being enabled?
-
 # Remove portions of windows name
 def parse_func(text):
-	for string in [" - Brave", " - gedit"]:
+	for string in [" - Brave", " - gedit", " - Visual Studio Code"]:
 		text = text.replace(string, "")
 	return text
 
@@ -265,25 +240,6 @@ groups = [Group(""),
 # allow [S]mod4+1 through [S]mod4+0 to bind to groups; if you bind your groups by hand in your config, you don't need to do this.
 from libqtile.dgroups import simple_key_binder
 dgroups_key_binder = simple_key_binder("mod4")
-
-# Set margins aka gaps in monadtall
-# Not sure if this will work but I'll keep trying
-#def gaps_expand(qtile):
-#    qtile.screens[0].cmd_resize(x+1, y+1, w+1, h+1)
-#    qtile.screens[0].cmd_reconfigure_screen()
-
-#def gaps_shrink(qtile):
-#    qtile.screens[0].cmd_resize(x-1, y-1, w-1, h-1)
-#    qtile.screens[0].cmd_reconfigure_screen()
-
-#keys.append(
-#    Key([mod, "shift"], "equal",
-#    lazy.function(gaps_expand)
-#    ))
-#keys.append(
-#    Key([mod, "shift"], "minus",
-#    lazy.function(gaps_shrink)
-#    ))
 
 #Used layouts
 layouts = [
@@ -324,7 +280,7 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-#Setup main bar
+#Setup bar
 screens = [
     Screen(
         top=bar.Bar(
@@ -360,125 +316,90 @@ screens = [
                 	foreground = theme["foreground"],
                 	parse_text = parse_func,
                 	),
-                widget.TextBox(
-                	text = '',
-                	foreground = theme["comment"],
-                	padding = 0,
-                	fontsize = 28,
-                	),
-                widget.Systray(
-                	icon_size = 22,
-                	foreground = theme["background"],
-                	background = theme["comment"],
-                	),
-                widget.TextBox(
-                	text = '',
-                	foreground = theme["red"],
-                	background = theme["comment"],
-                	padding = 0,
-                	fontsize = 28,
-                	),
 				widget.CheckUpdates(
                     update_interval = 300,
                     distro = "Arch_checkupdates",
-                    display_format = " {updates} Updates",
-                    no_update_string = " Updated",
+                    display_format = " {updates} pkgs",
+                    no_update_string = "",
                     mouse_callbacks = {'Button1': lazy.spawn(myTerm + ' -e paru -Syu')},
-                    foreground = theme["background"],
+                    foreground = theme["red"],
                     colour_no_updates = theme["background"],
-                    colour_have_updates = theme["foreground"],
-                    background = theme["red"],
+                    colour_have_updates = theme["red"],
                     ),
-                widget.TextBox(
-                	text = '',
-                	foreground = theme["green"],
-                	background = theme["red"],
-                	padding = 0,
-                	fontsize = 28,
+                widget.Sep(
+					foreground = theme["foreground"],
+                	),
+                widget.Systray(
+                	icon_size = 22,
+                	foreground = theme["comment"],
+                	),
+                widget.Sep(
+					foreground = theme["foreground"],
                 	),
                 widget.GenPollText(
                     func = network_con,
-                    background = theme["green"],
-                    foreground = theme["background"],
+                    foreground = theme["green"],
                     update_interval = 5,
                     ),
                 widget.Net(
                 	format = '{total}',
-                	foreground = theme["background"],
-                	background = theme["green"],
+                	foreground = theme["green"],
                 	mouse_callbacks = {'Button1': lazy.spawn('nm-connection-editor')},
                 	),
-                widget.TextBox(
-                	text = '',
-                	foreground = theme["orange"],
-                	background = theme["green"],
-                	padding = 0,
-                	fontsize = 28,
+                widget.Sep(
+					foreground = theme["foreground"],
                 	),
+                widget.TextBox(
+                    foreground = theme["orange"],
+                    text = 'CPU ',
+                    ),
                 widget.CPU(
-                	background = theme["orange"],
-                	foreground = theme["background"],
+                	foreground = theme["orange"],
                 	fmt = '{}',
                     format = '💻{load_percent} ',
                 	),
               	widget.ThermalSensor(
                     threshold = 70,
                     foreground_alert = theme["red"],
-                    foreground = theme["background"],
-                    background = theme["orange"],
+                    foreground = theme["orange"],
                     fmt = '{}',
                     ),
-                widget.TextBox(
-                	text = '',
-                	foreground = theme["pink"],
-                	background = theme["orange"],
-                	padding = 0,
-                	fontsize = 28,
+                widget.Sep(
+					foreground = theme["foreground"],
                 	),
+                widget.TextBox(
+                    foreground = theme["pink"],
+                    text = 'MEM ',
+                    ),
               	widget.Memory(
                     mouse_callbacks = {'Button1': lazy.spawn(myTerm + ' -e btop')},
-                    foreground = theme["background"],
-                    background = theme["pink"],
+                    foreground = theme["pink"],
                     fmt = '{}',
                     measure_mem = 'G',
                     format = '{MemUsed:.1f}{mm}/{MemTotal:.0f}{mm}',
                     update_interval = '1',
                     ),
                 widget.DF(
-                	background = theme["pink"],
-                	foreground = theme["background"],
-                	warn_color = theme["foreground"],
-                	format = ' {uf}{m}|{r:.0f}',
+                	foreground = theme["pink"],
+                	warn_color = theme["red"],
+                	format = ' {r:.0f}',
                 	partition = '/',
                 	visible_on_warn = False,
                 	),
-                widget.TextBox(
-                	text = '',
-                	foreground = theme["purple"],
-                	background = theme["pink"],
-                	padding = 0,
-                	fontsize = 28,
+                widget.Sep(
+					foreground = theme["foreground"],
                 	),
                 volume,
-				widget.TextBox(
-                	text = '',
-                	foreground = theme["foreground"],
-                	background = theme["purple"],
-                	padding = 0,
-                	fontsize = 28,
+                widget.Sep(
+					foreground = theme["foreground"],
                 	),
                 widget.Clock(
-                	format=' %b %d %I:%M%p',
-                	foreground = theme["background"],
-                	background = theme["foreground"],
+                	format = ' %b %d %I:%M%p',
+                	foreground = theme["yellow"],
                 	mouse_callbacks = {'Button1': lazy.spawn(myBrowser + ' https://calendar.google.com')},
                 	),
-               	widget.TextBox(
-                	text = '',
-                	foreground = theme["cyan"],
-                	background = theme["foreground"],
-                	padding = 0,
-                	fontsize = 28,
+                widget.Sep(
+					foreground = theme["foreground"],
                 	),
                 battery,
             ],
