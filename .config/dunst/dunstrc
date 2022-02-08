@@ -73,20 +73,20 @@
     # Draw a line of "separator_height" pixel height between two
     # notifications.
     # Set to 0 to disable.
-    separator_height = 2
+    separator_height = 1
 
     # Padding between text and separator.
     padding = 8
 
     # Horizontal padding.
-    horizontal_padding = 8
+    horizontal_padding = 10
 
     # Padding between text and icon.
     text_icon_padding = 0
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 3
+    frame_width = 2
 
     # Defines color of the frame around the notification window.
     frame_color = "#bd93f9"
@@ -193,7 +193,7 @@
     min_icon_size = 0
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 30
+    max_icon_size = 64
 
     # Paths to default icons.
     icon_path = /usr/share/icons/Adwaita/32x32/status/:/usr/share/icons/Adwaita/32x32/devices/:/usr/share/icons/Adwaita/32x32/legacy/:~/.local/share/icons/
@@ -292,15 +292,15 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#44475a"
-    foreground = "#f8f8f2"
+    background = "#282a36"
+    foreground = "#6272a4"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     default_icon = /usr/share/icons/Adwaita/32x32/status/dialog-question-symbolic.symbolic.png
 
 [urgency_normal]
-    background = "#44475a"
-    foreground = "#f8f8f2"
+    background = "#282a36"
+    foreground = "#bd93f9"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     default_icon = /usr/share/icons/Adwaita/32x32/status/user-available-symbolic.symbolic.png
@@ -308,10 +308,10 @@
 [urgency_critical]
     background = "#ff5555"
     foreground = "#f8f8f2"
-    frame_color = "#f8f8f2"
+    frame_color = "#ff5555"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
-    default_icon = /usr/share/icons/Adwaita/32x32/status/dialog-warning-symbolic
+    default_icon = /usr/share/icons/Adwaita/32x32/status/dialog-warning-symbolic.symbolic.png
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
