@@ -1,7 +1,6 @@
 #!/bin/bash 
 
-#/usr/bin/picom &
-#/usr/bin/gnome-keyring-daemon &
+/usr/bin/picom &
 /usr/bin/blueman-applet &
 /usr/bin/conky &
 /usr/bin/redshift -l $(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | awk 'OFS=":" {print $3,$5}' | tr -d ',}') &
