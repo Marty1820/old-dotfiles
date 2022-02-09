@@ -4,9 +4,6 @@
 
 ## INFO
 
-# user is already defined
-# hostname is already defined original below
-#hostname="$(cat /etc/hostname)"
 os="$(cat /etc/os-release | grep PRETTY_NAME | sed -e 's/PRETTY_NAME=//' -e 's/"//g')"
 kernel="$(uname -sr | sed -e 's/-zen$//')"
 uptime="$(uptime -p | sed 's/up //')"
@@ -16,10 +13,11 @@ shell="$(basename "${SHELL}")"
 #ui
 if [ "$DESKTOP_SESSION" != "" ]; then
     ui="$DESKTOP_SESSION"
-else
+elif [ "$XDG_CURRENT_DESKTOP" != "" ]; then
     ui="$XDG_CURRENT_DESKTOP"
+else
+    ui="UNKNOWN"
 fi
-
 ui="$(basename "${ui}")"
 
 #memory
@@ -28,7 +26,6 @@ memtotal="$(free -h | grep Mem | awk '{print $2}')"
 mem="$(echo "${memfree}/${memtotal}")"
 
 ## DEFINE COLORS
-
 # probably don't change these
 if [ -x "$(command -v tput)" ]; then
 	bold="$(tput bold)"
@@ -53,13 +50,13 @@ c0="${reset}${cyan}"                # first color
 
 cat <<EOF
 
-${c0}         .          ${nc}${USER}${ic}@${nc}${HOSTNAME}${reset}
-${c0}        / \\         ${lc}OS:        ${ic}${os}${reset}
-${c0}       /   \\        ${lc}KERNEL:    ${ic}${kernel}${reset}
-${c0}      /^.   \\       ${lc}UPTIME:    ${ic}${uptime}${reset}
-${c0}     /  .-.  \\      ${lc}PACKAGES:  ${ic}${packages}${reset}
-${c0}    /  (   ) _\\     ${lc}SHELL:     ${ic}${shell}${reset}
-${c0}   / _.~   ~._^\\    ${lc}DE/WM:     ${ic}${ui}${reset}
-${c0}  /.^         ^.\\   ${lc}MEMORY:    ${ic}${mem}${reset}
+${c0}         .         ${nc}${USER}${ic}@${nc}${HOSTNAME}${reset}
+${c0}        / \\        ${lc}OS:        ${ic}${os}${reset}
+${c0}       /   \\       ${lc}KERNEL:    ${ic}${kernel}${reset}
+${c0}      /^.   \\      ${lc}UPTIME:    ${ic}${uptime}${reset}
+${c0}     /  .-.  \\     ${lc}PACKAGES:  ${ic}${packages}${reset}
+${c0}    /  (   ) _\\    ${lc}SHELL:     ${ic}${shell}${reset}
+${c0}   / _.~   ~._^\\   ${lc}DE/WM:     ${ic}${ui}${reset}
+${c0}  /.^         ^.\\  ${lc}MEMORY:    ${ic}${mem}${reset}
 
 EOF
