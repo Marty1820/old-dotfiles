@@ -6,7 +6,7 @@ gi.require_version('AppIndicator3', '0.1')
 from gi.repository import Gtk as gtk, AppIndicator3 as appindicator
 
 def main():
-    indicator = appindicator.Indicator.new("customtray", "mail-read-symbolic",
+    indicator = appindicator.Indicator.new("customtray", "preferences-system-notifications-symbolic",
     appindicator.IndicatorCategory.APPLICATION_STATUS)
     indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
     indicator.set_menu(menu())
