@@ -5,7 +5,7 @@
  */
 
 configuration {
-    modi: "drun,ssh,calc:~/.config/rofi/scripts/calculator.sh";
+    modi: "drun,ssh";
     show-icons: true;
     icon-theme: "Dracula";
     font: "Hack 12";
@@ -14,7 +14,6 @@ configuration {
     display-ssh: "";
     ssh-client: "ssh";
     ssh-command: "alacritty -e {ssh-client} {host}";
-    display-calc: "";
 }
 
 @import "./colorscheme/colorscheme.rasi"
