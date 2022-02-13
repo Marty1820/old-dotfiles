@@ -231,7 +231,7 @@ def parse_func(text):
 # Groups using Names istead of numbers
 # See https://docs.qtile.org/en/stable/manual/config/groups.html
 groups = [Group(""),
-		  Group("爵"),
+          Group("爵"),
           Group(""),
           Group(""),
           Group(""),
