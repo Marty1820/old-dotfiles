@@ -10,6 +10,7 @@ Otherwise these are pretty basic configs with nothing special.
 - Colors/Themes: [Dracula](https://draculatheme.com)
 - Terminal: [Alacritty](https://github.com/alacritty/alacritty)
 - Application launcher/logout screen: [rofi](https://github.com/davatorium/rofi)
+- Lock Screen: [i3lock](https://i3wm.org/i3lock/)
 - System Monitor: [conky](<https://en.wikipedia.org/wiki/Conky_(software)>)
 
 ![screenshot](.screenshots/desktop.png)
@@ -52,11 +53,7 @@ Otherwise these are pretty basic configs with nothing special.
 
 ## Autostarted/change in [.config/qtile/autostart.sh](https://github.com/Marty1820/dotfiles/blob/master/.config/qtile/autostart.sh)
 
-<!---
-+ `picom` : transparency & blur
-+ `gnome-keyring-daemon` : It's a keyring
---->
-
+- `picom` : transparency & blur
 - `blueman-applet` : So I can autoconnect my mouse
 - `conky` : shows keybindings (X means I haven't implimented it yet)
 - `redshift` : limits blue light
