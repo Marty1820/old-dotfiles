@@ -36,6 +36,7 @@ case $chosen in
 		fi
         ;;
     $logout)
-        qtile cmd-obj -o cmd -f shutdown
+        session=`loginctl session-status | head -n 1 | awk '{print $1}'`
+	loginctl terminate-session $session
         ;;
 esac
