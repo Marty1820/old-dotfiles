@@ -12,3 +12,6 @@
 ~/.local/bin/notifications.py &
 # sends notification when battery is low
 ~/.local/bin/low_bat &
+
+# Screen Lock setup
+xss-lock -- i3lock -n -i ~/wallpapers/lockscreen.png &
