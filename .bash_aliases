@@ -21,10 +21,10 @@ alias mkdir='mkdir -p'
 alias psa='ps auxf'
 alias cls='clear && color10bit.sh'
 alias grep='grep --color=auto'
-alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias psgrep='ps aux | grep -v grep | grep -i -e VSZ -e'
 alias psmem='ps auxf | sort -nr -k 4'
 alias pscpu='ps auxf | sort -nr -k 3'
-alias wifikey='sudo grep -r '^psk=' /etc/NetworkManager/system-connections/'
+alias wifikey="sudo grep -r '^psk=' /etc/NetworkManager/system-connections/"
 
 # Changing "ls" to "exa"
 alias ls='exa -al --color=always --group-directories-first' # my preferred listing
