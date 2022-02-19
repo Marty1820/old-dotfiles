@@ -47,6 +47,7 @@ bindsym $mod+Escape exec "~/.config/rofi/scripts/powermenu.sh"
 bindsym $mod+Shift+c kill
 bindsym $mod+d exec $myAppLauncher
 #bindsym #mod+r
+
 # i3 commands
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+space layout toggle tabbed split
@@ -55,7 +56,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+q layout toggle split
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+Shift+r restart #restarts i3
-# Moving windows
+
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+Left move left
@@ -65,8 +66,10 @@ bindsym $mod+Shift+j move up
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+Down move down
+
 # change focus between tiling / floating windows
 bindsym $mod+Tab focus mode_toggle
+
 # Window changing commands
 bindsym $mod+Ctrl+h resize shrink width 10 px or 10 ppt
 bindsym $mod+Ctrl+l resize grow width 10 px or 10 ppt
@@ -74,11 +77,13 @@ bindsym $mod+Ctrl+j resize grow height 10 px or 10 ppt
 bindsym $mod+Ctrl+k resize shrink height 10 px or 10 ppt
 bindsym $mod+m fullscreen toggle
 bindsym $mod+f fullscreen toggle
+
 # change focus
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
+
 # Function Keys
 bindsym XF86MonBrightnessUp exec "~/.config/dunst/scripts/backlight.sh up"
 bindsym XF86MonBrightnessDown exec "~/.config/dunst/scripts/backlight.sh down"
@@ -87,6 +92,7 @@ bindsym XF86AudioRaiseVolume exec "~/.config/dunst/scripts/volume.sh up"
 bindsym XF86AudioLowerVolume exec "~/.config/dunst/scripts/volume.sh down"
 bindsym Print exec "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
 bindsym $mod+Print exec "scrot -u -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
+
 # split in 'h'orizontal or 'v'ertical orientation
 bindsym $mod+h split h
 bindsym $mod+v split v
@@ -100,6 +106,7 @@ set $ws4 "4:"
 set $ws5 "5:"
 set $ws6 "6:碌"
 set $ws7 "7:"
+
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -108,6 +115,7 @@ bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
 bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
@@ -137,16 +145,20 @@ bar {
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Gaps
+gaps inner 2
+gaps outer 1
+smart_gaps on
+smart_borders on
+
 # Assign Programs to Workspaces
 for_window [class="Brave-browser"] move to workspace $ws2
 
 # Autostart
-exec /usr/bin/picom &
+exec --no-startup-id /usr/bin/picom &
 exec /usr/bin/blueman-applet &
 exec /usr/bin/conky
-exec /usr/bin/redshift -l $(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | awk 'OFS=":" {print $3,$5}' | tr -d ',}')
+exec /usr/bin/redshift -l $(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | awk 'OFS=":" {print $3,$5}' | tr -d ',}') &
 exec /usr/bin/kdeconnect-indicator
-exec_always /usr/bin/feh --bg-fill --randomize ~/wallpapers/*
-
-#
+exec_always --no-startup-id /usr/bin/feh --bg-fill --randomize ~/wallpapers/*
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
