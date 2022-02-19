@@ -4,8 +4,9 @@
 # ██║╚██╔╝██║██╔══██║██╔══██╗░░░██║░░░░░╚██╔╝░░
 # ██║░╚═╝░██║██║░░██║██║░░██║░░░██║░░░░░░██║░░░
 # ╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░
-# BASH ALIASES
+# BASH&ZSH ALIASES/FUNCTIONS
 
+### ALIAS ###
 alias ..='cd ..'
 alias cd..='cd ..'
 # Interactive Mode
@@ -60,3 +61,14 @@ alias ytv="youtube-dl -f bestvideo+bestaudio "
 alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
 # UTF-8 termnal display tester
 alias utftest="curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt"
+
+### FUNCTIONS ###
+# Runs ls after cd'ing to dir
+function cd() {
+    if [ "$1" = "" ]; then
+        builtin cd "$HOME"
+    else
+        builtin cd "$1"
+    fi
+    ls
+}
