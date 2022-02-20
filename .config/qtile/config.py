@@ -442,6 +442,7 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='lxappearance'),
     Match(wm_class='qt5ct'),
     Match(wm_class='xarchiver'),
+    Match(wm_class='Clamtk'),
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
