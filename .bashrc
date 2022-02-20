@@ -70,21 +70,23 @@ ex ()
 {
   if [ -f "$1" ] ; then
     case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *.deb)       ar x $1      ;;
-      *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   unzstd $1    ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
+      *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+                        tar xvf $1      ;;
+      *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+                        7z x $1         ;;
+      *.lzma)           unlzma $1       ;;
+      *.bz2)            bunzip2 $1      ;;
+      *.cbr|*.rar)      unrar x -ad $1  ;;
+      *.gz)             gunzip $1       ;;
+      *.cbz|*.epub|*.zip) unzip $1      ;;
+      *.z)              uncompress $1   ;;
+      *.xz)             unxz $1         ;;
+      *.tar.bz2|*.tbz2) tar xjf $1      ;;
+      *.tar.gz|*.tgz)   tar xzf $1      ;;
+      *.tar|*.tar.xz)   tar xf $1       ;;
+      *.deb)            ar x $1         ;;
+      *.tar.zst)        unzstd $1       ;;
+      *)                echo "'$1' cannot be extracted via ex()" ;;
     esac
   else
       echo "'$1' is not a valid file"
