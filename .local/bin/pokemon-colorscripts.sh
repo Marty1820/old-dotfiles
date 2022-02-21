@@ -7,8 +7,6 @@ PROGRAM_DIR="$HOME/.fun/pokemon"
 # directory where all the art files exist
 POKEART_DIR="$PROGRAM_DIR/colorscripts"
 # formatting for the help strings
-fmt_help="  %-20s\t%-54s\n"
-
 
 _help(){
     #Function that prints out the help text
@@ -16,7 +14,7 @@ _help(){
     echo "Description: CLI utility to print out unicode image of a pokemon in your shell"
     echo ""
     echo "Usage: pokemon-colorscripts [OPTION] [POKEMON NAME]"
-    printf "${fmt_help}" \
+    printf "  %-20s\t%-54s\n" \
         "-h, --help, help" "Print this help." \
         "-l, --list, list" "Print list of all pokemon"\
         "-r, --random, random" "Show a random pokemon"\
@@ -31,11 +29,11 @@ _show_random_pokemon(){
     #selecting a random art file from the whole set
 
     # total number of art files present
-    NUM_ART=$(ls -1 "$POKEART_DIR"|wc -l| xargs)
+    NUM_ART=$(find "$POKEART_DIR"|wc -l| xargs)
     # getting a random index from 0-NUM_ART. (using gshuf instead of $RANDOM for POSIX compliance)
-    random_index=$(shuf -i 1-$NUM_ART -n 1)
-    random_pokemon=$(sed $random_index'q;d' "$PROGRAM_DIR/nameslist.txt")
-    echo $random_pokemon
+    random_index=$(shuf -i 1-"$NUM_ART" -n 1)
+    random_pokemon=$(sed "$random_index"'q;d' "$PROGRAM_DIR/nameslist.txt")
+    echo "$random_pokemon"
 
     # print out the pokemon art for the pokemon
     cat "$POKEART_DIR/$random_pokemon.txt"
@@ -43,13 +41,13 @@ _show_random_pokemon(){
 
 _show_pokemon_by_name(){
     pokemon_name=$1
-    echo $pokemon_name
+    echo "$pokemon_name"
     # Error handling. Can't think of a better way to do it
     cat "$POKEART_DIR/$pokemon_name.txt" 2>/dev/null || echo "Invalid pokemon"
 }
 
 _list_pokemon_names(){
-    cat "$PROGRAM_DIR/nameslist.txt"|less
+    less < "$PROGRAM_DIR/nameslist.txt"
 }
 
 # Handling command line arguments
