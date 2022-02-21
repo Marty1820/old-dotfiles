@@ -4,7 +4,7 @@
 
 ## INFO
 HOSTNAME=$(cat /etc/hostname)
-os="$(cat /etc/os-release | grep PRETTY_NAME | sed -e 's/PRETTY_NAME=//' -e 's/"//g')"
+os="$(grep PRETTY_NAME < /etc/os-release | sed -e 's/PRETTY_NAME=//' -e 's/"//g')"
 kernel="$(uname -sr | sed -e 's/-zen$//')"
 uptime="$(uptime -p | sed 's/up //')"
 packages="$(pacman -Q | wc -l)"
