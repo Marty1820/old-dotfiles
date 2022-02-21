@@ -15,7 +15,7 @@ Refresh=600
 while :; do
     read -r BatStatus < "$BatteryDir/status"
     read -r BatPercent < "$BatteryDir/capacity"
-    if [ "$BatStatus" = "Discharging" ] && [ $BatPercent -le $MinPercent ]; then
+    if [ "$BatStatus" = "Discharging" ] && [ "$BatPercent" -le "$MinPercent" ]; then
         dunstify --raw_icon=$icon/battery-level-0-symbolic.symbolic.png --urgency=critical "Low Battery: $BatPercent%"
     fi
     sleep $Refresh
