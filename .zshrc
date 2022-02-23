@@ -78,29 +78,27 @@ function ex {
     do
       if [ -f "$n" ] ; then
           case "${n%,}" in
-            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-                        tar xvf ./"$n"      ;;
-            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-                        7z x ./"$n"         ;;
-            *.lzma)           unlzma ./"$n"       ;;
-            *.bz2)            bunzip2 ./"$n"      ;;
-            *.cbr|*.rar)      unrar x -ad ./"$n"  ;;
-            *.gz)             gunzip ./"$n"       ;;
-            *.cbz|*.epub|*.zip) unzip ./"$n"      ;;
-            *.z)              uncompress ./"$n"   ;;
-            *.xz)             unxz ./"$n"         ;;
-            *.tar.bz2|*.tbz2) tar xjf ./"$n"      ;;
-            *.tar.gz|*.tgz)   tar xzf ./"$n"      ;;
-            *.tar|*.tar.xz)   tar xf ./"$n"       ;;
-            *.deb)            ar x ./"$n"         ;;
-            *.tar.zst)        unzstd ./"$n"       ;;
-            *)
-                         echo "ex: '$n' - unknown archive method"
+            *.cbt|*.txz)        tar xvf ./"$n"      ;;
+            *.7z|*.arj|*.cab|*.cb7|*.chm|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+                                7z x ./"$n"         ;;
+            *.lzma)             unlzma ./"$n"       ;;
+            *.bz2)              bunzip2 ./"$n"      ;;
+            *.cbr|*.rar)        unrar x -ad ./"$n"  ;;
+            *.gz)               gunzip ./"$n"       ;;
+            *.cbz|*.epub|*.zip) unzip ./"$n"        ;;
+            *.z)                uncompress ./"$n"   ;;
+            *.xz)               unxz ./"$n"         ;;
+            *.tbz2)             tar xjf ./"$n"      ;;
+            *.tgz)              tar xzf ./"$n"      ;;
+            *.tar)              tar xf ./"$n"       ;;
+            *.deb)              ar x ./"$n"         ;;
+            *.tar.zst)          unzstd ./"$n"       ;;
+            *)  echo "ex: '$n' - unknown archive method"
                          return 1
                          ;;
           esac
       else
-          echo "'$n' - file does not exist"
+          echo "'$n' is not a valid file"
           return 1
       fi
     done
@@ -109,13 +107,18 @@ fi
 
 IFS=$SAVEIFS
 
+# Downloaded and mofidied from https://github.com/nuke-dash/pokemon-colorscripts-mac
+if [ -f "$HOME"/.local/bin/pokemon-colorscripts.sh ]; then
+  pokemon-colorscripts.sh -r
+fi
+
 ### BASH INSULTER (works in zsh too) ###
 if [ -f /etc/bash.command-not-found ]; then
     . /etc/bash.command-not-found
 fi
 
 ### ALIAS ###
-source ~/.bash_aliases
+source "$HOME"/.bash_aliases
 
 ### Adding Color support
 [[ "$COLORTERM" == (24bit|truecolor) || "${terminfo[colors]}" -eq '16777216' ]] || zmodload zsh/nearcolor

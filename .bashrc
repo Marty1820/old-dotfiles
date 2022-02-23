@@ -70,23 +70,22 @@ ex ()
 {
   if [ -f "$1" ] ; then
     case $1 in
-      *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-                        tar xvf $1      ;;
-      *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-                        7z x $1         ;;
-      *.lzma)           unlzma $1       ;;
-      *.bz2)            bunzip2 $1      ;;
-      *.cbr|*.rar)      unrar x -ad $1  ;;
-      *.gz)             gunzip $1       ;;
-      *.cbz|*.epub|*.zip) unzip $1      ;;
-      *.z)              uncompress $1   ;;
-      *.xz)             unxz $1         ;;
-      *.tar.bz2|*.tbz2) tar xjf $1      ;;
-      *.tar.gz|*.tgz)   tar xzf $1      ;;
-      *.tar|*.tar.xz)   tar xf $1       ;;
-      *.deb)            ar x $1         ;;
-      *.tar.zst)        unzstd $1       ;;
-      *)                echo "'$1' cannot be extracted via ex()" ;;
+      *.cbt|*.txz)        tar xvf "$1"      ;;
+      *.7z|*.arj|*.cab|*.cb7|*.chm|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+                          7z x "$1"         ;;
+      *.lzma)             unlzma "$1"       ;;
+      *.bz2)              bunzip2 "$1"      ;;
+      *.cbr|*.rar)        unrar x -ad "$1"  ;;
+      *.gz)               gunzip "$1"       ;;
+      *.cbz|*.epub|*.zip) unzip "$1"      ;;
+      *.z)                uncompress "$1"   ;;
+      *.xz)               unxz "$1"         ;;
+      *.tbz2)             tar xjf "$1"      ;;
+      *.tgz)              tar xzf "$1"      ;;
+      *.tar)              tar xf "$1"       ;;
+      *.deb)              ar x "$1"         ;;
+      *.tar.zst)          unzstd "$1"       ;;
+      *)  echo "'$1' cannot be extracted via ex()" ;;
     esac
   else
       echo "'$1' is not a valid file"
@@ -94,10 +93,12 @@ ex ()
 }
 
 ##Aliases
-source ~/.bash_aliases
+source "$HOME"/.bash_aliases
 
 # Downloaded and mofidied from https://github.com/nuke-dash/pokemon-colorscripts-mac
-pokemon-colorscripts.sh -r
+if [ -f "$HOME"/.local/bin/pokemon-colorscripts.sh ]; then
+  pokemon-colorscripts.sh -r
+fi
 
 # Use bash-completion
 [[ -f /usr/share/bash-completion/bash_completion ]] && \
@@ -111,8 +112,8 @@ fi
 
 ### PROMPT
 # synth-shell if exists otherwise set PSQ https://bashrcgenerator.com/
-if [ -f $HOME/.config/synth-shell/synth-shell-prompt.sh ] && [ -n "$( echo $- | grep i )" ]; then
-    source $HOME/.config/synth-shell/synth-shell-prompt.sh
+if [ -f "$HOME"/.config/synth-shell/synth-shell-prompt.sh ] && [ -n "$( echo $- | grep i )" ]; then
+    source "$HOME"/.config/synth-shell/synth-shell-prompt.sh
 else
     PS1="\[\033[38;5;135m\][\w]\[$(tput sgr0)\]\[\033[38;5;220m\]\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')\[$(tput sgr0)\]\[\033[38;5;10m\]->\[$(tput sgr0)\]"
 fi
