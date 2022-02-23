@@ -1,0 +1,14 @@
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Make prompt single line instead of two
+[line_break]
+disabled = true
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character]
+success_symbol = "[➜](bold blue)"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true

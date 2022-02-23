@@ -123,14 +123,15 @@ source "$HOME"/.bash_aliases
 ### Adding Color support
 [[ "$COLORTERM" == (24bit|truecolor) || "${terminfo[colors]}" -eq '16777216' ]] || zmodload zsh/nearcolor
 
-### PROMPT
+### PROMPT ###
 # Load promptinit
-autoload -Uz promptinit && promptinit
+#autoload -Uz promptinit && promptinit
 # Define the theme
-prompt_mytheme_setup() {
-  PS1="%F{blue}[%~]%f%F{green}->%f "
-}
+#prompt_mytheme_setup() {
+#  PS1="%F{blue}[%~]%f%F{green}->%f "
+#}
 # Add the theme to promptsys
-prompt_themes+=( mytheme )
+#prompt_themes+=( mytheme )
 # Load the theme
-prompt mytheme
+#prompt mytheme
+eval "$(starship init zsh)"
