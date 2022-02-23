@@ -27,6 +27,7 @@ SAVEHIST=1000
 # Options
 setopt autocd extendedglob nomatch notify
 unsetopt beep
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
 # Editor Keybindings e=emacs
 bindkey -e
