@@ -17,7 +17,7 @@ export VISUAL="gedit" #Needed for ranger
 export HISTORY_IGNORE="(ls|cd|pwd|exit|history|cd -|cd ..)"
 
 # History
-HISTFILE=~/.zhist
+HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 
@@ -121,7 +121,15 @@ fi
 ### ALIAS ###
 source "$HOME"/.bash_aliases
 
+## Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)
+
 ### Adding Color support
+autoload -U colors && colors
 [[ "$COLORTERM" == (24bit|truecolor) || "${terminfo[colors]}" -eq '16777216' ]] || zmodload zsh/nearcolor
 
 ### PROMPT ###

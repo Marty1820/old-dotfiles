@@ -19,6 +19,7 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
 # History file sizes
+HISTFILE=~/.histfile
 HISTSIZE=1000
 HISTFILESIZE=2000
 
