@@ -15,10 +15,7 @@ if [ -n "$DESKTOP_SESSION" ];then
     export SSH_AUTH_SOCK
 fi
 
-# Starts qtile when on tty1/i3 on tty2
+# Starts qtile when logging into tty1
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   exec startx ~/.xinitrc qtile
-fi
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 2 ]; then
-  exec startx ~/.xinitrc i3
 fi
