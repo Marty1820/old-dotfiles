@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 dir="$HOME/.config/rofi/apps"
 rofi_command="rofi -theme $dir/powermenu.rasi"
@@ -21,16 +21,16 @@ options="$shutdown\n$reboot\n$lock\n$suspend\n$logout"
 
 chosen="$(echo -e "$options" | $rofi_command -p "  祥  $uptime" -dmenu -selected-row 2)"
 case $chosen in
-    $shutdown)
+    "$shutdown")
         systemctl poweroff
         ;;
-    $reboot)
+    "$reboot")
         systemctl reboot
         ;;
-    $lock)
+    "$lock")
         i3lock -i ~/wallpapers/lockscreen.png
         ;;
-    $suspend)
+    "$suspend")
         if [[ $(cat /sys/class/power_supply/BAT1/status) == Discharging ]]; then
 		    systemctl hibernate
 		else
@@ -39,8 +39,8 @@ case $chosen in
 		    systemctl suspend
 		fi
         ;;
-    $logout)
-        session=`loginctl session-status | head -n 1 | awk '{print $1}'`
-	loginctl terminate-session $session
+    "$logout")
+        session=$(loginctl session-status | head -n 1 | awk '{print $1}')
+	    loginctl terminate-session "$session"
         ;;
 esac
