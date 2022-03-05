@@ -194,10 +194,10 @@ class MyVolume(Volume):
             self.text = '🔉' + str(self.volume) + '%'
         else: # self.volume >=80:
             self.text = '🔊' + str(self.volume) + '%'
-        
+
     def restore(self):
         self.timer_setup()
-        
+
 volume = MyVolume(
     foreground = theme["purple"],
 )
