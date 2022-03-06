@@ -6,7 +6,7 @@
 # $./volume.sh mute
 
 function get_volume {
-    amixer -M get Master | grep '%' | cut -d '[' -f 2 | cut -d '%' -f 1
+    amixer -M get Master | grep '%' | cut -d '[' -f 2 | cut -d '%' -f 1 | awk 'NR==1'
 }
 
 function is_mute {
