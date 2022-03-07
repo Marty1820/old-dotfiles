@@ -17,5 +17,5 @@ fi
 
 # Starts qtile when logging into tty1
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-  exec startx ~/.xinitrc qtile
+  exec startx ~/.xinitrc i3
 fi
