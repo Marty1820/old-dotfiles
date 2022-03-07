@@ -6,14 +6,23 @@ Otherwise these are pretty basic configs with nothing special.
 
 ## Details
 
-- WM: [qtile](http://www.qtile.org)
+- WM: [qtile](http://www.qtile.org) or [i3](https://i3wm.org/docs/)
 - Colors/Themes: [Dracula](https://draculatheme.com)
 - Terminal: [Alacritty](https://github.com/alacritty/alacritty)
 - Application launcher/logout screen: [rofi](https://github.com/davatorium/rofi)
 - Lock Screen: [i3lock](https://i3wm.org/i3lock/)
 - System Monitor: [conky](<https://en.wikipedia.org/wiki/Conky_(software)>)
 
-![screenshot](.screenshots/desktop.png)
+# Qtile
+
+![screenshot](.screenshots/qtile.png)
+
+# i3/i3blocks bar
+
+![screenshot](.screenshots/i3.png)
+
+# Extras/Menus
+
 ![screenshot](.screenshots/term-fetch.png)
 ![screenshot](.screenshots/logout-menu.png)
 ![screenshot](.screenshots/apps-menu.png)
@@ -48,16 +57,16 @@ Otherwise these are pretty basic configs with nothing special.
 |      `paru`       |             Arch AUR package manager             |
 |    `reflector`    |             Updates mirrors on Arch              |
 |   `youtube-dl`    | Download youtube videos/audio with `ytv` & `yta` |
-|   `synth-shell`   |           Changes the terminal prompt            |
+|    `starship`     |           Changes the terminal prompt            |
 | Compression Tools | `ex filename.ext` extracts most compressed files |
 
 ## Autostarted/change in [.config/qtile/autostart.sh](https://github.com/Marty1820/dotfiles/blob/master/.config/qtile/autostart.sh)
 
 - `picom` : transparency & blur
-- `blueman-applet` : So I can autoconnect my mouse
-- `conky` : shows keybindings (X means I haven't implimented it yet)
+- `blueman-applet` : Autostarts bluetooth
+- `conky` : shows keybindings
 - `redshift` : limits blue light
-- `kdeconnect-indicator` : phone integration
+- `kdeconnect-indicator` : phone notifications
 - `feh` : sets wallpaper from "~/wallpapers/\*"
 
 **Custom scripts**
