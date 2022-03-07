@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# i3block for the displaying the wifi connectivity level
+# If the wifi interface exists but no connection is active, "" shall be displayed in red.
+#------------------------------------------------------------------------
+if [ "$1" = "" ] ; then
+    wifi="wlan0"
+else
+    wifi="$1"
+fi
+
+if [ "$(cat /sys/class/net/"$wifi"/operstate)" = 'down' ]; then
+    echo ""
+    echo ""
+    echo "#ff5555"
+    exit
+fi
+
+QUALITY=$(grep "$wifi" /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+
+echo  "$QUALITY" # full text
+echo  "$QUALITY" # short text
+
+# color
+if [ "$QUALITY" -ge 70 ]; then
+    echo "#50fa7b"
+else
+    echo "#ff5555"
+fi

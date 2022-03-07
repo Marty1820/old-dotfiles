@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# i3block for displaying the current battery % and icon
+
+bat_per=$(acpi -b | grep -E -o '[0-9][0-9]?%' | tr -d '%')
+bat_status=$(acpi -b | grep -E -o -m1 'Discharging|Charging|AC|Full|Unknown')
+
+if [ "$bat_per" = 100 ]; then
+    char=""
+elif [ "$bat_per" -ge 90 ]; then
+    char=""
+elif [ "$bat_per" -ge 80 ]; then
+    char=""
+elif [ "$bat_per" -ge 70 ]; then
+    char=""
+elif [ "$bat_per" -ge 59 ]; then
+    char=""
+elif [ "$bat_per" -ge 49 ]; then
+    char=""
+elif [ "$bat_per" -ge 39 ]; then
+    char=""
+elif [ "$bat_per" -ge 29 ]; then
+    char=""
+elif [ "$bat_per" -ge 19 ]; then
+    char=""
+elif [ "$bat_per" -gt 10 ]; then
+    char=""
+else
+    char=""
+fi
+
+case "$bat_status" in
+    (Charging)      echo "$char$bat_per"  # full text
+                    echo "$char$bat_per"  # short text
+                    ;;
+    (Discharging)   echo "$char $bat_per"  # full text
+                    echo "$char $bat_per"  # short text
+                    ;;
+    (*)             echo " $bat_per"      # full text
+                    echo " $bat_per"      # short text
+                    echo "#ff5555"          # color
+                    ;;
+esac

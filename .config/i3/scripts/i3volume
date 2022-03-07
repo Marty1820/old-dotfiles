@@ -1,0 +1,22 @@
+#!/bin/sh
+
+vol=$(amixer -M get Master | grep '%' | cut -d '[' -f 2 | cut -d '%' -f 1 | awk 'NR==1')
+mute=$(amixer -M get Master | grep '%' | grep -oE '[^ ]+$' | grep off)
+
+if [ "$mute" ]; then
+    echo "🔇$vol"
+    echo "🔇$vol"
+    echo "#ff5555"
+else
+    if [ "$vol" -ge 80 ]; then
+        echo "🔊$vol"
+        echo "🔊$vol"
+    elif [ "$vol" -ge 30 ]; then
+        echo "🔉$vol"
+        echo "🔉$vol"
+    else
+        echo "🔈$vol"
+        echo "🔈$vol"
+    fi
+    echo "#bd93f9"
+fi
