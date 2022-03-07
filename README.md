@@ -23,7 +23,6 @@ Otherwise these are pretty basic configs with nothing special.
 
 # Extras/Menus
 
-![screenshot](.screenshots/term-fetch.png)
 ![screenshot](.screenshots/logout-menu.png)
 ![screenshot](.screenshots/apps-menu.png)
 
