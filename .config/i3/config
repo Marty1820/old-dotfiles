@@ -126,21 +126,20 @@ bindsym $mod+Shift+6 move container to workspace number $ws6
 bindsym $mod+Shift+7 move container to workspace number $ws7
 
 bar {
-        #status_command i3status --config ~/.config/i3/i3status.conf
-        status_command i3blocks -c ~/.config/i3/i3blocks.conf
-        position top
-        font pango:mononoki Nerd Font Mono 13
-        colors {
-            background #282a36
-            statusline #f8f8f2
-            separator  #f8f8f2
-
-            focused_workspace  #44475a #44475a #bd93f9
-            active_workspace   #282a36 #44475a #50fa7b
-            inactive_workspace #282a36 #282a36 #f8f8f2
-            urgent_workspace   #ff5555 #ff5555 #f8f8f2
-            binding_mode       #ff5555 #ff5555 #f8f8f2
-        }
+  #status_command i3status --config ~/.config/i3/i3status.conf
+  status_command i3blocks -c ~/.config/i3/i3blocks.conf
+  position top
+  font pango:mononoki Nerd Font Mono 13
+  colors {
+    background #282a36
+    statusline #f8f8f2
+    separator  #f8f8f2
+    focused_workspace  #44475a #44475a #bd93f9
+    active_workspace   #282a36 #44475a #50fa7b
+    inactive_workspace #282a36 #282a36 #f8f8f2
+    urgent_workspace   #ff5555 #ff5555 #f8f8f2
+    binding_mode       #ff5555 #ff5555 #f8f8f2
+  }
 }
 
 # Use Mouse+$mod to drag floating windows to their wanted position
