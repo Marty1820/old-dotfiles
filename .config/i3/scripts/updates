@@ -3,8 +3,8 @@
 command=$(checkupdates | wc -l)
 
 if [ "$command" -gt 0 ]; then
-    echo "📦 $command"
-    echo "📦 $command"
-    echo "#ff5555"
-    exit
+  echo "📦 $command"
+  echo "📦 $command"
+  echo "#ff5555"
+  exit
 fi

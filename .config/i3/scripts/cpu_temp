@@ -8,5 +8,5 @@ echo "$temp"糖 # short text
 
 # color
 if [ $(printf "%.0f" "$temp") -gt 85 ]; then
-    echo "#ff5555"
+  echo "#ff5555"
 fi

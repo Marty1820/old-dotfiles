@@ -4,11 +4,11 @@ vpn_type=wireguard
 connection=$(nmcli connection show --active | grep "$vpn_type")
 
 if [ "$connection" ]; then
-    echo ""
-    echo ""
-    echo "#50fa7b"
+  echo ""
+  echo ""
+  echo "#50fa7b"
 else
-    echo ""
-    echo ""
-    echo "#ff5555"
+  echo ""
+  echo ""
+  echo "#ff5555"
 fi

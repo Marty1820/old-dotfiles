@@ -4,22 +4,22 @@
 # If the wifi interface exists but no connection is active, "" shall be displayed in red.
 #------------------------------------------------------------------------
 if [ "$1" = "" ] ; then
-    wifi="wlan0"
+  wifi="wlan0"
 else
-    wifi="$1"
+  wifi="$1"
 fi
 
 if [ "$(cat /sys/class/net/"$wifi"/operstate)" = 'down' ]; then
-    # If RFKILL is running else wifi disconnected
-    if [ "$(rfkill list | awk -F ':' '/yes/ {print $2}')" ]; then
-        echo ""
-        echo ""
-    else
-        echo "睊"
-        echo "睊"
-    fi
-    echo "#ff5555"
-    exit
+  # If RFKILL is running else wifi disconnected
+  if [ "$(rfkill list | awk -F ':' '/yes/ {print $2}')" ]; then
+      echo ""
+      echo ""
+  else
+      echo "睊"
+      echo "睊"
+  fi
+  echo "#ff5555"
+  exit
 fi
 
 QUALITY=$(grep "$wifi" /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
@@ -29,7 +29,7 @@ echo 直 "$QUALITY" # short text
 
 # color
 if [ "$QUALITY" -ge 70 ]; then
-    echo "#50fa7b"
+  echo "#50fa7b"
 else
-    echo "#ff5555"
+  echo "#ff5555"
 fi

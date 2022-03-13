@@ -31,9 +31,9 @@ echo "💻$cpu_util" # short text
 
 # color
 if [ "$cpu_util" -ge "$t_crit" ]; then
-    echo "$color_crit"
+  echo "$color_crit"
 elif [ "$cpu_util" -ge "$t_warn" ]; then
-    echo "$color_warn"
+  echo "$color_warn"
 fi
 
 exit 0
