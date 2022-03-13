@@ -10,16 +10,22 @@ else
 fi
 
 if [ "$(cat /sys/class/net/"$wifi"/operstate)" = 'down' ]; then
-    echo ""
-    echo ""
+    # If RFKILL is running else wifi disconnected
+    if [ "$(rfkill list | awk -F ':' '/yes/ {print $2}')" ]; then
+        echo ""
+        echo ""
+    else
+        echo "睊"
+        echo "睊"
+    fi
     echo "#ff5555"
     exit
 fi
 
 QUALITY=$(grep "$wifi" /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
 
-echo  "$QUALITY" # full text
-echo  "$QUALITY" # short text
+echo 直 "$QUALITY" # full text
+echo 直 "$QUALITY" # short text
 
 # color
 if [ "$QUALITY" -ge 70 ]; then
