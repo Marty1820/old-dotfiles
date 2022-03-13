@@ -28,11 +28,11 @@ alias pscpu='ps auxf | sort -nr -k 3'
 alias wifikey="sudo grep -r '^psk=' /etc/NetworkManager/system-connections/"
 
 # Changing "ls" to "exa"
-alias ls='exa -al --color=always --group-directories-first' # my preferred listing
-alias la='exa -al --color=always --group-directories-first' # all files and dirs
-alias ll='exa -l --color=always --group-directories-first' # long format
-alias lt='exa -aT --color=always --group-directories-first' # tree listing
-alias l='exa -a --color=always' # Show all dirs/files
+alias ls='exa -al --icons --color=always --group-directories-first' # my preferred listing
+alias la='exa -al --icons --color=always --group-directories-first' # all files and dirs
+alias ll='exa -l --icons --color=always --group-directories-first' # long format
+alias lt='exa -aT --icons --color=always --group-directories-first' # tree listing
+alias l='exa -a --icons --color=always' # Show all dirs/files
 alias l.='exa -a | egrep "^\."' # Show only .dot files
 
 # pacman and paru
