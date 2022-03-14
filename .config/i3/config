@@ -99,6 +99,7 @@ bindsym $mod+v split v
 
 ### WORKSPACES ###
 # workspace variables
+#bindsym $mod+ampersand workspace number 1 irc
 set $ws1 "1:"
 set $ws2 "2:爵"
 set $ws3 "3:"
@@ -128,6 +129,7 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bar {
   #status_command i3status --config ~/.config/i3/i3status.conf
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
+  strip_workspace_numbers yes
   position top
   font pango:mononoki Nerd Font Mono 13
   colors {
