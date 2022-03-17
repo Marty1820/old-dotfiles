@@ -39,13 +39,13 @@ font pango:Hack 12
 
 ### Keybindings
 # Essentials/launching apps
-bindsym $mod+Return exec $myTerm
-bindsym $mod+b exec $myBrowser
-bindsym $mod+e exec $myFilemgr
-bindsym $mod+a exec $myEditor
+bindsym $mod+Return exec --no-startup-id $myTerm
+bindsym $mod+b exec --no-startup-id $myBrowser
+bindsym $mod+e exec --no-startup-id $myFilemgr
+bindsym $mod+a exec --no-startup-id $myEditor
 bindsym $mod+Escape exec "~/.config/rofi/scripts/powermenu.sh"
 bindsym $mod+Shift+c kill
-bindsym $mod+d exec $myAppLauncher
+bindsym $mod+d exec --no-startup-id $myAppLauncher
 #bindsym #mod+r
 
 # i3 commands
@@ -85,13 +85,13 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # Function Keys
-bindsym XF86MonBrightnessUp exec "~/.config/dunst/scripts/backlight.sh up"
-bindsym XF86MonBrightnessDown exec "~/.config/dunst/scripts/backlight.sh down"
-bindsym XF86AudioMute exec "~/.config/dunst/scripts/volume.sh mute && pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioRaiseVolume exec "~/.config/dunst/scripts/volume.sh up && pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioLowerVolume exec "~/.config/dunst/scripts/volume.sh down && pkill -RTMIN+10 i3blocks"
-bindsym Print exec "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
-bindsym $mod+Print exec "scrot -u -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
+bindsym XF86MonBrightnessUp exec --no-startup-id "~/.config/dunst/scripts/backlight.sh up"
+bindsym XF86MonBrightnessDown exec --no-startup-id "~/.config/dunst/scripts/backlight.sh down"
+bindsym XF86AudioMute exec --no-startup-id "~/.config/dunst/scripts/volume.sh mute && pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "~/.config/dunst/scripts/volume.sh up && pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioLowerVolume exec --no-startup-id "~/.config/dunst/scripts/volume.sh down && pkill -RTMIN+10 i3blocks"
+bindsym Print exec --no-startup-id "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
+bindsym $mod+Print exec --no-startup-id "scrot -u -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
 
 # split in 'h'orizontal or 'v'ertical orientation
 bindsym $mod+h split h
