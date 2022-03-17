@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Mouse actions
+case $BLOCK_BUTTON in
+  1) nm-connection-editor ;;
+esac
+
 # i3block for the displaying the wifi connectivity level
 # If the wifi interface exists but no connection is active, "" shall be displayed in red.
 #------------------------------------------------------------------------

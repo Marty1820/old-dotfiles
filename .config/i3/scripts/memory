@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Mouse actions
+case $BLOCK_BUTTON in
+  1) alacritty -e btop ;;
+esac
+
 TYPE="${BLOCK_INSTANCE:-mem}"
 PERCENT="${PERCENT:-true}"
 

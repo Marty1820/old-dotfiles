@@ -1,6 +1,13 @@
 #!/bin/sh
 
-command=$(checkupdates | wc -l)
+packages=$(checkupdates)
+command=$(echo "$packages" | wc -l)
+
+# Mouse actions
+case "$BLOCK_BUTTON" in
+  1) notify-send "Available Updates" "$packages" ;;
+  3) alacritty -e paru -Syu ;;
+esac
 
 if [ "$command" -gt 0 ]; then
   echo "📦 $command"
