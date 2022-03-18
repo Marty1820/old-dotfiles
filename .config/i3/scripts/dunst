@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+
+# A button for view all past Dunst notifications in i3 using i3blocks
+
+import os
+import json
+
+def hist_run():
+    '''Shows dunst notifications from history'''
+    os.system("""while read; do dunstctl history-pop; done <<<$(dunstctl history|grep '"id" :')""")
+
+def clicked():
+    '''Returns True if the button was clicked'''
+    button = os.environ.get("BLOCK_BUTTON", None)
+    return bool(button)
+
+if clicked():
+    hist_run()
+
+RTN = {"full_text":"<span font='Font Awesome 5 Free Solid' color='#A4B98E'>\uf0f3</span>"}
+
+print(json.dumps(RTN))
