@@ -70,7 +70,6 @@ Otherwise these are pretty basic configs with nothing special.
 
 **Custom scripts**
 
-- `notifications.py` : allows easily seeing previous Dunst notifications
 - `low_bat` : Monitors battery and sends warning when battery is low
 
 ## Thanks to/Original Sources
