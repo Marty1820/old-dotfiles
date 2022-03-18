@@ -180,3 +180,4 @@ exec /usr/bin/conky &
 exec /usr/bin/redshift -l $(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | awk 'OFS=":" {print $3,$5}' | tr -d ',}') &
 exec_always --no-startup-id /usr/bin/feh --bg-fill --randomize ~/wallpapers/*
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec ~/.local/bin/low_bat &
