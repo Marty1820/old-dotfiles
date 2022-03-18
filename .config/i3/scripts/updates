@@ -9,6 +9,9 @@ case "$BLOCK_BUTTON" in
   3) alacritty -e paru -Syu ;;
 esac
 
+if [ "$packages" = "" ]; then
+  exit
+fi
 if [ "$command" -gt 0 ]; then
   echo "📦 $command"
   echo "📦 $command"

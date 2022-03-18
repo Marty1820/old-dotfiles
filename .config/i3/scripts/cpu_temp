@@ -2,11 +2,17 @@
 
 # i3block to show CPU temperature
 
+norm_color="#ffb86c"
+warn_color="#ff5555"
+warn_temp="85"
+
 temp=$(acpi -t | sed 's/.*, //;s/ degrees //;s/C//')
 echo "$temp"糖 # full text
 echo "$temp"糖 # short text
 
 # color
-if [ $(printf "%.0f" "$temp") -gt 85 ]; then
-  echo "#ff5555"
+if [ $(printf "%.0f" "$temp") -gt "$warn_temp" ]; then
+  echo "$warn_color"
+else
+  echo "$norm_color"
 fi

@@ -1,13 +1,20 @@
 #!/bin/sh
 
+# i3block for the displaying the wifi connectivity level
+
 # Mouse actions
 case $BLOCK_BUTTON in
   1) nm-connection-editor ;;
 esac
 
-# i3block for the displaying the wifi connectivity level
-# If the wifi interface exists but no connection is active, "" shall be displayed in red.
-#------------------------------------------------------------------------
+# Colors
+COLOR_GE80=${COLOR_GE80:-#50fa7b}
+COLOR_GE60=${COLOR_GE60:-#50fa7b}
+COLOR_GE40=${COLOR_GE40:-#ff5555}
+COLOR_LOWR=${COLOR_LOWR:-#ff5555}
+COLOR_DOWN=${COLOR_DOWN:-#ff5555}
+COLOR_RKIL=${COLOR_RKIL:-#ff5555}
+
 if [ "$1" = "" ] ; then
   wifi="wlan0"
 else
@@ -23,7 +30,7 @@ if [ "$(cat /sys/class/net/"$wifi"/operstate)" = 'down' ]; then
       echo "睊"
       echo "睊"
   fi
-  echo "#ff5555"
+  echo "$COLOR_RKIL"
   exit
 fi
 
@@ -33,8 +40,12 @@ echo 直 "$QUALITY" # full text
 echo 直 "$QUALITY" # short text
 
 # color
-if [ "$QUALITY" -ge 70 ]; then
-  echo "#50fa7b"
+if [[ $QUALITY -ge 80 ]]; then
+    echo $COLOR_GE80
+elif [[ $QUALITY -ge 60 ]]; then
+    echo $COLOR_GE60
+elif [[ $QUALITY -ge 40 ]]; then
+    echo $COLOR_GE40
 else
-  echo "#ff5555"
+    echo $COLOR_LOWR
 fi

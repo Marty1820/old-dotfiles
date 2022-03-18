@@ -1,6 +1,10 @@
 #!/bin/sh
 # i3block for displaying the current battery % and icon
 
+norm_color="#8be9fd"
+warn_val="25"
+warn_color="#ff5555"
+
 bat_per=$(acpi -b | grep -E -o '[0-9][0-9]?%' | tr -d '%')
 bat_status=$(acpi -b | grep -E -o -m1 'Discharging|Charging|AC|Full|Unknown')
 
@@ -28,15 +32,23 @@ else
   char=""
 fi
 
+if [ "$bat_per" -lt "$warn_val" ]; then
+  color="$warn_color"
+else
+  color="$norm_color"
+fi
+
 case "$bat_status" in
   (Charging)      echo "$char$bat_per"  # full text
                   echo "$char$bat_per"  # short text
+                  echo "$norm_color"
                   ;;
   (Discharging)   echo "$char $bat_per"  # full text
                   echo "$char $bat_per"  # short text
+                  echo "$color"
                   ;;
   (*)             echo " $bat_per"      # full text
                   echo " $bat_per"      # short text
-                  echo "#ff5555"          # color
+                  echo "$warn_color"          # color
                   ;;
 esac

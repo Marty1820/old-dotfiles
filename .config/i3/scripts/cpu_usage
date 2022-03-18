@@ -5,10 +5,9 @@
 # Read /proc/stat file (for first datapoint)
 read -r cpu user nice system idle iowait irq softirq steal guest < /proc/stat
 
-t_crit=80
-t_warn=50
-color_crit="#ff5555"
-color_warn="#ff0000"
+norm_color="#ffb86c"
+warn_temp="60"
+warn_color="#ff5555"
 
 # compute active and total utilizations
 cpu_active_prev=$((user+system+nice+softirq+steal))
@@ -30,10 +29,10 @@ echo "💻$cpu_util" # full text
 echo "💻$cpu_util" # short text
 
 # color
-if [ "$cpu_util" -ge "$t_crit" ]; then
-  echo "$color_crit"
-elif [ "$cpu_util" -ge "$t_warn" ]; then
-  echo "$color_warn"
+if [ "$cpu_util" -ge "$warn_temp" ]; then
+  echo "$warn_color"
+else
+  echo "$norm_color"
 fi
 
 exit 0
