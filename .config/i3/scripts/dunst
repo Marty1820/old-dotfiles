@@ -17,6 +17,6 @@ def clicked():
 if clicked():
     hist_run()
 
-RTN = {"full_text":"<span font='Font Awesome 5 Free Solid' color='#A4B98E'>\uf0f3</span>"}
+RTN = {"full_text":"<span font='Font Awesome 5 Free Solid' color='#f8f8f2'>\uf0f3</span>"}
 
 print(json.dumps(RTN))
