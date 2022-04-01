@@ -46,7 +46,6 @@ bindsym $mod+a exec --no-startup-id $myEditor
 bindsym $mod+Escape exec "~/.config/rofi/scripts/powermenu.sh"
 bindsym $mod+Shift+c kill
 bindsym $mod+d exec --no-startup-id $myAppLauncher
-#bindsym #mod+r
 
 # i3 commands
 # change container layout (stacked, tabbed, toggle split)
@@ -79,9 +78,13 @@ bindsym $mod+m fullscreen toggle
 bindsym $mod+f fullscreen toggle
 
 # change focus
+bindsym $mod+h focus left
 bindsym $mod+Left focus left
+bindsym $mod+k focus down
 bindsym $mod+Down focus down
+bindsym $mod+j focus up
 bindsym $mod+Up focus up
+bindsym $mod+l focus right
 bindsym $mod+Right focus right
 
 # Function Keys
@@ -94,7 +97,7 @@ bindsym Print exec --no-startup-id "scrot -e 'mv $f ~/Pictures/Screenshot 2>/dev
 bindsym $mod+Print exec --no-startup-id "scrot -u -e 'mv $f ~/Pictures/Screenshot 2>/dev/null'"
 
 # split in 'h'orizontal or 'v'ertical orientation
-bindsym $mod+h split h
+bindsym $mod+Shift+v split h
 bindsym $mod+v split v
 
 ### WORKSPACES ###
@@ -127,7 +130,6 @@ bindsym $mod+Shift+6 move container to workspace number $ws6
 bindsym $mod+Shift+7 move container to workspace number $ws7
 
 bar {
-  #status_command i3status --config ~/.config/i3/i3status.conf
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
   strip_workspace_numbers yes
   position top
