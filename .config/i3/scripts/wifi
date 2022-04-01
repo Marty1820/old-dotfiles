@@ -10,7 +10,7 @@ esac
 # Colors
 COLOR_GE80=${COLOR_GE80:-#50fa7b}
 COLOR_GE60=${COLOR_GE60:-#50fa7b}
-COLOR_GE40=${COLOR_GE40:-#ff5555}
+COLOR_GE40=${COLOR_GE40:-#50fa7b}
 COLOR_LOWR=${COLOR_LOWR:-#ff5555}
 COLOR_DOWN=${COLOR_DOWN:-#ff5555}
 COLOR_RKIL=${COLOR_RKIL:-#ff5555}
@@ -40,11 +40,11 @@ echo 直 "$QUALITY" # full text
 echo 直 "$QUALITY" # short text
 
 # color
-if [[ $QUALITY -ge 80 ]]; then
+if [ $QUALITY -ge 80 ]; then
     echo $COLOR_GE80
-elif [[ $QUALITY -ge 60 ]]; then
+elif [ $QUALITY -ge 60 ]; then
     echo $COLOR_GE60
-elif [[ $QUALITY -ge 40 ]]; then
+elif [ $QUALITY -ge 40 ]; then
     echo $COLOR_GE40
 else
     echo $COLOR_LOWR
