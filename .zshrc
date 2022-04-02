@@ -18,8 +18,8 @@ export HISTORY_IGNORE="(ls|cd|pwd|exit|history|cd -|cd ..)"
 
 # History
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=2000
+SAVEHIST=5000
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -33,7 +33,7 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 bindkey -e
 
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/marty/.zshrc'
+zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
@@ -108,18 +108,17 @@ fi
 
 IFS=$SAVEIFS
 
+### Adding Color support
+autoload -U colors && colors
+[[ "$COLORTERM" == (24bit|truecolor) || "${terminfo[colors]}" -eq '16777216' ]] || zmodload zsh/nearcolor
+
+##Aliases
+source "$HOME"/.bash_aliases
+
 # Downloaded and mofidied from https://github.com/nuke-dash/pokemon-colorscripts-mac
 if [ -f "$HOME"/.local/bin/pokemon-colorscripts.sh ]; then
   pokemon-colorscripts.sh -r
 fi
-
-### BASH INSULTER (works in zsh too) ###
-if [ -f /etc/bash.command-not-found ]; then
-    . /etc/bash.command-not-found
-fi
-
-### ALIAS ###
-source "$HOME"/.bash_aliases
 
 ## Basic auto/tab complete:
 autoload -U compinit
@@ -128,19 +127,11 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 
-### Adding Color support
-autoload -U colors && colors
-[[ "$COLORTERM" == (24bit|truecolor) || "${terminfo[colors]}" -eq '16777216' ]] || zmodload zsh/nearcolor
+### BASH INSULTER (works in zsh too) ###
+# sudo wget -O /etc/bash.command-not-found https://gitlab.com/dwt1/bash-insulter/-/raw/master/src/bash.command-not-found
+if [ -f /etc/bash.command-not-found ]; then
+    . /etc/bash.command-not-found
+fi
 
 ### PROMPT ###
-# Load promptinit
-#autoload -Uz promptinit && promptinit
-# Define the theme
-#prompt_mytheme_setup() {
-#  PS1="%F{blue}[%~]%f%F{green}->%f "
-#}
-# Add the theme to promptsys
-#prompt_themes+=( mytheme )
-# Load the theme
-#prompt mytheme
 eval "$(starship init zsh)"

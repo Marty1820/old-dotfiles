@@ -20,7 +20,7 @@ export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
 # History file sizes
 HISTFILE=~/.histfile
-HISTSIZE=1000
+HISTSIZE=2000
 HISTFILESIZE=2000
 
 # If not running interactively, don't do anything
