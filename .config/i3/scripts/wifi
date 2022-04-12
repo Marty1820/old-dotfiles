@@ -26,11 +26,12 @@ if [ "$(cat /sys/class/net/"$wifi"/operstate)" = 'down' ]; then
   if [ "$(rfkill list | awk -F ':' '/yes/ {print $2}')" ]; then
       echo ""
       echo ""
+      echo "$COLOR_RKIL"
   else
       echo "睊"
       echo "睊"
+      echo "$COLOR_DOWN"
   fi
-  echo "$COLOR_RKIL"
   exit
 fi
 
@@ -40,12 +41,12 @@ echo 直 "$QUALITY" # full text
 echo 直 "$QUALITY" # short text
 
 # color
-if [ $QUALITY -ge 80 ]; then
-    echo $COLOR_GE80
-elif [ $QUALITY -ge 60 ]; then
-    echo $COLOR_GE60
-elif [ $QUALITY -ge 40 ]; then
-    echo $COLOR_GE40
+if [ "$QUALITY" -ge 80 ]; then
+    echo "$COLOR_GE80"
+elif [ "$QUALITY" -ge 60 ]; then
+    echo "$COLOR_GE60"
+elif [ "$QUALITY" -ge 40 ]; then
+    echo "$COLOR_GE40"
 else
-    echo $COLOR_LOWR
+    echo "$COLOR_LOWR"
 fi
