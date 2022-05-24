@@ -2,9 +2,9 @@
 
 # Mouse actions
 case $BLOCK_BUTTON in
-  1) amixer -qM set Master 1+ toggle > /dev/null  ;;
-  4) amixer -qM set Master 5%+ unmute > /dev/null ;;
-  5) amixer -qM set Master 5%- unmute > /dev/null ;;
+  1) amixer -qM set Master 1+ toggle  ;;
+  4) amixer -qM set Master 5%+ unmute ;;
+  5) amixer -qM set Master 5%- unmute ;;
 esac
 
 vol=$(amixer -M get Master | grep '%' | cut -d '[' -f 2 | cut -d '%' -f 1 | awk 'NR==1')
