@@ -9,7 +9,7 @@
 
 ### Colors ###
 # class                 border  bground text    indicator   child_border
-client.focused          #bd93f9 #6272A4 #f8f8f2 #6272A4     #6272A4
+client.focused          #bd93f9 #6272A4 #f8f8f2 #6272A4     #ff5555
 client.focused_inactive #44475A #44475A #f8f8f2 #44475A     #44475A
 client.unfocused        #282a36 #282a36 #BFBFBF #282A36     #282A36
 client.urgent           #44475A #ff5555 #f8f8f2 #ff5555     #ff5555
@@ -27,11 +27,11 @@ set $myEditor gedit
 set $myAppLauncher "rofi -show drun -theme '~/.config/rofi/config.rasi'"
 
 # Border style
-default_border none
-default_floating_border normal
-
-# Hide borders
-hide_edge_borders none
+for_window [class="^.*"] border pixel 2
+new_window 1pixel
+default_floating_border none
+default_floating_border normal 0
+hide_edge_borders smart
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -150,10 +150,9 @@ bar {
 floating_modifier $mod
 
 # Gaps
-gaps inner 2
+gaps inner 4
 gaps outer 1
 smart_gaps on
-smart_borders on
 
 # Assign Programs to Workspaces
 for_window [class="Brave-browser"] move to workspace $ws2
