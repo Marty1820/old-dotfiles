@@ -16,6 +16,6 @@ if [ -n "$DESKTOP_SESSION" ];then
 fi
 
 # Starts qtile when logging into tty1
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-  exec startx ~/.xinitrc i3
+if [ -z "${DISPLAY}" ] && [ "$(tty)" = "/dev/tty1" ]; then
+  exec sway
 fi
