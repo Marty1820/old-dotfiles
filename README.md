@@ -18,20 +18,6 @@ Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://githu
 # Sway Screenshot
 ![screenshot](.screenshots/sway.jpg)
 
-# Old stuff
-### Qtile
-
-![screenshot](.screenshots/qtile.png)
-
-### i3/i3blocks bar
-
-![screenshot](.screenshots/i3.png)
-
-### Extras/Menus
-
-![screenshot](.screenshots/logout-menu.png)
-![screenshot](.screenshots/apps-menu.png)
-
 #### Keybound Apps
 
 |          Name          |                      Description                      |
@@ -39,10 +25,8 @@ Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://githu
 |        `gedit`         |                      `Super + a`                      |
 |       `pcmanfm`        |                      `Super + e`                      |
 |        `brave`         |                      `Super + b`                      |
-|         `rofi`         | `Super + d` = applications & `Ctrl + Esc` = exit menu |
-|        `scrot`         |           Print Screen key for screenshots            |
-|   `xorg-xbacklight`    |                Laptop brightness keys                 |
-|         `btop`         |                 click RAM to bring up                 |
+|         `fuzzel`         | `Super + d` = applications |
+|        `grim` & `slurp` |           Print Screen key for screenshots            |
 | `nm-connection-editor` |                 click Network Widget                  |
 
 #### Fonts
@@ -65,14 +49,19 @@ Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://githu
 |    `starship`     |           Changes the terminal prompt            |
 | Compression Tools | `ex filename.ext` extracts most compressed files |
 
-#### Autostarted/change in [.config/qtile/autostart.sh](https://github.com/Marty1820/dotfiles/blob/master/.config/qtile/autostart.sh)
+# Old stuff
+### Qtile
 
-- `picom` : transparency & blur
-- `blueman-applet` : Autostarts bluetooth
-- `conky` : shows keybindings
-- `redshift` : limits blue light
-- `kdeconnect-indicator` : phone notifications
-- `feh` : sets wallpaper from "~/wallpapers/\*"
+![screenshot](.screenshots/qtile.png)
+
+### i3/i3blocks bar
+
+![screenshot](.screenshots/i3.png)
+
+### Extras/Menus
+
+![screenshot](.screenshots/logout-menu.png)
+![screenshot](.screenshots/apps-menu.png)
 
 **Custom scripts**
 
