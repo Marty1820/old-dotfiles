@@ -37,7 +37,7 @@ case $1 in
 	send_notification
 	;;
     mute)
-	amixer -qM set Master 1+ toggle
+	amixer -qM set Master toggle
 	if is_mute ; then
 	    dunstify --raw_icon=/usr/share/icons/Adwaita/48x48/status/audio-volume-muted-symbolic.symbolic.png --timeout=1600 --replace=2593 --urgency=normal "Mute" -h string:x-dunst-stack-tage:volume
 	else
