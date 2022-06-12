@@ -2,31 +2,37 @@
 
 **Warning:** If you want to give these files a try, you should first modify them to fit your needs, and remove things you don’t want or need. Don’t blindly use online code unless you know what's in it and what it does. Use at your own risk! NO WARRANTIES/NO REFUNDS!!!
 
-Otherwise these are pretty basic configs with nothing special.
+Otherwise these are pretty basic configs with nothing special. Lots of older configs for things like [qtile](http://www.qtile.org), [i3](https://i3wm.org/docs/), [rofi](https://github.com/davatorium/rofi), [conky](<https://en.wikipedia.org/wiki/Conky_(software)>), etc...
+
+Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://github.com/Alexays/Waybar) and [Fuzzel](https://codeberg.org/dnkl/fuzzel) application launcher (trying to go full wayland)
 
 ## Details
 
-- WM: [qtile](http://www.qtile.org) or [i3](https://i3wm.org/docs/)
+- WM: [Sway](https://swaywm.org/)
+- Status Bar: [Waybar](https://github.com/Alexays/Waybar)
 - Colors/Themes: [Dracula](https://draculatheme.com)
 - Terminal: [Alacritty](https://github.com/alacritty/alacritty)
-- Application launcher/logout screen: [rofi](https://github.com/davatorium/rofi)
-- Lock Screen: [i3lock](https://i3wm.org/i3lock/)
-- System Monitor: [conky](<https://en.wikipedia.org/wiki/Conky_(software)>)
+- Application launcher/logout screen: [Fuzzel](https://codeberg.org/dnkl/fuzzel)
+- Lock Screen: Swayidle & Swaylock
 
-# Qtile
+# Sway Screenshot
+![screenshot](.screenshots/sway.jpg)
+
+# Old stuff
+### Qtile
 
 ![screenshot](.screenshots/qtile.png)
 
-# i3/i3blocks bar
+### i3/i3blocks bar
 
 ![screenshot](.screenshots/i3.png)
 
-# Extras/Menus
+### Extras/Menus
 
 ![screenshot](.screenshots/logout-menu.png)
 ![screenshot](.screenshots/apps-menu.png)
 
-## Keybound Apps
+#### Keybound Apps
 
 |          Name          |                      Description                      |
 | :--------------------: | :---------------------------------------------------: |
@@ -39,7 +45,7 @@ Otherwise these are pretty basic configs with nothing special.
 |         `btop`         |                 click RAM to bring up                 |
 | `nm-connection-editor` |                 click Network Widget                  |
 
-## Fonts
+#### Fonts
 
 |         Name          |              Description               |
 | :-------------------: | :------------------------------------: |
@@ -47,7 +53,7 @@ Otherwise these are pretty basic configs with nothing special.
 |      `ttf-hack`       |          for everything else           |
 | `nerd-fonts-complete` |           from AUR for icons           |
 
-## .bashrc alias's
+#### .bashrc alias's
 
 |       Name        |                   Description                    |
 | :---------------: | :----------------------------------------------: |
@@ -59,7 +65,7 @@ Otherwise these are pretty basic configs with nothing special.
 |    `starship`     |           Changes the terminal prompt            |
 | Compression Tools | `ex filename.ext` extracts most compressed files |
 
-## Autostarted/change in [.config/qtile/autostart.sh](https://github.com/Marty1820/dotfiles/blob/master/.config/qtile/autostart.sh)
+#### Autostarted/change in [.config/qtile/autostart.sh](https://github.com/Marty1820/dotfiles/blob/master/.config/qtile/autostart.sh)
 
 - `picom` : transparency & blur
 - `blueman-applet` : Autostarts bluetooth
