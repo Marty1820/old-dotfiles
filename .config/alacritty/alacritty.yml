@@ -78,7 +78,7 @@ window:
   title: Alacritty
 
   # Allow terminal applications to change Alacritty's window title.
-  #dynamic_title: true
+  dynamic_title: true
 
   # Window class (Linux/BSD only):
   class:
@@ -96,7 +96,7 @@ window:
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
-  history: 5000
+  history: 10000
 
   # Scrolling distance multiplier.
   #multiplier: 3
@@ -151,7 +151,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 10.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -520,6 +520,7 @@ mouse_bindings:
 #  - { mouse: Right,  mods: Control, action: ExpandSelection }
 #  - { mouse: Middle, mode: ~Vi,     action: PasteSelection  }
   - { mouse: Middle, action: copy }
+  - { mouse: Right, action: paste }
 
 # Key bindings
 #
