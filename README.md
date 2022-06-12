@@ -16,7 +16,7 @@ Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://githu
 - Lock Screen: Swayidle & Swaylock
 
 # Sway Screenshot
-![screenshot](.screenshots/sway.jpg)
+![screenshot](.screenshots/Sway.jpg)
 
 #### Keybound Apps
 
