@@ -1,0 +1,229 @@
+# ███╗░░░███╗░█████╗░██████╗░████████╗██╗░░░██╗
+# ████╗░████║██╔══██╗██╔══██╗╚══██╔══╝╚██╗░██╔╝
+# ██╔████╔██║███████║██████╔╝░░░██║░░░░╚████╔╝░
+# ██║╚██╔╝██║██╔══██║██╔══██╗░░░██║░░░░░╚██╔╝░░
+# ██║░╚═╝░██║██║░░██║██║░░██║░░░██║░░░░░░██║░░░
+# ╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░
+#
+# Read `man 5 sway` for a complete reference.
+
+#
+### Variables ###
+#
+
+# Set mod key (Mod1=<Alt>, Mod4=<Super>)
+set $mod Mod4
+set $myTerm alacritty
+set $myBrowser brave
+set $myFilemgr pcmanfm
+set $myEditor gedit
+set $myAppLauncher 'fuzzel -f Hack -D yes -P " " -b 282a36ff -t f8f8f2ff -s 44475aff -S 6272a4ff -m bd93f9ff -r 5 -B 2 -C ff5555ff'
+
+#
+### Theme ###
+#
+
+# Font Settings
+font pango:Hack 12
+
+# Gaps/Borders
+gaps inner 4
+gaps outer 1
+smart_gaps on
+smart_borders on
+for_window [class="^.*"] border pixel 2
+default_border pixel 1
+default_floating_border none
+default_floating_border normal 0
+hide_edge_borders smart
+
+# Colors
+# class                 border  bground text    indicator   child_border
+client.focused          #bd93f9 #6272A4 #f8f8f2 #6272A4     #ff5555
+client.focused_inactive #44475A #44475A #f8f8f2 #44475A     #44475A
+client.unfocused        #282a36 #282a36 #BFBFBF #282A36     #282A36
+client.urgent           #44475A #ff5555 #f8f8f2 #ff5555     #ff5555
+client.placeholder      #282a36 #282a36 #f8f8f2 #282a36     #282a36
+
+client.background       #f8f8f2
+
+#
+### KEYBINDINGS ###
+#
+
+# Restart/Reload
+#bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r reload
+# Essentials/launching apps
+bindsym $mod+Return exec --no-startup-id $myTerm
+bindsym $mod+b exec --no-startup-id $myBrowser
+bindsym $mod+e exec --no-startup-id $myFilemgr
+bindsym $mod+a exec --no-startup-id $myEditor
+bindsym $mod+Shift+c kill
+bindsym $mod+d exec --no-startup-id $myAppLauncher
+
+# Changing Layouts (stacked, tabbed, toggle split)
+bindsym $mod+space layout toggle tabbed split
+bindsym $mod+Shift+space floating toggle
+#bindsym $mod+s layout stacking
+#bindsym $mod+w layout tabbed
+#bindsym $mod+q layout toggle split
+
+# Moving focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+j move up
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+Down move down
+
+# Shrink/Grow focused window
+bindsym $mod+Ctrl+h resize shrink width 10 px or 10 ppt
+bindsym $mod+Ctrl+l resize grow width 10 px or 10 ppt
+bindsym $mod+Ctrl+j resize grow height 10 px or 10 ppt
+bindsym $mod+Ctrl+k resize shrink height 10 px or 10 ppt
+bindsym $mod+m fullscreen toggle
+bindsym $mod+f fullscreen toggle
+
+# Changing focused window
+bindsym $mod+Tab focus mode_toggle
+bindsym $mod+h focus left
+bindsym $mod+Left focus left
+bindsym $mod+k focus down
+bindsym $mod+Down focus down
+bindsym $mod+j focus up
+bindsym $mod+Up focus up
+bindsym $mod+l focus right
+bindsym $mod+Right focus right
+
+# Split direction for the next spawned window
+bindsym $mod+Shift+v split h
+bindsym $mod+v splitv
+
+# Function (fn) keys
+bindsym XF86MonBrightnessUp exec --no-startup-id "~/.config/dunst/scripts/backlight.sh up"
+bindsym XF86MonBrightnessDown exec --no-startup-id "~/.config/dunst/scripts/backlight.sh down"
+bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pamixer -i 1"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pamixer -d 1"
+bindsym Print exec grim -t png ~/Pictures/Screenshot/$(date +%Y-%m-%d_%H-%m-%s).png
+bindsym $mod+Print exec grim -t png -g "$(slurp)" ~/Pictures/Screenshot/$(date +%Y-%m-%d_%H-%m-%s).png
+#bindsym XF86AudioMedia exec --no-startup-id "" # Gear icon/F12
+# previous
+# Play/Pause
+# next
+# changing screen. Maybe black out screen?
+
+#
+### Workspace Configuration ###
+#
+
+#bindsym $mod+ampersand workspace number 1 irc
+set $ws1 "1:"
+set $ws2 "2:爵"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:碌"
+set $ws7 "7:"
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+
+#
+### Status Bar ###
+#
+
+bar {
+  swaybar_command waybar
+  position top
+  }
+}
+
+#
+### Window Rules/Management ###
+#
+
+# Mouse+$mod to drag floating windows
+floating_modifier $mod normal
+
+# Floating Applications
+for_window [app_id="nm-connection-editor"] floating enable
+for_window [app_id="xarchiver"] floating enable
+for_window [app_id="org.kde.kdeconnect.app"] floating enable
+for_window [app_id="blueman-manager"] floating enable
+#for_window [class="confirm"] floating enable
+for_window [window_type="dialog"] floating enable
+#for_window [class="download"] floating enable
+#for_window [class="error"] floating enable
+#for_window [class="file_progress"] floating enable
+#for_window [class="(?i)bitwarden"] floating enable
+#for_window [class="VirtualBox Machine"] floating enable
+
+# Open on set workspaces
+for_window [class="Brave-browser"] move to workspace $ws2
+
+#
+### AUTOSTART ###
+#
+
+# Tray Widgets
+exec /usr/bin/blueman-applet &
+exec /usr/bin/kdeconnect-indicator
+
+# Lock/Idle
+exec swayidle -w before-sleep 'swaylock' \
+  timeout 300 'swaylock -f -e -F -i "eDP-1":~/Pictures/wallpapers/framework/lockscreen.png' \
+  timeout 10 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' \
+  resume 'swaymsg "output * dpms on"'
+
+#
+### Inputs ###
+#
+
+# Trackpad
+input 2362:628:PIXA3854:00_093A:0274_Touchpad {
+  tap enabled
+  natural_scroll enabled
+}
+
+# Keyboard
+# input * {}
+
+#
+### Display/Background ###
+#
+
+# Scaling
+output "eDP-1" scale 1.5
+
+# Resolution
+output "eDP-1" pos 2256 0 res 2256x1504
+
+# Wallpaper
+output "*" bg "~/Pictures/wallpapers/framework/367277735d0091ef18c1d88f989908992bd92a77.jpeg" fill
+
+#
+### Power Menu ###
+#
+bindsym $mod+Escape exec swaynag -f 'Hack' --background 282a36 --border 44475a --button-background 282a36 --text f8f8f2 --button-text f8f8f2 -m 'Power Options:' -B 'Power off' 'systemctl poweroff' -B 'Reboot' 'systemctl reboot' -B 'Hibernate' 'systemctl hibernate && pkill swaynag' -B 'Suspend' 'systemctl suspend && pkill swaynag' -B 'Logout' 'swaymsg exit'
+
+# Include all configs
+include /etc/sway/config.d/*

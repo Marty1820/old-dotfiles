@@ -1,0 +1,181 @@
+// =============================================================================
+//
+// Waybar configuration
+//
+// Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+//
+// =============================================================================
+
+{
+  // -------------------------------------------------------------------------
+  // Global configuration
+  // -------------------------------------------------------------------------
+
+  "layer": "top", // Waybar at top layer
+  "position": "top", // Waybar position (top|bottom|left|right)
+  "spacing": 6,
+
+  "modules-left": [
+    "custom/power",
+    "sway/workspaces",
+    "tray",
+    "custom/pkgs",
+    "custom/weather",
+  ],
+  
+  "modules-center": [
+    "sway/window",
+  ],
+  
+  "modules-right": [
+    "custom/vpn",
+    "network",
+    "cpu",
+    "temperature",
+    "memory",
+    "pulseaudio",
+    "clock",
+    "battery",
+  ],
+
+
+  // -------------------------------------------------------------------------
+  // Modules
+  // -------------------------------------------------------------------------
+
+  "custom/weather": {
+    "format": "{}",
+    "format-alt": "{alt}: {}",
+    "interval": 3600,
+    "return-type": "json",
+    "exec": "~/.config/waybar/modules/wttr.sh",
+    "exec-if": "ping wttr.in -c1",
+  },
+
+  "sway/workspaces": {
+    "all-outputs": true,
+    "disable-scroll": true,
+    "format": "{icon} {name}",
+    "format-icons": {
+      "urgent": "",
+      "focused": "",
+      "default": "",
+    }
+  },
+
+  "tray": {
+    "spacing": 10,
+  },
+
+  "sway/window": {
+    "format": "{}",
+    "max-length": 100,
+    "rewrite": {
+      "(.*) - Brave": "爵 $1",
+      "(.*) - gedit": "$1",
+    },
+  },
+
+//  "custom/packages": {
+//    "interval": 3600,
+//    "exec": "checkupdates | wc -l",
+//    "format": "📦 {}",
+//    "tooltip": false,
+    //"on-click": "alacritty --hold -e checkupdates"
+//  },
+  
+  "custom/pkgs": {
+    "format-alt": "{percentage}%",
+    "format-alt-click": "click-right",
+    "return-type": "json",
+    "interval": 1800,
+    "exec": "~/.config/waybar/modules/pkgs.sh",
+  },
+  
+  "custom/vpn": {
+    "format": "<big>嬨</big>",
+    "exec": "echo '{\"class\": \"connected\"}'",
+    "exec-if": "test -d /proc/sys/net/ipv4/conf/wg0",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "alacritty -e wg-quick down wg0",
+    "tooltip": false,
+  },
+
+  "network": {
+    "interval": 5,
+    "format-wifi": "<big>直</big>{signalStrength}", // Icon: wifi
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr}", // Icon: ethernet
+    "format-disconnected": "<big></big>",
+    "tooltip-format": "{essid} {ifname}: {ipaddr}",
+    "on-click": "nm-connection-editor",
+  },
+
+  "cpu": {
+    "interval": 10,
+    "format": "<big></big>{usage}",
+    "states": {
+      "warning": 70,
+      "critical": 90,
+    }
+  },
+
+  "temperature": {
+    "critical-threshold": 80,
+    "interval": 10,
+    "format": "<big>{icon}</big>{temperatureC}糖",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip": true,
+  },
+
+  "memory": {
+    "interval": 30,
+    "format": "<big></big>{used:0.1f}G/{total:0.0f}G",
+    "states": {
+      "warning": 70,
+      "critical": 90,
+    }
+  },
+  
+  "pulseaudio": {
+    "format": "{icon}{volume}",
+    "format-bluetooth": "{icon}{volume}",
+    "format-muted": "🔇M",
+    "format-icons": {
+      "headphone": "",
+      "headset": "",
+      "default" : ["🔈", "🔉", "🔊"],
+    },
+    "scroll-step": 1,
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+  },
+
+  "clock": {
+    "interval": 60,
+    "format": "<big></big>{:%b %d %I:%M%p}",
+    "tooltip-format": "{:%e %B %Y}",
+  },
+
+  "battery": {
+    "interval": 30,
+    "states": {
+      "warning": 30,
+      "critical": 15,
+    },
+    // Connected to AC
+    "format": "{icon} {capacity}",
+    // Not connected to AC
+    "format-discharging": "{icon}{capacity}",
+    "format-icons": ["", "", "", "", "", "", "", "", "", "", "",],
+    "tooltip": true,
+  },
+
+  "custom/power": {
+    "format": "襤",
+    "exec-on-event": "true",
+    "tooltip": "false",
+    "on-click": "swaynag -f 'Hack' --background 282a36 --border 44475a --button-background 282a36 --text f8f8f2 --button-text f8f8f2 -m 'Power Options:' -B 'Power off' 'systemctl poweroff' -B 'Reboot' 'systemctl reboot' -B 'Hibernate' 'systemctl hibernate && pkill swaynag' -B 'Suspend' 'systemctl suspend && pkill swaynag' -B 'Logout' 'swaymsg exit'",
+    "tooltip": false,
+  },
+ 
+}

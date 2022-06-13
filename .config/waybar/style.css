@@ -1,0 +1,176 @@
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+
+/* Reset all styles */
+* {
+  border: none;
+  border-radius: 5;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* The whole bar */
+window#waybar {
+  color: #f8f8f2;
+  font-family: mononoki Nerd Font Mono;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+tooltip {
+  background: rgba(40, 42, 54, 0.9);
+  border: 1px solid rgba(68, 71, 90, 0.9);
+}
+tooltip label {
+  color: #f8f8f2;
+}
+
+#workspaces {
+  margin-left: 8px;
+  margin-right: 8px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 5px;
+}
+
+#workspaces button {
+  border-top: 2px solid transparent;
+  /* To compensate for the top border and still have vertical centering */
+  padding-bottom: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #f8f8f2;
+}
+
+#workspaces button.focused {
+  border-color: #44475a;
+  color: #bd93f9;
+  background-color: #44475a;
+  border-radius: 5;
+}
+
+#workspaces button.urgent {
+	background: #ff5555;
+	color: #f8f8f2;
+}
+
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+
+#tray {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#custom-pkgs {
+  color: #50fa7b;
+}
+
+#custom-pkgs.critical {
+  color: #ff5555;
+}
+
+#custom-weather {
+  color: #f1fa8c;
+}
+
+#custom-vpn {
+  color: #50fa7b;
+}
+
+#custom-vpn.disconnected {
+  color: #ff5555;
+}
+
+#network {
+  color: #50fa7b;
+}
+
+#network.disconnected {
+  color: #ff5555;
+}
+
+#cpu {
+  color: #ffb86c;
+}
+
+#cpu.warning {
+  color: #ffb86c;
+}
+
+#cpu.critical {
+  color: #ff5555;
+}
+
+#temperature {
+  color: #ffb86c;
+}
+
+#temperature.critical {
+  color: #ff5555;
+}
+
+#memory {
+  color: #ff79c6;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#memory.warning {
+  color: #ffb86c;
+}
+
+#memory.critical {
+  color: #ff5555;
+  animation-name: blink-critical;
+  animation-duration: 2s;
+}
+
+#pulseaudio {
+  color: #bd93f9;
+}
+
+#pulseaudio.muted {
+  color: #ff5555;
+}
+
+#clock {
+  color: #f1fa8c;
+  font-weight: bold;
+}
+
+#battery {
+  color: #8be9fd;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#battery.warning {
+  color: #ffb86c;
+}
+
+#battery.critical {
+  color: #ff5555;
+}
+
+#battery.warning.discharging {
+  animation-name: blink-warning;
+  animation-duration: 3s;
+}
+
+#battery.critical.discharging {
+  animation-name: blink-critical;
+  animation-duration: 2s;
+}
+
+#custom-power {
+  color: #ff5555
+}
