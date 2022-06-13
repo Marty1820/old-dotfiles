@@ -75,14 +75,6 @@
       "(.*) - gedit": "$1",
     },
   },
-
-//  "custom/packages": {
-//    "interval": 3600,
-//    "exec": "checkupdates | wc -l",
-//    "format": "📦 {}",
-//    "tooltip": false,
-    //"on-click": "alacritty --hold -e checkupdates"
-//  },
   
   "custom/pkgs": {
     "format-alt": "{percentage}%",
@@ -104,8 +96,8 @@
 
   "network": {
     "interval": 5,
-    "format-wifi": "<big>直</big>{signalStrength}", // Icon: wifi
-    "format-ethernet": "{ifname}: {ipaddr}/{cidr}", // Icon: ethernet
+    "format-wifi": "<big>直</big>{signalStrength}",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr}",
     "format-disconnected": "<big></big>",
     "tooltip-format": "{essid} {ifname}: {ipaddr}",
     "on-click": "nm-connection-editor",
