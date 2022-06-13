@@ -113,7 +113,7 @@ autoload -U colors && colors
 [[ "$COLORTERM" == (24bit|truecolor) || "${terminfo[colors]}" -eq '16777216' ]] || zmodload zsh/nearcolor
 
 ##Aliases
-source "$HOME"/.bash_aliases
+source "$HOME"/.sh_aliases
 
 # Downloaded and mofidied from https://github.com/nuke-dash/pokemon-colorscripts-mac
 if [ -f "$HOME"/.local/bin/pokemon-colorscripts.sh ]; then

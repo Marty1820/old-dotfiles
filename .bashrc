@@ -94,7 +94,7 @@ ex ()
 }
 
 ##Aliases
-source "$HOME"/.bash_aliases
+source "$HOME"/.sh_aliases
 
 # Downloaded and mofidied from https://github.com/nuke-dash/pokemon-colorscripts-mac
 if [ -f "$HOME"/.local/bin/pokemon-colorscripts.sh ]; then
