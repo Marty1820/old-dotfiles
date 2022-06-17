@@ -97,7 +97,7 @@ ex ()
 source "$HOME"/.sh_aliases
 
 # Downloaded and mofidied from https://github.com/nuke-dash/pokemon-colorscripts-mac
-if [ -f "$HOME"/.local/bin/pokemon-colorscripts.sh ]; then
+if [ "$(tty)" != "/dev/tty1" ] && [ -f "$HOME"/.local/bin/pokemon-colorscripts.sh ]; then
   pokemon-colorscripts.sh -r
 fi
 
