@@ -68,6 +68,10 @@ tooltip label {
   padding-right: 5px;
 }
 
+#custom-spacer {
+  color: #f8f8f2;
+}
+
 #custom-pkgs {
   color: #50fa7b;
 }

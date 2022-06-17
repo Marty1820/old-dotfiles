@@ -18,9 +18,10 @@
   "modules-left": [
     "custom/power",
     "sway/workspaces",
-    "tray",
     "custom/pkgs",
     "custom/weather",
+    "custom/spacer",
+    "tray",
   ],
   
   "modules-center": [
@@ -30,11 +31,16 @@
   "modules-right": [
     "custom/vpn",
     "network",
+    "custom/spacer",
     "cpu",
     "temperature",
+    "custom/spacer",
     "memory",
+    "custom/spacer",
     "pulseaudio",
+    "custom/spacer",
     "clock",
+    "custom/spacer",
     "battery",
   ],
 
@@ -42,6 +48,11 @@
   // -------------------------------------------------------------------------
   // Modules
   // -------------------------------------------------------------------------
+
+  "custom/spacer": {
+    "format": "|",
+    "tooltip": false,
+  },
 
   "custom/weather": {
     "format": "{}",
