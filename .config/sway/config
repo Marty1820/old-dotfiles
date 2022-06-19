@@ -207,6 +207,9 @@ for_window [class="Brave-browser"] move to workspace $ws2
 ### AUTOSTART ###
 #
 
+# Background tasks/scripts
+exec ~/.config/autostart/background.sh
+
 # Tray Widgets
 exec /usr/bin/blueman-applet &
 exec /usr/bin/kdeconnect-indicator
