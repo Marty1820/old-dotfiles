@@ -1,6 +1,8 @@
 daemonize
 show-failed-attempts
-image=~/Pictures/wallpapers/framework/lockscreen.png
+indicator-caps-lock
+caps-lock-key-hl-color=ffb86c
+image=eDP-1:~/Pictures/wallpapers/framework/lockscreen.png
 font=Hack
 font-size=55
 indicator-radius=150
@@ -13,3 +15,5 @@ ring-wrong-color=ff5555
 inside-wrong-color=ff555555
 ring-color=50fa7b
 inside-color=50fa7b55
+text-color=282a36
+seperator-color=282a36
