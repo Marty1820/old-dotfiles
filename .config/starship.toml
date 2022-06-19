@@ -1,12 +1,18 @@
 # Shell Prompt Configuration
 # Configuration reference: https://starship.rs/config/
 
+# Show modules on right
+right_format = """$cmd_duration"""
+
 # Inserts a blank line between shell prompts
 add_newline = true
 
 ##Advanced Configuration/Might break with updates
 # PS2 Prompt
 continuation_prompt = "[➜➜](bold blue)"
+
+[cmd_duration]
+format = "[ $duration]($style)"
 
 # Make prompt single line instead of two
 [line_break]
