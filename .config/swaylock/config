@@ -1,0 +1,15 @@
+daemonize
+show-failed-attempts
+image=~/Pictures/wallpapers/framework/lockscreen.png
+font=Hack
+font-size=55
+indicator-radius=150
+indicator-thickness=20
+ring-clear-color=f1fa8c
+inside-clear-color=f1fa8c55
+ring-ver-color=bd93f9
+inside-ver-color=bd93f955
+ring-wrong-color=ff5555
+inside-wrong-color=ff555555
+ring-color=50fa7b
+inside-color=50fa7b55
