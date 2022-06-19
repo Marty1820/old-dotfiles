@@ -1,5 +1,12 @@
+# Shell Prompt Configuration
+# Configuration reference: https://starship.rs/config/
+
 # Inserts a blank line between shell prompts
 add_newline = true
+
+##Advanced Configuration/Might break with updates
+# PS2 Prompt
+continuation_prompt = "[➜➜](bold blue)"
 
 # Make prompt single line instead of two
 [line_break]
@@ -8,7 +15,19 @@ disabled = true
 # Replace the "❯" symbol in the prompt with "➜"
 [character]
 success_symbol = "[➜](bold blue)"
+error_symbol = "[➜](bold red)"
 
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
+
+[python]
+symbol = " "
+
+[git_branch]
+format = " [$symbol(:$remote_branch)]($style)"
+
+[sudo]
+format = "[$symbol]($style)"
+symbol = " "
+disabled = false
