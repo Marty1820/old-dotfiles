@@ -20,7 +20,6 @@ set {
   $myFilemgr pcmanfm
   $myEditor gedit
   $myAppLauncher 'fuzzel -f Hack -D yes -P " " -b 282a36ff -t f8f8f2ff -s 44475aff -S 6272a4ff -m bd93f9ff -r 5 -B 2 -C ff5555ff'
-  $lock 'swaylock -f -F -i "eDP-1":~/Pictures/wallpapers/framework/lockscreen.png'
 }
 
 #
@@ -213,7 +212,7 @@ exec /usr/bin/blueman-applet &
 exec /usr/bin/kdeconnect-indicator
 
 # Lock/Idle
-bindsym $mod+Alt+l exec $lock
+bindsym $mod+Alt+l exec swaylock
 exec swayidle -w before-sleep 'swaylock' \
   timeout 300 $lock \
   timeout 10 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' \
@@ -248,7 +247,7 @@ output "*" bg "~/Pictures/wallpapers/framework/367277735d0091ef18c1d88f989908992
 #
 ### Power Menu ###
 #
-bindsym $mod+Escape exec swaynag -f 'Hack' --background 282a36 --border 44475a --button-background 282a36 --text f8f8f2 --button-text f8f8f2 -m 'Power Options:' -B 'Power off' 'systemctl poweroff' -B 'Reboot' 'systemctl reboot' -B 'Hibernate' 'swaylock -f -F -i "eDP-1":~/Pictures/wallpapers/framework/lockscreen.png && systemctl hibernate && pkill swaynag' -B 'Suspend' 'swaylock -f -F -i "eDP-1":~/Pictures/wallpapers/framework/lockscreen.png && systemctl suspend && pkill swaynag' -B 'Logout' 'swaymsg exit'
+bindsym $mod+Escape exec swaynag -f 'Hack' --background 282a36 --border 44475a --button-background 282a36 --text f8f8f2 --button-text f8f8f2 -m 'Power Options:' -B 'Power off' 'systemctl poweroff' -B 'Reboot' 'systemctl reboot' -B 'Hibernate' 'swaylock && systemctl hibernate && pkill swaynag' -B 'Suspend' 'swaylock && systemctl suspend && pkill swaynag' -B 'Logout' 'swaymsg exit'
 
 # Include all configs
 include /etc/sway/config.d/*
