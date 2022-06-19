@@ -212,7 +212,7 @@ exec ~/.config/autostart/background.sh
 
 # Tray Widgets
 exec /usr/bin/blueman-applet &
-exec /usr/bin/kdeconnect-indicator
+exec /usr/bin/kdeconnect-indicator &
 
 # Lock/Idle
 bindsym $mod+Alt+l exec swaylock
