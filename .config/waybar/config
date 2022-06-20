@@ -29,6 +29,8 @@
   ],
   
   "modules-right": [
+    "custom/camera",
+    "custom/spacer",
     "custom/vpn",
     "network",
     "custom/spacer",
@@ -95,6 +97,14 @@
     "exec": "~/.config/waybar/modules/pkgs.sh",
   },
   
+  "custom/camera": {
+    "format": "<big></big>",
+    "return-type": "json",
+    "exec": "~/.config/waybar/modules/camera.sh",
+    "exec-if": "test -d /sys/class/video4linux/video0",
+    "interval": 30,
+  },
+
   "custom/vpn": {
     "format": "<big>嬨</big>",
     "exec": "echo '{\"class\": \"connected\"}'",
@@ -107,7 +117,7 @@
 
   "network": {
     "interval": 5,
-    "format-wifi": "<big>直</big>{signalStrength}",
+    "format-wifi": "<big>直</big> {signalStrength}",
     "format-ethernet": "{ifname}: {ipaddr}/{cidr}",
     "format-disconnected": "<big></big>",
     "tooltip-format": "{essid} {ifname}: {ipaddr}",
@@ -116,7 +126,7 @@
 
   "cpu": {
     "interval": 10,
-    "format": "<big></big>{usage}",
+    "format": "<big></big> {usage}",
     "states": {
       "warning": 70,
       "critical": 90,
@@ -126,14 +136,14 @@
   "temperature": {
     "critical-threshold": 80,
     "interval": 10,
-    "format": "<big>{icon}</big>{temperatureC}糖",
+    "format": "<big>{icon}</big> {temperatureC}糖",
     "format-icons": ["", "", "", "", ""],
     "tooltip": true,
   },
 
   "memory": {
     "interval": 30,
-    "format": "<big></big>{used:0.1f}G/{total:0.0f}G",
+    "format": "<big></big> {used:0.1f}G/{total:0.0f}G",
     "states": {
       "warning": 70,
       "critical": 90,
@@ -141,9 +151,9 @@
   },
   
   "pulseaudio": {
-    "format": "{icon}{volume}",
-    "format-bluetooth": "{icon}{volume}",
-    "format-muted": "🔇M",
+    "format": "{icon} {volume}",
+    "format-bluetooth": "{icon} {volume}",
+    "format-muted": "🔇 M",
     "format-icons": {
       "headphone": "",
       "headset": "",
@@ -155,7 +165,7 @@
 
   "clock": {
     "interval": 60,
-    "format": "<big></big>{:%b %d %I:%M%p}",
+    "format": "<big></big> {:%b %d %I:%M%p}",
     "tooltip-format": "{:%e %B %Y}",
   },
 
@@ -168,7 +178,7 @@
     // Connected to AC
     "format": "{icon} {capacity}",
     // Not connected to AC
-    "format-discharging": "{icon}{capacity}",
+    "format-discharging": "{icon} {capacity}",
     "format-icons": ["", "", "", "", "", "", "", "", "", "", "",],
     "tooltip": true,
   },
