@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Dependancies 'xorg-xbacklight' & 'dunst'
 # You can call this script like this:
@@ -6,17 +6,17 @@
 # $./backlight.sh down
 
 # Gets brightness percent from 'xbacklight'
-function get_backlight {
+get_backlight() {
     fullnum=$(xbacklight -get)
     printf %.0f "$fullnum"
 }
 
 # Changes percent increase/decrease 
 # depending on current brightness & direction
-function set_curve() {
+set_curve() {
     backlight=$(get_backlight)
-    local direction="$1"
-    if [ "$direction" = up ]; then
+    _set_curve_direction="$1"
+    if [ "$_set_curve_direction" = up ]; then
         if [ "$backlight" -lt 10 ] ; then
             percent=1
         elif [ "$backlight" -lt 50 ] ; then
@@ -36,7 +36,7 @@ function set_curve() {
 }
 
 # Sends notification with dunst and set progress bar
-function send_notification {
+send_notification() {
     backlight=$(get_backlight)
     dunstify --raw_icon=/usr/share/icons/Adwaita/48x48/status/display-brightness-symbolic.symbolic.png --timeout=1600 --replace=2593 --urgency=normal "Brightness $backlight" -h int:value:"$backlight"
 }
