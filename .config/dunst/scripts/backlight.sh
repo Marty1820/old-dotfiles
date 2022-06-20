@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Dependancies 'xorg-xbacklight' & 'dunst'
+# Dependancies 'xorg-xbacklight' or 'acpilight' & 'dunst'
 # You can call this script like this:
 # $./backlight.sh up
 # $./backlight.sh down
