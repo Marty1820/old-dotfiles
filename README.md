@@ -16,18 +16,19 @@ Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://githu
 - Lock Screen: Swayidle & Swaylock
 
 # Sway Screenshot
+
 ![screenshot](.screenshots/Sway.jpg)
 
 #### Keybound Apps
 
-|          Name          |                      Description                      |
-| :--------------------: | :---------------------------------------------------: |
-|        `gedit`         |                      `Super + a`                      |
-|       `pcmanfm`        |                      `Super + e`                      |
-|        `brave`         |                      `Super + b`                      |
-|         `fuzzel`         | `Super + d` = applications |
-|        `grim` & `slurp` |           Print Screen key for screenshots            |
-| `nm-connection-editor` |                 click Network Widget                  |
+|          Name          |           Description            |
+| :--------------------: | :------------------------------: |
+|        `gedit`         |           `Super + a`            |
+|       `pcmanfm`        |           `Super + e`            |
+|        `brave`         |           `Super + b`            |
+|        `fuzzel`        |    `Super + d` = applications    |
+|    `grim` & `slurp`    | Print Screen key for screenshots |
+| `nm-connection-editor` |       click Network Widget       |
 
 #### Fonts
 
@@ -50,6 +51,7 @@ Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://githu
 | Compression Tools | `ex filename.ext` extracts most compressed files |
 
 # Old stuff
+
 ### Qtile
 
 ![screenshot](.screenshots/qtile.png)
@@ -62,10 +64,6 @@ Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://githu
 
 ![screenshot](.screenshots/logout-menu.png)
 ![screenshot](.screenshots/apps-menu.png)
-
-**Custom scripts**
-
-- `low_bat` : Monitors battery and sends warning when battery is low
 
 ## Thanks to/Original Sources
 
