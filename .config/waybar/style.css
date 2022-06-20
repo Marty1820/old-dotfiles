@@ -92,6 +92,14 @@ tooltip label {
   color: #ff5555;
 }
 
+#custom-camera {
+  color: #50fa7b;
+}
+
+#custom-camera.critical {
+  color: #ff5555;
+}
+
 #network {
   color: #50fa7b;
 }
@@ -109,6 +117,8 @@ tooltip label {
 }
 
 #cpu.critical {
+  animation-name: blink-critical;
+  animation-duration: 2s;
   color: #ff5555;
 }
 
@@ -117,6 +127,8 @@ tooltip label {
 }
 
 #temperature.critical {
+  animation-name: blink-critical;
+  animation-duration: 2s;
   color: #ff5555;
 }
 
@@ -158,10 +170,12 @@ tooltip label {
 }
 
 #battery.warning {
+  background-color: #282a36;
   color: #ffb86c;
 }
 
 #battery.critical {
+  background-color: #282a36;
   color: #ff5555;
 }
 
@@ -176,5 +190,5 @@ tooltip label {
 }
 
 #custom-power {
-  color: #ff5555
+  color: #ff5555;
 }
