@@ -19,7 +19,7 @@ set {
   $myBrowser brave
   $myFilemgr pcmanfm
   $myEditor gedit
-  $myAppLauncher 'fuzzel -f Hack -D yes -P " " -b 282a36ff -t f8f8f2ff -s 44475aff -S 6272a4ff -m bd93f9ff -r 5 -B 2 -C ff5555ff'
+  $myAppLauncher "fuzzel -f Hack:size=14 -D yes -P ' ' -i dracula-icons --fields=filename,name,generic,categories --terminal='alacritty -e' -b 282a36ff -t f8f8f2ff -m bd93f9ff -s 44475aff -S 6272a4ff -B 2 -r 5 -C ff5555ff"
 }
 
 #
