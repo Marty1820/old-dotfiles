@@ -17,9 +17,9 @@ export VISUAL="gedit" #Needed for ranger
 export HISTORY_IGNORE="(ls|cd|pwd|exit|history|cd -|cd ..)"
 
 # History
-HISTFILE=~/.histfile
+HISTFILE="$HOME/.cache/shell_histfile"
 HISTSIZE=2000
-SAVEHIST=5000
+HISTFILESIZE=10000
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -33,6 +33,7 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 bindkey -e
 
 # The following lines were added by compinstall
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 compinit
@@ -124,7 +125,7 @@ fi
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
+compinit -D
 _comp_options+=(globdots)
 
 ### BASH INSULTER (works in zsh too) ###
