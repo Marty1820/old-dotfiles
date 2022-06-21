@@ -33,10 +33,9 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 bindkey -e
 
 # The following lines were added by compinstall
-export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
-compinit
+compinit -d "$HOME/.cache/zsh/zcompdump-$ZSH_VERSION"
 # End of lines added by compinstall
 
 ### SET PATHS
