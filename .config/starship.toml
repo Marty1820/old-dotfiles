@@ -32,8 +32,3 @@ symbol = " "
 
 [git_branch]
 format = " [$symbol(:$remote_branch)]($style)"
-
-[sudo]
-format = "[$symbol]($style)"
-symbol = " "
-disabled = false
