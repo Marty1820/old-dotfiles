@@ -90,11 +90,12 @@
   },
   
   "custom/pkgs": {
-    "format-alt": "{percentage}%",
-    "format-alt-click": "click-right",
-    "return-type": "json",
+    "format": "{}📦",
+    "exec": "checkupdates | wc -l",
+    "exec-if": "[ $(checkupdates | wc -l) != 0 ]",
     "interval": 1800,
-    "exec": "~/.config/waybar/modules/pkgs.sh",
+    "on-click": "alacritty -e paru -Syu && notify-send 'System update complete'",
+    "tooltip": false,
   },
   
   "custom/camera": {

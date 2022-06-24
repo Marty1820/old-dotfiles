@@ -73,10 +73,6 @@ tooltip label {
 }
 
 #custom-pkgs {
-  color: #50fa7b;
-}
-
-#custom-pkgs.critical {
   color: #ff5555;
 }
 
