@@ -16,7 +16,7 @@ window#waybar {
   color: #f8f8f2;
   font-family: mononoki Nerd Font Mono;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 tooltip {
@@ -28,13 +28,13 @@ tooltip label {
 }
 
 #workspaces {
-  margin-left: 8px;
-  margin-right: 8px;
+  margin-left: 5px;
+  margin-right: 5px;
   padding-left: 0px;
   padding-right: 0px;
-  border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
-	border-top-right-radius: 10px;
+  border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
 
@@ -64,8 +64,8 @@ tooltip label {
  * -------------------------------------------------------------------------- */
 
 #tray {
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 #custom-spacer {
@@ -82,10 +82,6 @@ tooltip label {
 
 #custom-vpn {
   color: #50fa7b;
-}
-
-#custom-vpn.disconnected {
-  color: #ff5555;
 }
 
 #custom-camera {
