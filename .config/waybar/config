@@ -77,7 +77,8 @@
   },
 
   "tray": {
-    "spacing": 10,
+    "spacing": 2,
+    "reverse-direction": true,
   },
 
   "sway/window": {
