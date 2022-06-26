@@ -36,8 +36,8 @@ theme = {"background": "#282a36",
 mod = "mod4"                        # Sets mod key to SUPER
 home = os.path.expanduser('~')      # Allow using 'home +' to expand ~
 myTerm = "alacritty"                # Default Terminal application
-myBrowser = "brave"                  # Web browser
-myFilemgr = "pcmanfm"               # File Manager
+myBrowser = "brave"                 # Web browser
+myFilemgr = "nemo"                  # File Manager
 myEditor = "gedit"                  # Text editor
 myAppLauncher = "rofi -show drun -theme '~/.config/rofi/config.rasi'"
 

@@ -22,7 +22,7 @@ client.background       #f8f8f2
 set $mod Mod4
 set $myTerm alacritty
 set $myBrowser brave
-set $myFilemgr pcmanfm
+set $myFilemgr nemo
 set $myEditor gedit
 set $myAppLauncher "rofi -show drun -theme '~/.config/rofi/config.rasi'"
 

@@ -24,7 +24,7 @@ Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://githu
 |          Name          |           Description            |
 | :--------------------: | :------------------------------: |
 |        `gedit`         |           `Super + a`            |
-|       `pcmanfm`        |           `Super + e`            |
+|         `nemo`         |           `Super + e`            |
 |        `brave`         |           `Super + b`            |
 |        `fuzzel`        |    `Super + d` = applications    |
 |    `grim` & `slurp`    | Print Screen key for screenshots |
