@@ -17,7 +17,7 @@ set {
   $alt Mod1
   $myTerm alacritty
   $myBrowser brave
-  $myFilemgr pcmanfm
+  $myFilemgr nemo
   $myEditor gedit
   $myAppLauncher "fuzzel -f Hack:size=14 -D yes -P ' ' -i dracula-icons --fields=filename,name,generic,categories --terminal='alacritty -e' -b 282a36ff -t f8f8f2ff -m bd93f9ff -s 44475aff -S 6272a4ff -B 2 -r 5 -C ff5555ff"
 }
