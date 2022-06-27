@@ -31,6 +31,7 @@
   "modules-right": [
     "custom/camera",
     "custom/spacer",
+    "bluetooth",
     "custom/vpn",
     "network",
     "custom/spacer",
@@ -87,6 +88,7 @@
     "rewrite": {
       "(.*) - Brave": "爵 $1",
       "(.*) - gedit": "$1",
+      "(.*) - VSCodium": "﬏ $1",
     },
   },
   
@@ -105,6 +107,15 @@
     "exec": "~/.config/waybar/modules/camera.sh",
     "exec-if": "test -d /sys/class/video4linux/video0",
     "interval": 30,
+  },
+  
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "<big></big>",
+    "format-off": "<big></big>",
+    "format-on": "",
+    "format-connected": "<big></big>",
+    "on-click": "blueman-manager",
   },
 
   "custom/vpn": {
