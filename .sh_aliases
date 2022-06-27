@@ -6,6 +6,7 @@
 # ╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░
 # BASH&ZSH ALIASES/FUNCTIONS
 
+
 ### ALIAS ###
 alias ..='cd ..'
 alias cd..='cd ..'
@@ -26,6 +27,12 @@ alias psgrep='ps aux | grep -v grep | grep -i -e VSZ -e'
 alias psmem='ps auxf | sort -nr -k 4'
 alias pscpu='ps auxf | sort -nr -k 3'
 alias wifikey="sudo grep -r '^psk=' /etc/NetworkManager/system-connections/"
+# Keeping home clean
+alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 
 # Changing "ls" to "exa"
 alias ls='exa -al --icons --color=always --group-directories-first' # my preferred listing
