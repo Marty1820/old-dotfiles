@@ -80,11 +80,45 @@ tooltip label {
   color: #f1fa8c;
 }
 
-#custom-vpn {
+#custom-camera {
   color: #50fa7b;
 }
 
-#custom-camera {
+#bluetooth {
+  color: #50fa7b;
+}
+
+#bluetooth.off {
+  color: #ff5555;
+}
+
+#bluetooth.on {
+  color: #50fa7b;
+}
+
+#bluetooth.connected {
+  color: #6272a4;
+}
+
+#bluetooth.discoverable {
+  color: #ff5555;
+  animation-name: blink-critical;
+  animation-duration: 2s;
+}
+
+#bluetooth.discovering {
+  color: #ff5555;
+  animation-name: blink-critical;
+  animation-duration: 2s;
+}
+
+#bluetooth.parable {
+  color: #ff5555;
+  animation-name: blink-critical;
+  animation-duration: 2s;
+}
+
+#custom-vpn {
   color: #50fa7b;
 }
 
