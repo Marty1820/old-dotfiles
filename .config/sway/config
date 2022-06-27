@@ -210,10 +210,6 @@ for_window [class="Brave-browser"] move to workspace $ws2
 # Background tasks/scripts
 exec ~/.config/autostart/background.sh
 
-# Tray Widgets
-exec /usr/bin/blueman-applet &
-exec /usr/bin/kdeconnect-indicator &
-
 # Lock/Idle
 bindsym $mod+Alt+l exec swaylock
 exec swayidle -w before-sleep 'swaylock' \
