@@ -122,7 +122,7 @@
     "format-disabled": "<big></big>",
     "format-off": "<big></big>",
     "format-on": "",
-    "format-connected": "<big></big>",
+    "format-connected": "<big></big> {device_battery_percentage}",
     "on-click": "blueman-manager",
   },
 
