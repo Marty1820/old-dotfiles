@@ -2,6 +2,19 @@
  * Base styles
  * -------------------------------------------------------------------------- */
 
+/* Colors */
+@define-color background #282a36;
+@define-color selection #44475a;
+@define-color foreground #f8f8f2;
+@define-color comment #6272a4;
+@define-color cyan #8be9fd;
+@define-color green #50fa7b;
+@define-color orange #ffb86c;
+@define-color pink #ff79c6;
+@define-color purple #bd93f9;
+@define-color red #ff5555;
+@define-color yellow #f1fa8c;
+
 /* Reset all styles */
 * {
   border: none;
@@ -13,7 +26,8 @@
 
 /* The whole bar */
 window#waybar {
-  color: #f8f8f2;
+  color: @foreground;
+  background-color: @background;
   font-family: mononoki Nerd Font Mono;
   font-weight: bold;
   font-size: 12px;
@@ -24,7 +38,7 @@ tooltip {
   border: 1px solid rgba(68, 71, 90, 0.9);
 }
 tooltip label {
-  color: #f8f8f2;
+  color: @foreground;
 }
 
 #workspaces {
@@ -44,165 +58,171 @@ tooltip label {
   padding-bottom: 2px;
   padding-left: 10px;
   padding-right: 10px;
-  color: #f8f8f2;
+  color: @foreground;
 }
 
 #workspaces button.focused {
-  border-color: #44475a;
-  color: #bd93f9;
-  background-color: #44475a;
+  border-color: @selection;
+  color: @purple;
+  background-color: @selection;
   border-radius: 5;
 }
 
 #workspaces button.urgent {
-	background: #ff5555;
-	color: #f8f8f2;
+	background: @red;
+	color: @foreground;
 }
 
 /* -----------------------------------------------------------------------------
  * Module styles
  * -------------------------------------------------------------------------- */
 
+#custom-spacer {
+  color: @foreground;
+}
+
+#custom-power {
+  padding-left: 10px;
+  color: @red;
+}
+
+#custom-pkgs {
+  color: @red;
+}
+
 #tray {
   padding-left: 0px;
   padding-right: 0px;
 }
 
-#custom-spacer {
-  color: #f8f8f2;
-}
-
-#custom-pkgs {
-  color: #ff5555;
-}
-
 #custom-weather {
-  color: #f1fa8c;
+  color: @yellow;
 }
 
 #custom-camera {
-  color: #50fa7b;
+  color: @green;
+}
+
+#custom-camera.critical {
+  color: @red;
 }
 
 #bluetooth {
-  color: #50fa7b;
+  color: @green;
 }
 
 #bluetooth.off {
-  color: #ff5555;
+  color: @red;
 }
 
 #bluetooth.on {
-  color: #50fa7b;
+  color: @green;
 }
 
 #bluetooth.connected {
-  color: #6272a4;
+  color: @comment;
 }
 
 #bluetooth.discoverable {
-  color: #ff5555;
+  color: @red;
   animation-name: blink-critical;
   animation-duration: 2s;
 }
 
 #bluetooth.discovering {
-  color: #ff5555;
+  color: @red;
   animation-name: blink-critical;
   animation-duration: 2s;
 }
 
 #bluetooth.parable {
-  color: #ff5555;
+  color: @red;
   animation-name: blink-critical;
   animation-duration: 2s;
 }
 
 #custom-vpn {
-  color: #50fa7b;
-}
-
-#custom-camera.critical {
-  color: #ff5555;
+  color: @green;
 }
 
 #network {
-  color: #50fa7b;
+  color: @green;
 }
 
 #network.disconnected {
-  color: #ff5555;
+  color: @red;
 }
 
 #cpu {
-  color: #ffb86c;
+  color: @orange;
 }
 
 #cpu.warning {
-  color: #ffb86c;
+  color: @orange;
 }
 
 #cpu.critical {
   animation-name: blink-critical;
   animation-duration: 2s;
-  color: #ff5555;
+  color: @red;
 }
 
 #temperature {
-  color: #ffb86c;
+  color: @orange;
 }
 
 #temperature.critical {
   animation-name: blink-critical;
   animation-duration: 2s;
-  color: #ff5555;
+  color: @red;
 }
 
 #memory {
-  color: #ff79c6;
+  color: @pink;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
 
 #memory.warning {
-  color: #ffb86c;
+  color: @orange;
 }
 
 #memory.critical {
-  color: #ff5555;
+  color: @red;
   animation-name: blink-critical;
   animation-duration: 2s;
 }
 
 #pulseaudio {
-  color: #bd93f9;
+  color: @purple;
 }
 
 #pulseaudio.muted {
-  color: #ff5555;
+  color: @red;
 }
 
 #clock {
-  color: #f1fa8c;
+  color: @yellow;
   font-weight: bold;
 }
 
 #battery {
-  color: #8be9fd;
+  padding-right: 10px;
+  color: @cyan;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
 
 #battery.warning {
-  background-color: #282a36;
-  color: #ffb86c;
+  background-color: @background;
+  color: @orange;
 }
 
 #battery.critical {
-  background-color: #282a36;
-  color: #ff5555;
+  background-color: @background;
+  color: @red;
 }
 
 #battery.warning.discharging {
@@ -213,8 +233,7 @@ tooltip label {
 #battery.critical.discharging {
   animation-name: blink-critical;
   animation-duration: 2s;
-}
-
-#custom-power {
-  color: #ff5555;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
