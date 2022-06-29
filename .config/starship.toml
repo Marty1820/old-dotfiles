@@ -9,10 +9,11 @@ add_newline = true
 
 ##Advanced Configuration/Might break with updates
 # PS2 Prompt
-continuation_prompt = "[➜➜](bold blue)"
+continuation_prompt = "[➜➜](bold #bd93f9)"
 
 [cmd_duration]
 format = "[ $duration]($style)"
+style = "bold #f1fa8c"
 
 # Make prompt single line instead of two
 [line_break]
@@ -20,8 +21,8 @@ disabled = true
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character]
-success_symbol = "[➜](bold blue)"
-error_symbol = "[➜](bold red)"
+success_symbol = "[➜](bold #bd93f9)"
+error_symbol = "[➜](bold #ff5555)"
 
 # Disable the package module, hiding it from the prompt completely
 [package]
@@ -32,3 +33,10 @@ symbol = " "
 
 [git_branch]
 format = " [$symbol(:$remote_branch)]($style)"
+style = "bold #ff79c6"
+
+[git_status]
+style = "bold #ff5555"
+
+[directory]
+style = "bold #50fa7b"
