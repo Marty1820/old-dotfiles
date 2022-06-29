@@ -57,13 +57,12 @@
     "tooltip": false,
   },
 
-  "custom/weather": {
-    "format": "{}",
-    "format-alt": "{alt}: {}",
-    "interval": 3600,
-    "return-type": "json",
-    "exec": "~/.config/waybar/modules/wttr.sh",
-    "exec-if": "ping wttr.in -c1",
+  "custom/power": {
+    "format": "<big>襤</big>",
+    "exec-on-event": "true",
+    "tooltip": "false",
+    "on-click": "swaynag -f 'Hack' --background 282a36 --border 44475a --button-background 282a36 --text f8f8f2 --button-text f8f8f2 -m 'Power Options:' -B 'Power off' 'systemctl poweroff' -B 'Reboot' 'systemctl reboot' -B 'Hibernate' 'systemctl hibernate && pkill swaynag' -B 'Suspend' 'systemctl suspend && pkill swaynag' -B 'Logout' 'swaymsg exit'",
+    "tooltip": false,
   },
 
   "sway/workspaces": {
@@ -74,7 +73,25 @@
       "urgent": "",
       "focused": "",
       "default": "",
-    }
+    },
+  },
+
+  "custom/pkgs": {
+    "format": "{}📦",
+    "exec": "checkupdates | wc -l",
+    "exec-if": "[ $(checkupdates | wc -l) != 0 ]",
+    "interval": 1800,
+    "on-click": "alacritty -e paru -Syu && notify-send 'System update complete'",
+    "tooltip": false,
+  },
+
+  "custom/weather": {
+    "format": "{}",
+    "format-alt": "{alt}: {}",
+    "interval": 3600,
+    "return-type": "json",
+    "exec": "~/.config/waybar/modules/wttr.sh",
+    "exec-if": "ping wttr.in -c1",
   },
 
   "tray": {
@@ -90,15 +107,6 @@
       "(.*) - gedit": "$1",
       "(.*) - VSCodium": "﬏ $1",
     },
-  },
-  
-  "custom/pkgs": {
-    "format": "{}📦",
-    "exec": "checkupdates | wc -l",
-    "exec-if": "[ $(checkupdates | wc -l) != 0 ]",
-    "interval": 1800,
-    "on-click": "alacritty -e paru -Syu && notify-send 'System update complete'",
-    "tooltip": false,
   },
   
   "custom/camera": {
@@ -194,14 +202,6 @@
     "format-discharging": "{icon} {capacity}",
     "format-icons": ["", "", "", "", "", "", "", "", "", "", "",],
     "tooltip": true,
-  },
-
-  "custom/power": {
-    "format": "<big>襤</big>",
-    "exec-on-event": "true",
-    "tooltip": "false",
-    "on-click": "swaynag -f 'Hack' --background 282a36 --border 44475a --button-background 282a36 --text f8f8f2 --button-text f8f8f2 -m 'Power Options:' -B 'Power off' 'systemctl poweroff' -B 'Reboot' 'systemctl reboot' -B 'Hibernate' 'systemctl hibernate && pkill swaynag' -B 'Suspend' 'systemctl suspend && pkill swaynag' -B 'Logout' 'swaymsg exit'",
-    "tooltip": false,
   },
  
 }
