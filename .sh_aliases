@@ -34,6 +34,8 @@ export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 
+# Use bat instead of cat
+alias cat='bat'
 # Changing "ls" to "exa"
 alias ls='exa -al --icons --color=always --group-directories-first' # my preferred listing
 alias la='exa -al --icons --color=always --group-directories-first' # all files and dirs
