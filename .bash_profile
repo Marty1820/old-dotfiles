@@ -15,7 +15,7 @@ if [ -n "$DESKTOP_SESSION" ];then
     export SSH_AUTH_SOCK
 fi
 
-# Starts qtile when logging into tty1
+# Starts WM when logging into tty1
 if [ -z "${DISPLAY}" ] && [ "$(tty)" = "/dev/tty1" ]; then
   exec sway
 fi
