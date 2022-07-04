@@ -33,6 +33,7 @@ export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
+export ANDROID_HOME="$XDG_DATA_HOME"/android
 
 # Use bat instead of cat
 alias cat='bat'
