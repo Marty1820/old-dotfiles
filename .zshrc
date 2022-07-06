@@ -7,18 +7,10 @@
 # ZSH CONFIGUARATION
 
 # EXPORT
-export TERM="xterm-256color"
-export EDITOR="nano"
-export VISUAL="gedit" #Needed for ranger
 export HISTORY_IGNORE="(ls|cd|pwd|exit|history|cd -|cd ..)"
 
-# History
-HISTFILE="$HOME/.cache/shell_histfile"
-HISTSIZE=2000
-HISTFILESIZE=10000
-
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+##Aliases
+source "$HOME"/.sh_aliases
 
 # Options
 setopt autocd extendedglob nomatch notify
@@ -33,33 +25,6 @@ zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 compinit -d "$HOME/.cache/zsh/zcompdump-$ZSH_VERSION"
 # End of lines added by compinstall
-
-### SET PATHS
-if [ -d "$HOME/.bin" ] ;
-  then PATH="$HOME/.bin:$PATH"
-fi
-
-if [ -d "$HOME/.local/bin" ] ;
-  then PATH="$HOME/.local/bin:$PATH"
-fi
-
-if [ -d "$HOME/Applications" ] ;
-  then PATH="$HOME/Applications:$PATH"
-fi
-
-if [ -d "$HOME/Scripts" ] ;
-  then PATH="$HOME/Scripts:${PATH}"
-fi
-
-### CHANGE TITLE OF TERMINALS username@hostname:pwd
-case ${TERM} in
-  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty*|st|konsole*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
-    ;;
-  screen*)
-    PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
-    ;;
-esac
 
 ### Function extract for common file formats ###
 SAVEIFS=$IFS
@@ -108,26 +73,12 @@ IFS=$SAVEIFS
 autoload -U colors && colors
 [[ "$COLORTERM" == (24bit|truecolor) || "${terminfo[colors]}" -eq '16777216' ]] || zmodload zsh/nearcolor
 
-##Aliases
-source "$HOME"/.sh_aliases
-
-# Downloaded and mofidied from https://github.com/nuke-dash/pokemon-colorscripts-mac
-if [ "$(tty)" != "/dev/tty1" ] && [ -f "$HOME"/.local/bin/pokemon-colorscripts.sh ]; then
-  pokemon-colorscripts.sh -r
-fi
-
 ## Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit -D
 _comp_options+=(globdots)
-
-### BASH INSULTER (works in zsh too) ###
-# sudo wget -O /etc/bash.command-not-found https://gitlab.com/dwt1/bash-insulter/-/raw/master/src/bash.command-not-found
-if [ -f /etc/bash.command-not-found ]; then
-    . /etc/bash.command-not-found
-fi
 
 ### PROMPT ###
 eval "$(starship init zsh)"

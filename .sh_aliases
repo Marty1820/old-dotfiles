@@ -6,6 +6,45 @@
 # ╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░
 # BASH&ZSH ALIASES/FUNCTIONS
 
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+### EXPORTS
+export TERM="xterm-256color"
+export EDITOR="nano"
+export VISUAL="gedit"
+
+# History file sizes
+HISTFILE="$HOME/.cache/shell_histfile"
+HISTSIZE=2000
+HISTFILESIZE=10000
+
+### SET PATHS
+if [ -d "$HOME/.bin" ] ;
+  then PATH="$HOME/.bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ] ;
+  then PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "$HOME/Applications" ] ;
+  then PATH="$HOME/Applications:$PATH"
+fi
+
+if [ -d "$HOME/Scripts" ] ;
+  then PATH="$HOME/Scripts:${PATH}"
+fi
+
+### CHANGE TITLE OF TERMINALS username@hostname:pwd
+case ${TERM} in
+  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty*|st|konsole*)
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
+    ;;
+  screen*)
+    PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
+    ;;
+esac
 
 ### ALIAS ###
 alias ..='cd ..'
@@ -34,6 +73,7 @@ export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 export ANDROID_HOME="$XDG_DATA_HOME"/android
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
 # Use bat instead of cat
 alias cat='bat'
@@ -67,6 +107,17 @@ alias ytv="youtube-dl -f bestvideo+bestaudio "
 alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
 # UTF-8 termnal display tester
 alias utftest="curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt"
+
+# Downloaded and mofidied from https://github.com/nuke-dash/pokemon-colorscripts-mac
+if [ "$(tty)" != "/dev/tty1" ] && [ -f "$HOME"/.local/bin/pokemon-colorscripts.sh ]; then
+  pokemon-colorscripts.sh -r
+fi
+
+### BASH INSULTER (works in zsh too) ###
+# sudo wget -O /etc/bash.command-not-found https://gitlab.com/dwt1/bash-insulter/-/raw/master/src/bash.command-not-found
+if [ -f /etc/bash.command-not-found ]; then
+    . /etc/bash.command-not-found
+fi
 
 ### DRACULA TTY COLORS ###
 if [ "$TERM" = "linux" ]; then
