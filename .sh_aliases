@@ -62,11 +62,17 @@ alias mkdir='mkdir -p'
 alias psa='ps auxf'
 alias cls='clear && color10bit.sh'
 alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias diff='diff --color=auto'
+alias ip='ip -color=auto'
+export MANPAGER="less -R --use-color -Dd+r -Du+b"
+# Simple info pull
 alias psgrep='ps aux | grep -v grep | grep -i -e VSZ -e'
 alias psmem='ps auxf | sort -nr -k 4'
 alias pscpu='ps auxf | sort -nr -k 3'
 alias wifikey="sudo grep -r '^psk=' /etc/NetworkManager/system-connections/"
-# Keeping home clean
+# Keeping $HOME(~) clean
 alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
