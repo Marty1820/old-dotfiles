@@ -19,6 +19,7 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
 # Editor Keybindings e=emacs
 bindkey -e
+bindkey "^[[3~" delete-char #needed for delete key functionality
 
 # The following lines were added by compinstall
 zstyle :compinstall filename "$HOME/.zshrc"
