@@ -21,8 +21,7 @@ env:
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  TERM: xterm-256color
-  #TERM: alacritty
+  TERM: alacritty
 
 window:
   # Window dimensions (changes require restart)
@@ -108,7 +107,6 @@ font:
     # Font family
     # Default:
     #   - (Linux/BSD) monospace
-    #family: monospace
     family: Hack
 
     # The `style` can be specified to pick a specific face.
@@ -120,7 +118,6 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
     family: Hack
 
     # The `style` can be specified to pick a specific face.
@@ -132,7 +129,6 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
     family: Hack
 
     # The `style` can be specified to pick a specific face.
@@ -144,7 +140,6 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
     family: Hack
 
     # The `style` can be specified to pick a specific face.
@@ -364,16 +359,16 @@ colors:
   # When set to `true`, selected text will be copied to the primary clipboard.
   #save_to_clipboard: false
 
-#cursor:
+cursor:
   # Cursor style
-  #style:
+  style:
     # Cursor shape
     #
     # Values for `shape`:
     #   - ▇ Block
     #   - _ Underline
     #   - | Beam
-    #shape: Block
+    shape: Block
 
     # Cursor blinking state
     #
@@ -382,7 +377,7 @@ colors:
     #   - Off: Disable blinking by default
     #   - On: Enable blinking by default
     #   - Always: Force the cursor to always blink
-    #blinking: Off
+    blinking: On
 
   # Vi mode cursor style
   #
@@ -441,7 +436,7 @@ mouse:
   triple_click: { threshold: 300 }
 
   # If this is `true`, the cursor is temporarily hidden when typing.
-  #hide_when_typing: false
+  hide_when_typing: true
 
 # Regex hints
 #
@@ -729,10 +724,10 @@ key_bindings:
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
   #- { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
-  - { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp,  }
-  - { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollPageDown }
-  - { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop,   }
-  - { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
+  - { key: PageUp,    action: ScrollPageUp,  }
+  - { key: PageDown,  action: ScrollPageDown }
+  - { key: Home,      action: ScrollToTop,   }
+  - { key: End,       action: ScrollToBottom }
 
   # Vi Mode
   #- { key: Space,  mods: Shift|Control, mode: ~Search,    action: ToggleViMode            }
@@ -797,20 +792,14 @@ key_bindings:
   #- { key: Return, mods: Shift,   mode: Search|~Vi, action: SearchFocusPrevious   }
 
   # (Windows, Linux, and BSD only)
-  - { key: V,              mods: Control|Shift, mode: ~Vi,        action: Paste            }
-  - { key: C,              mods: Control|Shift,                   action: Copy             }
-  #- { key: F,              mods: Control|Shift, mode: ~Search,    action: SearchForward    }
-  - { key: W,              mods: Control,                         action: SearchForward    }
-  #- { key: B,              mods: Control|Shift, mode: ~Search,    action: SearchBackward   }
-  - { key: W,              mods: Control|Shift,                   action: SearchBackward   }
-  #- { key: C,              mods: Control|Shift, mode: Vi|~Search, action: ClearSelection   }
-  - { key: Insert,         mods: Shift,                           action: PasteSelection   }
-  - { key: Key0,           mods: Control,                         action: ResetFontSize    }
-  - { key: Equals,         mods: Control,                         action: IncreaseFontSize }
-  - { key: Plus,           mods: Control,                         action: IncreaseFontSize }
-  #- { key: NumpadAdd,      mods: Control,                         action: IncreaseFontSize }
-  - { key: Minus,          mods: Control,                         action: DecreaseFontSize }
-  #- { key: NumpadSubtract, mods: Control,                         action: DecreaseFontSize }
+  - { key: V,       mods: Control|Shift,  mode: ~Vi,  action: Paste }
+  - { key: C,       mods: Control|Shift,              action: Copy }
+  - { key: W,       mods: Control,                    action: SearchForward }
+  - { key: W,       mods: Control|Shift,              action: SearchBackward }
+  - { key: Insert,  mods: Shift,                      action: PasteSelection }
+  - { key: Minus,   mods: Control,                    action: DecreaseFontSize }
+  - { key: Equals,  mods: Control,                    action: IncreaseFontSize }
+  - { key: Key0,    mods: Control,                    action: ResetFontSize }
 
 #debug:
   # Display the time it takes to redraw each frame.
