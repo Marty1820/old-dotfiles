@@ -60,7 +60,7 @@ alias free='free -h'    # show sizes in human readable
 alias tree='tree -C'
 alias mkdir='mkdir -p'
 alias psa='ps auxf'
-alias cls='clear && color10bit.sh'
+alias cls='clear -x && color10bit.sh'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
