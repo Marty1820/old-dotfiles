@@ -248,7 +248,7 @@ output "*" bg "~/Pictures/wallpapers/framework/367277735d0091ef18c1d88f989908992
 #
 ### Power Menu ###
 #
-bindsym $mod+Escape exec ~/.config/wofi/powermenu.sh
+bindsym $mod+Escape exec ~/.config/wofi/scripts/powermenu.sh
 #bindsym $mod+Escape exec swaynag -f 'Hack' --background 282a36 --border 44475a --button-background 282a36 --text f8f8f2 --button-text f8f8f2 -m 'Power Options:' -B 'Shutdown' 'systemctl poweroff' -B 'Reboot' 'systemctl reboot' -B 'Hibernate' 'swaylock && systemctl hibernate && pkill swaynag' -B 'Suspend' 'swaylock && systemctl suspend && pkill swaynag' -B 'Logout' 'swaymsg exit'
 
 # Include all configs
