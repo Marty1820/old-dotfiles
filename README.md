@@ -4,7 +4,7 @@
 
 Otherwise these are pretty basic configs with nothing special. Lots of older configs for things like [qtile](http://www.qtile.org), [i3](https://i3wm.org/docs/), [rofi](https://github.com/davatorium/rofi), [conky](<https://en.wikipedia.org/wiki/Conky_(software)>), etc...
 
-Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://github.com/Alexays/Waybar) and [Fuzzel](https://codeberg.org/dnkl/fuzzel) application launcher (trying to go full wayland)
+Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://github.com/Alexays/Waybar) and [Wofi](https://hg.sr.ht/~scoopta/wofi) application launcher (trying to go full wayland)
 
 ## Details
 
@@ -12,7 +12,7 @@ Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://githu
 - Status Bar: [Waybar](https://github.com/Alexays/Waybar)
 - Colors/Themes: [Dracula](https://draculatheme.com)
 - Terminal: [Alacritty](https://github.com/alacritty/alacritty)
-- Application launcher/logout screen: [Fuzzel](https://codeberg.org/dnkl/fuzzel)
+- Application launcher/logout screen: [Wofi](https://hg.sr.ht/~scoopta/wofi)
 - Lock Screen: Swayidle & Swaylock
 
 # Sway Screenshot
@@ -26,7 +26,7 @@ Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://githu
 |        `gedit`         |           `Super + a`            |
 |         `nemo`         |           `Super + e`            |
 |        `brave`         |           `Super + b`            |
-|        `fuzzel`        |    `Super + d` = applications    |
+|        `wofi`        |    `Super + d` = applications    |
 |    `grim` & `slurp`    | Print Screen key for screenshots |
 | `nm-connection-editor` |       click Network Widget       |
 
