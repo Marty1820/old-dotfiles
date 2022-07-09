@@ -19,7 +19,7 @@ set {
   $myBrowser brave
   $myFilemgr nemo
   $myEditor gedit
-  $myAppLauncher "wofi --show drun"
+  $myAppLauncher "rofi -show drun -theme '~/.config/rofi/config.rasi'"
   #$myAppLauncher "fuzzel -f Hack:size=14 -D yes -P ' ' -i dracula-icons --fields=filename,name,generic,categories --terminal='alacritty -e' -b 282a36ff -t f8f8f2ff -m bd93f9ff -s 44475aff -S 6272a4ff -B 2 -r 5 -C ff5555ff"
 }
 
@@ -248,7 +248,7 @@ output "*" bg "~/Pictures/wallpapers/framework/367277735d0091ef18c1d88f989908992
 #
 ### Power Menu ###
 #
-bindsym $mod+Escape exec ~/.config/wofi/scripts/powermenu.sh
+bindsym $mod+Escape exec ~/.config/rofi/scripts/powermenu.sh
 #bindsym $mod+Escape exec swaynag -f 'Hack' --background 282a36 --border 44475a --button-background 282a36 --text f8f8f2 --button-text f8f8f2 -m 'Power Options:' -B 'Shutdown' 'systemctl poweroff' -B 'Reboot' 'systemctl reboot' -B 'Hibernate' 'swaylock && systemctl hibernate && pkill swaynag' -B 'Suspend' 'swaylock && systemctl suspend && pkill swaynag' -B 'Logout' 'swaymsg exit'
 
 # Include all configs

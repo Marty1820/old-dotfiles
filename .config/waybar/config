@@ -61,7 +61,7 @@
     "format": "<big>襤</big>",
     "exec-on-event": "true",
     "tooltip": "false",
-    "on-click": "~/.config/wofi/scripts/powermenu.sh",
+    "on-click": "~/.config/rofi/scripts/powermenu.sh",
     //"on-click": "swaynag -f 'Hack' --background 282a36 --border 44475a --button-background 282a36 --text f8f8f2 --button-text f8f8f2 -m 'Power Options:' -B 'Shutdown' 'systemctl poweroff' -B 'Reboot' 'systemctl reboot' -B 'Hibernate' 'systemctl hibernate && pkill swaynag' -B 'Suspend' 'systemctl suspend && pkill swaynag' -B 'Logout' 'swaymsg exit'",
     "tooltip": false,
   },

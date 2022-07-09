@@ -1,6 +1,0 @@
-mode=drun
-term=alacritty
-allow_markup=true
-allow_images=true
-prompt=Search
-insensitive=true
