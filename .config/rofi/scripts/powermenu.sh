@@ -1,5 +1,8 @@
 #!/bin/bash
 
+lock_cmd="swaylock"
+#lock_cmd="i3lock -i ~/wallpapers/lockscreen.png"
+
 dir="$HOME/.config/rofi/apps"
 rofi_command="rofi -theme $dir/powermenu.rasi"
 
@@ -21,26 +24,26 @@ options="$shutdown\n$reboot\n$lock\n$suspend\n$logout"
 
 chosen="$(echo -e "$options" | $rofi_command -p "  祥  $uptime" -dmenu -selected-row 2)"
 case $chosen in
-    "$shutdown")
-        systemctl poweroff
-        ;;
-    "$reboot")
-        systemctl reboot
-        ;;
-    "$lock")
-        i3lock -i ~/wallpapers/lockscreen.png
-        ;;
-    "$suspend")
-        if [[ $(cat /sys/class/power_supply/BAT1/status) == Discharging ]]; then
-		    systemctl hibernate
+  "$shutdown")
+    systemctl poweroff
+    ;;
+  "$reboot")
+    systemctl reboot
+    ;;
+  "$lock")
+    $lock_cmd
+    ;;
+  "$suspend")
+    if [[ $(cat /sys/class/power_supply/BAT1/status) == Discharging ]]; then
+		  $lock_cmd
+		  systemctl hibernate
 		else
-		    amixer -q set Master mute
-		    $lock
-		    systemctl suspend
-		fi
-        ;;
-    "$logout")
-        session=$(loginctl session-status | head -n 1 | awk '{print $1}')
-	    loginctl terminate-session "$session"
-        ;;
+		  $lock_cmd
+      systemctl suspend
+    fi
+    ;;
+  "$logout")
+    session=$(loginctl session-status | head -n 1 | awk '{print $1}')
+    loginctl terminate-session "$session"
+    ;;
 esac
