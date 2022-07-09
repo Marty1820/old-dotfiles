@@ -1,0 +1,67 @@
+/* Colors */
+@define-color background #282a36;
+@define-color selection #44475a;
+@define-color foreground #f8f8f2;
+@define-color comment #6272a4;
+@define-color cyan #8be9fd;
+@define-color green #50fa7b;
+@define-color orange #ffb86c;
+@define-color pink #ff79c6;
+@define-color purple #bd93f9;
+@define-color red #ff5555;
+@define-color yellow #f1fa8c;
+
+* {
+  font-family: "Hack Nerd Font";
+  border: none;
+  outline: none;
+}
+
+window {
+  margin: 5px;
+  border: 2px solid @red;
+  background-color: @background;
+}
+
+#entry {
+  border: none;
+}
+
+#entry * {
+  overflow-wrap: break-word;
+}
+
+#input {
+  margin: 5px;
+  border: 2px solid @comment;
+  background-color: @selection;
+}
+
+#outer-box {
+  margin: 5px;
+  border: 2px solid @selection;
+  background-color: @background;
+}
+
+#scroll {
+  margin: 5px;
+  border: 2px solid @background;
+  color: @foreground;
+  background-color: @background;
+}
+
+#text {
+  margin: 5px;
+  border: 2px solid @background;
+  background-color: @background;
+}
+
+#entry:selected {
+  background-color: @selection;
+}
+
+#text:selected {
+  color: @purple;
+  border: 2px solid @selection;
+  background-color: @selection;
+}
