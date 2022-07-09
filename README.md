@@ -2,9 +2,9 @@
 
 **Warning:** If you want to give these files a try, you should first modify them to fit your needs, and remove things you don’t want or need. Don’t blindly use online code unless you know what's in it and what it does. Use at your own risk! NO WARRANTIES/NO REFUNDS!!!
 
-Otherwise these are pretty basic configs with nothing special. Lots of older configs for things like [qtile](http://www.qtile.org), [i3](https://i3wm.org/docs/), [rofi](https://github.com/davatorium/rofi), [conky](<https://en.wikipedia.org/wiki/Conky_(software)>), etc...
+Otherwise these are pretty basic configs with nothing special. Lots of older configs for things like [qtile](http://www.qtile.org), [i3](https://i3wm.org/docs/), [conky](<https://en.wikipedia.org/wiki/Conky_(software)>), etc...
 
-Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://github.com/Alexays/Waybar) and [Wofi](https://hg.sr.ht/~scoopta/wofi) application launcher (trying to go full wayland)
+Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://github.com/Alexays/Waybar) and [rofi](https://github.com/davatorium/rofi) application launcher (trying to go full wayland)
 
 ## Details
 
@@ -12,7 +12,7 @@ Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://githu
 - Status Bar: [Waybar](https://github.com/Alexays/Waybar)
 - Colors/Themes: [Dracula](https://draculatheme.com)
 - Terminal: [Alacritty](https://github.com/alacritty/alacritty)
-- Application launcher/logout screen: [Wofi](https://hg.sr.ht/~scoopta/wofi)
+- Application launcher/logout screen: [rofi](https://github.com/davatorium/rofi)
 - Lock Screen: Swayidle & Swaylock
 
 # Sway Screenshot
@@ -26,7 +26,7 @@ Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://githu
 |        `gedit`         |           `Super + a`            |
 |         `nemo`         |           `Super + e`            |
 |        `brave`         |           `Super + b`            |
-|        `wofi`        |    `Super + d` = applications    |
+|        `rofi`        |    `Super + d` = applications    |
 |    `grim` & `slurp`    | Print Screen key for screenshots |
 | `nm-connection-editor` |       click Network Widget       |
 
