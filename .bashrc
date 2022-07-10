@@ -48,13 +48,13 @@ ex ()
       *)  echo "'$1' cannot be extracted via ex()" ;;
     esac
   else
-      echo "'$1' is not a valid file"
+    echo "'$1' is not a valid file"
   fi
 }
 
 # Use bash-completion
 [[ -f /usr/share/bash-completion/bash_completion ]] && \
-    . /usr/share/bash-completion/bash_completion
+  . /usr/share/bash-completion/bash_completion
 
 ### PROMPT ###
 PS1="\[\033[38;5;135m\][\w]\[$(tput sgr0)\]\[\033[38;5;220m\]\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')\[$(tput sgr0)\]\[\033[38;5;10m\]->\[$(tput sgr0)\]"

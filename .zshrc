@@ -32,7 +32,7 @@ SAVEIFS=$IFS
 IFS=$(echo -en "\n\b")
 
 function ex {
- if [ -z "$1" ]; then
+  if [ -z "$1" ]; then
     # display usage if no parameters given
     echo "Usage: ex <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
     echo "       ex <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
@@ -40,32 +40,32 @@ function ex {
     for n in "$@"
     do
       if [ -f "$n" ] ; then
-          case "${n%,}" in
-            *.cbt|*.txz)        tar xvf ./"$n"      ;;
-            *.7z|*.arj|*.cab|*.cb7|*.chm|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-                                7z x ./"$n"         ;;
-            *.lzma)             unlzma ./"$n"       ;;
-            *.bz2)              bunzip2 ./"$n"      ;;
-            *.cbr|*.rar)        unrar x -ad ./"$n"  ;;
-            *.gz)               gunzip ./"$n"       ;;
-            *.cbz|*.epub|*.zip) unzip ./"$n"        ;;
-            *.z)                uncompress ./"$n"   ;;
-            *.xz)               unxz ./"$n"         ;;
-            *.tbz2)             tar xjf ./"$n"      ;;
-            *.tgz)              tar xzf ./"$n"      ;;
-            *.tar)              tar xf ./"$n"       ;;
-            *.deb)              ar x ./"$n"         ;;
-            *.tar.zst)          unzstd ./"$n"       ;;
-            *)  echo "ex: '$n' - unknown archive method"
-                         return 1
-                         ;;
-          esac
+        case "${n%,}" in
+          *.cbt|*.txz)        tar xvf ./"$n"      ;;
+          *.7z|*.arj|*.cab|*.cb7|*.chm|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+                              7z x ./"$n"         ;;
+          *.lzma)             unlzma ./"$n"       ;;
+          *.bz2)              bunzip2 ./"$n"      ;;
+          *.cbr|*.rar)        unrar x -ad ./"$n"  ;;
+          *.gz)               gunzip ./"$n"       ;;
+          *.cbz|*.epub|*.zip) unzip ./"$n"        ;;
+          *.z)                uncompress ./"$n"   ;;
+          *.xz)               unxz ./"$n"         ;;
+          *.tbz2)             tar xjf ./"$n"      ;;
+          *.tgz)              tar xzf ./"$n"      ;;
+          *.tar)              tar xf ./"$n"       ;;
+          *.deb)              ar x ./"$n"         ;;
+          *.tar.zst)          unzstd ./"$n"       ;;
+          *)  echo "ex: '$n' - unknown archive method"
+                              return 1
+                              ;;
+        esac
       else
-          echo "'$n' is not a valid file"
-          return 1
+        echo "'$n' is not a valid file"
+        return 1
       fi
     done
-fi
+  fi
 }
 
 IFS=$SAVEIFS
