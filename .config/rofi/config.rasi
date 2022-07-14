@@ -24,18 +24,19 @@ configuration {
 }
 
 window {
-    height: 65%;
+    height: 60%;
     width: 40%;
     transparency: "real";
     background-color: @background;
     border: 2px;
     border-color: @red;
+    border-radius: 5;
 }
 
 inputbar {
     background-color: @selection;
     text-color: @foreground;
-    border-radius: 2%;
+    border-radius: 5;
     padding: 1%;
 }
 
@@ -67,7 +68,7 @@ listview {
 element {
     orientation: vertical;
     padding: 1.5% 1.5%;
-    border-radius: 10;
+    border-radius: 5;
 }
 
 element normal.urgent, element alternate.urgent {

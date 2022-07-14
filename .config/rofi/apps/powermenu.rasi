@@ -20,12 +20,12 @@ configuration {
 }
 
 window {
+    width: 650px;
     transparency: "real";
     border: 2px;
     border-color: @purple;
-    border-radius: 0px;
+    border-radius: 5;
     location: center;
-    width: 800px;
     x-offset: 0px;
     y-offset: 0px;
 }
@@ -46,7 +46,7 @@ textbox-prompt-colon {
     background-color: @purple;
     text-color: @foreground;
     padding: 12px 10px 0px 10px;
-    font: "Hack 14";
+    font: "Hack 12";
 }
 
 inputbar {
@@ -66,7 +66,7 @@ inputbar {
 listview {
     columns: 5;
     lines: 1;
-    spacing: 15px;
+    spacing: 10px;
     cycle: true;
     dynamic: true;
     layout: vertical;
@@ -92,14 +92,13 @@ element-text {
     expand: true;
     horizontal-align: 0.5;
     vertical-align: 0;
-    margin: 40px 0px 40px 0px;
+    margin: 25px 0px 25px 0px;
 }
 
 element normal.urgent,
 element alternate.urgent {
     background-color: @red;
     text-color: @background;
-    border-radius: 0px;
 }
 
 element normal.active,
@@ -112,7 +111,6 @@ element selected {
     background-color: @purple;
     text-color: @foreground;
     border: 0px;
-    border-radius: 0px;
     border-color: @red;
 }
 
