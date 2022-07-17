@@ -1,29 +1,30 @@
-#!/bin/bash
+#!/bin/sh
 
+# Commands
 lock_cmd="swaylock"
 #lock_cmd="i3lock -i ~/wallpapers/lockscreen.png"
-
-dir="$HOME/.config/rofi/apps"
-rofi_command="rofi -theme $dir/powermenu.rasi"
-
+rofi_conf="rofi -theme $HOME/.config/rofi/apps/powermenu.rasi"
 uptime=$(uptime -p | sed -e 's/up //g')
 
-# Options
+# Icons
 shutdown="襤"
 reboot="菱"
 lock=""
-if [[ $(cat /sys/class/power_supply/BAT1/status) == Discharging ]]; then
-    suspend="⏼"
+if [ "$(cat /sys/class/power_supply/BAT1/status)" = Discharging ]; then
+  suspend="⏼"
 else
-    suspend="鈴"
+  suspend="鈴"
 fi
 logout="﫼"
 
-# Variable passed to rofi
-options="$shutdown\n$reboot\n$lock\n$suspend\n$logout"
+chosen=$(printf '%s;%s;%s;%s;%s\n' "$shutdown" "$reboot" "$lock" "$suspend" "$logout" \
+  | $rofi_conf \
+    -p "  祥  $uptime" \
+    -dmenu \
+    -sep ';' \
+    -selected-row 2)
 
-chosen="$(echo -e "$options" | $rofi_command -p "  祥  $uptime" -dmenu -selected-row 2)"
-case $chosen in
+case "$chosen" in
   "$shutdown")
     systemctl poweroff
     ;;
@@ -34,7 +35,7 @@ case $chosen in
     $lock_cmd
     ;;
   "$suspend")
-    if [[ $(cat /sys/class/power_supply/BAT1/status) == Discharging ]]; then
+    if [ "$(cat /sys/class/power_supply/BAT1/status)" = Discharging ]; then
 		  $lock_cmd
 		  systemctl hibernate
 		else
