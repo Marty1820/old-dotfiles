@@ -15,7 +15,7 @@ export EDITOR="nano"
 export VISUAL="gedit"
 
 # History file sizes
-HISTFILE="$HOME/.cache/shell_histfile"
+HISTFILE="$XDG_CACHE_HOME/shell_histfile"
 HISTSIZE=2000
 HISTFILESIZE=10000
 
