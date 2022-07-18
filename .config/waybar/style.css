@@ -1,9 +1,6 @@
-/* -----------------------------------------------------------------------------
- * Base styles
- * -------------------------------------------------------------------------- */
-
 /* Colors */
-@define-color background #282a36;
+/*@define-color background #282a36;*/
+@define-color background #000000;
 @define-color selection #44475a;
 @define-color foreground #f8f8f2;
 @define-color comment #6272a4;
@@ -15,22 +12,23 @@
 @define-color red #ff5555;
 @define-color yellow #f1fa8c;
 
-/* Reset all styles */
 * {
-  border: none;
-  border-radius: 5;
-  min-height: 0;
-  margin: 0;
-  padding: 0;
+    border: none;
+    border-radius: 0px;
+    font-family: mononoki Nerd Font Mono;
+    font-size: 12px;
+    min-height: 0;
 }
 
-/* The whole bar */
 window#waybar {
-  color: @foreground;
-  background-color: @background;
-  font-family: mononoki Nerd Font Mono;
-  font-weight: bold;
-  font-size: 12px;
+    background-color: transparent;
+    color: @foreground;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
 }
 
 tooltip {
@@ -41,48 +39,40 @@ tooltip label {
   color: @foreground;
 }
 
+#window,
 #workspaces {
-  margin-left: 5px;
-  margin-right: 5px;
-  padding-left: 0px;
-  padding-right: 0px;
-  border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
+    margin: 0px 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0px;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0px;
 }
 
 #workspaces button {
-  border-top: 2px solid transparent;
-  /* To compensate for the top border and still have vertical centering */
-  padding-bottom: 2px;
-  padding-left: 10px;
-  padding-right: 10px;
-  color: @foreground;
+    background: @background;
+    color: @foreground;
+    border-radius: 20px;
+
 }
 
 #workspaces button.focused {
   border-color: @selection;
-  color: @purple;
+  color: @purple;  
   background-color: @selection;
-  border-radius: 5;
 }
 
 #workspaces button.urgent {
-	background: @red;
-	color: @foreground;
-}
-
-/* -----------------------------------------------------------------------------
- * Module styles
- * -------------------------------------------------------------------------- */
-
-#custom-spacer {
-  color: @foreground;
+    background-color: @red;
+    color: @foreground;
 }
 
 #custom-power {
-  padding-left: 10px;
   color: @red;
 }
 
@@ -91,8 +81,17 @@ tooltip label {
 }
 
 #tray {
-  padding-left: 0px;
-  padding-right: 0px;
+    color: @foreground;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+    color: @foreground;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    color: @foreground;
 }
 
 #custom-weather {
@@ -146,15 +145,15 @@ tooltip label {
 }
 
 #network {
-  color: @green;
+    color: @green;
 }
 
 #network.disconnected {
-  color: @red;
+    color: @red;
 }
 
 #cpu {
-  color: @orange;
+    color: @orange;
 }
 
 #cpu.warning {
@@ -168,24 +167,15 @@ tooltip label {
 }
 
 #temperature {
-  color: @orange;
+    color: @orange;
 }
 
 #temperature.critical {
-  animation-name: blink-critical;
-  animation-duration: 2s;
-  color: @red;
+    color: @red
 }
 
 #memory {
-  color: @pink;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-#memory.warning {
-  color: @orange;
+    color: @pink;
 }
 
 #memory.critical {
@@ -195,45 +185,46 @@ tooltip label {
 }
 
 #pulseaudio {
-  color: @purple;
+    color: @purple;
 }
 
 #pulseaudio.muted {
-  color: @red;
+    color: @red;
 }
 
 #clock {
-  color: @yellow;
-  font-weight: bold;
+    color: @yellow;
 }
 
 #battery {
-  padding-right: 10px;
-  color: @cyan;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+    color: @cyan;
 }
 
-#battery.warning {
-  background-color: @background;
-  color: @orange;
+#battery.charging, #battery.plugged {
+    color: @green;
 }
 
-#battery.critical {
-  background-color: @background;
-  color: @red;
+@keyframes blink {
+    to {
+        color: @foreground;
+    }
 }
 
-#battery.warning.discharging {
-  animation-name: blink-warning;
-  animation-duration: 3s;
+#battery.warning:not(.charging) {
+  background-color: @orange;
+  color: @background;
 }
 
-#battery.critical.discharging {
-  animation-name: blink-critical;
-  animation-duration: 2s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+#battery.critical:not(.charging) {
+    background-color: @red;
+    color: @background;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: @background;
 }

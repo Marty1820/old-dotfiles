@@ -17,16 +17,15 @@
 
   "modules-left": [
     "custom/power",
-    "custom/spacer",
+    "sway/workspaces",
     "custom/pkgs",
     "custom/weather",
     "custom/spacer",
     "tray",
-    "custom/spacer",
   ],
   
   "modules-center": [
-    "sway/workspaces",
+    "sway/window",
   ],
   
   "modules-right": [
@@ -98,6 +97,16 @@
   "tray": {
     "spacing": 2,
     "reverse-direction": true,
+  },
+
+  "sway/window": {
+    "format": "{}",
+    "max-length": 100,
+    "rewrite": {
+      "(.*) - Brave": "爵 $1",
+      "(.*) - gedit": "$1",
+      "(.*) - VSCodium": "﬏ $1",
+    },
   },
   
   "custom/camera": {

@@ -1,0 +1,239 @@
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+
+/* Colors */
+@define-color background #282a36;
+@define-color selection #44475a;
+@define-color foreground #f8f8f2;
+@define-color comment #6272a4;
+@define-color cyan #8be9fd;
+@define-color green #50fa7b;
+@define-color orange #ffb86c;
+@define-color pink #ff79c6;
+@define-color purple #bd93f9;
+@define-color red #ff5555;
+@define-color yellow #f1fa8c;
+
+/* Reset all styles */
+* {
+  border: none;
+  border-radius: 5;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* The whole bar */
+window#waybar {
+  color: @foreground;
+  background-color: @background;
+  font-family: mononoki Nerd Font Mono;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+tooltip {
+  background: rgba(40, 42, 54, 0.9);
+  border: 1px solid rgba(68, 71, 90, 0.9);
+}
+tooltip label {
+  color: @foreground;
+}
+
+#workspaces {
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+#workspaces button {
+  border-top: 2px solid transparent;
+  /* To compensate for the top border and still have vertical centering */
+  padding-bottom: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: @foreground;
+}
+
+#workspaces button.focused {
+  border-color: @selection;
+  color: @purple;
+  background-color: @selection;
+  border-radius: 5;
+}
+
+#workspaces button.urgent {
+	background: @red;
+	color: @foreground;
+}
+
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+
+#custom-spacer {
+  color: @foreground;
+}
+
+#custom-power {
+  padding-left: 10px;
+  color: @red;
+}
+
+#custom-pkgs {
+  color: @red;
+}
+
+#tray {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#custom-weather {
+  color: @yellow;
+}
+
+#custom-camera {
+  color: @green;
+}
+
+#custom-camera.critical {
+  color: @red;
+}
+
+#bluetooth {
+  color: @green;
+}
+
+#bluetooth.off {
+  color: @red;
+}
+
+#bluetooth.on {
+  color: @green;
+}
+
+#bluetooth.connected {
+  color: @comment;
+}
+
+#bluetooth.discoverable {
+  color: @red;
+  animation-name: blink-critical;
+  animation-duration: 2s;
+}
+
+#bluetooth.discovering {
+  color: @red;
+  animation-name: blink-critical;
+  animation-duration: 2s;
+}
+
+#bluetooth.parable {
+  color: @red;
+  animation-name: blink-critical;
+  animation-duration: 2s;
+}
+
+#custom-vpn {
+  color: @green;
+}
+
+#network {
+  color: @green;
+}
+
+#network.disconnected {
+  color: @red;
+}
+
+#cpu {
+  color: @orange;
+}
+
+#cpu.warning {
+  color: @orange;
+}
+
+#cpu.critical {
+  animation-name: blink-critical;
+  animation-duration: 2s;
+  color: @red;
+}
+
+#temperature {
+  color: @orange;
+}
+
+#temperature.critical {
+  animation-name: blink-critical;
+  animation-duration: 2s;
+  color: @red;
+}
+
+#memory {
+  color: @pink;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#memory.warning {
+  color: @orange;
+}
+
+#memory.critical {
+  color: @red;
+  animation-name: blink-critical;
+  animation-duration: 2s;
+}
+
+#pulseaudio {
+  color: @purple;
+}
+
+#pulseaudio.muted {
+  color: @red;
+}
+
+#clock {
+  color: @yellow;
+  font-weight: bold;
+}
+
+#battery {
+  padding-right: 10px;
+  color: @cyan;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#battery.warning {
+  background-color: @background;
+  color: @orange;
+}
+
+#battery.critical {
+  background-color: @background;
+  color: @red;
+}
+
+#battery.warning.discharging {
+  animation-name: blink-warning;
+  animation-duration: 3s;
+}
+
+#battery.critical.discharging {
+  animation-name: blink-critical;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
