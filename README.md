@@ -17,7 +17,7 @@ Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://githu
 
 # Sway Screenshot
 
-![screenshot](.screenshots/Sway.jpg)
+![screenshot](.screenshots/Sway.png)
 
 #### Keybound Apps
 
@@ -35,10 +35,10 @@ Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://githu
 |         Name          |              Description               |
 | :-------------------: | :------------------------------------: |
 |      `mononoki`       | Used for bar installed with nerd-fonts |
-|      `ttf-hack`       |          for everything else           |
+|      `Hack`           |          for everything else           |
 | `nerd-fonts-complete` |           from AUR for icons           |
 
-#### .bashrc alias's
+#### Bash & ZSH alias's
 
 |       Name        |                   Description                    |
 | :---------------: | :----------------------------------------------: |
@@ -67,6 +67,6 @@ Current setup is running [Sway](https://swaywm.org/) with [Waybar](https://githu
 
 ## Thanks to/Original Sources
 
-- Reddit [u/emanuelep57](https://www.reddit.com/user/emanuelep57) for help with the volume widget & [u/FrostCastor](https://www.reddit.com/user/FrostCastor) for help with the battery indicator code
+- Reddit [u/emanuelep57](https://www.reddit.com/user/emanuelep57) for help with the volume widget on the qtile config & [u/FrostCastor](https://www.reddit.com/user/FrostCastor) for help with the battery indicator code
 - [Distro Tube](https://distro.tube/) and his [dotfiles](https://gitlab.com/dwt1/dotfiles)
 - And of course [Dracula Theme](https://github.com/dracula/dracula-theme) since I tend to use it on everthing I possibly can.
