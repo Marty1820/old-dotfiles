@@ -22,7 +22,6 @@
     "custom/weather",
     "custom/spacer",
     "tray",
-    "custom/spacer",
   ],
   
   "modules-center": [
