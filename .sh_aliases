@@ -15,9 +15,10 @@ export EDITOR="nano"
 export VISUAL="gedit"
 
 # History file sizes
-HISTFILE="$XDG_CACHE_HOME/shell_histfile"
+HISTFILE="$XDG_CACHE_HOME/sh_hist"
 HISTSIZE=2000
-HISTFILESIZE=10000
+SAVEHIST=2000
+HISTFILESIZE=2000
 
 ### SET PATHS
 if [ -d "$HOME/.bin" ] ;

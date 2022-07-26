@@ -7,13 +7,15 @@
 # ZSH CONFIGUARATION
 
 # EXPORT
-export HISTORY_IGNORE="(ls|cd|pwd|exit|history|cd -|cd ..)"
+export HISTORY_IGNORE="(l[s,a,l,.]#( *)#|cd#( -, ..)#|pwd|exit|history|cls)"
 
 ##Aliases
 source "$HOME"/.sh_aliases
 
 # Options
-setopt autocd extendedglob nomatch notify
+setopt autocd extendedglob nomatch notify correct
+# History Options
+setopt append_history hist_expire_dups_first hist_ignore_dups hist_reduce_blanks
 unsetopt beep
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
