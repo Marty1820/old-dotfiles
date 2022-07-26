@@ -21,11 +21,11 @@
     "custom/pkgs",
     "custom/weather",
     "custom/spacer",
-    "tray",
+    "tray"
   ],
   
   "modules-center": [
-    "sway/window",
+    "sway/window"
   ],
   
   "modules-right": [
@@ -44,7 +44,7 @@
     "custom/spacer",
     "clock",
     "custom/spacer",
-    "battery",
+    "battery"
   ],
 
 
@@ -54,15 +54,14 @@
 
   "custom/spacer": {
     "format": "|",
-    "tooltip": false,
+    "tooltip": false
   },
 
   "custom/power": {
     "format": "<big>襤</big>",
     "exec-on-event": "true",
-    "tooltip": "false",
     "on-click": "~/.config/rofi/scripts/powermenu.sh",
-    "tooltip": false,
+    "tooltip": false
   },
 
   "sway/workspaces": {
@@ -72,8 +71,8 @@
     "format-icons": {
       "urgent": "",
       "focused": "",
-      "default": "",
-    },
+      "default": ""
+    }
   },
 
   "custom/pkgs": {
@@ -82,7 +81,7 @@
     "exec-if": "[ $(checkupdates | wc -l) != 0 ]",
     "interval": 1800,
     "on-click": "alacritty -e paru -Syu && notify-send 'System update complete'",
-    "tooltip": false,
+    "tooltip": false
   },
 
   "custom/weather": {
@@ -91,12 +90,12 @@
     "interval": 3600,
     "return-type": "json",
     "exec": "~/.config/waybar/modules/wttr.sh",
-    "exec-if": "ping wttr.in -c1",
+    "exec-if": "ping wttr.in -c1"
   },
 
   "tray": {
     "spacing": 2,
-    "reverse-direction": true,
+    "reverse-direction": true
   },
 
   "sway/window": {
@@ -105,8 +104,8 @@
     "rewrite": {
       "(.*) - Brave": "爵 $1",
       "(.*) - gedit": "$1",
-      "(.*) - VSCodium": "﬏ $1",
-    },
+      "(.*) - VSCodium": "﬏ $1"
+    }
   },
   
   "custom/camera": {
@@ -114,7 +113,7 @@
     "return-type": "json",
     "exec": "~/.config/waybar/modules/camera.sh",
     "exec-if": "test -d /sys/class/video4linux/video0",
-    "interval": 30,
+    "interval": 30
   },
   
   "bluetooth": {
@@ -123,7 +122,7 @@
     "format-off": "<big></big>",
     "format-on": "",
     "format-connected": "<big></big> {device_battery_percentage}",
-    "on-click": "blueman-manager",
+    "on-click": "blueman-manager"
   },
 
   "custom/vpn": {
@@ -133,7 +132,7 @@
     "return-type": "json",
     "interval": 5,
     "on-click": "alacritty -e wg-quick down wg0",
-    "tooltip": false,
+    "tooltip": false
   },
 
   "network": {
@@ -142,7 +141,7 @@
     "format-ethernet": "{ifname}: {ipaddr}/{cidr}",
     "format-disconnected": "<big></big>",
     "tooltip-format": "{essid} {ifname}: {ipaddr}",
-    "on-click": "nm-connection-editor",
+    "on-click": "nm-connection-editor"
   },
 
   "cpu": {
@@ -150,7 +149,7 @@
     "format": "<big></big> {usage}",
     "states": {
       "warning": 70,
-      "critical": 90,
+      "critical": 90
     }
   },
 
@@ -159,7 +158,7 @@
     "interval": 10,
     "format": "<big>{icon}</big> {temperatureC}糖",
     "format-icons": ["", "", "", "", ""],
-    "tooltip": true,
+    "tooltip": true
   },
 
   "memory": {
@@ -167,7 +166,7 @@
     "format": "<big></big> {used:0.1f}G/{total:0.0f}G",
     "states": {
       "warning": 70,
-      "critical": 90,
+      "critical": 90
     }
   },
   
@@ -178,30 +177,29 @@
     "format-icons": {
       "headphone": "",
       "headset": "",
-      "default" : ["🔈", "🔉", "🔊"],
+      "default" : ["🔈", "🔉", "🔊"]
     },
     "scroll-step": 1,
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
   },
 
   "clock": {
     "interval": 60,
     "format": "<big></big> {:%b %d %I:%M%p}",
-    "tooltip-format": "{:%e %B %Y}",
+    "tooltip-format": "{:%e %B %Y}"
   },
 
   "battery": {
     "interval": 30,
     "states": {
       "warning": 30,
-      "critical": 15,
+      "critical": 15
     },
     // Connected to AC
     "format": "{icon} {capacity}",
     // Not connected to AC
     "format-discharging": "{icon} {capacity}",
-    "format-icons": ["", "", "", "", "", "", "", "", "", "", "",],
-    "tooltip": true,
-  },
- 
+    "format-icons": ["", "", "", "", "", "", "", "", "", "", ""],
+    "tooltip": true
+  } 
 }
