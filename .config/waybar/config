@@ -54,6 +54,7 @@
 
   "custom/spacer": {
     "format": "|",
+    "interval": "once",
     "tooltip": false
   },
 
