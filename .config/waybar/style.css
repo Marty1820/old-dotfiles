@@ -30,9 +30,9 @@
 
 window#waybar {
   background-color: transparent;
-  color: @foreground;
   transition-property: background-color;
   transition-duration: .5s;
+  color: @foreground;
 }
 
 window#waybar.hidden {
@@ -41,8 +41,8 @@ window#waybar.hidden {
 
 tooltip {
   opacity: 0.9;
-  background: @background;
   border: 1px solid @selection;
+  background: @background;
 }
 tooltip label {
   color: @foreground;
@@ -64,9 +64,9 @@ tooltip label {
 }
 
 #workspaces button {
+  border-radius: 20px;
   background: @background;
   color: @foreground;
-  border-radius: 20px;
 }
 
 #workspaces button.focused {
@@ -135,21 +135,21 @@ tooltip label {
 }
 
 #bluetooth.discoverable {
-  color: @red;
   animation-name: blink-critical;
   animation-duration: 2s;
+  color: @red;
 }
 
 #bluetooth.discovering {
-  color: @red;
   animation-name: blink-critical;
   animation-duration: 2s;
+  color: @red;
 }
 
 #bluetooth.parable {
-  color: @red;
   animation-name: blink-critical;
   animation-duration: 2s;
+  color: @red;
 }
 
 #custom-vpn {
@@ -195,9 +195,9 @@ tooltip label {
 }
 
 #memory.critical {
-  color: @red;
   animation-name: blink-critical;
   animation-duration: 2s;
+  color: @red;
 }
 
 #pulseaudio {
@@ -232,13 +232,13 @@ tooltip label {
 }
 
 #battery.critical:not(.charging) {
-  background-color: @red;
-  color: @background;
   animation-name: blink;
   animation-duration: 0.5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+  background-color: @red;
+  color: @background;
 }
 
 label:focus {
