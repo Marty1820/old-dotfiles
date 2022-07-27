@@ -10,9 +10,9 @@
 [[ $- != *i* ]] && return
 
 ### EXPORTS
-export TERM="xterm-256color"
+#export TERM="xterm-256color"
 export EDITOR="nano"
-export VISUAL="gedit"
+export VISUAL="nano"
 
 # History file sizes
 HISTFILE="$XDG_CACHE_HOME/sh_hist"
