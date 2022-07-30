@@ -24,7 +24,7 @@ window {
     transparency: "real";
     border: 2px;
     border-color: @purple;
-    border-radius: 5;
+    border-radius: 5px;
     location: center;
     x-offset: 0px;
     y-offset: 0px;
@@ -32,7 +32,7 @@ window {
 
 prompt {
     enabled: true;
-    padding: 10px;
+    padding: 12px;
     background-color: @selection;
     text-color: @foreground;
     border: 2px 2px 3px 2px;
