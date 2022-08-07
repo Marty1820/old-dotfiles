@@ -217,6 +217,7 @@ tooltip label {
 }
 
 #battery.charging, #battery.plugged {
+  background-color: transparent;
   color: @green;
 }
 
