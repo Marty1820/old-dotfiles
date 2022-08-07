@@ -222,13 +222,18 @@ tooltip label {
 
 @keyframes blink {
   to {
-    color: @foreground;
+    color: @red;
   }
 }
 
 #battery.warning:not(.charging) {
-  background-color: @orange;
-  color: @background;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 10;
+  animation-direction: alternate;
+  background-color: transparent;
+  color: @orange;
 }
 
 #battery.critical:not(.charging) {
