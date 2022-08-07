@@ -199,6 +199,7 @@ for_window [window_type="dialog"] floating enable
 #for_window [class="(?i)bitwarden"] floating enable
 #for_window [class="VirtualBox Machine"] floating enable
 for_window [app_id="nemo" title=" Properties"] floating enable
+for_window [app_id="galculator"] floating enable
 
 # Open on set workspaces
 for_window [class="Brave-browser"] move to workspace $ws2
