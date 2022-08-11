@@ -191,14 +191,9 @@ for_window [app_id="nm-connection-editor"] floating enable
 for_window [app_id="xarchiver"] floating enable
 for_window [app_id="org.kde.kdeconnect.app"] floating enable
 for_window [app_id="blueman-manager"] floating enable
-#for_window [class="confirm"] floating enable
 for_window [window_type="dialog"] floating enable
-#for_window [class="download"] floating enable
-#for_window [class="error"] floating enable
-#for_window [class="file_progress"] floating enable
-#for_window [class="(?i)bitwarden"] floating enable
-#for_window [class="VirtualBox Machine"] floating enable
 for_window [app_id="nemo" title=" Properties"] floating enable
+for_window [app_id="file-roller"] floating enabled
 for_window [app_id="galculator"] floating enable
 
 # Open on set workspaces
