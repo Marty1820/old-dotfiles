@@ -20,6 +20,7 @@
 @define-color red #ff5555;
 @define-color yellow #f1fa8c;
 
+/* Main */
 * {
   border: none;
   border-radius: 0px;
@@ -41,9 +42,11 @@ window#waybar.hidden {
 
 tooltip {
   opacity: 0.9;
+  border-radius: 20px;
   border: 1px solid @selection;
   background: @background;
 }
+
 tooltip label {
   color: @foreground;
 }
@@ -63,6 +66,7 @@ tooltip label {
   margin-right: 0px;
 }
 
+/* Workspaces */
 #workspaces button {
   border-radius: 20px;
   background: @background;
@@ -80,6 +84,7 @@ tooltip label {
   color: @foreground;
 }
 
+/* Modules */
 #custom-spacer {
   color: @foreground;
 }
@@ -103,7 +108,7 @@ tooltip label {
 
 #tray > .needs-attention {
   -gtk-icon-effect: highlight;
-  color: @foreground;
+  color: @red;
 }
 
 #custom-weather {
