@@ -31,8 +31,6 @@ IFS=$SAVEIFS
 
 temperature=$(echo ${weather[2]} | sed -E 's/([[:digit:]])+\.\./\1 to /g')
 
-#echo ${weather[1]##*,}
-
 # Set icons
 case $(echo ${weather[1]##*,} | tr '[:upper:]' '[:lower:]') in
 "clear" | "sunny")
@@ -71,6 +69,4 @@ case $(echo ${weather[1]##*,} | tr '[:upper:]' '[:lower:]') in
     ;;
 esac
 
-#echo $temp $condition
-
-echo -e "{\"text\":\""$temperature $condition"\", \"alt\":\""${weather[0]}"\", \"tooltip\":\""${weather[0]}: $temperature ${weather[1]}"\"}"
+echo -e "{\"text\":\""$condition $temperature"\", \"alt\":\""${weather[0]}"\", \"tooltip\":\""${weather[0]}: $temperature ${weather[1]}"\"}"
