@@ -127,10 +127,9 @@ bindsym {
   Print exec grim -t png ~/Pictures/Screenshot/$(date +%Y-%m-%d_%H-%m-%s).png
   $mod+Print exec grim -t png -g "$(slurp)" ~/Pictures/Screenshot/$(date +%Y-%m-%d_%H-%m-%s).png
   #XF86AudioMedia exec --no-startup-id "" # Gear icon/F12
-  #previous
-  #Play/Pause
-  #next
-  #changing screen. Maybe black out screen?
+  #XF86AudioPrev
+  #XF86AudioPlay
+  #XF86AudioNext
 }
 
 #
