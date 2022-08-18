@@ -36,7 +36,6 @@ case "$chosen" in
     ;;
   "$suspend")
     if [ "$(cat /sys/class/power_supply/BAT1/status)" = Discharging ]; then
-		  $lock_cmd
 		  systemctl hibernate
 		else
 		  $lock_cmd
