@@ -13,6 +13,7 @@ configuration {
     fullscreen: false;
     hide-scrollbar: true;
     sidebar-mode: false;
+    show-icons: false;
 }
 
 /*----- Global Colorscheme -----*/
@@ -86,6 +87,7 @@ listview {
     spacing: 5px;
     cycle: true;
     dynamic: true;
+    scrollbar: false;
     layout: vertical;
 }
 
@@ -94,7 +96,7 @@ element {
     background-color: @selection;
     text-color: @foreground;
     orientation: vertical;
-    border-radius: 0px;
+    border-radius: 20px;
 }
 
 element-text {
