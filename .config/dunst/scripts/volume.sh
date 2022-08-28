@@ -6,25 +6,35 @@
 # $./volume.sh down
 # $./volume.sh mute
 
+# Icons
+vol_high=audio-volume-high-symbolic
+vol_med=audio-volume-medium-symbolic
+vol_low=audio-volume-low-symbolic
+vol_mute=audio-volume-muted-symbolic
+
+# Gets volume percent without the '%' sign
 get_volume() {
     pamixer --get-volume
 }
 
+# Checks if volume is muted
 is_mute() {
     pamixer --get-mute | grep true > /dev/null
 }
 
 send_notification() {
     volume=$(get_volume)
+    # Specialized bar
+    bar=$(seq -s "─" 0 $((volume / 5)) | sed 's/[0-9]//g')
     # Send the notification
     if [ "$volume" = "0" ]; then
-    dunstify --raw_icon=/usr/share/icons/Adwaita/48x48/status/audio-volume-muted-symbolic.symbolic.png --timeout=1600 --replace=2593 --urgency=normal "Volume $volume" -h int:value:"$volume"
+    dunstify -i "$vol_mute" --timeout=1600 --replace=2593 --urgency=normal "$volume    $bar"
     elif [ "$volume" -lt "30" ]; then
-    dunstify --raw_icon=/usr/share/icons/Adwaita/48x48/status/audio-volume-low-symbolic.symbolic.png --timeout=1600 --replace=2593 --urgency=normal "Volume $volume" -h int:value:"$volume"
+    dunstify -i "$vol_low" --timeout=1600 --replace=2593 --urgency=normal "$volume    $bar"
     elif [ "$volume" -lt "80" ]; then
-    dunstify --raw_icon=/usr/share/icons/Adwaita/48x48/status/audio-volume-medium-symbolic.symbolic.png --timeout=1600 --replace=2593 --urgency=normal "Volume $volume" -h int:value:"$volume"
+    dunstify -i "$vol_med" --timeout=1600 --replace=2593 --urgency=normal "$volume    $bar"
     else
-    dunstify --raw_icon=/usr/share/icons/Adwaita/48x48/status/audio-volume-high-symbolic.symbolic.png --timeout=1600 --replace=2593 --urgency=normal "Volume $volume" -h int:value:"$volume"
+    dunstify -i "$vol_high" --timeout=1600 --replace=2593 --urgency=normal "$volume    $bar"
     fi
 }
 
@@ -40,7 +50,7 @@ case $1 in
     mute)
 	pamixer -t
 	if is_mute ; then
-	    dunstify --raw_icon=/usr/share/icons/Adwaita/48x48/status/audio-volume-muted-symbolic.symbolic.png --timeout=1600 --replace=2593 --urgency=normal "Mute" -h string:x-dunst-stack-tage:volume
+	    dunstify -i "$vol_mute" --timeout=1600 --replace=2593 --urgency=normal "Mute" -h string:x-dunst-stack-tage:volume
 	else
 	    send_notification
 	fi

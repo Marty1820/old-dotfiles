@@ -38,7 +38,10 @@ set_curve() {
 # Sends notification with dunst and set progress bar
 send_notification() {
     backlight=$(get_backlight)
-    dunstify --raw_icon=/usr/share/icons/Adwaita/48x48/status/display-brightness-symbolic.symbolic.png --timeout=1600 --replace=2593 --urgency=normal "Brightness $backlight" -h int:value:"$backlight"
+    icon=display-brightness-symbolic
+    # Specialized bar
+    bar=$(seq -s "─" 0 $((backlight / 5)) | sed 's/[0-9]//g')
+    dunstify -i "$icon" --timeout=1600 --replace=2593 --urgency=normal "$backlight    $bar"
 }
 
 case $1 in
