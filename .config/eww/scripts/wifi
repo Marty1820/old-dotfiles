@@ -1,0 +1,28 @@
+#!/bin/sh
+
+status=$(nmcli g | grep -oE "disconnected")
+essid=$(nmcli c | grep wlan0 | awk '{print ($1)}')
+ip=$(ip -4 addr show wlan0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+signal=$(nmcli dev wifi list | awk '/\*/{if (NR!=1) {print $8}}')
+
+if [ "$status" ]; then
+    icon=""
+    text="Disconnected"
+    col="#ff5555"
+else
+    icon="直"
+    text="${essid}"
+    col="#50fa7b"
+fi
+
+if [ "$1" = "--COL" ]; then
+    echo $col	
+elif [ "$1" = "--ESSID" ]; then
+	echo "$text"
+elif [ "$1" = "--ICON" ]; then
+	echo $icon
+elif [ "$1" = "--IP" ]; then
+    echo "$ip"
+elif [ "$1" = "--SIG" ]; then
+    echo "$signal"
+fi

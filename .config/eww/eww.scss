@@ -1,0 +1,120 @@
+/* Colors */
+$background: #282a36;
+$selection: #44475a;
+$foreground: #f8f8f2;
+$comment: #6272a4;
+$cyan: #8be9fd;
+$green: #50fa7b;
+$orange: #ffb86c;
+$pink: #ff79c6;
+$purple: #bd93f9;
+$red: #ff5555;
+$yellow: #f1fa8c;
+
+*{
+  all: unset;
+}
+
+.eww_bar {
+  padding: 0 8px;
+  margin: 0;
+}
+
+.workspaces {
+  padding: .5rem;
+}
+
+.workspaces button {
+  border: none;
+  margin: 0rem .2rem 0 .2rem;
+  color: $purple;
+}
+
+.workspaces button.unfocused {
+  color: $orange
+}
+
+.workspaces button.empty {
+  color: $selection;
+}
+
+.clock_time {
+  font-size: 2em;
+  font-weight: bold;
+  color: $yellow;
+  font-family: "mononoki-Regular Nerd Font Complete Mono";
+}
+
+.date {
+  color: $foreground;
+  font-weight: bold;
+}
+
+.wifbar {
+  color: $green;
+  background-color: $background;
+  border-radius: 10px;
+}
+
+.iconwif {
+  color: $green;
+  font-size: 15;
+  margin: 10px;
+}
+
+.wifi_module {
+  background-color: $background;
+  border-radius: 16px;
+  margin: 0px 5px 0px 5px;
+}
+
+.volbar {
+  color: $purple;
+  background-color: $background;
+  border-radius: 10px;
+}
+
+.iconvol {
+  font-size: 15;
+  margin: 10px;
+}
+
+.vol_module {
+  background-color: $background;
+  border-radius: 16px;
+  margin: 0px 5px 0px 5px;
+}
+
+.britbar {
+  color: $yellow;
+  background-color: $background;
+  border-radius: 10px;
+}
+
+.iconbrit {
+  font-size: 15;
+  margin: 10px;
+}
+
+.brit_module {
+  background-color: $background;
+  border-radius: 16px;
+  margin: 0px 5px 0px 5px;
+}
+
+.batbar {
+  color: $cyan;
+  background-color: $background;
+  border-radius: 10px;
+}
+
+.iconbat {
+  font-size: 15;
+  margin: 10px;
+}
+
+.bat_module {
+  background-color: $background;
+  border-radius: 16px;
+  margin: 0px 5px 0px 5px;
+}

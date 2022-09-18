@@ -1,0 +1,158 @@
+;;███╗░░░███╗░█████╗░██████╗░████████╗██╗░░░██╗
+;;████╗░████║██╔══██╗██╔══██╗╚══██╔══╝╚██╗░██╔╝
+;;██╔████╔██║███████║██████╔╝░░░██║░░░░╚████╔╝░
+;;██║╚██╔╝██║██╔══██║██╔══██╗░░░██║░░░░░╚██╔╝░░
+;;██║░╚═╝░██║██║░░██║██║░░██║░░░██║░░░░░░██║░░░
+;;╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░
+
+;; Variables
+(defvar network_cmd "nm-connection-editor &")
+(defvar vol_mute "pamixer -t")
+
+(defvar eww "/usr/bin/eww -c $HOME/.config/eww")
+(defvar time_rev false)
+
+(deflisten workspace :initial "" `~/.config/eww/scripts/workspaces`)
+
+
+;; Polls
+(defpoll clock_time :interval "5s" "date '+\%I:%M'")
+(defpoll clock_date :interval "10h" "date '+%b %d'")
+
+(defpoll COL_WLAN :interval "30s" "~/.config/eww/scripts/wifi --COL")
+(defpoll ESSID_WLAN :interval "1m" "~/.config/eww/scripts/wifi --ESSID")
+(defpoll WLAN_ICON :interval "10s" "~/.config/eww/scripts/wifi --ICON")
+(defpoll WLAN_IP :interval "10s" "~/.config/eww/scripts/wifi --IP")
+(defpoll WLAN_SIG :interval "1m" "~/.config/eww/scripts/wifi --SIG")
+
+(defpoll COL_VOL :interval "3s" "~/.config/eww/scripts/volume --COL")
+(defpoll PERC_VOL :interval "3s" "~/.config/eww/scripts/volume --PERC")
+(defpoll VOL_ICON :interval "3s" "~/.config/eww/scripts/volume --ICON")
+
+(defpoll PERC_BRIT :interval "2s" "xbacklight -get")
+
+(defpoll COL_BAT :interval "15s" "~/.config/eww/scripts/battery --COL")
+(defpoll STAT_BAT :interval "15s" "~/.config/eww/scripts/battery --STATUS")
+(defpoll BAT_ICON :interval "30s" "~/.config/eww/scripts/battery --ICON")
+
+
+;; Widgets
+(defwidget workspaces []
+  (literal :content workspace))
+
+(defwidget clock_module []
+  (eventbox :onhover "${eww} update time_rev=true"
+			  :onhoverlost "${eww} update time_rev=false"
+    (box :class "module" :space-evenly "false" :orientation "h" :spacing "3" 
+      (label :text clock_time :class "clock_time" )
+	  (revealer :transition "slideleft"
+			  :reveal time_rev
+			  :duration "350ms"
+    (label :class "date"
+      :text clock_date)
+  ))))
+
+(defwidget wifi []
+    (box :class "wif_module" :vexpand "false" :hexpand "false"
+            (circular-progress :value WLAN_SIG
+                :class "wifbar"
+                :thickness 2
+                :start-at 75
+                :clockwise false
+            (button
+                :onclick network_cmd
+                :class "iconwif"
+                :tooltip "${ESSID_WLAN}: ${WLAN_IP}"
+                :style "color: ${COL_WLAN};" WLAN_ICON))))
+
+(defwidget volume []
+    (box :class "vol_module" :vexpand "false" :hexpand "false"
+            (circular-progress :value PERC_VOL
+                :class "volbar"
+                :thickness 2
+                :style "color: ${COL_VOL};"
+                :start-at 75
+                :clockwise false
+            (button
+                :onclick vol_mute
+                :class "iconvol"
+                :tooltip "${PERC_VOL}%"
+                :style "color: ${COL_VOL};" VOL_ICON))))
+
+(defwidget brightness []
+    (box :class "brit_module" :vexpand "false" :hexpand "false"
+            (circular-progress :value PERC_BRIT
+                :class "britbar"
+                :thickness 2
+                :start-at 75
+                :clockwise false
+            (button
+                :class "iconbrit"
+                :tooltip "${PERC_BRIT}%"
+                ""
+                ))))
+
+(defwidget bat []
+		(box :class "bat_module" :vexpand "false" :hexpand "false" 
+            (circular-progress :value {EWW_BATTERY.BAT1.capacity}
+                :class "batbar"
+                :thickness 2
+                :style "color: ${COL_BAT};"
+                :start-at 75
+                :clockwise false
+            (button 
+                :class "iconbat"
+                :tooltip "${EWW_BATTERY.BAT1.capacity}%"
+                :style "color: ${COL_BAT};" BAT_ICON))))
+
+
+;; Sections
+(defwidget left []
+  (box :orientation "h"
+       :class "left"
+       :space-evenly "true"
+       :halign "start"
+       :spacing 5
+    (workspaces)))
+
+(defwidget center []
+  (box :orientation "h"
+       :class "center"
+       :space-evenly "false"
+       :halign "start"
+    (clock_module)))
+
+(defwidget right []
+  (box :orientation "h"
+       :class "right"
+       :space-evenly "true"
+       :halign "end"
+    (wifi)
+    (volume)
+    (brightness)
+    (bat)))
+
+
+;; Bar Setup
+(defwidget bar []
+  (centerbox :class "eww_bar"
+             :orientation "h"
+             :vexpand "false"
+             :hexpand "false"
+    (left)
+    (center)
+    (right)
+    ))
+
+(defwindow bar :monitor 0
+               :wm-ignore true
+               :windowtype "toolbar"
+               :exclusive true
+               :focusable false
+               :stacking "fg"
+               :geometry (geometry :x "0%"
+               :y "0%"
+               :width "100%"
+               :height "0px"
+               :anchor "top center")
+  (bar))
