@@ -41,6 +41,10 @@ Current setup is running [Hyprland](https://hyprland.org/) and [Sway](https://sw
 
 # Screenshots
 
+### Hyprland
+
+![screenshot](.screenshots/hyprland.png)
+
 ### Sway
 
 ![screenshot](.screenshots/Sway.png)
