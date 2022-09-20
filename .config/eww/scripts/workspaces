@@ -1,87 +1,32 @@
 #!/bin/bash
-workspaces() {
 
-ws1="ID 1"
-ws2="ID 2"
-ws3="ID 3"
-ws4="ID 4"
-ws5="ID 5"
-ws6="ID 6"
-ws7="ID 7"
+ic=(0  爵    碌 )
 
-# check if Occupied
-o1=$(hyprctl workspaces | grep "$ws1" )
-o2=$(hyprctl workspaces | grep "$ws2" )
-o3=$(hyprctl workspaces | grep "$ws3" )
-o4=$(hyprctl workspaces | grep "$ws4" )
-o5=$(hyprctl workspaces | grep "$ws5" )
-o6=$(hyprctl workspaces | grep "$ws6" )
-o7=$(hyprctl workspaces | grep "$ws7" )
+listworkspaces() {
+  atleast=7
+  ws=($(hyprctl -j workspaces | jq '.[].id' | sort))
+  current=${1-$(hyprctl -j monitors | jq -r '.[0].activeWorkspace.id')}
+  max=$(( ${ws[-1]} > atleast ? ${ws[-1]} : atleast))
 
-# check if Focused
-f1=$(hyprctl monitors | grep "workspace: 1" )
-f2=$(hyprctl monitors | grep "workspace: 2" )
-f3=$(hyprctl monitors | grep "workspace: 3" )
-f4=$(hyprctl monitors | grep "workspace: 4" )
-f5=$(hyprctl monitors | grep "workspace: 5" )
-f6=$(hyprctl monitors | grep "workspace: 6" )
-f7=$(hyprctl monitors | grep "workspace: 7" )
+  printf '(box :class "workspaces" :orientation "h" :spacing 3 :space-evenly "false" '
+  for w in $(seq $max); do
+    [[ $w == "$current" ]] && dot="${ic[$current]}" || dot="${ic[$w]}"
+    if [[ $w == "$current" ]]; then
+      class="focused"
+    else
+      if printf '%s\0' "${ws[@]}" | grep -Fxqz -- "$w"; then
+        class="unfocused"
+      else
+        class="empty"
+      fi
+    fi
 
-if [ "$o1" != "" ]; then
-    ic_1="➊"
-  else
-    ic_1=""
-fi
-if [ "$o2" != "" ]; then
-    ic_2="➋"
-  else
-    ic_2=""
-fi
-if [ "$o3" != "" ]; then
-    ic_3="➌"
-  else
-    ic_3=""
-fi
-if [ "$o4" != "" ]; then
-    ic_4="➍"
-  else
-    ic_4=""
-fi
-if [ "$o5" != "" ]; then
-    ic_5="➎"
-  else
-    ic_5=""
-fi
-if [ "$o6" != "" ]; then
-    ic_6="➏"
-  else
-    ic_6=""
-fi
-if [ "$o7" != "" ]; then
-    ic_7="➐"
-  else
-    ic_7=""
-fi
-
-if [ "$f1" != "" ]; then
-    ic_1=""
-elif [ "$f2" != "" ]; then
-    ic_2="爵"
-elif [ "$f3" != "" ]; then
-    ic_3=""
-elif [ "$f4" != "" ]; then
-    ic_4=""
-elif [ "$f5" != "" ]; then
-    ic_5=""
-elif [ "$f6" != "" ]; then
-    ic_6="碌"
-elif [ "$f7" != "" ]; then
-    ic_7=""
-fi
-
-echo 	"(box	:class \"workspaces\"	:orientation \"h\" :spacing 5 :space-evenly \"false\" (button :onclick \"hyprctl dispatch workspace 1\"	:class	\"$o1$f1\"	\"$ic_1\") (button :onclick \"hyprctl dispatch workspace 2\"	:class \"$o2$f2\"	 \"$ic_2\") (button :onclick \"hyprctl dispatch workspace 3\"	:class \"$o3$f3\" \"$ic_3\") (button :onclick \"hyprctl dispatch workspace 4\"	:class \"$o4$f4\"	\"$ic_4\") (button :onclick \"hyprctl dispatch workspace 5\"	:class \"$o5$f5\" \"$ic_5\")  (button :onclick \"hyprctl dispatch workspace 6\"	:class \"$o6$f6\" \"$ic_6\")  (button :onclick \"hyprctl dispatch workspace 7\"	:class \"$o7$f7\" \"$ic_7\"))"
+    printf '(button :class "%s" :onclick "hyprctl dispatch workspace %s" "%s")' "$class" "$w" "$dot"
+  done
+  echo -e ')'
 }
-workspaces
+
+listworkspaces "$@"
 tail -f /tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/hyprland.log | grep -E --line-buffered "Changed to workspace" | while read -r; do 
-workspaces
+listworkspaces "$@"
 done

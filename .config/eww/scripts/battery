@@ -31,18 +31,17 @@ if [ "$status" = "Discharging" ]; then
 		col="$colgood"
   elif [ "$per" -gt "30" ]; then
 	  icon=""
-		col="$colwarn"
+		col="$colgood"
   elif [ "$per" -gt "20" ]; then
 	  icon=""
 		col="$colwarn"
-		notify-send -u critical "Battery Low" "Connect Charger"
   elif [ "$per" -gt "10" ]; then
 	  icon=""
 		col="$colcrit"
-		notify-send -u critical "Battery Low" "Connect Charger"
 	else
 	  icon=""
 		col="$colcrit"
+		notify-send -u critical "Battery Low" "Connect Charger"
 	fi
 elif [ "$status" = "Charging" ]; then
 	icon=""
