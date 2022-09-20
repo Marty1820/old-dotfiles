@@ -26,7 +26,7 @@
 (defpoll WLAN_SIG :interval "1m" "~/.config/eww/scripts/wifi --SIG")
 
 (defpoll COL_VOL :interval "3s" "~/.config/eww/scripts/volume --COL")
-(defpoll PERC_VOL :interval "3s" "~/.config/eww/scripts/volume --PERC")
+(defpoll PERC_VOL :interval "2s" "pamixer --get-volume")
 (defpoll VOL_ICON :interval "3s" "~/.config/eww/scripts/volume --ICON")
 
 (defpoll PERC_BRIT :interval "2s" "xbacklight -get")
