@@ -25,13 +25,17 @@ $yellow: #f1fa8c;
 }
 
 .workspaces button {
+  font-size: 15;
   border: none;
-  margin: 0rem .2rem 0 .2rem;
+  margin: 0rem .2rem;
+}
+
+.workspaces button.focused {
   color: $purple;
 }
 
 .workspaces button.unfocused {
-  color: $orange
+  color: $orange;
 }
 
 .workspaces button.empty {
@@ -46,6 +50,7 @@ $yellow: #f1fa8c;
 }
 
 .date {
+  font-size: 15;
   color: $foreground;
   font-weight: bold;
 }
@@ -65,7 +70,7 @@ $yellow: #f1fa8c;
 .wifi_module {
   background-color: $background;
   border-radius: 16px;
-  margin: 0px 5px 0px 5px;
+  margin: 0px 5px;
 }
 
 .volbar {
@@ -82,7 +87,7 @@ $yellow: #f1fa8c;
 .vol_module {
   background-color: $background;
   border-radius: 16px;
-  margin: 0px 5px 0px 5px;
+  margin: 0px 5px;
 }
 
 .britbar {
@@ -99,7 +104,7 @@ $yellow: #f1fa8c;
 .brit_module {
   background-color: $background;
   border-radius: 16px;
-  margin: 0px 5px 0px 5px;
+  margin: 0px 5px;
 }
 
 .batbar {
@@ -116,5 +121,5 @@ $yellow: #f1fa8c;
 .bat_module {
   background-color: $background;
   border-radius: 16px;
-  margin: 0px 5px 0px 5px;
+  margin: 0px 5px;
 }
