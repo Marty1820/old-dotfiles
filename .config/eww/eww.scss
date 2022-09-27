@@ -1,4 +1,4 @@
-/* Colors */
+/** Colors **/
 $background: #282a36;
 $selection: #44475a;
 $foreground: #f8f8f2;
@@ -11,23 +11,36 @@ $purple: #bd93f9;
 $red: #ff5555;
 $yellow: #f1fa8c;
 
+/** Global **/
 *{
-  all: unset;
+	all: unset;
+	font-family: "mononoki-Regular Nerd Font Complete Mono";
 }
 
+/** Bar **/
 .eww_bar {
-  padding: 0 8px;
+  padding: 2px 5px;
   margin: 0;
 }
 
+.dockbox {
+	background-color: black;
+	border: 1px solid $selection;
+	border-radius: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/** Workspaces **/
 .workspaces {
-  padding: .5rem;
+	min-height: 40px;
+	min-width: 40px;
 }
 
 .workspaces button {
   font-size: 15;
   border: none;
-  margin: 0rem .2rem;
+  margin: 0px 5px;
 }
 
 .workspaces button.focused {
@@ -42,84 +55,54 @@ $yellow: #f1fa8c;
   color: $selection;
 }
 
-.clock_time {
-  font-size: 2em;
-  font-weight: bold;
-  color: $yellow;
-  font-family: "mononoki-Regular Nerd Font Complete Mono";
+/** Clock **/
+.clockbox {
+	margin: 0px 0px 0px 15px;
+}
+
+.time {
+	font-size: 14px;
+	font-weight: bold;
 }
 
 .date {
-  font-size: 15;
-  color: $foreground;
-  font-weight: bold;
+	font-size: 12px;
+	font-weight: bold;
 }
 
-.wifbar {
-  color: $green;
-  background-color: $background;
-  border-radius: 10px;
+/** Weather **/
+.weatherbox {
+	margin: 0px 0px 0px -90px;
 }
 
-.iconwif {
-  color: $green;
-  font-size: 15;
-  margin: 10px;
+.weathericon {
+	font-size: 30px;
 }
 
-.wifi_module {
-  background-color: $background;
-  border-radius: 16px;
-  margin: 0px 5px;
+.weathertemp {
+	font-size: 14px;
+	font-weight: bold;
+	margin: 0px 0px 0px -5px;
 }
 
-.volbar {
-  color: $purple;
-  background-color: $background;
-  border-radius: 10px;
+.weatherstat {
+	font-size: 10px;
+	font-weight: bold;
+	margin: 0px 0px 0px 5px;
 }
 
-.iconvol {
-  font-size: 15;
-  margin: 10px;
+/** System **/
+.trayicon {
+  background-repeat: no-repeat;
+	background-size: 24px;
+	min-height: 24px;
+	min-width: 24px;
 }
 
-.vol_module {
-  background-color: $background;
-  border-radius: 16px;
-  margin: 0px 5px;
+.infotext {
+	font-size: 14px;
+	padding: 5px 0px;
+	font-weight: bold;
 }
 
-.britbar {
-  color: $yellow;
-  background-color: $background;
-  border-radius: 10px;
-}
-
-.iconbrit {
-  font-size: 15;
-  margin: 10px;
-}
-
-.brit_module {
-  background-color: $background;
-  border-radius: 16px;
-  margin: 0px 5px;
-}
-
-.batbar {
-  color: $cyan;
-  background-color: $background;
-  border-radius: 10px;
-}
-
-.iconbat {
-  font-size: 15;
-  margin: 10px;
-}
-
-.bat_module {
-  background-color: $background;
-  border-radius: 16px;
-  margin: 0px 5px;
-}
+/** EOF **/
