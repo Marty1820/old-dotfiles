@@ -1,13 +1,18 @@
 #!/bin/sh
 
-status=$(nmcli g | grep -oE "disconnected")
-essid=$(nmcli c | grep wlan0 | awk '{print ($1)}')
+rfblock=$(rfkill --output SOFT | awk '($1 == "blocked")')
+status=$(nmcli general | grep -oE "disconnected")
+essid=$(nmcli connection | grep wlan0 | awk '{print ($1)}')
 ip=$(ip -4 addr show wlan0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
 signal=$(nmcli dev wifi list | awk '/\*/{if (NR!=1) {print $8}}')
 
-if [ "$status" ]; then
+if [ "$rfblock" != "" ]; then
     icon=""
-    text="Disconnected"
+    text=""
+    col="#ff5555"
+elif [ "$status" ]; then
+    icon="睊"
+    text=""
     col="#ff5555"
 else
     icon="直"
