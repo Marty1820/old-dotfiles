@@ -18,17 +18,18 @@
 (defpoll DATE :interval "5s" "date +\"%A, %b %d\"")
 
 ;; Weather vars
+;; need to run "weather --getdata" to update cache
 (defpoll WTHR :interval "15m" "scripts/weather --stat")
 (defvar wthr_rev false)
-(defpoll WTHR_DATA :interval "15m" "scripts/weather --getdata")
 (defpoll WTHR_ICON :interval "15m" "scripts/weather --icon")
 (defpoll WTHR_TEMP :interval "15m" "scripts/weather --temp")
 (defpoll WTHR_HEX :interval "15m" "scripts/weather --hex")
 (defpoll WTHR_STAT :interval "1h" "scripts/weather --stat")
 
 ;; Network
+(defvar ip_rev false)
 (defvar network_cmd "nm-connection-editor &")
-(defpoll WLAN_COL :interval "30s" "scripts/wifi --COL")
+(defpoll WLAN_COL :interval "10s" "scripts/wifi --COL")
 (defpoll WLAN_ICON :interval "10s" "scripts/wifi --ICON")
 (defpoll WLAN_ESSID :interval "10s" "scripts/wifi --ESSID")
 
@@ -86,9 +87,8 @@
 			    (box :style "color: ${BAT_COL};" BAT_ICON);" :class "trayicon")
 		      (label :class "infotext" :halign "start" :text "${EWW_BATTERY.BAT1.capacity}"))))))
 
-;; ** Windows **
+;; ** Sections **
 
-;; Sections
 (defwidget left []
   (box :orientation "h"
       :class "left"
@@ -110,6 +110,8 @@
       :space-evenly "false"
       :halign "end"
     (system)))
+
+;; ** Bar **
 
 (defwidget bar []
   (centerbox :class "eww_bar"
