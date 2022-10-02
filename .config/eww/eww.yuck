@@ -7,7 +7,7 @@
 
 ;; ** Variables **
 
-(defvar eww "/usr/bin/eww -c $HOME/.config/eww")
+(defvar EWW "/usr/bin/eww -c $HOME/.config/eww")
 
 ;; Workspace vars
 (deflisten workspace :initial "" "scripts/workspaces")
@@ -21,10 +21,10 @@
 ;; need to run "weather --getdata" to update cache
 (defpoll WTHR :interval "15m" "scripts/weather --stat")
 (defvar wthr_rev false)
-(defpoll WTHR_ICON :interval "15m" "scripts/weather --icon")
-(defpoll WTHR_TEMP :interval "15m" "scripts/weather --temp")
-(defpoll WTHR_HEX :interval "15m" "scripts/weather --hex")
-(defpoll WTHR_STAT :interval "1h" "scripts/weather --stat")
+(defpoll WTHR_ICON :interval "5m" "scripts/weather --icon")
+(defpoll WTHR_TEMP :interval "5m" "scripts/weather --temp")
+(defpoll WTHR_HEX :interval "5m" "scripts/weather --hex")
+(defpoll WTHR_STAT :interval "5m" "scripts/weather --stat")
 
 ;; Network
 (defvar ip_rev false)
@@ -49,43 +49,49 @@
   (box :class "dockbox"
     (literal :content workspace)))
 
-;; weather
-(defwidget weather [] 
-	(box :class "dockbox"
-    (eventbox :onhover "${eww} update date_rev=true"
-        :onhoverlost "${eww} update date_rev=false"
-			(box :class "clockbox" :orientation "v" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
-				(label :class "time" :halign "start" :wrap "true" :limit-width 25 :text TIME)
-        (revealer :transition "slideup"
+;; clock
+(defwidget clock []
+  (eventbox :onhover "${EWW} update date_rev=true"
+      :onhoverlost "${EWW} update date_rev=false"
+		(box :class "clockbox" :orientation "v" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
+			(label :class "time" :halign "start" :wrap "true" :limit-width 25 :text TIME)
+      (revealer :transition "slideup"
           :reveal date_rev
           :duration "350ms"
-          (label :class "date" :halign "start" :wrap "true" :limit-width 25 :text DATE))))
-    (eventbox :onhover "${eww} update wthr_rev=true"
-        :onhoverlost "${eww} update wthr_rev=false"
-			(box :class "weatherbox" :orientation "h" :spacing 0 :valign "center" :halign "end" :space-evenly "false" :vexpand "false" :hexpand "false"
-				(label :class "weathericon" :style "color: ${WTHR_HEX};" :text WTHR_ICON)
-				(label :class "weathertemp" :text WTHR_TEMP)
-        (revealer :transition "slideright"
+          (label :class "date" :halign "start" :wrap "true" :limit-width 25 :text DATE)))))
+
+;; weather
+(defwidget weather [] 
+  (eventbox :onhover "${EWW} update wthr_rev=true"
+      :onhoverlost "${EWW} update wthr_rev=false"
+		(box :class "weatherbox" :orientation "h" :spacing 0 :valign "center" :halign "end" :space-evenly "false" :vexpand "false" :hexpand "false"
+  		(label :class "weathericon" :style "color: ${WTHR_HEX};" :text WTHR_ICON)
+			(label :class "weathertemp" :text WTHR_TEMP)
+      (revealer :transition "slideright"
           :reveal wthr_rev
           :duration "350ms"
-          (label :class "weatherstat" :halign "start" :wrap "true" :limit-width 25 :text WTHR_STAT))))))
+          (label :class "weatherstat" :halign "start" :wrap "true" :limit-width 25 :text WTHR_STAT)))))
 
-;; system
-(defwidget system [] 
-	(box :class "dockbox"
+;; wifi
+(defwidget wifi []
+  (button :onclick network_cmd
 		(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-			(button :onclick network_cmd
-				(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-					(box :style "color: ${WLAN_COL};" WLAN_ICON);" :class "trayicon")
-				  (label :class "infotext" :halign "start" :text WLAN_ESSID)))
-      (button :onclick vol_mute
-				(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-					(box :style "color: ${VOL_COL};" VOL_ICON);" :class "trayicon")
-				  (label :class "infotext" :halign "start" :text "${VOLUME}")))
-			(button :onclick "~/Scripts/bat_info"
-		    (box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-			    (box :style "color: ${BAT_COL};" BAT_ICON);" :class "trayicon")
-		      (label :class "infotext" :halign "start" :text "${EWW_BATTERY.BAT1.capacity}"))))))
+			(box :style "color: ${WLAN_COL};" WLAN_ICON);" :class "trayicon")
+		  (label :class "infotext" :halign "start" :text WLAN_ESSID))))
+
+;; volume
+(defwidget volume []
+  (button :onclick vol_mute
+		(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
+			(box :style "color: ${VOL_COL};" VOL_ICON);" :class "trayicon")
+		  (label :class "infotext" :halign "start" :text "${VOLUME}"))))
+
+;; battery
+(defwidget battery []
+	(button :onclick "~/Scripts/bat_info"
+	  (box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
+	    (box :style "color: ${BAT_COL};" BAT_ICON);" :class "trayicon")
+	    (label :class "infotext" :halign "start" :text "${EWW_BATTERY.BAT1.capacity}"))))
 
 ;; ** Sections **
 
@@ -102,14 +108,20 @@
       :class "center"
       :space-evenly "false"
       :halign "start"
-    (weather)))
+    (box :class "dockbox"
+      (clock)
+      (weather))))
 
 (defwidget right []
   (box :orientation "h"
       :class "right"
       :space-evenly "false"
       :halign "end"
-    (system)))
+    (box :class "dockbox"
+		  (box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
+        (wifi)
+        (volume)
+        (battery)))))
 
 ;; ** Bar **
 
