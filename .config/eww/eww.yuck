@@ -19,7 +19,6 @@
 
 ;; Weather vars
 ;; need to run "weather --getdata" to update cache
-(defpoll WTHR :interval "15m" "scripts/weather --stat")
 (defvar wthr_rev false)
 (defpoll WTHR_ICON :interval "5m" "scripts/weather --icon")
 (defpoll WTHR_TEMP :interval "5m" "scripts/weather --temp")
@@ -32,6 +31,8 @@
 (defpoll WLAN_COL :interval "10s" "scripts/wifi --COL")
 (defpoll WLAN_ICON :interval "10s" "scripts/wifi --ICON")
 (defpoll WLAN_ESSID :interval "10s" "scripts/wifi --ESSID")
+;; VPN
+(defpoll VPN_ICON :interval "10s" "scripts/vpn")
 
 ;; Volume vars
 (defvar vol_mute "pamixer -t")
@@ -44,6 +45,10 @@
 (defpoll BAT_COL :interval "15s" "scripts/battery --COL")
 
 ;; ** Widgets **
+
+(defwidget sep []
+  (box :class "separator"
+    (label :text "|")))
 
 (defwidget workspaces []
   (box :class "dockbox"
@@ -120,7 +125,9 @@
     (box :class "dockbox"
 		  (box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
         (wifi)
+        (sep)
         (volume)
+        (sep)
         (battery)))))
 
 ;; ** Bar **

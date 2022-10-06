@@ -92,6 +92,10 @@ $yellow: #f1fa8c;
 }
 
 /** System **/
+.separator {
+	color: $foreground;
+}
+
 .trayicon {
   background-repeat: no-repeat;
 	background-size: 24px;
