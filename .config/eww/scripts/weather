@@ -31,37 +31,37 @@ get_weather_data() {
 		#Big long if statement of doom
 		if [ "$weather_icon_code" == "50d" ] || [ "$weather_icon_code" == "50n" ]; then
 			weather_icon=" "
-			weather_hex="#84afdb"
+			weather_hex="#8be9fd"
 		elif [ "$weather_icon_code" == "01d" ]; then
 			weather_icon=" "
-			weather_hex="#ffd86b"
+			weather_hex="#ffb86c"
 		elif [ "$weather_icon_code" == "01n" ]; then
 			weather_icon=" "
-			weather_hex="#fcdcf6"
+			weather_hex="#ff79c6"
 		elif [ "$weather_icon_code" == "02d" ]; then
 			weather_icon=" "
-			weather_hex="#adadff"
+			weather_hex="#bd93f9"
 		elif [ "$weather_icon_code" == "02n" ]; then
 			weather_icon=" "
-			weather_hex="#adadff"
+			weather_hex="#bd93f9"
 		elif [ "$weather_icon_code" == "03d" ] || [ "$weather_icon_code" == "03n" ] || [ "$weather_icon_code" == "04d" ] || [ "$weather_icon_code" == "04n" ]; then
 			weather_icon=" "
-			weather_hex="#adadff"
+			weather_hex="#bd93f9"
 		elif [ "$weather_icon_code" == "09d" ] || [ "$weather_icon_code" == "09n" ] || [ "$weather_icon_code" == "10d" ] || [ "$weather_icon_code" == "10n" ]; then
 			weather_icon=" "
-			weather_hex="#6b95ff"
+			weather_hex="#6272a4"
 		elif [ "$weather_icon_code" == "11d" ] || [ "$weather_icon_code" == "11n" ]; then
 			weather_icon=""
-			weather_hex="#ffeb57"
+			weather_hex="#f1fa8c"
 		elif [ "$weather_icon_code" == "13d" ] || [ "$weather_icon_code" == "10d" ]; then
 			weather_icon=" "
-			weather_hex="#e3e6fc"
+			weather_hex="#f8f8f2"
 		elif [ "$weather_icon_code" == "40d" ] || [ "$weather_icon_code" == "40n" ]; then
 			weather_icon=" "
-			weather_hex="#84afdb"
+			weather_hex="#8be9fd"
 		else 
 			weather_icon=" "
-			weather_hex="#adadff"
+			weather_hex="#bd93f9"
 		fi
 		echo "$weather_icon" >  "${cache_weather_icon}"
 		echo "$weather_description" > "${cache_weather_stat}"
@@ -71,7 +71,7 @@ get_weather_data() {
 		echo "Unavailable" > "${cache_weather_stat}"
 		echo " " > "${cache_weather_icon}"
 		echo "" > "${cache_weather_degree}"
-		echo "#adadff" > "${cache_weather_hex}"
+		echo "#bd93f9" > "${cache_weather_hex}"
 	fi
 }
 
