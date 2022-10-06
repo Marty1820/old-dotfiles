@@ -1,6 +1,12 @@
 #!/bin/sh
 
 rfblock=$(rfkill --output SOFT | awk '($1 == "blocked")')
+
+# VPN variables
+vpn_name=wg0
+vpn_status=$(ip a | grep $vpn_name)
+
+# Wifi variables
 status=$(nmcli general | grep -oE "disconnected")
 essid=$(nmcli connection | grep wlan0 | awk '{print ($1)}')
 ip=$(ip -4 addr show wlan0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
@@ -14,6 +20,10 @@ elif [ "$status" ]; then
     icon="睊"
     text=""
     col="#ff5555"
+elif [ "$vpn_status" ]; then
+    icon="嬨"
+    text="${essid}"
+    col="#50fa7b"
 else
     icon="直"
     text="${essid}"
