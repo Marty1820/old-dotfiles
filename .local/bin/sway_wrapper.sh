@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd ~
+cd ~ || exit
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 export XCURSOR_SIZE=24
@@ -10,4 +10,4 @@ export SDL_VIDEODRIVER=wayland
 export XDG_CURRENT_DESKTOP=sway
 export XDG_SESSION_DESKTOP=sway
 
-exec sway
+exec sway >> /dev/null
