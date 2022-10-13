@@ -16,8 +16,9 @@ set {
   $mod Mod4
   $alt Mod1
   $myTerm alacritty
-  $myBrowser brave --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland
-  $myFilemgr nemo
+  $myBrowser brave
+  $myAltBrowser librewolf
+  $myFilemgr pcmanfm
   $myEditor gedit
   $myAltEditor codium --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland
   $myAppLauncher "rofi -show drun -theme '~/.config/rofi/config.rasi'"
@@ -32,11 +33,11 @@ font pango:Hack 12
 
 # Gaps/Borders
 gaps inner 4
-gaps outer 1
+gaps outer 2
 smart_gaps on
 smart_borders on
 for_window [class="^.*"] border pixel 2
-default_border pixel 1
+default_border pixel 2
 default_floating_border none
 default_floating_border normal 0
 hide_edge_borders smart
@@ -62,6 +63,7 @@ bindsym $mod+Shift+r reload
 bindsym {
   $mod+Return exec --no-startup-id $myTerm
   $mod+b exec --no-startup-id $myBrowser
+  $mod+Shift+b --no-startup-id $myAltBrowser
   $mod+e exec --no-startup-id $myFilemgr
   $mod+a exec --no-startup-id $myEditor
   $mod+Shift+a exec --no-startup-id $myAltEditor
@@ -72,7 +74,7 @@ bindsym {
 # Changing Layouts (stacked, tabbed, toggle split)
 bindsym {
   $mod+space layout toggle tabbed split
-  $mod+Shift+space floating toggle
+  $mod+Alt+space floating toggle
   #$mod+s layout stacking
   #$mod+w layout tabbed
   #$mod+q layout toggle split
@@ -121,17 +123,19 @@ bindsym {
 
 # Function (fn) keys
 bindsym {
-  XF86MonBrightnessUp exec --no-startup-id "~/.config/dunst/scripts/backlight.sh up"
-  XF86MonBrightnessDown exec --no-startup-id "~/.config/dunst/scripts/backlight.sh down"
   XF86AudioMute exec --no-startup-id "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-  XF86AudioRaiseVolume exec --no-startup-id "pamixer -u -i 1"
   XF86AudioLowerVolume exec --no-startup-id "pamixer -u -d 1"
-  Print exec grim -t png ~/Pictures/Screenshot/$(date +%Y-%m-%d_%H-%m-%s).png
-  $mod+Print exec grim -t png -g "$(slurp)" ~/Pictures/Screenshot/$(date +%Y-%m-%d_%H-%m-%s).png
-  #XF86AudioMedia exec --no-startup-id "" # Gear icon/F12
+  XF86AudioRaiseVolume exec --no-startup-id "pamixer -u -i 1"
   #XF86AudioPrev
   #XF86AudioPlay
   #XF86AudioNext
+  XF86MonBrightnessDown exec --no-startup-id "~/.config/dunst/scripts/backlight.sh down"
+  XF86MonBrightnessUp exec --no-startup-id "~/.config/dunst/scripts/backlight.sh up"
+  #Super_L
+  #rfkill
+  Print exec grim -t png ~/Pictures/Screenshot/$(date +%Y-%m-%d_%H-%m-%s).png
+  $mod+Print exec grim -t png -g "$(slurp)" ~/Pictures/Screenshot/$(date +%Y-%m-%d_%H-%m-%s).png
+  #XF86AudioMedia exec --no-startup-id "" # Gear icon/F12
 }
 
 #
@@ -177,7 +181,6 @@ bindsym {
 
 bar {
   swaybar_command waybar
-  position top
 }
 
 #
@@ -190,15 +193,14 @@ floating_modifier $mod normal
 # Floating Applications
 for_window [app_id="nm-connection-editor"] floating enable
 for_window [app_id="xarchiver"] floating enable
-for_window [app_id="org.kde.kdeconnect.app"] floating enable
 for_window [app_id="blueman-manager"] floating enable
-for_window [window_type="dialog"] floating enable
-for_window [app_id="nemo" title=" Properties"] floating enable
-for_window [app_id="file-roller"] floating enabled
 for_window [app_id="galculator"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [app_id="file-roller"] floating enable
 
 # Open on set workspaces
-for_window [class="Brave-browser"] move to workspace $ws2
+for_window [app_id="brave-browser"] move to workspace $ws2
+for_window [app_id="LibreWolf"] move to workspace $ws2
 
 #
 ### AUTOSTART ###
@@ -231,11 +233,7 @@ input "type:touchpad" {
 ### Display/Background ###
 #
 
-# Scaling
-output "eDP-1" scale 1.5
-
-# Resolution
-output "eDP-1" pos 2256 0 res 2256x1504
+output "eDP-1" pos 2256 0 res 2256x1504 scale 1.5
 
 # Wallpaper
 output "*" bg "~/Pictures/wallpapers/framework/367277735d0091ef18c1d88f989908992bd92a77.jpeg" fill
