@@ -1,4 +1,4 @@
-/** Colors **/
+/* Colors */
 $background: #282a36;
 $selection: #44475a;
 $foreground: #f8f8f2;
@@ -11,13 +11,13 @@ $purple: #bd93f9;
 $red: #ff5555;
 $yellow: #f1fa8c;
 
-/** Global **/
+/* Global */
 *{
 	all: unset;
 	font-family: "mononoki-Regular Nerd Font Complete Mono";
 }
 
-/** Bar **/
+/* Bar */
 .eww_bar {
   padding: 2px 5px;
   margin: 0;
@@ -31,7 +31,7 @@ $yellow: #f1fa8c;
   padding-right: 10px;
 }
 
-/** Workspaces **/
+/* Workspaces */
 .workspaces {
 	min-height: 40px;
 	min-width: 40px;
@@ -55,7 +55,7 @@ $yellow: #f1fa8c;
   color: $selection;
 }
 
-/** Clock **/
+/* Clock */
 .clockbox {
 	margin: 0px 0px 0px 15px;
 }
@@ -70,7 +70,7 @@ $yellow: #f1fa8c;
 	font-weight: bold;
 }
 
-/** Weather **/
+/* Weather */
 .weatherbox {
 	margin: 0px 0px 0px -90px;
 }
@@ -91,7 +91,7 @@ $yellow: #f1fa8c;
 	margin: 0px 0px 0px 5px;
 }
 
-/** System **/
+/* System */
 .separator {
 	color: $foreground;
 }
@@ -108,5 +108,3 @@ $yellow: #f1fa8c;
 	padding: 5px 0px;
 	font-weight: bold;
 }
-
-/** EOF **/
