@@ -7,6 +7,8 @@ cache_weather_stat=${cache_dir}/weather-stat
 cache_weather_degree=${cache_dir}/weather-degree
 cache_weather_hex=${cache_dir}/weather-hex
 cache_weather_icon=${cache_dir}/weather-icon
+cache_weather_city=${cache_dir}/weather-city
+cache_weather_feelslike=${cache_dir}/weather-fdegree
 
 ## Weather data | openweatherdata file first line key second line id
 KEY=$(awk 'NR == 1' ~/.config/eww/scripts/openweatherdata)
@@ -25,8 +27,10 @@ get_weather_data() {
 
 	if [ -n "$weather" ]; then
 		weather_temp=$(echo "$weather" | jq ".main.temp" | cut -d "." -f 1)
+		weather_ftemp=$(echo "$weather" | jq ".main.feels_like" | cut -d "." -f 1)
 		weather_icon_code=$(echo "$weather" | jq -r ".weather[].icon" | head -1)
 		weather_description=$(echo "$weather" | jq -r ".weather[].description" | head -1 | sed -e "s/\b\(.\)/\u\1/g")
+		weather_city=$(echo "$weather" | jq -r ".name" | head -1)
 
 		#Big long if statement of doom
 		if [ "$weather_icon_code" == "50d" ] || [ "$weather_icon_code" == "50n" ]; then
@@ -66,12 +70,16 @@ get_weather_data() {
 		echo "$weather_icon" >  "${cache_weather_icon}"
 		echo "$weather_description" > "${cache_weather_stat}"
 		echo "$weather_temp""°F" > "${cache_weather_degree}"
+		echo "$weather_ftemp""°F" > "${cache_weather_feelslike}"
 		echo "$weather_hex" > "${cache_weather_hex}"
+		echo "$weather_city" > "${cache_weather_city}"
 	else
 		echo "Unavailable" > "${cache_weather_stat}"
 		echo " " > "${cache_weather_icon}"
 		echo "" > "${cache_weather_degree}"
+		echo "" > "${cach_weather_feelslike}"
 		echo "#bd93f9" > "${cache_weather_hex}"
+		echo "Unavailable" > "${cache_weather_city}"
 	fi
 }
 
@@ -82,9 +90,13 @@ elif [[ "$1" == "--icon" ]]; then
 	cat "${cache_weather_icon}"
 elif [[ "$1" == "--temp" ]]; then
 	cat "${cache_weather_degree}"
+elif [[ "$1" == "--feel" ]]; then
+	cat "${cache_weather_feelslike}"
 elif [[ "$1" == "--hex" ]]; then
 	cat "${cache_weather_hex}"
 elif [[ "$1" == "--stat" ]]; then
 	cat "${cache_weather_stat}"
+elif [[ "$1" == "--city" ]]; then
+  cat "${cache_weather_city}"
 fi
 
