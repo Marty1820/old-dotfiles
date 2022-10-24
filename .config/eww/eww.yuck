@@ -12,10 +12,16 @@
 ;; Workspace vars
 (deflisten workspace :initial "" "scripts/workspaces")
 
-;; Time vars
+;; Time/Date vars
 (defvar date_rev false)
 (defpoll TIME :interval "5s" "date +\"%I:%M %p\"")
 (defpoll DATE :interval "5s" "date +\"%A, %b %d\"")
+(defpoll year :interval "1h" "date +%Y")
+(defpoll month :interval "1h" "date +%B")
+(defpoll hour :interval "1m" "date +%H")
+(defpoll minute :interval "1m" "date +%M")
+(defpoll datemonth :interval "24h" "date '+%A, %d %B'")
+(defpoll day :interval "2h" "date '+%d'")
 
 ;; Weather vars
 ;; need to run "weather --getdata" to update cache
@@ -24,6 +30,8 @@
 (defpoll WTHR_TEMP :interval "5m" "scripts/weather --temp")
 (defpoll WTHR_HEX :interval "5m" "scripts/weather --hex")
 (defpoll WTHR_STAT :interval "5m" "scripts/weather --stat")
+(defpoll WTHR_LOC :interval "5m" "scripts/weather --city")
+(defpoll WTHR_FTEMP :interval "5m" "scripts/weather --feel")
 
 ;; Network
 (defvar ip_rev false)
@@ -58,6 +66,7 @@
 (defwidget clock []
   (eventbox :onhover "${EWW} update date_rev=true"
       :onhoverlost "${EWW} update date_rev=false"
+      :onclick "${EWW} open calbox"
 		(box :class "clockbox" :orientation "v" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
 			(label :class "time" :halign "start" :wrap "true" :limit-width 25 :text TIME)
       (revealer :transition "slideup"
@@ -69,6 +78,7 @@
 (defwidget weather [] 
   (eventbox :onhover "${EWW} update wthr_rev=true"
       :onhoverlost "${EWW} update wthr_rev=false"
+      :onclick "${EWW} close calbox"
 		(box :class "weatherbox" :orientation "h" :spacing 0 :valign "center" :halign "end" :space-evenly "false" :vexpand "false" :hexpand "false"
   		(label :class "weathericon" :style "color: ${WTHR_HEX};" :text WTHR_ICON)
 			(label :class "weathertemp" :text WTHR_TEMP)
@@ -129,6 +139,43 @@
         (volume)
         (sep)
         (battery)))))
+
+;; ** Calendar PopOut **
+
+(defwidget cal []
+	(box :class "cal-box" 
+		:orientation "v"
+	  (box :orientation "v" :class "cal-inner-box" :space-evenly false
+	    (calendar :class "cal" :day "${day}" :show-details false :show-heading true :show-day-names true))))
+
+(defwidget weatherpop [] 
+  (box :orientation "h" :class "weatherfullbox" :space-evenly false
+  (box :orientation "v" :class "weatherpopbox" :hexpand true :space-evenly false
+    (box :orientation "h" :class "weathertop" :space-evenly false
+      (box :class "weatherdesc" :halign "start" :hexpand true WTHR_STAT)
+      (box :class "weatherpoptemp" :halign "end" WTHR_TEMP))
+    (box :orientation "h" :class "weatherbot" :space-evenly false
+      (box :class "weathercity" :halign "start" :hexpand true WTHR_LOC)
+      (box :class "weatherfeels" :halign "end" "Real feel ${WTHR_FTEMP}")))
+  (box :class "weatherpopicon" :style "color: ${WTHR_HEX};" WTHR_ICON)))
+
+(defwidget calbox []
+  (box :orientation "v" :width 200 :vexpand true :space-evenly false :class "calouterbox"
+    (box :class "calday" "${datemonth}")
+    (cal)
+    (weatherpop)))
+
+(defwindow calbox
+  :monitor 0
+  :wm-ignore true
+  :windowtype "dialog"
+  :exclusive false
+  :focusable false
+  :stacking "overlay"
+  :geometry (geometry :x "0%" 
+	    :y "0%"
+      :anchor "top center")
+  (calbox))
 
 ;; ** Bar **
 

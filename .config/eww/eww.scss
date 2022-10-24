@@ -20,7 +20,7 @@ $yellow: #f1fa8c;
 /* Bar */
 .eww_bar {
   padding: 2px 5px;
-  margin: 0;
+  margin: 0px;
 }
 
 .dockbox {
@@ -38,7 +38,7 @@ $yellow: #f1fa8c;
 }
 
 .workspaces button {
-  font-size: 15;
+  font-size: 15px;
   border: none;
   margin: 0px 5px;
 }
@@ -107,4 +107,102 @@ $yellow: #f1fa8c;
 	font-size: 14px;
 	padding: 5px 0px;
 	font-weight: bold;
+}
+
+/* Calendar Pop-Up */
+.cal-box {
+	background-color: $background;
+	font-size: 1.2rem;
+	color: $foreground;
+	border-radius: 10px;
+	margin: 5px;
+	.cal-inner-box {
+		padding: 1.5rem 1rem;
+		.cal {
+			&.highlight {
+				padding: 5rem;
+			}
+			padding: .8rem .25rem 0rem;
+		}
+	}
+}
+
+calendar:selected {
+	color: $cyan;
+}
+
+calendar.button {
+	color: $green;
+}
+
+calendar.highlight {
+	color: $green;
+	font-weight: bold;
+}
+
+calendar:indeterminate {
+	color: $selection;
+}
+
+.monthyear {
+	font-size: 1.75rem;
+	color: $foreground;
+	font-weight: bold;
+	margin: .5rem 0rem;
+}
+
+.weatherpopbox {
+	background-color: $background;
+	color: $foreground;
+	border-radius: 10px;
+	margin: 5px;
+	padding: 1.5rem;
+}
+
+.weatherpopicon {
+	padding: 1.5rem 2rem;
+	border-radius: 10px;
+	margin: 5px;
+	background-color: $background;
+	font-size: 33px;
+}
+
+.weatherdesc {
+	font-size: 1.75rem;
+	color: $foreground;
+}
+
+.weatherpoptemp {
+	font-size: 1.75rem;
+	color: $foreground;
+}
+
+.weathercity {
+	font-size: 1.1rem;
+	margin-top: 1rem;
+	margin-right: 1rem;
+	color: $foreground;
+}
+
+.weatherfeels {
+	font-size: 1.1rem;
+	margin-top: 1rem;
+	color: $foreground;
+}
+
+.calouterbox {
+	padding: 1.75rem;
+	background-color: black;
+	border-radius: 10px;
+}
+
+.calday {
+	font-weight: 300;
+	font-size: 1.75rem;
+	margin-bottom: 1.25rem;
+	color: $foreground;
+}
+
+.caltimeboxes {
+	margin: 0 2rem;
 }
