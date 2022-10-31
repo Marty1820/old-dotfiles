@@ -39,7 +39,7 @@
 (defpoll WLAN_COL :interval "10s" "scripts/wifi --COL")
 (defpoll WLAN_ICON :interval "10s" "scripts/wifi --ICON")
 (defpoll WLAN_ESSID :interval "10s" "scripts/wifi --ESSID")
-(defpoll WLAN_SPEED :interval "30s" "awk 'NR==3 {print $3 \"0\"}''' /proc/net/wireless")
+(defpoll WLAN_SPEED :interval "30s" "awk 'NR==3 {print $3}' /proc/net/wireless")
 ;; VPN
 (defpoll VPN_ICON :interval "10s" "scripts/vpn")
 
