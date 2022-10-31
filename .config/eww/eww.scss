@@ -96,13 +96,6 @@ $yellow: #f1fa8c;
 	color: $foreground;
 }
 
-.trayicon {
-  background-repeat: no-repeat;
-	background-size: 24px;
-	min-height: 24px;
-	min-width: 24px;
-}
-
 .infotext {
 	font-size: 14px;
 	padding: 5px 0px;
@@ -128,11 +121,11 @@ $yellow: #f1fa8c;
 }
 
 calendar:selected {
-	color: $cyan;
+	color: $purple;
 }
 
 calendar.button {
-	color: $green;
+	color: $red;
 }
 
 calendar.highlight {
@@ -205,4 +198,60 @@ calendar:indeterminate {
 
 .caltimeboxes {
 	margin: 0 2rem;
+}
+
+/* System Pop-Up */
+.sysouterbox {
+  padding: 1.75rem;
+  background-color: black;
+  border-radius: 10px;
+}
+
+.syssquares {
+	font-size: 1.2rem;
+	color: $foreground;
+	border-radius: 10px;
+	margin: 5px;
+}
+
+.syscircbox {
+  background-color: $background;
+  padding: 2rem 2rem;
+  border-radius: 10px;
+}
+
+.sysrow, .sysrow2 {
+  margin-top: 1.3rem;
+}
+
+.syscirctitle {
+  font-size: 1.2rem;
+  color: $foreground;
+  margin-bottom: 1rem;
+}
+
+.syscirc {
+	background-color: $selection;
+}
+
+.syscircicon {
+  padding: 3.5rem;
+  font-size: 2rem;
+}
+
+/* Volume Slider Pop-Up */
+.volicon, .briticon {
+	font-size: 28px;
+}
+
+scale trough {
+	background-color: $background;
+	border-radius: 10px;
+	min-width: 310px;
+	min-height: 35px;
+}
+
+scale trough highlight {
+	border-radius: 10px;
+	background-color: $selection;
 }

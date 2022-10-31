@@ -39,14 +39,18 @@
 (defpoll WLAN_COL :interval "10s" "scripts/wifi --COL")
 (defpoll WLAN_ICON :interval "10s" "scripts/wifi --ICON")
 (defpoll WLAN_ESSID :interval "10s" "scripts/wifi --ESSID")
+(defpoll WLAN_SPEED :interval "30s" "awk 'NR==3 {print $3 \"0\"}''' /proc/net/wireless")
 ;; VPN
 (defpoll VPN_ICON :interval "10s" "scripts/vpn")
 
 ;; Volume vars
-(defvar vol_mute "pamixer -t")
+(defvar VOL_MUTE "pamixer -t")
 (defpoll VOL_COL :interval "1s" "scripts/volume --COL")
 (defpoll VOL_ICON :interval "1s" "scripts/volume --ICON")
 (defpoll VOLUME :interval "1s" "pamixer --get-volume")
+
+;; Brightness vars
+(defpoll BRIT_PER :interval "3s" "xbacklight -get")
 
 ;; Battery vars
 (defpoll BAT_ICON :interval "15s" "scripts/battery --ICON")
@@ -66,7 +70,7 @@
 (defwidget clock []
   (eventbox :onhover "${EWW} update date_rev=true"
       :onhoverlost "${EWW} update date_rev=false"
-      :onclick "${EWW} open calbox"
+      :onclick "${EWW} open --toggle calbox"
 		(box :class "clockbox" :orientation "v" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
 			(label :class "time" :halign "start" :wrap "true" :limit-width 25 :text TIME)
       (revealer :transition "slideup"
@@ -78,7 +82,7 @@
 (defwidget weather [] 
   (eventbox :onhover "${EWW} update wthr_rev=true"
       :onhoverlost "${EWW} update wthr_rev=false"
-      :onclick "${EWW} close calbox"
+      :onclick "${EWW} open --toggle calbox"
 		(box :class "weatherbox" :orientation "h" :spacing 0 :valign "center" :halign "end" :space-evenly "false" :vexpand "false" :hexpand "false"
   		(label :class "weathericon" :style "color: ${WTHR_HEX};" :text WTHR_ICON)
 			(label :class "weathertemp" :text WTHR_TEMP)
@@ -89,24 +93,21 @@
 
 ;; wifi
 (defwidget wifi []
-  (button :onclick network_cmd
-		(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-			(box :style "color: ${WLAN_COL};" WLAN_ICON);" :class "trayicon")
-		  (label :class "infotext" :halign "start" :text WLAN_ESSID))))
+  (box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
+    (box :style "color: ${WLAN_COL};" WLAN_ICON)
+    (label :class "infotext" :halign "start" :text WLAN_ESSID)))
 
 ;; volume
 (defwidget volume []
-  (button :onclick vol_mute
-		(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-			(box :style "color: ${VOL_COL};" VOL_ICON);" :class "trayicon")
-		  (label :class "infotext" :halign "start" :text "${VOLUME}"))))
+  (box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
+    (box :style "color: ${VOL_COL};" VOL_ICON)
+    (label :class "infotext" :halign "start" :text "${VOLUME}")))
 
 ;; battery
 (defwidget battery []
-	(button :onclick "~/Scripts/bat_info"
-	  (box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-	    (box :style "color: ${BAT_COL};" BAT_ICON);" :class "trayicon")
-	    (label :class "infotext" :halign "start" :text "${EWW_BATTERY.BAT1.capacity}"))))
+  (box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
+    (box :style "color: ${BAT_COL};" BAT_ICON)
+    (label :class "infotext" :halign "start" :text "${EWW_BATTERY["BAT1"].capacity}")))
 
 ;; ** Sections **
 
@@ -128,54 +129,23 @@
       (weather))))
 
 (defwidget right []
-  (box :orientation "h"
-      :class "right"
-      :space-evenly "false"
-      :halign "end"
-    (box :class "dockbox"
-		  (box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-        (wifi)
-        (sep)
-        (volume)
-        (sep)
-        (battery)))))
+  (button :onclick "${EWW} open --toggle system"
+    (box :orientation "h"
+        :class "right"
+        :space-evenly "false"
+        :halign "end"
+      (box :class "dockbox"
+        (box :orientation "h" :spacing 5 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
+          (wifi)
+          (sep)
+          (volume)
+          (sep)
+          (battery))))))
 
-;; ** Calendar PopOut **
+;; ** Pop-ups **
 
-(defwidget cal []
-	(box :class "cal-box" 
-		:orientation "v"
-	  (box :orientation "v" :class "cal-inner-box" :space-evenly false
-	    (calendar :class "cal" :day "${day}" :show-details false :show-heading true :show-day-names true))))
-
-(defwidget weatherpop [] 
-  (box :orientation "h" :class "weatherfullbox" :space-evenly false
-  (box :orientation "v" :class "weatherpopbox" :hexpand true :space-evenly false
-    (box :orientation "h" :class "weathertop" :space-evenly false
-      (box :class "weatherdesc" :halign "start" :hexpand true WTHR_STAT)
-      (box :class "weatherpoptemp" :halign "end" WTHR_TEMP))
-    (box :orientation "h" :class "weatherbot" :space-evenly false
-      (box :class "weathercity" :halign "start" :hexpand true WTHR_LOC)
-      (box :class "weatherfeels" :halign "end" "Real feel ${WTHR_FTEMP}")))
-  (box :class "weatherpopicon" :style "color: ${WTHR_HEX};" WTHR_ICON)))
-
-(defwidget calbox []
-  (box :orientation "v" :width 200 :vexpand true :space-evenly false :class "calouterbox"
-    (box :class "calday" "${datemonth}")
-    (cal)
-    (weatherpop)))
-
-(defwindow calbox
-  :monitor 0
-  :wm-ignore true
-  :windowtype "dialog"
-  :exclusive false
-  :focusable false
-  :stacking "overlay"
-  :geometry (geometry :x "0%" 
-	    :y "0%"
-      :anchor "top center")
-  (calbox))
+(include "./modules/sys.yuck")
+(include "./modules/cal.yuck")
 
 ;; ** Bar **
 
@@ -191,10 +161,10 @@
 ;; bar
 (defwindow bar
     :monitor 0
-    :wm-ignore true
+    :wm-ignore "true"
     :windowtype "toolbar"
-    :exclusive true
-    :focusable false
+    :exclusive "true"
+    :focusable "false"
     :stacking "fg"
     :geometry (geometry :x "0%"
         :y "0%"

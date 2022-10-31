@@ -1,0 +1,36 @@
+;; ** Calendar PopOut **
+
+(defwidget cal []
+	(box :class "cal-box" 
+		:orientation "v"
+	  (box :orientation "v" :class "cal-inner-box" :space-evenly "false"
+	    (calendar :class "cal" :day "${day}" :show-details "false" :show-heading "true" :show-day-names "true"))))
+
+(defwidget weatherpop [] 
+  (box :orientation "h" :class "weatherfullbox" :space-evenly "false"
+  (box :orientation "v" :class "weatherpopbox" :hexpand "true" :space-evenly "false"
+    (box :orientation "h" :class "weathertop" :space-evenly "false"
+      (box :class "weatherdesc" :halign "start" :hexpand "true" WTHR_STAT)
+      (box :class "weatherpoptemp" :halign "end" WTHR_TEMP))
+    (box :orientation "h" :class "weatherbot" :space-evenly "false"
+      (box :class "weathercity" :halign "start" :hexpand "true" WTHR_LOC)
+      (box :class "weatherfeels" :halign "end" "Real feel ${WTHR_FTEMP}")))
+  (box :class "weatherpopicon" :style "color: ${WTHR_HEX};" WTHR_ICON)))
+
+(defwidget calbox []
+  (box :orientation "v" :width 200 :vexpand "true" :space-evenly "false" :class "calouterbox"
+    (box :class "calday" "${datemonth}")
+    (cal)
+    (weatherpop)))
+
+(defwindow calbox
+  :monitor 0
+  :wm-ignore "true"
+  :windowtype "dialog"
+  :exclusive "false"
+  :focusable "false"
+  :stacking "overlay"
+  :geometry (geometry :x "0%" 
+	    :y "0%"
+      :anchor "top center")
+  (calbox))
