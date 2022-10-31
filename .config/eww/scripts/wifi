@@ -31,11 +31,11 @@ else
 fi
 
 if [ "$1" = "--COL" ]; then
-    echo $col	
+    echo "$col"
 elif [ "$1" = "--ESSID" ]; then
 	echo "$text"
 elif [ "$1" = "--ICON" ]; then
-	echo $icon
+	echo "$icon"
 elif [ "$1" = "--IP" ]; then
     echo "$ip"
 elif [ "$1" = "--SIG" ]; then
