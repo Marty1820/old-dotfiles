@@ -1,0 +1,3 @@
+#!/bin/sh
+vol=$(printf '%.*f\n' 0 $1)
+pamixer --set-volume $vol
