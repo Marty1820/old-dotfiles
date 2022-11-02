@@ -30,6 +30,10 @@
   padding: 0px;
 }
 
+button, label {
+  all: unset;
+}
+
 window#waybar {
   background-color: transparent;
   transition-property: background-color;
