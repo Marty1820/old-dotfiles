@@ -27,6 +27,7 @@
   font-family: mononoki Nerd Font Mono;
   font-size: 12px;
   min-height: 0;
+  padding: 0px;
 }
 
 window#waybar {
@@ -56,18 +57,9 @@ tooltip label {
   margin: 0px 4px;
 }
 
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-  margin-left: 0px;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-  margin-right: 0px;
-}
-
 /* Workspaces */
 #workspaces button {
+  padding: 2px 10px;
   border-radius: 20px;
   background: @background;
   color: @foreground;
