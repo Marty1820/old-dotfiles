@@ -78,7 +78,7 @@
   },
 
   "custom/pkgs": {
-    "format": "{}📦",
+    "format": "{}",
     "exec": "checkupdates | wc -l",
     "exec-if": "[ $(checkupdates | wc -l) != 0 ]",
     "interval": 1800,
@@ -166,11 +166,11 @@
   "pulseaudio": {
     "format": "{icon} {volume}",
     "format-bluetooth": "{icon} {volume}",
-    "format-muted": "🔇 {volume}",
+    "format-muted": "婢 {volume}",
     "format-icons": {
       "headphone": "",
       "headset": "",
-      "default" : ["🔈", "🔉", "🔊"]
+      "default" : ["奄", "奔", "墳"]
     },
     "scroll-step": 1,
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
