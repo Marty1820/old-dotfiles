@@ -17,7 +17,7 @@
       (cencirc :class "diskcirc" :icon "" :label "DISK" :color 'red' :value {EWW_DISK["/"].used_perc}))
     (box :orientation "h" :class "sysrow2" :space-evenly "false" :spacing 20
       (cencirc :class "batcirc" :icon BAT_ICON :label "BATTERY" :color BAT_COL :value {EWW_BATTERY["BAT1"].capacity})
-      (cencirc :class "cpucirc" :icon "" :label "CPU TEMP" :color 'yellow' :value 42))))
+      (cencirc :class "cpucirc" :icon "" :label "CPU TEMP" :color 'yellow' :value {EWW_TEMPS["CORETEMP_PACKAGE_ID_0"]}))))
 
 (defwidget cencirc [class label icon color value]
   (box :orientation "v" :class "${class} syscircbox" :space-evenly "false" :hexpand "true"
