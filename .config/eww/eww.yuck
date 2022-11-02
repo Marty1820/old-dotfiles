@@ -14,10 +14,10 @@
 
 ;; Time/Date vars
 (defvar date_rev false)
-(defpoll TIME :interval "5s" "date +\"%I:%M %p\"")
-(defpoll DATE :interval "5s" "date +\"%A, %b %d\"")
-(defpoll year :interval "1h" "date +%Y")
-(defpoll month :interval "1h" "date +%B")
+(defpoll TIME :interval "10s" "date +\"%I:%M %p\"")
+(defpoll DATE :interval "1h" "date +\"%A, %b %d\"")
+(defpoll year :interval "24h" "date +%Y")
+(defpoll month :interval "24h" "date +%B")
 (defpoll hour :interval "1m" "date +%H")
 (defpoll minute :interval "1m" "date +%M")
 (defpoll datemonth :interval "24h" "date '+%A, %d %B'")
@@ -26,22 +26,22 @@
 ;; Weather vars
 ;; need to run "weather --getdata" to update cache
 (defvar wthr_rev false)
-(defpoll WTHR_ICON :interval "5m" "scripts/weather --icon")
-(defpoll WTHR_TEMP :interval "5m" "scripts/weather --temp")
-(defpoll WTHR_HEX :interval "5m" "scripts/weather --hex")
-(defpoll WTHR_STAT :interval "5m" "scripts/weather --stat")
-(defpoll WTHR_LOC :interval "5m" "scripts/weather --city")
-(defpoll WTHR_FTEMP :interval "5m" "scripts/weather --feel")
+(defpoll WTHR_ICON :interval "10m" "scripts/weather --icon")
+(defpoll WTHR_TEMP :interval "10m" "scripts/weather --temp")
+(defpoll WTHR_HEX :interval "10m" "scripts/weather --hex")
+(defpoll WTHR_STAT :interval "10m" "scripts/weather --stat")
+(defpoll WTHR_LOC :interval "10m" "scripts/weather --city")
+(defpoll WTHR_FTEMP :interval "10m" "scripts/weather --feel")
 
 ;; Network
 (defvar ip_rev false)
 (defvar network_cmd "nm-connection-editor &")
 (defpoll WLAN_COL :interval "10s" "scripts/wifi --COL")
 (defpoll WLAN_ICON :interval "10s" "scripts/wifi --ICON")
-(defpoll WLAN_ESSID :interval "10s" "scripts/wifi --ESSID")
+(defpoll WLAN_ESSID :interval "1m" "scripts/wifi --ESSID")
 (defpoll WLAN_SPEED :interval "30s" "awk 'NR==3 {print $3}' /proc/net/wireless")
 ;; VPN
-(defpoll VPN_ICON :interval "10s" "scripts/vpn")
+(defpoll VPN_ICON :interval "1m" "scripts/vpn")
 
 ;; Volume vars
 (defvar VOL_MUTE "pamixer -t")
