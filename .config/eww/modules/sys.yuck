@@ -7,7 +7,7 @@
 (defwidget britscale []
   (box :orientation "h" :space-evenly "false" :spacing 15
     (box :orientation "h" :valign "center" :class "briticon" :style "color: orange;" "")
-    (scale :min 0 :max 100 :orientation "h" :value BRIT_PER :valign "center")))
+    (scale :min 0 :max 100 :orientation "h" :value BRIT_PER :onchange "xbacklight -set {}" :valign "center")))
 
 (defwidget census []
   (box :orientation "v" :class "syssquares" :space-evenly "false"
