@@ -13,10 +13,19 @@ export HISTORY_IGNORE="(l[s,a,l,.]#( *)#|cd#( -, ..)#|pwd|exit|history|cls)"
 source "$HOME"/.sh_aliases
 
 # Options
-setopt autocd extendedglob nomatch notify correct
+# Changing Directories
+setopt AUTO_CD AUTO_PUSHD PUSHD_IGNORE_DUPS
+# Expansion and Globbing
+setopt EXTENDED_GLOB NOMATCH
+# Input/Output
+setopt CORRECT
+# Job Control
+setopt NOTIFY
 # History Options
-setopt append_history hist_expire_dups_first hist_ignore_dups hist_reduce_blanks
+setopt APPEND_HISTORY HIST_EXPIRE_DUPS_FIRST HIST_FIND_NO_DUPS HIST_IGNORE_ALL_DUPS HIST_IGNORE_DUPS HIST_IGNORE_SPACE HIST_REDUCE_BLANKS HIST_SAVE_NO_DUPS
+# Zle
 unsetopt beep
+
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
 # Editor Keybindings e=emacs
