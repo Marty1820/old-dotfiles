@@ -70,7 +70,7 @@
 (defwidget clock []
   (eventbox :onhover "${EWW} update date_rev=true"
       :onhoverlost "${EWW} update date_rev=false"
-      :onclick "${EWW} open --toggle calbox"
+      :onclick "${EWW} open --toggle calbox && ${EWW} open calbox-closer"
 		(box :class "clockbox" :orientation "v" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
 			(label :class "time" :halign "start" :wrap "true" :limit-width 25 :text TIME)
       (revealer :transition "slideup"
@@ -82,7 +82,7 @@
 (defwidget weather [] 
   (eventbox :onhover "${EWW} update wthr_rev=true"
       :onhoverlost "${EWW} update wthr_rev=false"
-      :onclick "${EWW} open --toggle calbox"
+      :onclick "${EWW} open --toggle calbox && ${EWW} open calbox-closer"
 		(box :class "weatherbox" :orientation "h" :spacing 0 :valign "center" :halign "end" :space-evenly "false" :vexpand "false" :hexpand "false"
   		(label :class "weathericon" :style "color: ${WTHR_HEX};" :text WTHR_ICON)
 			(label :class "weathertemp" :text WTHR_TEMP)
@@ -129,7 +129,7 @@
       (weather))))
 
 (defwidget right []
-  (button :onclick "${EWW} open --toggle system"
+  (button :onclick "${EWW} open --toggle system && ${EWW} open system-closer"
     (box :orientation "h"
         :class "right"
         :space-evenly "false"
@@ -141,6 +141,25 @@
           (volume)
           (sep)
           (battery))))))
+
+;; ** Closer **
+
+(defwidget closer [window]
+  (eventbox :onclick "eww close ${window} && eww close ${window}-closer"))
+
+(defwindow system-closer
+  :monitor 0
+  :focusable "false"
+  :stacking "fg"
+  :geometry (geometry :width "100%" :height "100%")
+  (closer :window "system"))
+
+(defwindow calbox-closer
+  :monitor 0
+  :focusable "false"
+  :stacking "fg"
+  :geometry (geometry :width "100%" :height "100%")
+  (closer :window "calbox"))
 
 ;; ** Pop-ups **
 
