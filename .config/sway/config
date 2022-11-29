@@ -86,9 +86,9 @@ bindsym {
   $mod+Shift+Left move left
   $mod+Shift+l move right
   $mod+Shift+Right move right
-  $mod+Shift+j move up
+  $mod+Shift+k move up
   $mod+Shift+Up move up
-  $mod+Shift+k move down
+  $mod+Shift+j move down
   $mod+Shift+Down move down
 }
 
