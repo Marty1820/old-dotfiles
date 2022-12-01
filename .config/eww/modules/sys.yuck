@@ -13,7 +13,7 @@
   (box :orientation "v" :class "syssquares" :space-evenly "false"
     (box :orientation "h" :class "sysrow" :space-evenly "false" :spacing 20
       (button :onclick network_cmd
-        (cencirc :class "wificirc" :icon "${WLAN_ICON}" :label "WIFI" :color WLAN_COL :value WLAN_SPEED))
+        (cencirc :class "lancirc" :icon "${LAN_ICON}" :label "INTERNET" :color LAN_COL :value LAN_SPEED))
       (cencirc :class "diskcirc" :icon "" :label "DISK" :color 'red' :value {EWW_DISK["/"].used_perc}))
     (box :orientation "h" :class "sysrow2" :space-evenly "false" :spacing 20
       (cencirc :class "batcirc" :icon BAT_ICON :label "BATTERY" :color BAT_COL :value {EWW_BATTERY["BAT1"].capacity})
@@ -35,7 +35,7 @@
     (box :orientation "v" :spacing 10
       (volscale)
       (britscale))
-    (census)))
+      (census)))
 
 (defwindow system
   :monitor 0

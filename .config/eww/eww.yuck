@@ -36,10 +36,10 @@
 ;; Network
 (defvar ip_rev false)
 (defvar network_cmd "nm-connection-editor &")
-(defpoll WLAN_COL :interval "10s" "scripts/wifi --COL")
-(defpoll WLAN_ICON :interval "10s" "scripts/wifi --ICON")
-(defpoll WLAN_ESSID :interval "1m" "scripts/wifi --ESSID")
-(defpoll WLAN_SPEED :interval "30s" "if [ -z $(awk 'NR==3 {print $3}' /proc/net/wireless) ]; then echo 0; else awk 'NR==3 {print $3}' /proc/net/wireless; fi")
+(defpoll LAN_COL :interval "10s" "scripts/wifi --COL")
+(defpoll LAN_ICON :interval "10s" "scripts/wifi --ICON")
+(defpoll LAN_ESSID :interval "1m" "scripts/wifi --ESSID")
+(defpoll LAN_SPEED :interval "30s" "if [ -z $(awk 'NR==3 {print $3}' /proc/net/wireless) ]; then echo 0; else awk 'NR==3 {print $3}' /proc/net/wireless; fi")
 ;; VPN
 (defpoll VPN_ICON :interval "1m" "scripts/vpn")
 
@@ -91,11 +91,11 @@
           :duration "350ms"
           (label :class "weatherstat" :halign "start" :wrap "true" :limit-width 25 :text WTHR_STAT)))))
 
-;; wifi
-(defwidget wifi []
+;; Internet/LAN
+(defwidget lan []
   (box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-    (box :style "color: ${WLAN_COL};" WLAN_ICON)
-    (label :class "infotext" :halign "start" :text WLAN_ESSID)))
+    (box :style "color: ${LAN_COL};" LAN_ICON)
+    (label :class "infotext" :halign "start" :text LAN_ESSID)))
 
 ;; volume
 (defwidget volume []
@@ -136,7 +136,7 @@
         :halign "end"
       (box :class "dockbox"
         (box :orientation "h" :spacing 5 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-          (wifi)
+          (lan)
           (sep)
           (volume)
           (sep)
