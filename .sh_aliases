@@ -74,13 +74,14 @@ alias psmem='ps auxf | sort -nr -k 4'
 alias pscpu='ps auxf | sort -nr -k 3'
 alias wifikey="sudo grep -r '^psk=' /etc/NetworkManager/system-connections/"
 # Keeping $HOME(~) clean
-alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
+alias vim='vim -u "$XDG_CONFIG_HOME/vim/vimrc"'
+alias wget='wget --hsts-file="$XDG_DATA_HOME"/wget-hsts'
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 export ANDROID_HOME="$XDG_DATA_HOME"/android
-export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export WGETRC="$XDG_CONFIG_HOME"/wgetrc
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 
