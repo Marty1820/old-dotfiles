@@ -1,4 +1,10 @@
+<div align="center">
+
 # Marty's Dotfiles
+
+![GitHub Repo stars](https://img.shields.io/github/stars/Marty1820/dotfiles?style=for-the-badge&labelColor=44475a&color=bd93f9) ![GitHub last commit](https://img.shields.io/github/last-commit/Marty1820/dotfiles?style=for-the-badge&labelColor=44475a&color=bd93f9) ![GitHub repo size](https://img.shields.io/github/repo-size/Marty1820/dotfiles?style=for-the-badge&labelColor=44475a&color=bd93f9)
+
+</div>
 
 **Warning:** If you want to give these files a try, you should first modify them to fit your needs, and remove things you don’t want or need. Don’t blindly use online code unless you know what's in it and what it does. Use at your own risk! NO WARRANTIES/NO REFUNDS!!!
 
