@@ -7,7 +7,7 @@
 # ZSH CONFIGUARATION
 
 # EXPORT
-export HISTORY_IGNORE="(l[s,a,l,.]#( *)#|cd#( -, ..)#|pwd|exit|history|cls)"
+export HISTORY_IGNORE="(ls|la|ll|lt|l|l.|cd|cd ..|cd -|pwd|exit|history|cls)"
 
 ##Aliases
 source "$HOME"/.sh_aliases
