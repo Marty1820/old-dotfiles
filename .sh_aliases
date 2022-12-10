@@ -55,8 +55,9 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 # Human readable formate
-alias df='df -h'        # human-readable sizes
-alias free='free -h'    # show sizes in human readable
+alias df='df -h'
+alias free='free -h'
+alias du='du -h'
 # Colorize
 alias tree='tree -C'
 alias mkdir='mkdir -p'
