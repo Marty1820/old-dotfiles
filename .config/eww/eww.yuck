@@ -50,6 +50,7 @@
 (defpoll VOLUME :interval "1s" "pamixer --get-volume")
 
 ;; Brightness vars
+(defvar BRIT_AUTO "pkill screen_brightne")
 (defpoll BRIT_PER :interval "3s" "xbacklight -get")
 
 ;; Battery vars
