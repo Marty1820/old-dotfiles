@@ -10,7 +10,7 @@
 export HISTCONTROL=ignoreboth:erasedups
 
 ##Aliases
-source "$HOME"/.sh_aliases
+[[ -f "$HOME"/.sh_aliases ]] && . "$HOME"/.sh_aliases
 
 ### SHOPT
 shopt -s checkwinsize # checks term size when bash regains control
