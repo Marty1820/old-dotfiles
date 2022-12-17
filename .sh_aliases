@@ -11,8 +11,8 @@
 
 ### EXPORTS
 #export TERM="xterm-256color"
-export EDITOR="nano"
-export VISUAL="nano"
+export EDITOR="vim"
+export VISUAL="vim"
 
 # History file sizes
 HISTFILE="$XDG_CACHE_HOME/sh_hist"
