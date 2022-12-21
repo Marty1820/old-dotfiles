@@ -95,8 +95,9 @@ _comp_options+=(globdots)
 ### PROMPT ###
 eval "$(starship init zsh)"
 
-# Dracula Colored Syntax Highlighting
-#ZSH_HIGHLIGHT_HIGHLIGHTERS=(main cursor)
+# Dracula Theme (for zsh-syntax-highlighting)
+# https://github.com/zenorocha/dracula-theme
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main cursor)
 typeset -gA ZSH_HIGHLIGHT_STYLES
 ## Comments
 ZSH_HIGHLIGHT_STYLES[comment]='fg=#6272A4'
