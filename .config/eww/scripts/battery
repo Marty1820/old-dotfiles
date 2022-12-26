@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 power_supply=/sys/class/power_supply/ACAD/online
 bat_per=$(cat /sys/class/power_supply/BAT1/capacity)
 
@@ -12,35 +11,35 @@ colcrit="#ff5555"
 if grep -q "0" $power_supply; then
   if [ "$bat_per" -gt "90" ]; then
     icon=""
-	  col="$colgood"
+    col="$colgood"
   elif [ "$bat_per" -gt "80" ]; then
     icon=""
-	  col="$colgood"
+    col="$colgood"
   elif [ "$bat_per" -gt "70" ]; then
     icon=""
-	  col="$colgood"
+    col="$colgood"
   elif [ "$bat_per" -gt "60" ]; then
     icon=""
-	  col="$colgood"
+    col="$colgood"
   elif [ "$bat_per" -gt "50" ]; then
     icon=""
-	  col="$colgood"
+    col="$colgood"
   elif [ "$bat_per" -gt "40" ]; then
     icon=""
-	  col="$colgood"
+    col="$colgood"
   elif [ "$bat_per" -gt "30" ]; then
     icon=""
-	  col="$colgood"
+    col="$colgood"
   elif [ "$bat_per" -gt "20" ]; then
     icon=""
-	  col="$colwarn"
+    col="$colwarn"
   elif [ "$bat_per" -gt "10" ]; then
     icon=""
-	  col="$colcrit"
+    col="$colcrit"
   else
     icon=""
-	  col="$colcrit"
-	  notify-send -u critical "Battery Low" "Connect Charger"
+    col="$colcrit"
+    notify-send -u critical "Battery Low" "Connect Charger"
   fi
 elif grep -q "1" $power_supply; then
   icon=""
@@ -51,7 +50,7 @@ else
 fi
 
 if [ "$1" = "--COL" ]; then
-	echo "$col"
+  echo "$col"
 elif [ "$1" = "--ICON" ]; then
-	echo "$icon"
+  echo "$icon"
 fi
