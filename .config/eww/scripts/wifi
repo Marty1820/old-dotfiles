@@ -38,7 +38,7 @@ connection_type() {
   elif grep -q "1" /sys/class/net/$ethernet/carrier 2>/dev/null; then
     icon=""
     text="Wired"
-  elif grep -q "1" /sys/class/net/$wifi/carrier 2> /dev/null; then
+  elif grep -q "1" /sys/class/net/$wifi/carrier 2>/dev/null; then
     icon="直"
     text=$(nmcli connection | grep "$wifi" | awk '{print ($1)}')
   fi
@@ -53,8 +53,7 @@ network_check
 if [ "$1" = "--ICON" ]; then
   echo "$icon"
 elif [ "$1" = "--ESSID" ]; then
-	echo "$text"
+  echo "$text"
 elif [ "$1" = "--COL" ]; then
-	echo "$col"
+  echo "$col"
 fi
-

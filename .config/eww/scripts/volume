@@ -22,7 +22,7 @@ fi
 if [ "$1" = "--COL" ]; then
     echo $col
 elif [ "$1" = "--PERC" ]; then
-	echo "$percent"
+    echo "$percent"
 elif [ "$1" = "--ICON" ]; then
-	echo $icon
+    echo $icon
 fi

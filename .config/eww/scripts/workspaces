@@ -6,7 +6,7 @@ listworkspaces() {
   atleast=7
   ws=($(hyprctl -j workspaces | jq '.[].id' | sort))
   current=${1-$(hyprctl -j monitors | jq -r '.[0].activeWorkspace.id')}
-  max=$(( ${ws[-1]} > atleast ? ${ws[-1]} : atleast))
+  max=$((${ws[-1]} > atleast ? ${ws[-1]} : atleast))
 
   printf '(box :class "workspaces" :orientation "h" :spacing 3 :space-evenly "false" '
   for w in $(seq $max); do
@@ -27,6 +27,6 @@ listworkspaces() {
 }
 
 listworkspaces "$@"
-tail -f /tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/hyprland.log | grep -E --line-buffered "Changed to workspace" | while read -r; do 
-listworkspaces "$@"
+tail -f /tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/hyprland.log | grep -E --line-buffered "Changed to workspace" | while read -r; do
+  listworkspaces "$@"
 done

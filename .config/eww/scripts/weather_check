@@ -1,18 +1,16 @@
 #!/bin/sh
 
 main_loop() {
-  while wget -q --spider http://archlinux.org
-  do
-  ~/.config/eww/scripts/weather --getdata
-  sleep 300
+  while wget -q --spider http://archlinux.org; do
+    ~/.config/eww/scripts/weather --getdata
+    sleep 300
   done
   int_loop
 }
 
 int_loop() {
-  while ! wget -q --spider http://archlinux.org
-  do
-  sleep 10
+  while ! wget -q --spider http://archlinux.org; do
+    sleep 10
   done
   main_loop
 }
