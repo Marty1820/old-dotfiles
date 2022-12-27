@@ -10,4 +10,4 @@ export SDL_VIDEODRIVER=wayland
 export XDG_CURRENT_DESKTOP=sway
 export XDG_SESSION_DESKTOP=sway
 
-exec sway >> /dev/null
+exec sway >>/dev/null

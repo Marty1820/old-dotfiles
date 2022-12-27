@@ -20,4 +20,4 @@ export XCURSOR_SIZE=24
 # Misc.
 export MOZ_ENABLE_WAYLAND=1
 
-exec Hyprland >> /dev/null
+exec Hyprland >>/dev/null
