@@ -6,16 +6,16 @@ import os
 import json
 
 def hist_run():
-    '''Shows dunst notifications from history'''
-    os.system("""while read; do dunstctl history-pop; done <<<$(dunstctl history|grep '"id" :')""")
+  '''Shows dunst notifications from history'''
+  os.system("""while read; do dunstctl history-pop; done <<<$(dunstctl history|grep '"id" :')""")
 
 def clicked():
-    '''Returns True if the button was clicked'''
-    button = os.environ.get("BLOCK_BUTTON", None)
-    return bool(button)
+  '''Returns True if the button was clicked'''
+  button = os.environ.get("BLOCK_BUTTON", None)
+  return bool(button)
 
 if clicked():
-    hist_run()
+  hist_run()
 
 RTN = {"full_text":"<span font='Font Awesome 5 Free Solid' color='#f8f8f2'>\uf0f3</span>"}
 

@@ -30,14 +30,15 @@
   padding: 0px;
 }
 
-button, label {
+button,
+label {
   all: unset;
 }
 
 window#waybar {
   background-color: transparent;
   transition-property: background-color;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
   color: @foreground;
 }
 
@@ -188,7 +189,7 @@ tooltip label {
 }
 
 #temperature.critical {
-  color: @red
+  color: @red;
 }
 
 #memory {
@@ -217,7 +218,8 @@ tooltip label {
   color: @cyan;
 }
 
-#battery.charging, #battery.plugged {
+#battery.charging,
+#battery.plugged {
   background-color: transparent;
   color: @green;
 }

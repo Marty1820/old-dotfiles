@@ -5,8 +5,8 @@ command=$(echo "$packages" | wc -l)
 
 # Mouse actions
 case "$BLOCK_BUTTON" in
-  1) notify-send "Available Updates" "$packages" ;;
-  3) alacritty -e paru -Syu ;;
+1) notify-send "Available Updates" "$packages" ;;
+3) alacritty -e paru -Syu ;;
 esac
 
 if [ "$packages" = "" ]; then

@@ -39,16 +39,19 @@ else
 fi
 
 case "$bat_status" in
-  (Charging)      echo "$char$bat_per"  # full text
-                  echo "$char$bat_per"  # short text
-                  echo "$norm_color"
-                  ;;
-  (Discharging)   echo "$char $bat_per"  # full text
-                  echo "$char $bat_per"  # short text
-                  echo "$color"
-                  ;;
-  (*)             echo " $bat_per"      # full text
-                  echo " $bat_per"      # short text
-                  echo "$warn_color"          # color
-                  ;;
+Charging)
+  echo "$char$bat_per" # full text
+  echo "$char$bat_per" # short text
+  echo "$norm_color"
+  ;;
+Discharging)
+  echo "$char $bat_per" # full text
+  echo "$char $bat_per" # short text
+  echo "$color"
+  ;;
+*)
+  echo " $bat_per" # full text
+  echo " $bat_per" # short text
+  echo "$warn_color" # color
+  ;;
 esac

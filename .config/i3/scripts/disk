@@ -2,7 +2,7 @@
 
 # Mouse actions
 case $BLOCK_BUTTON in
-  1) pcmanfm -n ~ ;;
+1) pcmanfm -n ~ ;;
 esac
 
 #norm_color="#ff79c6"

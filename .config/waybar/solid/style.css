@@ -47,9 +47,9 @@ tooltip label {
   padding-left: 0px;
   padding-right: 0px;
   border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 #workspaces button {
@@ -69,8 +69,8 @@ tooltip label {
 }
 
 #workspaces button.urgent {
-	background: @red;
-	color: @foreground;
+  background: @red;
+  color: @foreground;
 }
 
 /* -----------------------------------------------------------------------------

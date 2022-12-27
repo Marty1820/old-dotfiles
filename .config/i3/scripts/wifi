@@ -4,7 +4,7 @@
 
 # Mouse actions
 case $BLOCK_BUTTON in
-  1) nm-connection-editor ;;
+1) nm-connection-editor ;;
 esac
 
 # Colors
@@ -15,7 +15,7 @@ COLOR_LOWR=${COLOR_LOWR:-#ff5555}
 COLOR_DOWN=${COLOR_DOWN:-#ff5555}
 COLOR_RKIL=${COLOR_RKIL:-#ff5555}
 
-if [ "$1" = "" ] ; then
+if [ "$1" = "" ]; then
   wifi="wlan0"
 else
   wifi="$1"
@@ -24,13 +24,13 @@ fi
 if [ "$(cat /sys/class/net/"$wifi"/operstate)" = 'down' ]; then
   # If RFKILL is running else wifi disconnected
   if [ "$(rfkill list | awk -F ':' '/yes/ {print $2}')" ]; then
-      echo ""
-      echo ""
-      echo "$COLOR_RKIL"
+    echo ""
+    echo ""
+    echo "$COLOR_RKIL"
   else
-      echo "睊"
-      echo "睊"
-      echo "$COLOR_DOWN"
+    echo "睊"
+    echo "睊"
+    echo "$COLOR_DOWN"
   fi
   exit
 fi
@@ -42,11 +42,11 @@ echo 直 "$QUALITY" # short text
 
 # color
 if [ "$QUALITY" -ge 80 ]; then
-    echo "$COLOR_GE80"
+  echo "$COLOR_GE80"
 elif [ "$QUALITY" -ge 60 ]; then
-    echo "$COLOR_GE60"
+  echo "$COLOR_GE60"
 elif [ "$QUALITY" -ge 40 ]; then
-    echo "$COLOR_GE40"
+  echo "$COLOR_GE40"
 else
-    echo "$COLOR_LOWR"
+  echo "$COLOR_LOWR"
 fi

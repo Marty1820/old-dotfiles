@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/bin/sh
 
 /usr/bin/picom &
 /usr/bin/blueman-applet &

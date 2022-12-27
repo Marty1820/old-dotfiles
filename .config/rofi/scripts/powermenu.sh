@@ -17,33 +17,33 @@ else
 fi
 logout="﫼"
 
-chosen=$(printf '%s;%s;%s;%s;%s\n' "$shutdown" "$reboot" "$lock" "$suspend" "$logout" \
-  | $rofi_conf \
+chosen=$(printf '%s;%s;%s;%s;%s\n' "$shutdown" "$reboot" "$lock" "$suspend" "$logout" |
+  $rofi_conf \
     -p "  祥  $uptime" \
     -dmenu \
     -sep ';' \
     -selected-row 2)
 
 case "$chosen" in
-  "$shutdown")
-    systemctl poweroff
-    ;;
-  "$reboot")
-    systemctl reboot
-    ;;
-  "$lock")
+"$shutdown")
+  systemctl poweroff
+  ;;
+"$reboot")
+  systemctl reboot
+  ;;
+"$lock")
+  $lock_cmd
+  ;;
+"$suspend")
+  if [ "$(cat /sys/class/power_supply/BAT1/status)" = Discharging ]; then
+    systemctl hibernate
+  else
     $lock_cmd
-    ;;
-  "$suspend")
-    if [ "$(cat /sys/class/power_supply/BAT1/status)" = Discharging ]; then
-		  systemctl hibernate
-		else
-		  $lock_cmd
-      systemctl suspend
-    fi
-    ;;
-  "$logout")
-    session=$(loginctl session-status | head -n 1 | awk '{print $1}')
-    loginctl terminate-session "$session"
-    ;;
+    systemctl suspend
+  fi
+  ;;
+"$logout")
+  session=$(loginctl session-status | head -n 1 | awk '{print $1}')
+  loginctl terminate-session "$session"
+  ;;
 esac
