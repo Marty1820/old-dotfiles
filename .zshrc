@@ -97,7 +97,7 @@ eval "$(starship init zsh)"
 
 # Dracula Theme (for zsh-syntax-highlighting)
 # https://github.com/zenorocha/dracula-theme
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main cursor)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main)
 typeset -gA ZSH_HIGHLIGHT_STYLES
 ## Comments
 ZSH_HIGHLIGHT_STYLES[comment]='fg=#6272A4'
