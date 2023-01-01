@@ -64,8 +64,8 @@ alias mkdir='mkdir -p'
 alias psa='ps auxf'
 alias cls='clear -x && color10bit.sh'
 alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
+alias egrep='grep -E --color=auto'
+alias fgrep='grep -F --color=auto'
 alias diff='diff --color=auto'
 alias ip='ip -color=auto'
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
@@ -89,12 +89,12 @@ export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 # Use bat instead of cat
 alias cat='bat'
 # Changing "ls" to "exa"
-alias ls='exa -al --icons --color=always --group-directories-first' # my preferred listing
-alias la='exa -al --icons --color=always --group-directories-first' # all files and dirs
-alias ll='exa -l --icons --color=always --group-directories-first' # long format
+alias ls='exa --icons --color=always --group-directories-first' # adds icons, color, dirs firts
+alias la='exa -a --icons --color=always --group-directories-first' # all files and dirs
+alias ll='exa -al --icons --color=always --group-directories-first' # long format
 alias lt='exa -aT --icons --color=always --group-directories-first' # tree listing
 alias l='exa -a --icons --color=always' # Show all dirs/files
-alias l.='exa -a | egrep "^\."' # Show only .dot files
+alias l.='exa -a | grep -E "^\."' # Show only .dot files
 
 # pacman and paru
 alias pacsyu='sudo pacman -Syyu' # update only standard pkgs
