@@ -4,45 +4,43 @@
 good="#50fa7b"
 bad="#ff5555"
 
-# Network Interfaces
+# Network interface names
 usb="usb0"
 ethernet="eth0"
 wifi="wlan0"
 vpn="wg0"
 rfblock=$(rfkill --output SOFT | awk '($1 == "blocked")')
 
-network_check() {
+network_check() { # Checks Network connection
   for interface in $(ls /sys/class/net/ | grep -v lo); do
-    if [ $(cat /sys/class/net/$interface/carrier) = 1 ]; then
+    if [ "$(cat /sys/class/net/"$interface"/carrier)" = 1 ]; then
       OnLine=1
     fi
-  done
-  if ! [ $OnLine ]; then
-    if [ "$rfblock" != "" ]; then
-      icon=""
-    elif [ $(nmcli general | grep -oE "disconnected") ]; then
-      icon="睊"
+    if ! [ "$OnLine" ]; then
+      if [ "$rfblock" != "" ]; then
+        icon=""
+      elif nmcli general | grep -qo "disconnected"; then
+        icon="睊"
+      fi
+      col=$bad
+    else
+      col=$good
+      connection_type
     fi
-    text=""
-    col="$bad"
-  else
-    connection_type
-  fi
+  done
 }
 
-connection_type() {
-  #wifi
+connection_type() { # Checks connection type and sets icon
   if grep -q "1" /sys/class/net/$usb/carrier 2>/dev/null; then
     icon="禍"
     text="USB"
   elif grep -q "1" /sys/class/net/$ethernet/carrier 2>/dev/null; then
-    icon=""
+    icon=" "
     text="Wired"
   elif grep -q "1" /sys/class/net/$wifi/carrier 2>/dev/null; then
     icon="直"
     text=$(nmcli connection | grep "$wifi" | awk '{print ($1)}')
   fi
-  col="$good"
   if grep -q "1" /sys/class/net/$vpn/carrier 2>/dev/null; then
     icon="嬨"
   fi

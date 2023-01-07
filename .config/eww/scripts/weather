@@ -77,7 +77,7 @@ get_weather_data() {
 		echo "Unavailable" >"${cache_weather_stat}"
 		echo " " >"${cache_weather_icon}"
 		echo "" >"${cache_weather_degree}"
-		echo "" >"${cach_weather_feelslike}"
+		echo "" >"${cache_weather_feelslike}"
 		echo "#bd93f9" >"${cache_weather_hex}"
 		echo "Unavailable" >"${cache_weather_city}"
 	fi

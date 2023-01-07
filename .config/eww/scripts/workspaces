@@ -4,7 +4,7 @@ ic=(0  爵    碌 )
 
 listworkspaces() {
   atleast=7
-  ws=($(hyprctl -j workspaces | jq '.[].id' | sort))
+  ws=("$(hyprctl -j workspaces | jq '.[].id' | sort)")
   current=${1-$(hyprctl -j monitors | jq -r '.[0].activeWorkspace.id')}
   max=$((${ws[-1]} > atleast ? ${ws[-1]} : atleast))
 
