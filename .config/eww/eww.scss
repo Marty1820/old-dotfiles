@@ -14,7 +14,7 @@ $yellow: #f1fa8c;
 /* Global */
 *{
 	all: unset;
-	font-family: "mononoki-Regular Nerd Font Complete Mono";
+	font-family: "mononoki Nerd Font Mono";
 }
 
 /* Bar */
@@ -38,7 +38,7 @@ $yellow: #f1fa8c;
 }
 
 .workspaces button {
-  font-size: 15px;
+  font-size: 18px;
   border: none;
   margin: 0px 5px;
 }
@@ -61,7 +61,7 @@ $yellow: #f1fa8c;
 }
 
 .time {
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: bold;
 }
 
@@ -80,7 +80,7 @@ $yellow: #f1fa8c;
 }
 
 .weathertemp {
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: bold;
 	margin: 0px 0px 0px -5px;
 }
@@ -97,7 +97,7 @@ $yellow: #f1fa8c;
 }
 
 .infotext {
-	font-size: 14px;
+	font-size: 16px;
 	padding: 5px 0px;
 	font-weight: bold;
 }
@@ -157,7 +157,7 @@ calendar:indeterminate {
 	border-radius: 10px;
 	margin: 5px;
 	background-color: $background;
-	font-size: 33px;
+	font-size: 36px;
 }
 
 .weatherdesc {
