@@ -1,7 +1,7 @@
 #!/bin/sh
 
 main_loop() {
-  while wget -q --spider http://archlinux.org; do
+  while ping -c 1 archlinux.org; do
     ~/.config/eww/scripts/weather --getdata
     sleep 300
   done
@@ -9,7 +9,7 @@ main_loop() {
 }
 
 int_loop() {
-  while ! wget -q --spider http://archlinux.org; do
+  while ! ping -c 1 archlinux.org; do
     sleep 10
   done
   main_loop
