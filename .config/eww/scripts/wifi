@@ -9,7 +9,7 @@ usb="usb0"
 ethernet="eth0"
 wifi="wlan0"
 vpn="wg0"
-rfblock=$(rfkill --output SOFT | awk '($1 == "blocked")')
+rfblock=$(rfkill --output SOFT | grep wlan | awk '($1 == "blocked")')
 
 network_check() { # Checks Network connection
   for interface in $(ls /sys/class/net/ | grep -v lo); do
