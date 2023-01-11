@@ -7,7 +7,7 @@
 # ZSH CONFIGUARATION
 
 # EXPORT
-export HISTORY_IGNORE="(ls|la|ll|lt|l|l.|cd|cd ..|cd -|pwd|exit|history|cls)"
+export HISTORY_IGNORE="([bg]g *|l[salt.]#( *)|l|cd(|*)|pwd|exit|history|cls)"
 
 ##Aliases
 [[ -f "$HOME"/.sh_aliases ]] && . "$HOME"/.sh_aliases
@@ -28,7 +28,7 @@ unsetopt beep
 
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
-# Editor Keybindings e=emacs
+# Editor Keybindings `-e`=emacs OR `-v`=vi mode
 bindkey -e
 bindkey "^[[3~" delete-char #needed for delete key functionality
 
