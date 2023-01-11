@@ -10,7 +10,6 @@
 [[ $- != *i* ]] && return
 
 ### EXPORTS
-#export TERM="xterm-256color"
 export EDITOR="nvim"
 export VISUAL="nvim"
 
@@ -21,21 +20,10 @@ SAVEHIST=2000
 HISTFILESIZE=2000
 
 ### SET PATHS
-if [ -d "$HOME/.bin" ] ;
-  then PATH="$HOME/.bin:$PATH"
-fi
-
-if [ -d "$HOME/.local/bin" ] ;
-  then PATH="$HOME/.local/bin:$PATH"
-fi
-
-if [ -d "$HOME/Applications" ] ;
-  then PATH="$HOME/Applications:$PATH"
-fi
-
-if [ -d "$HOME/Scripts" ] ;
-  then PATH="$HOME/Scripts:${PATH}"
-fi
+[[ -d "$HOME/.bin" ]] && PATH="$HOME/.bin:$PATH"
+[[ -d "$HOME/.local/bin" ]] && PATH="$HOME/.local/bin:$PATH"
+[[ -d "$HOME/Applications" ]] && PATH="$HOME/Applications:$PATH"
+[[ -d "$HOME/Scripts" ]] && PATH="$HOME/Scripts:${PATH}"
 
 ### CHANGE TITLE OF TERMINALS username@hostname:pwd
 case ${TERM} in
@@ -122,9 +110,7 @@ fi
 
 ### BASH INSULTER (works in zsh too) ###
 # sudo wget -O /etc/bash.command-not-found https://gitlab.com/dwt1/bash-insulter/-/raw/master/src/bash.command-not-found
-if [ -f /etc/bash.command-not-found ]; then
-  . /etc/bash.command-not-found
-fi
+[[ -f /etc/bash.command-not-found ]] && . /etc/bash.command-not-found
 
 ### DRACULA TTY COLORS ###
 if [ "$TERM" = "linux" ]; then
