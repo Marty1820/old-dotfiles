@@ -1,42 +1,121 @@
 (defwidget volscale []
-  (box :orientation "h" :space-evenly "false" :spacing 15
-    (button :onclick VOL_MUTE
-      (box :orientation "h" :valign "center" :class "volicon" :style "color: ${VOL_COL};" VOL_ICON))
-    (scale :min 0 :max 100 :orientation "h" :value VOLUME :onchange "~/.config/eww/scripts/vol-set {}" :valign "center")))
+  (box
+    :orientation "h"
+    :space-evenly "false"
+    :spacing 15
+    (button
+      :onclick
+      VOL_MUTE
+      (box
+        :orientation "h"
+        :valign "center"
+        :class "volicon"
+        :style "color: ${VOL_COL};"
+        VOL_ICON))
+    (scale
+      :min 0
+      :max 100
+      :orientation "h"
+      :value VOLUME
+      :onchange "~/.config/eww/scripts/vol-set {}"
+      :valign "center")))
 
 (defwidget britscale []
-  (box :orientation "h" :space-evenly "false" :spacing 15
-    (button :onclick BRIT_AUTO
-      (box :orientation "h" :valign "center" :class "briticon" :style "color: orange;" ""))
-    (scale :min 0 :max 100 :orientation "h" :value BRIT_PER :onchange "xbacklight -set {}" :valign "center")))
+  (box
+    :orientation "h"
+    :space-evenly "false"
+    :spacing 15
+    (button
+      :onclick BRIT_AUTO
+      (box
+        :orientation "h"
+        :valign "center"
+        :class "briticon"
+        :style "color: orange;"
+        ""))
+    (scale
+      :min 0
+      :max 100
+      :orientation "h"
+      :value BRIT_PER
+      :onchange "xbacklight -set {}"
+      :valign "center")))
 
 (defwidget census []
-  (box :orientation "v" :class "syssquares" :space-evenly "false"
-    (box :orientation "h" :class "sysrow" :space-evenly "false" :spacing 20
-      (button :onclick network_cmd
-        (cencirc :class "lancirc" :icon "${LAN_ICON}" :label "INTERNET" :color LAN_COL :value LAN_SPEED))
-      (cencirc :class "diskcirc" :icon "" :label "DISK" :color 'red' :value {EWW_DISK["/"].used_perc}))
-    (box :orientation "h" :class "sysrow2" :space-evenly "false" :spacing 20
-      (cencirc :class "batcirc" :icon BAT_ICON :label "BATTERY" :color BAT_COL :value {EWW_BATTERY["BAT1"].capacity})
-      (cencirc :class "cpucirc" :icon "" :label "CPU TEMP" :color 'yellow' :value {EWW_TEMPS["CORETEMP_PACKAGE_ID_0"]}))))
+  (box
+    :orientation "v"
+    :class "syssquares"
+    :space-evenly "false"
+    (box
+      :orientation "h"
+      :class "sysrow"
+      :space-evenly "false"
+      :spacing 20
+      (button
+        :onclick network_cmd
+        (cencirc
+          :class "lancirc"
+          :icon "${LAN_ICON}"
+          :label "INTERNET"
+          :color LAN_COL
+          :value LAN_SPEED))
+      (cencirc
+        :class "diskcirc"
+        :icon ""
+        :label "DISK"
+        :color 'red'
+        :value {EWW_DISK["/"].used_perc}))
+    (box
+      :orientation "h"
+      :class "sysrow2"
+      :space-evenly "false"
+      :spacing 20
+      (cencirc
+        :class "batcirc"
+        :icon BAT_ICON
+        :label "BATTERY"
+        :color BAT_COL
+        :value {EWW_BATTERY["BAT1"].capacity})
+      (cencirc
+        :class "cpucirc"
+        :icon ""
+        :label "CPU TEMP"
+        :color 'yellow'
+        :value {EWW_TEMPS["CORETEMP_PACKAGE_ID_0"]}))))
 
 (defwidget cencirc [class label icon color value]
-  (box :orientation "v" :class "${class} syscircbox" :space-evenly "false" :hexpand "true"
-      (box :orientation "v" :space-evenly "false" :hexpand "true"
-          (box :class "syscirctitle" :halign "start" label)
-          (circular-progress :class "syscirc ${color}"
-                   :value value
-                   :thickness 9
-                   :clockwise true
-                   :start-at 25
-         (label :class "syscircicon ${color}" :style "color: ${color};" :text icon)))))
+  (box
+    :orientation "v"
+    :class "${class} syscircbox"
+    :space-evenly "false"
+    :hexpand "true"
+    (box
+      :orientation "v"
+      :space-evenly "false"
+      :hexpand "true"
+      (box
+        :class "syscirctitle"
+        :halign "start"
+        label)
+      (circular-progress
+        :class "syscirc ${color}"
+        :value value
+        :thickness 9
+        :clockwise true
+        :start-at 25
+        (label :class "syscircicon ${color}" :style "color: ${color};" :text icon)))))
 
 (defwidget system []
-  (box :orientation "v" :class "sysouterbox" :space-evenly "false"
-    (box :orientation "v" :spacing 10
+  (box
+    :orientation "v"
+    :class "sysouterbox"
+    :space-evenly "false"
+    (box
+      :orientation "v"
+      :spacing 10
       (volscale)
       (britscale))
-      (census)))
+    (census)))
 
 (defwindow system
   :monitor 0
@@ -45,7 +124,8 @@
   :exclusive "false"
   :focusable "false"
   :stacking "overlay"
-  :geometry (geometry :x "5px" 
-	    :y "0%"
-      :anchor "top right")
+  :geometry (geometry
+    :x "5px"
+    :y "0%"
+    :anchor "top right")
   (system))
