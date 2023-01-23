@@ -1,198 +1,128 @@
-// =============================================================================
+// =============================================
 // ███╗░░░███╗░█████╗░██████╗░████████╗██╗░░░██╗
 // ████╗░████║██╔══██╗██╔══██╗╚══██╔══╝╚██╗░██╔╝
 // ██╔████╔██║███████║██████╔╝░░░██║░░░░╚████╔╝░
 // ██║╚██╔╝██║██╔══██║██╔══██╗░░░██║░░░░░╚██╔╝░░
 // ██║░╚═╝░██║██║░░██║██║░░██║░░░██║░░░░░░██║░░░
 // ╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░
-// =============================================================================
+// =============================================
 
 {
-  // -------------------------------------------------------------------------
+  // -------------------------------------------
   // Global configuration
-  // -------------------------------------------------------------------------
+  // -------------------------------------------
 
-  "layer": "top", // Waybar at top layer
-  "position": "top", // Waybar position (top|bottom|left|right)
-  "spacing": 6,
+  "layer": "top", // Decide if the bar is displayed in front (top) of the windows or behind (bottom) them.
+  "position": "top", // Bar position, can be top,bottom,left,right.
+  "margin": 4, // Margin value using the css format without units
 
-  "modules-left": [
-    "custom/power",
-    "custom/spacer",
-    "custom/pkgs",
-    "custom/weather",
-    "custom/spacer",
-    "tray"
-  ],
+  // Modules that will be displayed on the left.
+  "modules-left": ["sway/window"],
 
-  "modules-center": [
-    "sway/workspaces"
-  ],
+  // Modules that will be displayed in the center.
+  "modules-center": ["clock", "custom/weather"],
 
+  // Modules that will be displayed on the right.
   "modules-right": [
-    "custom/camera",
-    "custom/spacer",
     "bluetooth",
-    "custom/vpn",
+    "custom/sep",
     "network",
-    "custom/spacer",
-    "cpu",
-    "temperature",
-    "custom/spacer",
-    "memory",
-    "custom/spacer",
+    "custom/sep",
     "pulseaudio",
-    "custom/spacer",
-    "clock",
-    "custom/spacer",
-    "battery"
+    "custom/sep",
+    "battery",
+    "custom/sep",
+    "custom/power"
   ],
 
-
-  // -------------------------------------------------------------------------
+  // -------------------------------------------
   // Modules
-  // -------------------------------------------------------------------------
+  // -------------------------------------------
 
-  "custom/spacer": {
-    "format": "|",
-    "interval": "once",
-    "tooltip": false
-  },
-
-  "custom/power": {
-    "format": "<big>襤</big>",
-    "exec-on-event": "true",
-    "on-click": "~/.config/rofi/scripts/powermenu.sh",
-    "tooltip": false
-  },
-
-  "sway/workspaces": {
-    "all-outputs": true,
-    "disable-scroll": true,
-    "format": "<big>{icon} {name}</big>",
-    "format-icons": {
-      "urgent": "",
-      "focused": "",
-      "default": ""
-    }
-  },
-
-  "custom/pkgs": {
-    "format": "{}",
-    "exec": "checkupdates | wc -l",
-    "exec-if": "[ $(checkupdates | wc -l) != 0 ]",
-    "interval": 1800,
-    "on-click": "alacritty -e paru -Syu && notify-send 'System update complete'",
-    "tooltip": false
-  },
-
-  "custom/weather": {
+  "sway/window": {
     "format": "{}",
-    "format-alt": "{alt}: {}",
-    "interval": 3600,
-    "return-type": "json",
-    "exec": "~/.config/waybar/modules/wttr.sh",
-    "exec-if": "ping wttr.in -c1"
-  },
-
-  "tray": {
-    "spacing": 2,
-    "reverse-direction": true
-  },
-
-  "custom/camera": {
-    "format": "<big></big>",
-    "return-type": "json",
-    "exec": "~/.config/waybar/modules/camera.sh",
-    "exec-if": "test -d /sys/class/video4linux/video0",
-    "interval": 30
-  },
-
-  "bluetooth": {
-    "format": "",
-    "format-disabled": "<big></big>",
-    "format-off": "<big></big>",
-    "format-on": "",
-    "format-connected": "<big></big> {device_battery_percentage}",
-    "on-click": "blueman-manager"
-  },
-
-  "custom/vpn": {
-    "format": "<big>嬨</big>",
-    "exec": "echo '{\"class\": \"connected\"}'",
-    "exec-if": "test -d /proc/sys/net/ipv4/conf/wg0",
-    "return-type": "json",
-    "interval": 5,
-    "on-click": "alacritty -e wg-quick down wg0",
-    "tooltip": false
-  },
-
-  "network": {
-    "interval": 5,
-    "format-wifi": "<big>直</big> {signalStrength}",
-    "format-ethernet": "",
-    "format-disconnected": "<big></big>",
-    "tooltip-format": "{essid} {frequency}: {ipaddr}",
-    "tooltip-format-disconnected": "Disconnected",
-    "on-click": "nm-connection-editor"
-  },
-
-  "cpu": {
-    "interval": 10,
-    "format": "<big></big> {usage}",
-    "states": {
-      "warning": 70,
-      "critical": 90
+    "rewrite": {
+      "(.*) - Brave": "爵 $1",
+      "(.*) — LibreWolf": " $1",
+      "(.*) - VSCodium": "﬏ $1",
+      "Alacritty": " Alacritty",
+      "(.*) - NVIM": " $1",
+      "galculator": " Calculator",
+      "Minecraft (.*)": " $1",
+      "(.*) - gedit": " $1",
+      "(.*) - VLC media player": "嗢 $1"
     }
-  },
-
-  "temperature": {
-    "critical-threshold": 80,
-    "interval": 10,
-    "format": "<big>{icon}</big> {temperatureC}糖",
-    "format-icons": ["", "", "", "", ""],
-    "tooltip": true
-  },
-
-  "memory": {
-    "interval": 30,
-    "format": "<big></big> {used:0.1f}G/{total:0.0f}G",
-    "states": {
-      "warning": 70,
-      "critical": 90
-    }
-  },
-
-  "pulseaudio": {
-    "format": "{icon} {volume}",
-    "format-bluetooth": "{icon} {volume}",
-    "format-muted": "婢 {volume}",
-    "format-icons": {
-      "headphone": "",
-      "headset": "",
-      "default" : ["奄", "奔", "墳"]
-    },
-    "scroll-step": 1,
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
   },
 
   "clock": {
     "interval": 60,
-    "format": "<big></big> {:%b %d %I:%M%p}",
-    "tooltip-format": "{:%e %B %Y}"
+    "format": "{:%I:%M %p} ",
+    "on-click": "/usr/bin/eww -c $HOME/.config/eww open --toggle calbox && /usr/bin/eww -c $HOME/.config/eww open --toggle calbox-closer",
+    "tooltip-format": "{:%A, %b %d}"
+  },
+
+  "custom/weather": {
+    "format": "| {}",
+    "format-alt": "| {} {alt}",
+    "interval": 300,
+    "return-type": "json",
+    "exec": "~/.config/waybar/modules/weather.sh",
+    "exec-if": "ping -q -c 1 api.openweathermap.org >/dev/null 2>&1"
+  },
+
+  "custom/sep": {
+    "format": "|",
+    "tooltip": false
+  },
+
+  "bluetooth": {
+    "format-disabled": "<big></big>",
+    "format-off": "<big></big>",
+    "format-on": "",
+    "format-connected": "<big></big>",
+    "on-click": "blueman-manager",
+    "format-connected-battery": "<big></big> {device_battery_percentage}"
+  },
+
+  "network": {
+    "interval": 60,
+    "format-ethernet": "",
+    "format-wifi": "<big>直</big> {essid}",
+    "format-disconnected": "<big></big>",
+    "on-click": "nm-connection-editor",
+    "tooltip": false
+  },
+
+  "pulseaudio": {
+    "format": "<span foreground=\"#bd93f9\"><big>{icon}</big></span> {volume}",
+    "format-bluetooth": "<span foreground=\"#bd93f9\"><big>{icon}</big></span> {volume}",
+    "format-muted": "<span foreground=\"#ff5555\"><big>婢</big></span> {volume}",
+    "format-icons": {
+      "headphone": "",
+      "headset": "",
+      "default": ["", "", ""]
+    },
+    "scroll-step": 1,
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "tooltip": false
   },
 
   "battery": {
-    "interval": 30,
+    "interval": 60,
     "states": {
       "warning": 30,
       "critical": 15
     },
-    // Connected to AC
-    "format": "{icon} {capacity}",
-    // Not connected to AC
-    "format-discharging": "{icon} {capacity}",
+    "format": "<span foreground=\"#50fa7b\"></span> {capacity}",
     "format-icons": ["", "", "", "", "", "", "", "", "", "", ""],
-    "tooltip": true
+    "tooltip": false,
+    "format-discharging": "<span foreground=\"#8be9fd\">{icon}</span> {capacity}"
+  },
+
+  "custom/power": {
+    "format": "<big>拉</big>",
+    "exec-on-event": "true",
+    "tooltip": false,
+    "on-click": "/usr/bin/eww -c $HOME/.config/eww open --toggle system && /usr/bin/eww -c $HOME/.config/eww open --toggle system-closer"
   }
 }

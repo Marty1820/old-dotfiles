@@ -23,33 +23,35 @@
 /* Main */
 * {
   border: none;
-  border-radius: 0px;
-  font-family: mononoki Nerd Font Mono;
-  font-size: 12px;
-  min-height: 0;
-  padding: 0px;
+  border-radius: 10px;
+  font-family: "RobotoMono Nerd Font";
+  font-weight: bold;
+  font-size: 15px;
 }
 
-button,
-label {
-  all: unset;
-}
-
+/* Bar styling */
 window#waybar {
-  background-color: transparent;
-  transition-property: background-color;
-  transition-duration: 0.5s;
+  background: none;
   color: @foreground;
 }
 
-window#waybar.hidden {
-  opacity: 0.2;
+/* Module Group Styling */
+.modules-left,
+.modules-center,
+.modules-right {
+  padding: 2px 5px;
 }
 
-tooltip {
-  opacity: 0.9;
-  border-radius: 20px;
+.modules-center,
+.modules-right {
+  background: black;
   border: 1px solid @selection;
+}
+
+/* Tooltips */
+tooltip {
+  opacity: 0.95;
+  border: 2px solid @comment;
   background: @background;
 }
 
@@ -57,105 +59,48 @@ tooltip label {
   color: @foreground;
 }
 
-#window,
-#workspaces {
-  margin: 0px 4px;
-}
-
-/* Workspaces */
-#workspaces button {
-  padding: 2px 10px;
-  border-radius: 20px;
-  background: @background;
-  color: @foreground;
-}
-
-#workspaces button.focused {
-  border-color: @selection;
-  color: @purple;
-  background-color: @selection;
-}
-
-#workspaces button.urgent {
-  background-color: @red;
-  color: @foreground;
+/* KeyFrames */
+@keyframes blink {
+  to {
+    color: @red;
+  }
 }
 
 /* Modules */
-#custom-spacer {
-  color: @foreground;
+
+#window {
+  padding-left: 5px;
+  padding-right: 5px;
+  background: black;
+  border: 1px solid @selection;
 }
 
-#custom-power {
-  color: @red;
+window#waybar.empty #window {
+  padding: 0px;
+  background: none;
+  border: none;
 }
 
-#custom-pkgs {
-  color: @red;
-}
-
-#tray {
-  color: @foreground;
-}
-
-#tray > .passive {
-  -gtk-icon-effect: dim;
-  color: @foreground;
-}
-
-#tray > .needs-attention {
-  -gtk-icon-effect: highlight;
-  color: @red;
+#clock {
+  padding-left: 5px;
 }
 
 #custom-weather {
-  color: @yellow;
+  padding-right: 5px;
 }
 
-#custom-camera {
-  color: @green;
+#custom-sep {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
-#custom-camera.critical {
-  color: @red;
+#bluetooth {
+  color: @cyan;
 }
 
-#bluetooth.disabled {
-  color: @red;
-}
-
+#bluetooth.disabled,
 #bluetooth.off {
   color: @red;
-}
-
-#bluetooth.on {
-  color: @green;
-}
-
-#bluetooth.connected {
-  color: @comment;
-}
-
-#bluetooth.discoverable {
-  animation-name: blink-critical;
-  animation-duration: 2s;
-  color: @red;
-}
-
-#bluetooth.discovering {
-  animation-name: blink-critical;
-  animation-duration: 2s;
-  color: @red;
-}
-
-#bluetooth.parable {
-  animation-name: blink-critical;
-  animation-duration: 2s;
-  color: @red;
-}
-
-#custom-vpn {
-  color: @green;
 }
 
 #network {
@@ -166,68 +111,9 @@ tooltip label {
   color: @red;
 }
 
-#network.disabled {
-  color: @red;
-}
-
-#cpu {
-  color: @orange;
-}
-
-#cpu.warning {
-  color: @orange;
-}
-
-#cpu.critical {
-  animation-name: blink-critical;
-  animation-duration: 2s;
-  color: @red;
-}
-
-#temperature {
-  color: @orange;
-}
-
-#temperature.critical {
-  color: @red;
-}
-
-#memory {
-  color: @pink;
-}
-
-#memory.critical {
-  animation-name: blink-critical;
-  animation-duration: 2s;
-  color: @red;
-}
-
-#pulseaudio {
-  color: @purple;
-}
-
-#pulseaudio.muted {
-  color: @red;
-}
-
-#clock {
-  color: @yellow;
-}
-
-#battery {
-  color: @cyan;
-}
-
 #battery.charging,
-#battery.plugged {
-  background-color: transparent;
-  color: @green;
-}
-
-@keyframes blink {
-  to {
-    color: @red;
-  }
+#battery.discharging {
+  background: none;
 }
 
 #battery.warning:not(.charging) {
@@ -236,7 +122,7 @@ tooltip label {
   animation-timing-function: linear;
   animation-iteration-count: 10;
   animation-direction: alternate;
-  background-color: transparent;
+  background: none;
   color: @orange;
 }
 
@@ -246,10 +132,11 @@ tooltip label {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  background-color: @red;
-  color: @background;
+  background: none;
+  color: @red;
 }
 
-label:focus {
-  background-color: @background;
+#custom-power {
+  padding-right: 5px;
+  color: @purple;
 }

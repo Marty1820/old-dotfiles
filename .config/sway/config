@@ -22,6 +22,7 @@ set {
   $myEditor gedit
   $myAltEditor "codium --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland"
   $myAppLauncher "rofi -show drun -theme '~/.config/rofi/config.rasi'"
+  $myWallpaperDir $HOME/Pictures/wallpapers/
 }
 
 #
@@ -208,6 +209,7 @@ for_window [app_id="LibreWolf"] move to workspace $ws2
 
 # Background tasks/scripts
 exec ~/.config/autostart/background.sh
+exec eww daemon
 
 # Lock/Idle
 bindsym $mod+Alt+l exec swaylock && pkill -USR1 swayidle
@@ -236,7 +238,7 @@ input "type:touchpad" {
 output "eDP-1" pos 2256 0 res 2256x1504 scale 1.5
 
 # Wallpaper
-output "*" bg "~/Pictures/wallpapers/framework/367277735d0091ef18c1d88f989908992bd92a77.jpeg" fill
+output "*" bg `find $HOME/Pictures/wallpapers/ -type f | shuf -n 1` fill
 
 #
 ### Power Menu ###
