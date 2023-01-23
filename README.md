@@ -12,26 +12,20 @@ Otherwise these are pretty basic configs with nothing special. Lots of older con
 
 ## Details
 
-Current setup is running [Hyprland](https://hyprland.org/) and [Sway](https://swaywm.org/) as a backup with [eww](https://elkowar.github.io/eww/eww.html) & [Waybar](https://github.com/Alexays/Waybar) as another backup and [rofi](https://github.com/davatorium/rofi) (The wayland fork) application launcher (trying to go full wayland)
+Current setup is running [Hyprland](https://hyprland.org/) and [Sway](https://swaywm.org/) as a backup with [Waybar](https://github.com/Alexays/Waybar) & [eww](https://elkowar.github.io/eww/eww.html) widget. Lastly [rofi](https://github.com/davatorium/rofi) (The wayland fork) for an application launcher and power menu.
 
 #### Keybound Apps
 
-|          Name          |           Description            |
-| :--------------------: | :------------------------------: |
-|        `gedit`         |           `Super + a`            |
-|         `nemo`         |           `Super + e`            |
-|        `brave`         |           `Super + b`            |
-|        `rofi`        |    `Super + d` = applications    |
-|    `grim` & `slurp`    | Print Screen key for screenshots |
-| `nm-connection-editor` |       click Network Widget       |
-
-#### Fonts
-
-|         Name          |              Description               |
-| :-------------------: | :------------------------------------: |
-|      `mononoki`       | Used for bar installed with nerd-fonts |
-|      `Hack`           |          for everything else           |
-| `nerd-fonts-complete` |           from AUR for icons           |
+|       Name       |           Description            |
+| :--------------: | :------------------------------: |
+|     `gedit`      |           `Super + a`            |
+|     `codium`     |       `Super + shift + a`        |
+|    `pcmanfm`     |           `Super + e`            |
+|     `brave`      |           `Super + b`            |
+|   `librewolf`    |       `Super + shift + b`        |
+|      `rofi`      |    `Super + d` = applications    |
+|      `rofi`      |    `Super + esc` = powermenu     |
+| `grim` & `slurp` | Print Screen key for screenshots |
 
 #### Bash & ZSH alias's
 
@@ -41,7 +35,6 @@ Current setup is running [Hyprland](https://hyprland.org/) and [Sway](https://sw
 |     `pacman`      |               Arch package manager               |
 |      `paru`       |             Arch AUR package manager             |
 |    `reflector`    |             Updates mirrors on Arch              |
-|   `youtube-dl`    | Download youtube videos/audio with `ytv` & `yta` |
 |    `starship`     |           Changes the terminal prompt            |
 | Compression Tools | `ex filename.ext` extracts most compressed files |
 
