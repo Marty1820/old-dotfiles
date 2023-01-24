@@ -38,6 +38,8 @@ esac
 ### ALIAS ###
 alias ..='cd ..'
 alias cd..='cd ..'
+alias mkdir='mkdir -p'
+alias psa='ps auxf'
 # Interactive Mode
 alias cp='cp -i'
 alias mv='mv -i'
@@ -48,15 +50,13 @@ alias free='free -h'
 alias du='du -h'
 # Colorize
 alias tree='tree -C'
-alias mkdir='mkdir -p'
-alias psa='ps auxf'
 alias cls='clear -x && color10bit.sh'
 alias grep='grep --color=auto'
 alias egrep='grep -E --color=auto'
 alias fgrep='grep -F --color=auto'
 alias diff='diff --color=auto'
 alias ip='ip -color=auto'
-export MANPAGER="less -R --use-color -Dd+r -Du+b"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # Simple info pull
 alias psgrep='ps aux | grep -v grep | grep -i -e VSZ -e'
 alias psmem='ps auxf | sort -nr -k 4'
