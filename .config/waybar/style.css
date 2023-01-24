@@ -108,6 +108,7 @@ window#waybar.empty #window {
 }
 
 #network.disconnected {
+  padding-right: 4px;
   color: @red;
 }
 
