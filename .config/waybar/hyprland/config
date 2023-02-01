@@ -56,7 +56,7 @@
   },
 
   "hyprland/window": {
-    "format": "| {}",
+    "format": "{}",
     "rewrite": {
       "(.*) - Brave": "爵 $1",
       "(.*) — LibreWolf": " $1",

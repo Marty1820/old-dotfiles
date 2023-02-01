@@ -37,7 +37,8 @@ window#waybar {
 }
 
 /* Module Group Styling */
-.modules-left,
+#workspaces,
+#window,
 .modules-center,
 .modules-right {
   border-radius: 10px;
@@ -65,7 +66,7 @@ tooltip label {
 
 /* Modules */
 #workspaces {
-  padding-left: 5px;
+  padding: 0px 8px 0px 3px;
 }
 
 #workspaces button {
@@ -76,12 +77,11 @@ tooltip label {
 }
 
 #workspaces button.active {
-  color: @purple
+  color: @purple;
 }
 
 #window {
-  padding-left: 5px;
-  padding-right: 10px;
+  padding: 0px 10px;
 }
 
 #clock {
@@ -93,8 +93,7 @@ tooltip label {
 }
 
 #custom-sep {
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 0px 5px;
 }
 
 #bluetooth {
