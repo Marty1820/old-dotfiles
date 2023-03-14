@@ -61,10 +61,6 @@
       "(.*) - Brave": "爵 $1",
       "(.*) — LibreWolf": " $1",
       "(.*) - VSCodium": "﬏ $1",
-      "Alacritty": " Alacritty",
-      "(.*) - NVIM": " $1",
-      "galculator": " Calculator",
-      "Minecraft (.*)": " $1",
       "(.*) - gedit": " $1",
       "(.*) - VLC media player": "嗢 $1"
     }
