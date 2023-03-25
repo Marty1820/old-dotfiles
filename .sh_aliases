@@ -12,6 +12,7 @@
 ### EXPORTS
 export EDITOR="nvim"
 export VISUAL="nvim"
+export LIBVA_DRIVER_NAME="i965"
 
 # History file sizes
 HISTFILE="$XDG_CACHE_HOME/sh_hist"
