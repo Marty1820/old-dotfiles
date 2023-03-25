@@ -26,16 +26,6 @@ HISTFILESIZE=2000
 [[ -d "$HOME/Applications" ]] && PATH="$HOME/Applications:$PATH"
 [[ -d "$HOME/Scripts" ]] && PATH="$HOME/Scripts:${PATH}"
 
-### CHANGE TITLE OF TERMINALS username@hostname:pwd
-case ${TERM} in
-  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty*|st|konsole*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
-    ;;
-  screen*)
-    PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
-    ;;
-esac
-
 ### ALIAS ###
 alias ..='cd ..'
 alias cd..='cd ..'
