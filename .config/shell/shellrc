@@ -12,19 +12,12 @@
 ### EXPORTS
 export EDITOR="nvim"
 export VISUAL="nvim"
-export LIBVA_DRIVER_NAME="i965"
 
 # History file sizes
 HISTFILE="$XDG_CACHE_HOME/sh_hist"
 HISTSIZE=2000
 SAVEHIST=2000
 HISTFILESIZE=2000
-
-### SET PATHS
-[[ -d "$HOME/.bin" ]] && PATH="$HOME/.bin:$PATH"
-[[ -d "$HOME/.local/bin" ]] && PATH="$HOME/.local/bin:$PATH"
-[[ -d "$HOME/Applications" ]] && PATH="$HOME/Applications:$PATH"
-[[ -d "$HOME/Scripts" ]] && PATH="$HOME/Scripts:${PATH}"
 
 ### ALIAS ###
 alias ..='cd ..'
@@ -47,7 +40,6 @@ alias egrep='grep -E --color=auto'
 alias fgrep='grep -F --color=auto'
 alias diff='diff --color=auto'
 alias ip='ip -color=auto'
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # Simple info pull
 alias psgrep='ps aux | grep -v grep | grep -i -e VSZ -e'
 alias psmem='ps auxf | sort -nr -k 4'
@@ -56,16 +48,6 @@ alias wifikey="sudo grep -r '^psk=' /etc/NetworkManager/system-connections/"
 # Keeping $HOME(~) clean
 alias vim='vim -u "$XDG_CONFIG_HOME/vim/vimrc"'
 alias wget='wget --hsts-file="$XDG_DATA_HOME"/wget-hsts'
-export CARGO_HOME="$XDG_DATA_HOME"/cargo
-export GNUPGHOME="$XDG_DATA_HOME"/gnupg
-export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
-export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
-export ANDROID_HOME="$XDG_DATA_HOME"/android
-export WGETRC="$XDG_CONFIG_HOME"/wgetrc
-export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
-export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
-export PYTHONSTARTUP="/etc/python/pythonrc"
-
 # Use bat instead of cat
 alias cat='bat'
 # Changing "ls" to "exa"

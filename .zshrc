@@ -10,7 +10,7 @@
 export HISTORY_IGNORE="([bf]g *|l[salt.]#( *)|l|cd(|*)|~|pwd|exit|history(|*)|cls)"
 
 ##Aliases
-[[ -f "$HOME"/.sh_aliases ]] && . "$HOME"/.sh_aliases
+[[ -f "$HOME"/.config/shell/shellrc ]] && . "$HOME"/.config/shell/shellrc
 
 # Options
 # Changing Directories
