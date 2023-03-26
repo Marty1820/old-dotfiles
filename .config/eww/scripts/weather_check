@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 main_loop() {
   while ping -c 1 archlinux.org; do

@@ -1,3 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
+
 vol=$(printf '%.*f\n' 0 "$1")
 pamixer --set-volume "$vol"

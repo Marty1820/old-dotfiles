@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # Dependancies 'xorg-xbacklight' or 'acpilight' & 'dunst'
 # You can call this script like this:

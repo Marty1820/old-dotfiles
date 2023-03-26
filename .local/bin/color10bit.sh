@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # Taken from https://github.com/BrodieRobertson/scripts/blob/master/color10bit
 awk -v term_cols="${width:-$(tput cols || echo 80)}" 'BEGIN{

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # i3block for displaying the current battery % and icon
 
 norm_color="#8be9fd"

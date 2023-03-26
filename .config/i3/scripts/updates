@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 packages=$(checkupdates)
 command=$(echo "$packages" | wc -l)

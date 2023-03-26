@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 status=$(pamixer --get-mute | grep -oE "true")
 percent=$(pamixer --get-volume)

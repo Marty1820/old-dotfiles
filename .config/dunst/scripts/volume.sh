@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # Dependancies 'pamixer' & 'dunst'
 # You can call this script like this:

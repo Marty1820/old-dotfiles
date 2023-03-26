@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Original from https://github.com/DashieTM/dotFiles/blob/main/eww/scripts/weather
 
 ## Collect data

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 vpn_type=wireguard
 connection=$(nmcli connection show --active | grep "$vpn_type")

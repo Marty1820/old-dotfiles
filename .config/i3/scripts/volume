@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # Mouse actions
 case $BLOCK_BUTTON in

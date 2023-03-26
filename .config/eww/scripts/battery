@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 power_supply=/sys/class/power_supply/ACAD/online
 bat_per=$(cat /sys/class/power_supply/BAT1/capacity)
