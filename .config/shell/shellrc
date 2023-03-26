@@ -58,9 +58,8 @@ alias lt='exa -aT --icons --color=always --group-directories-first' # tree listi
 alias l='exa -a --icons --color=always' # Show all dirs/files
 alias l.='exa -a | grep -E "^\."' # Show only .dot files
 
-# pacman and paru
+# package management
 alias pacsyu='sudo pacman -Syyu' # update only standard pkgs
-alias parusyu='paru -Syu' # update standard pkgs and AUR pkgs (paru)
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)' # remove orphaned packages
 # get fastest mirrors
 alias mirror="sudo reflector --fastest 10 --latest 10 --number 10 --sort age --protocol https --verbose --save /etc/pacman.d/mirrorlist"
@@ -84,5 +83,4 @@ fi
 
 ### BASH INSULTER (works in zsh too) ###
 # sudo wget -O /etc/bash.command-not-found https://gitlab.com/dwt1/bash-insulter/-/raw/master/src/bash.command-not-found
-[[ -f /etc/bash.command-not-found ]] && . /etc/bash.command-not-found
-
+[ -f /etc/bash.command-not-found ] && . /etc/bash.command-not-found

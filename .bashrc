@@ -10,7 +10,7 @@
 export HISTCONTROL=ignoreboth:erasedups
 
 ##Aliases
-[[ -f "$HOME"/.config/shell/shellrc ]] && . "$HOME"/.config/shell/shellrc
+[ -f "$HOME"/.config/shell/shellrc ] && . "$HOME"/.config/shell/shellrc
 
 ### SHOPT
 shopt -s checkwinsize # checks term size when bash regains control
@@ -53,7 +53,7 @@ ex ()
 }
 
 # Use bash-completion
-[[ -f /usr/share/bash-completion/bash_completion ]] && \
+[ -f /usr/share/bash-completion/bash_completion ] && \
   . /usr/share/bash-completion/bash_completion
 
 ### PROMPT ###

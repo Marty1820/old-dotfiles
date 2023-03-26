@@ -10,7 +10,7 @@
 export HISTORY_IGNORE="([bf]g *|l[salt.]#( *)|l|cd(|*)|~|pwd|exit|history(|*)|cls)"
 
 ##Aliases
-[[ -f "$HOME"/.config/shell/shellrc ]] && . "$HOME"/.config/shell/shellrc
+[ -f "$HOME"/.config/shell/shellrc ] && . "$HOME"/.config/shell/shellrc
 
 # Options
 # Changing Directories
@@ -154,7 +154,7 @@ ZSH_HIGHLIGHT_STYLES[default]='fg=#F8F8F2'
 ZSH_HIGHLIGHT_STYLES[cursor]='standout'
 
 ## pacman -S zsh zsh-autosuggestions zsh-completions zsh-syntax-highlighting
-[[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && \
+[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \
   . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-[[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && \
+[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
   . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
