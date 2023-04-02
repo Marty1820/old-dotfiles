@@ -9,6 +9,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Source Profile when not on WezTerm
+[ "$TERM" != wezterm ] && . .config/shell/profile
+
 ### EXPORTS
 export EDITOR="nvim"
 export VISUAL="nvim"
