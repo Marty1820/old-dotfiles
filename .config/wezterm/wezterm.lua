@@ -69,7 +69,5 @@ return {
   hide_tab_bar_if_only_one_tab = true,
   scrollback_lines = 5000,
   adjust_window_size_when_changing_font_size = false,
-
-  term = "wezterm"
 }
 
