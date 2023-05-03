@@ -32,7 +32,7 @@
         :valign "center"
         :class "briticon"
         :style "color: orange;"
-        ""))
+        "󰃡"))
     (scale
       :min 0
       :max 100
@@ -61,7 +61,7 @@
           :value LAN_SPEED))
       (cencirc
         :class "diskcirc"
-        :icon ""
+        :icon "󰋊"
         :label "DISK"
         :color 'red'
         :value {EWW_DISK["/"].used_perc}))

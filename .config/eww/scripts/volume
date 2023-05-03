@@ -4,17 +4,17 @@ status=$(pamixer --get-mute | grep -oE "true")
 percent=$(pamixer --get-volume)
 
 if [ "$status" ]; then
-    icon="婢"
+    icon="󰝟"
     col="#ff5555"
 else
     if [ "$percent" -ge 75 ]; then
         icon=""
     elif [ "$percent" -ge 50 ]; then
-        icon="墳"
+        icon="󰕾"
     elif [ "$percent" -ge 25 ]; then
-        icon="奔"
+        icon=""
     else
-        icon="奄"
+        icon=""
     fi
     col="#bd93f9"
 fi

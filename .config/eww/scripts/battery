@@ -10,34 +10,34 @@ colcrit="#ff5555"
 
 if grep -q "0" $power_supply; then
   if [ "$bat_per" -gt "90" ]; then
-    icon=""
+    icon="󰂂"
     col="$colgood"
   elif [ "$bat_per" -gt "80" ]; then
-    icon=""
+    icon="󰂁"
     col="$colgood"
   elif [ "$bat_per" -gt "70" ]; then
-    icon=""
+    icon="󰂀"
     col="$colgood"
   elif [ "$bat_per" -gt "60" ]; then
-    icon=""
+    icon="󰁿"
     col="$colgood"
   elif [ "$bat_per" -gt "50" ]; then
-    icon=""
+    icon="󰁾"
     col="$colgood"
   elif [ "$bat_per" -gt "40" ]; then
-    icon=""
+    icon="󰁽"
     col="$colgood"
   elif [ "$bat_per" -gt "30" ]; then
-    icon=""
+    icon="󰁼"
     col="$colgood"
   elif [ "$bat_per" -gt "20" ]; then
-    icon=""
+    icon="󰁻"
     col="$colwarn"
   elif [ "$bat_per" -gt "10" ]; then
-    icon=""
+    icon="󰁺"
     col="$colcrit"
   else
-    icon=""
+    icon="󰂎"
     col="$colcrit"
     notify-send -u critical "Battery Low" "Connect Charger"
   fi
@@ -45,7 +45,7 @@ elif grep -q "1" $power_supply; then
   icon=""
   col="$colcharge"
 else
-  icon=""
+  icon="󰂃"
   col="$colcrit"
 fi
 

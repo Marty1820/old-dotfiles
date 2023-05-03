@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ic=(0  爵    碌 )
+ic=(0       )
 
 list_workspaces() {
   min_workspaces=7

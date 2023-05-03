@@ -12,7 +12,7 @@ configuration {
   font: "Hack 12";
 	modi:                       "drun";
     show-icons:                 true;
-    display-drun:               "";
+    display-drun:               "";
 	drun-display-format:        "{name}";
 }
 

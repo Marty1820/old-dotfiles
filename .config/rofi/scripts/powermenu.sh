@@ -7,19 +7,19 @@ rofi_conf="rofi -theme $HOME/.config/rofi/apps/powermenu.rasi"
 uptime=$(uptime -p | sed -e 's/up //g')
 
 # Icons
-shutdown="襤"
-reboot="菱"
-lock=""
+shutdown="󰐥"
+reboot="󰑐"
+lock="󰌾"
 if [ "$(cat /sys/class/power_supply/BAT1/status)" = Discharging ]; then
-  suspend="⏼"
+  suspend="󰤁"
 else
-  suspend="鈴"
+  suspend="󰒲"
 fi
-logout="﫼"
+logout="󰗽"
 
 chosen=$(printf '%s;%s;%s;%s;%s\n' "$shutdown" "$reboot" "$lock" "$suspend" "$logout" |
   $rofi_conf \
-    -p "  祥  $uptime" \
+    -p "  󱎫  $uptime" \
     -dmenu \
     -sep ';' \
     -selected-row 2)

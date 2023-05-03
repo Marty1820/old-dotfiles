@@ -18,9 +18,9 @@ network_check() { # Checks Network connection
     fi
     if ! [ "$OnLine" ]; then
       if [ "$rfblock" != "" ]; then
-        icon=""
+        icon="󰤬"
       elif nmcli general | grep -qo "disconnected"; then
-        icon="睊"
+        icon="󰤮"
       fi
       col=$bad
     else
@@ -32,17 +32,17 @@ network_check() { # Checks Network connection
 
 connection_type() { # Checks connection type and sets icon
   if grep -q "1" /sys/class/net/$usb/carrier 2>/dev/null; then
-    icon="禍"
+    icon="󰕓"
     text="USB"
   elif grep -q "1" /sys/class/net/$ethernet/carrier 2>/dev/null; then
-    icon=" "
+    icon="󰈀"
     text="Wired"
   elif grep -q "1" /sys/class/net/$wifi/carrier 2>/dev/null; then
-    icon="直"
+    icon="󰖩"
     text=$(nmcli connection | grep "$wifi" | awk '{print ($1)}')
   fi
   if grep -q "1" /sys/class/net/$vpn/carrier 2>/dev/null; then
-    icon="嬨"
+    icon="󰖂"
   fi
 }
 
