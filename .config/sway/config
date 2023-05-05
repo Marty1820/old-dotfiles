@@ -146,11 +146,11 @@ bindsym {
 #bindsym $mod+ampersand workspace number 1 irc
 set {
   $ws1 "1:"
-  $ws2 "2:爵"
+  $ws2 "2:"
   $ws3 "3:"
   $ws4 "4:"
   $ws5 "5:"
-  $ws6 "6:碌"
+  $ws6 "6:"
   $ws7 "7:"
 }
 
@@ -201,7 +201,7 @@ for_window [app_id="file-roller"] floating enable
 
 # Open on set workspaces
 for_window [app_id="brave-browser"] move to workspace $ws2
-for_window [app_id="LibreWolf"] move to workspace $ws2
+for_window [app_id="firefox"] move to workspace $ws2
 
 #
 ### AUTOSTART ###
