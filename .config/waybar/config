@@ -44,15 +44,11 @@
   "sway/window": {
     "format": "{}",
     "rewrite": {
-      "(.*) - Brave": "爵 $1",
-      "(.*) — LibreWolf": " $1",
-      "(.*) - VSCodium": "﬏ $1",
-      "Alacritty": " Alacritty",
-      "(.*) - NVIM": " $1",
-      "galculator": " Calculator",
-      "Minecraft (.*)": " $1",
+      "(.*) - Brave": "󰒙 $1",
+      "(.*) — Mozilla Firefox": " $1",
+      "(.*) - VSCodium": " $1",
       "(.*) - gedit": " $1",
-      "(.*) - VLC media player": "嗢 $1"
+      "(.*) - VLC media player": "󰕼 $1"
     }
   },
 
@@ -78,17 +74,16 @@
   },
 
   "bluetooth": {
-    "format-disabled": "<big></big>",
-    "format-off": "<big></big>",
-    "format-on": "",
-    "format-connected": "<big></big>",
+    "format-disabled": "<big>󰂲</big>",
+    "format-off": "<big>󰂲</big>",
+    "format-on": "󰂯",
+    "format-connected": "<big>󰂱</big>",
     "on-click": "blueman-manager",
-    "format-connected-battery": "<big></big> {device_battery_percentage}"
+    "format-connected-battery": "<big>󰂱</big> {device_battery_percentage}"
   },
 
   "network": {
-    "interval": 60,
-    "format-ethernet": "󰈀",
+    "format-ethernet": "󰈀 {ifname}",
     "format-wifi": "{icon} {essid}",
     "format-disconnected": "󰤭",
     "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
@@ -97,13 +92,13 @@
   },
 
   "pulseaudio": {
-    "format": "<span foreground=\"#bd93f9\"><big>{icon}</big></span> {volume}",
-    "format-bluetooth": "<span foreground=\"#bd93f9\"><big>{icon}</big></span> {volume}",
-    "format-muted": "<span foreground=\"#ff5555\"><big>婢</big></span> {volume}",
+    "format": "<span foreground=\"#bd93f9\"><big>{icon}</big></span> {volume}󰏰",
+    "format-bluetooth": "<span foreground=\"#bd93f9\"><big>{icon}</big></span> {volume}󰏰",
+    "format-muted": "<span foreground=\"#ff5555\"><big>󰝟</big></span> {volume}󰏰",
     "format-icons": {
       "headphone": "",
       "headset": "",
-      "default": ["", "", ""]
+      "default": ["", "", "󰕾", ""]
     },
     "scroll-step": 1,
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
@@ -116,14 +111,14 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "<span foreground=\"#50fa7b\"></span> {capacity}",
-    "format-icons": ["", "", "", "", "", "", "", "", "", "", ""],
+    "format": "<span foreground=\"#50fa7b\"></span> {capacity}󰏰",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "tooltip": false,
-    "format-discharging": "<span foreground=\"#8be9fd\">{icon}</span> {capacity}"
+    "format-discharging": "<span foreground=\"#8be9fd\">{icon}</span> {capacity}󰏰"
   },
 
   "custom/power": {
-    "format": "<big>拉</big>",
+    "format": "<big>󰐦</big>",
     "exec-on-event": "true",
     "tooltip": false,
     "on-click": "/usr/bin/eww -c $HOME/.config/eww open --toggle system && /usr/bin/eww -c $HOME/.config/eww open --toggle system-closer"

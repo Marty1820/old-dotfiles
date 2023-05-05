@@ -59,7 +59,7 @@
     "format": "{}",
     "rewrite": {
       "(.*) - Brave": "󰒙 $1",
-      "(.*) — LibreWolf": " $1",
+      "(.*) — Mozilla Firefox": " $1",
       "(.*) - VSCodium": " $1",
       "(.*) - gedit": " $1",
       "(.*) - VLC media player": "󰕼 $1"
@@ -88,12 +88,12 @@
   },
 
   "bluetooth": {
-    "format-disabled": "<big>󰂲</big>",
-    "format-off": "<big>󰂲</big>",
+    "format-disabled": "󰂲",
+    "format-off": "󰂲",
     "format-on": "󰂯",
-    "format-connected": "<big>󰂱</big>",
+    "format-connected": "󰂱",
     "on-click": "blueman-manager",
-    "format-connected-battery": "<big>󰂱</big> {device_battery_percentage}"
+    "format-connected-battery": "󰂱 {device_battery_percentage}"
   },
 
   "network": {
