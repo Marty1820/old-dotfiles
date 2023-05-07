@@ -10,7 +10,7 @@
 [[ $- != *i* ]] && return
 
 # Source Profile when not on WezTerm
-[ "$TERM" != wezterm ] && . .config/shell/profile
+[ "$TERM" != wezterm ] && . "$HOME"/.config/shell/profile
 
 ### EXPORTS
 export EDITOR="nvim"
