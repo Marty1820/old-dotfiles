@@ -12,10 +12,6 @@
 # Source Profile when not on WezTerm
 [ "$TERM" != wezterm ] && . "$HOME"/.config/shell/profile
 
-### EXPORTS
-export EDITOR="nvim"
-export VISUAL="nvim"
-
 # History file sizes
 HISTFILE="$XDG_CACHE_HOME/sh_hist"
 HISTSIZE=2000
