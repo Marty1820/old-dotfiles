@@ -12,7 +12,7 @@ Otherwise these are pretty basic configs with nothing special. Lots of older con
 
 ## Details
 
-Current setup is running [Hyprland](https://hyprland.org/) and [Sway](https://swaywm.org/) as a backup with [Waybar](https://github.com/Alexays/Waybar) & [eww](https://elkowar.github.io/eww/eww.html) widget. Lastly [rofi](https://github.com/davatorium/rofi) (The wayland fork) for an application launcher and power menu.
+Current setup is running [Hyprland](https://hyprland.org/) and [Sway](https://swaywm.org/) as a backup with [Waybar](https://github.com/Alexays/Waybar) & [eww](https://elkowar.github.io/eww/eww.html) widgets. Lastly [rofi](https://github.com/davatorium/rofi) (The wayland fork) for an application launcher and power menu.
 
 #### Keybound Apps
 
@@ -44,25 +44,7 @@ Current setup is running [Hyprland](https://hyprland.org/) and [Sway](https://sw
 
 ![screenshot](.screenshots/hyprland.png)
 
-### Sway
-
-![screenshot](.screenshots/Sway.png)
-
-### Qtile
-
-![screenshot](.screenshots/qtile.png)
-
-### i3/i3blocks bar
-
-![screenshot](.screenshots/i3.png)
-
 ### Extras/Menus
 
 ![screenshot](.screenshots/logout-menu.png)
 ![screenshot](.screenshots/apps-menu.png)
-
-## Thanks to/Inspirational Sources
-
-- Reddit [u/emanuelep57](https://www.reddit.com/user/emanuelep57) for help with the volume widget on the qtile config & [u/FrostCastor](https://www.reddit.com/user/FrostCastor) for help with the battery indicator code
-- [Distro Tube](https://distro.tube/) and his [dotfiles](https://gitlab.com/dwt1/dotfiles)
-- And of course [Dracula Theme](https://github.com/dracula/dracula-theme) since I tend to use it on everthing I possibly can.
