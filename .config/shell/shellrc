@@ -61,7 +61,7 @@ alias l.='exa -a | grep -E "^\."' # Show only .dot files
 alias pacsyu='sudo pacman -Syyu' # update only standard pkgs
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)' # remove orphaned packages
 # get fastest mirrors
-alias mirror="sudo reflector --fastest 10 --latest 10 --number 10 --sort age --protocol https --verbose --save /etc/pacman.d/mirrorlist"
+alias mirror="sudo reflector --latest 10 --sort rate --protocol https --verbose --save /etc/pacman.d/mirrorlist"
 
 # get error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
