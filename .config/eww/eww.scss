@@ -1,3 +1,10 @@
+// GENERAL STUFF ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+* {
+  all: unset;
+  font-family: mononoki Nerd Font Mono;
+  font-size: 16px;
+}
+
 /* Colors */
 $background: #282a36;
 $selection: #44475a;
@@ -11,247 +18,279 @@ $purple: #bd93f9;
 $red: #ff5555;
 $yellow: #f1fa8c;
 
-/* Global */
-*{
-	all: unset;
-	font-family: "mononoki Nerd Font Mono";
-}
+$black: #1a1b26;
 
-/* Bar */
-.eww_bar {
-  padding: 2px 5px;
-  margin: 0px;
+// MAIN ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+.main-container {
+  background-color: $background;
+  border-radius: 14px;
+  margin: 0px 8px 8px 0px;
+  box-shadow: 8px 8px 5px black;
 }
-
-.dockbox {
-	background-color: black;
-	border: 1px solid $selection;
-	border-radius: 12px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-/* Workspaces */
-.workspaces {
-	min-height: 40px;
-	min-width: 40px;
-}
-
-.workspaces button {
-  font-size: 18px;
-  border: none;
-  margin: 0px 5px;
-}
-
-.workspaces button.focused {
+button {
   color: $purple;
+  padding: 6px;
 }
-
-.workspaces button.unfocused {
+button:hover {
   color: $orange;
 }
-
-.workspaces button.empty {
+tooltip {
   color: $selection;
-}
-
-/* Clock */
-.clockbox {
-	margin: 0px 0px 0px 15px;
-}
-
-.time {
-	font-size: 16px;
-	font-weight: bold;
-}
-
-.date {
-	font-size: 12px;
-	font-weight: bold;
-}
-
-/* Weather */
-.weatherbox {
-	margin: 0px 0px 0px -90px;
-}
-
-.weathericon {
-	font-size: 30px;
-}
-
-.weathertemp {
-	font-size: 16px;
-	font-weight: bold;
-	margin: 0px 0px 0px -5px;
-}
-
-.weatherstat {
-	font-size: 10px;
-	font-weight: bold;
-	margin: 0px 0px 0px 5px;
-}
-
-/* System */
-.separator {
-	color: $foreground;
-}
-
-.infotext {
-	font-size: 16px;
-	padding: 5px 0px;
-	font-weight: bold;
-}
-
-/* Calendar Pop-Up */
-.cal-box {
-	background-color: $background;
-	font-size: 1.2rem;
-	color: $foreground;
-	border-radius: 10px;
-	margin: 5px;
-	.cal-inner-box {
-		padding: 1.5rem 1rem;
-		.cal {
-			&.highlight {
-				padding: 5rem;
-			}
-			padding: .8rem .25rem 0rem;
-		}
-	}
-}
-
-calendar:selected {
-	color: $purple;
-}
-
-calendar.button {
-	color: $red;
-}
-
-calendar.highlight {
-	color: $green;
-	font-weight: bold;
-}
-
-calendar:indeterminate {
-	color: $selection;
-}
-
-.monthyear {
-	font-size: 1.75rem;
-	color: $foreground;
-	font-weight: bold;
-	margin: .5rem 0rem;
-}
-
-.weatherpopbox {
-	background-color: $background;
-	color: $foreground;
-	border-radius: 10px;
-	margin: 5px;
-	padding: 1.5rem;
-}
-
-.weatherpopicon {
-	padding: 1.5rem 2rem;
-	border-radius: 10px;
-	margin: 5px;
-	background-color: $background;
-	font-size: 36px;
-}
-
-.weatherdesc {
-	font-size: 1.75rem;
-	color: $foreground;
-}
-
-.weatherpoptemp {
-	font-size: 1.75rem;
-	color: $foreground;
-}
-
-.weathercity {
-	font-size: 1.1rem;
-	margin-top: 1rem;
-	margin-right: 1rem;
-	color: $foreground;
-}
-
-.weatherfeels {
-	font-size: 1.1rem;
-	margin-top: 1rem;
-	color: $foreground;
-}
-
-.calouterbox {
-	padding: 1.75rem;
-	background-color: black;
-	border-radius: 10px;
-}
-
-.calday {
-	font-weight: 300;
-	font-size: 1.75rem;
-	margin-bottom: 1.25rem;
-	color: $foreground;
-}
-
-.caltimeboxes {
-	margin: 0 2rem;
-}
-
-/* System Pop-Up */
-.sysouterbox {
-  padding: 1.75rem;
-  background-color: black;
-  border-radius: 10px;
-}
-
-.syssquares {
-	font-size: 1.2rem;
-	color: $foreground;
-	border-radius: 10px;
-	margin: 5px;
-}
-
-.syscircbox {
   background-color: $background;
-  padding: 2rem 2rem;
+  font-weight: bolder;
+}
+
+// SEPERATOR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+.dash {
+  background-color: $selection;
+  margin: 4px 16px 2px 16px;
+  padding: 2px;
+}
+
+// CALENDAR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+.cal-container {
+  border-radius: 10px;
+}
+.cal-box {
+  border-radius: 10px;
+}
+.cal-window {
+  border-radius: 10px;
+  padding-top: 10px;
+}
+.month-year {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 10px;
+  padding: 1px;
+  color: $foreground;
+}
+.day-names {
+  margin: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  color: $cyan;
+}
+.date {
+  color: $comment;
+  font-size: 14px;
+  font-weight: bold;
   border-radius: 10px;
 }
 
-.sysrow, .sysrow2 {
-  margin-top: 1.3rem;
-}
-
-.syscirctitle {
-  font-size: 1.2rem;
+.clock {
+  font-size: 38px;
+  font-weight: bold;
   color: $foreground;
-  margin-bottom: 1rem;
+  border-radius: 10px;
+  padding-top: 6px;
 }
 
-.syscirc {
-	background-color: $selection;
+calendar {
+  &:selected {
+    color: $purple;
+  }
+  &:indeterminate {
+    color: $selection;
+  }
+}
+calendar.button {
+  color: $foreground;
+}
+calendar.highlight {
+  color: $cyan;
+  font-weight: bold;
+  padding: 10px;
+  margin: 10px;
 }
 
-.syscircicon {
-  padding: 3.5rem;
-  font-size: 2rem;
+// INFO ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+.info-box-left {
+  padding: 4px;
+}
+.info-box-right {
+  padding: 4px;
+}
+.info-icon {
+  color: $purple;
+}
+.info-text {
+  color: $cyan;
 }
 
-/* Volume Slider Pop-Up */
-.volicon, .briticon {
-	font-size: 28px;
+// APPS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+.app-container {
+  font-size: 28px;
+}
+.app-label {
+  font-size: 18px;
+  color: $comment;
+}
+.app-box {
+  font-size: 32px;
+  color: $pink;
+  padding-bottom: 6px;
 }
 
-scale trough {
-	background-color: $background;
-	border-radius: 10px;
-	min-width: 310px;
-	min-height: 35px;
+// WEATHER ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+.weather-container {
+  border-radius: 10px;
+}
+.weather-window {
+  padding: 6px;
+}
+.weather-box {
+  padding-top: 2px;
+}
+.weather-icon {
+  font-size: 32px;
+  font-weight: bold;
+  padding-right: 14px;
+}
+.weather-temp {
+  color: $foreground;
+  font-size: 30px;
+  font-weight: bold;
+}
+.weather-feel {
+  color: $foreground;
+  font-size: 16px;
+  padding-bottom: 6px;
+}
+.weather-desc {
+  color: $comment;
+  font-size: 14px;
 }
 
-scale trough highlight {
-	border-radius: 10px;
-	background-color: $selection;
+// VOLUME ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+.vol-label {
+  padding-right: 10px;
+}
+.vol-text {
+  color: $foreground;
+  padding-left: 10px;
+}
+.metric {
+  font-size: 12px;
+  font-weight: bold;
+  color: $pink;
+  padding-left: 10px;
+}
+.metric scale trough highlight {
+  background: linear-gradient(90deg, $cyan 0%, $purple 50%, $red 100%);
+  border-radius: 6px;
+}
+.metric scale trough {
+  background-color: $black;
+  border-radius: 6px;
+  min-height: 10px;
+  min-width: 80px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+.scale trough {
+  all: unset;
+  background-color: $black;
+  min-width: 150px;
+  min-height: 10px;
+  border-radius: 10px;
+}
+.scale trough highlight {
+  background-color: $pink;
+  border-radius: 10px;
+}
+
+// NETWORK ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+.network {
+  padding: 5px 0px 5px 0px;
+}
+.network-label {
+  color: $cyan;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 0px 4px 0px;
+}
+.network-up {
+  color: $purple;
+  font-size: 22px;
+}
+.network-down {
+  color: $cyan;
+  font-size: 22px;
+}
+.network-graph-up {
+  color: $purple;
+  padding: 10px;
+  background-color: rgba(203, 166, 247, 0.2);
+}
+.network-graph-down {
+  color: $cyan;
+  padding-bottom: 10px;
+  background-color: rgba(122, 162, 247, 0.2);
+}
+
+// SYSTEM ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+.sys_win {
+  border-radius: 10px;
+}
+.sys_cpu {
+  color: $pink;
+  background-color: $black;
+  border-radius: 10px;
+}
+.sys_mem {
+  color: $orange;
+  background-color: $black;
+  border-radius: 10px;
+}
+.sys_icon_cpu {
+  font-size: 20px;
+  margin: 22px;
+  color: $green;
+}
+.sys_icon_mem {
+  font-size: 20px;
+  margin: 22px;
+  color: $cyan;
+}
+.sys_cpu_box {
+  border-radius: 16px;
+  margin: 10px 10px 10px 10px;
+  padding-left: 20px;
+}
+.sys_mem_box {
+  border-radius: 16px;
+  margin: 10px 10px 10px 10px;
+  padding-right: 20px;
+}
+.mem_perc {
+  color: $cyan;
+  padding-top: 6px;
+}
+.cpu_perc {
+  color: $green;
+  padding-top: 6px;
+}
+
+// FUNCTIONS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+.function-label {
+  font-size: 18px;
+  color: $cyan;
+}
+.function-box {
+  font-size: 32px;
+  color: $red;
+  padding-bottom: 10px;
+}
+.screenshot {
+  color: $orange;
+}
+.wallpaper {
+  color: $yellow;
+}
+.keybind {
+  color: $pink;
+}
+.logout {
+  color: $red;
 }

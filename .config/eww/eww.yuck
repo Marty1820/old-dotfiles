@@ -1,239 +1,213 @@
-;;███╗░░░███╗░█████╗░██████╗░████████╗██╗░░░██╗
-;;████╗░████║██╔══██╗██╔══██╗╚══██╔══╝╚██╗░██╔╝
-;;██╔████╔██║███████║██████╔╝░░░██║░░░░╚████╔╝░
-;;██║╚██╔╝██║██╔══██║██╔══██╗░░░██║░░░░░╚██╔╝░░
-;;██║░╚═╝░██║██║░░██║██║░░██║░░░██║░░░░░░██║░░░
-;;╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░
+;; CAL VARS
+(defpoll calendar_day :interval "10h" "date '+%d'")
+(defpoll calendar_year :interval "10h" "date '+%Y'")
+(defpoll today :interval "12h" "date '+%a, %d %B'")
+(defpoll time :interval "5s" "date '+%H:%M'")
 
-;; ** Variables **
+;; ENV VARS
+(defpoll wm :interval "12h" "echo $XDG_CURRENT_DESKTOP")
+(defpoll uptime :interval "1m" "uptime -p | sed -e 's/up //;s/ hours,/h/;s/ minutes/m/'")
+(defpoll packages :interval "15m" "pacman -Q | wc -l")
 
-(defvar EWW "/usr/bin/eww -c $HOME/.config/eww")
+;; WEATHER VARS
+(defpoll weather_temp :interval "10m" :initial "0"
+  "$HOME/.config/scripts/weather.sh --temp")
+(defpoll weather_desc :interval "10m"
+  "$HOME/.config/scripts/weather.sh --stat")
+(defpoll weather_feels_like :interval "10m"
+  "$HOME/.config/scripts/weather.sh --feel")
+(defpoll weather_humidity :interval "10m"
+  "$HOME/.config/scripts/weather.sh --humid")
+(defpoll weather_icon :interval "10m"
+  "$HOME/.config/scripts/weather.sh --icon")
+(defpoll weather_wind :interval "10m"
+  "$HOME/.config/scripts/weather.sh --wind")
+(defpoll weather_color :interval "10m"
+  "$HOME/.config/scripts/weather.sh --hex")
 
-;; Workspace vars
-(deflisten workspace :initial "" "scripts/workspaces")
+;; VOLUME VARS
+(defpoll volume :interval "1s" "pamixer --get-volume")
+(defpoll vol_col :interval "1s" "scripts/volume --COL")
+(defpoll vol_icon :interval "1s" "scripts/volume --ICON")
+(defvar vol_mute "pamixer -t")
 
-;; Time/Date vars
-(defvar date_rev false)
-(defpoll TIME :interval "10s" "date +\"%I:%M %p\"")
-(defpoll DATE :interval "1h" "date +\"%A, %b %d\"")
-(defpoll year :interval "24h" "date +%Y")
-(defpoll month :interval "24h" "date +%B")
-(defpoll hour :interval "1m" "date +%H")
-(defpoll minute :interval "1m" "date +%M")
-(defpoll datemonth :interval "24h" "date '+%A, %d %B'")
-(defpoll day :interval "2h" "date '+%d'")
+;; NETWORK VARS
+(defpoll IP_ADDR :interval "1h" "ip -br address | grep UP | awk '{ print $3 }'")
 
-;; Weather vars
-;; need to run "weather --getdata" to update cache
-(defvar wthr_rev false)
-(defpoll WTHR_ICON :interval "10m" "scripts/weather --icon")
-(defpoll WTHR_TEMP :interval "10m" "scripts/weather --temp")
-(defpoll WTHR_HEX :interval "10m" "scripts/weather --hex")
-(defpoll WTHR_STAT :interval "10m" "scripts/weather --stat")
-(defpoll WTHR_LOC :interval "10m" "scripts/weather --city")
-(defpoll WTHR_FTEMP :interval "10m" "scripts/weather --feel")
+;; SYSTEM VARS
+(defpoll memory :interval "15s"
+  "printf \"%.0f\\n\" $(/usr/bin/free -m | grep Mem | awk '{print ($3/$2)*100}')")
+(defpoll cpu :interval "17s"
+  "echo 45")
+(defpoll temp :initial 30 :interval "10s" `sensors | rg temp1 | rg -o "\\d+.\\d+" | head -1`)
 
-;; Network
-(defvar ip_rev false)
-(defvar network_cmd "nm-connection-editor &")
-(defpoll LAN_COL :interval "10s" "scripts/wifi --COL")
-(defpoll LAN_ICON :interval "10s" "scripts/wifi --ICON")
-(defpoll LAN_ESSID :interval "1m" "scripts/wifi --ESSID")
-(defpoll LAN_SPEED :interval "30s" "if [ -z $(awk 'NR==3 {print $3}' /proc/net/wireless) ]; then echo 0; else awk 'NR==3 {print $3}' /proc/net/wireless; fi")
-;; VPN
-(defpoll VPN_ICON :interval "1m" "scripts/vpn")
+;; Widgets
+(defwidget dash []
+  (box :class "dash" :orientation "h")
+)
 
-;; Volume vars
-(defvar VOL_MUTE "pamixer -t")
-(defpoll VOL_COL :interval "1s" "scripts/volume --COL")
-(defpoll VOL_ICON :interval "1s" "scripts/volume --ICON")
-(defpoll VOLUME :interval "1s" "pamixer --get-volume")
+(defwidget cal[]
+  (box :class "cal-container" :orientation "v" :space-evenly "false" :halign "center"
+    (box  :class "cal-box" :orientation "v" :space-evenly "false"
+      (label :class "clock" :text time)
+      (label :class "date" :text today)
+    )
+    (box :class "cal-window" :orientation "h"
+      (calendar 
+        :class "day-names" :day calendar_day
+        :class "month-year" :year calendar_year)
+    )
+  )
+)
 
-;; Brightness vars
-(defvar BRIT_AUTO "pkill screen_brightne")
-(defpoll BRIT_PER :interval "3s" "xbacklight -get")
+(defwidget info []
+  (box :class "info-box-outer" :orientation "h" :space-evenly false :halign "center"
+    (box :class "info-box-top" :orientation "v" :space-evenly false
+      (box :class "info-box-inner" :orientation "h" :space-evenly false
+        (box :class "info-box-left" :orientation "v" :space-evenly false
+          (label :class "info-icon" :text " :")
+          (label :class "info-icon" :text "󰅐 :")
+          (label :class "info-icon" :text " :")
+        )
+        (box :class "info-box-right" :orientation "v" :space-evenly false
+          (label :class "info-text" :halign "start" :text "${wm}")
+          (label :class "info-text" :halign "start" :text "${uptime}")
+          (label :class "info-text" :halign "start" :text "${packages}")
+        )
+      )
+    )
+  )
+)
 
-;; Battery vars
-(defpoll BAT_ICON :interval "15s" "scripts/battery --ICON")
-(defpoll BAT_COL :interval "15s" "scripts/battery --COL")
+(defwidget apps []
+  (box :class "app-container" :orientation "v" :space-evenly "true" :hexpand "false" :vexpand "false" :halign "center"
+    (label :text "Apps" :class "app-label")
+    (box :class "app-box" :orientation "h" :space-evenly "false" :hexpand "false" :vexpand "false" :spacing 10
+      (button :class "app-firefox"
+        :onclick "firefox 2> /dev/null" "")
+      (button :class "app-files"
+        :onclick "pcmanfm 2> /dev/null" "")
+      (button :class "app-code"
+        :onclick "vscodium 2> /dev/null" "󰘦")
+    )
+  )
+)
 
-;; ** Widgets **
-
-(defwidget sep []
-  (box :class "separator"
-    (label :text "|")))
-
-(defwidget workspaces []
-  (box :class "dockbox"
-    (literal :content workspace)))
-
-;; clock
-(defwidget clock []
-  (eventbox
-    :onhover "${EWW} update date_rev=true"
-    :onhoverlost "${EWW} update date_rev=false"
-    :onclick "${EWW} open --toggle calbox && ${EWW} open --toggle calbox-closer"
-    (box
-      :class "clockbox"
-      :orientation "v"
-      :spacing 0
-      :valign "center"
-      :halign "start"
-      :space-evenly "false"
-      :vexpand "false"
-      :hexpand "false"
-      (label
-        :class "time"
-        :halign "start"
-        :wrap "true"
-        :limit-width 25
-        :text TIME)
-      (revealer
-        :transition "slideup"
-        :reveal date_rev
-        :duration "350ms"
-        (label :class "date" :halign "start" :wrap "true" :limit-width 25 :text DATE)))))
-
-;; weather
 (defwidget weather []
-  (eventbox
-    :onhover "${EWW} update wthr_rev=true"
-    :onhoverlost "${EWW} update wthr_rev=false"
-    :onclick "${EWW} open --toggle calbox && ${EWW} open --toggle calbox-closer"
-    (box
-      :class "weatherbox"
-      :orientation "h"
-      :spacing 0
-      :valign "center"
-      :halign "end"
-      :space-evenly "false"
-      :vexpand "false"
-      :hexpand "false"
-      (label
-        :class "weathericon"
-        :style "color: ${WTHR_HEX};"
-        :text WTHR_ICON)
-      (label
-        :class "weathertemp"
-        :text WTHR_TEMP)
-      (revealer
-        :transition "slideright"
-        :reveal wthr_rev
-        :duration "350ms"
-        (label
-          :class "weatherstat"
-          :halign "start"
-          :wrap "true"
-          :limit-width 25
-          :text WTHR_STAT)))))
+  (box :class "weather-container" :orientation "v" :space-evenly "false" :halign "center"
+    (box :class "weather-box" :orientation "h" :space-evenly "false" :halign "center" :spacing 10
+      (label :class "weather-icon" :style "color: ${weather_color};" :text {weather_icon != "" ? "${weather_icon}" : ""})
+      (label :class "weather-temp" :text "${weather_temp}F")
+    )
+    (box :class "weather-window" :orientation "v" :space-evenly "false" :spacing 2
+      (label :class "weather-desc" :text "${weather_desc}" :limit-width 32 :wrap "true")
+      (label :class "weather-feel" :text "Feels Like: ${weather_feels_like}F")
+      (label :class "weather-feel" :halign "center" :text "󰖝 ${weather_wind} mph")
+      (label :class "weather-feel" :halign "center" :text "  ${weather_humidity}󰏰")
+    )
+  )
+)
 
-;; Internet/LAN
-(defwidget lan []
-  (box
-    :orientation "h"
-    :spacing 8
-    :valign "center"
-    :halign "center"
-    :space-evenly "false"
-    :vexpand "false"
-    :hexpand "false"
-    (box
-      :style "color: ${LAN_COL};"
-      LAN_ICON)
-    (label
-      :class "infotext"
-      :halign "start"
-      :text LAN_ESSID)))
-
-;; volume
 (defwidget volume []
-  (box
-    :orientation "h"
-    :spacing 8
-    :valign "center"
-    :halign "center"
-    :space-evenly "false"
-    :vexpand "false"
-    :hexpand "false"
-    (box
-      :style "color: ${VOL_COL};"
-      VOL_ICON)
-    (label
-      :class "infotext"
-      :halign "start"
-      :text "${VOLUME}")))
+  (box :class "metric" :orientation "h" :space-evenly "false" :halign "center"
+    (button :onclick vol_mute
+      (box :class "vol-label" :orientation "h" :style "color: ${vol_col};" vol_icon)
+    )
+    (scale :min 0 :max 101 :value volume :orientation "h" :onchange "~/.config/eww/scripts/vol-set {}")
+    (label :class "vol-text" :text "${volume}%")
+  )
+)
 
-;; battery
-(defwidget battery []
-  (box
-    :orientation "h"
-    :spacing 8
-    :valign "center"
-    :halign "center"
-    :space-evenly "false"
-    :vexpand "false"
-    :hexpand "false"
-    (box
-      :style "color: ${BAT_COL};"
-      BAT_ICON)
-    (label
-      :class "infotext"
-      :halign "start"
-      :text "${EWW_BATTERY["BAT1"].capacity}")))
+(defwidget network []
+  (box :class "network-label" :orientation "h" :space-evenly "false" :spacing 10 :halign "center"
+    (label :text "${IP_ADDR}")
+  )
+)
 
-;; ** Sections **
+(defwidget network-up []
+  (box :class "network" :orientation "h" :space-evenly "false" :spacing 10 :halign "center"
+    (box :orientation "h" :class "network-box"
+      (label :text "󰧇" :class "network-up")
+    )
+    (box :orientation "h" :width 130
+      (graph  :class "network-graph-up"
+        :thickness 2
+        :value {round(EWW_NET.wlan0.NET_UP / 1024 ,1)}
+        :time-range "2m"
+        :min 0
+        :max 101
+        :dynamic "true"
+        :line-style "round"
+      )
+    )
+  )
+)
+(defwidget network-down []
+  (box :class "network" :orientation "h" :space-evenly "false" :spacing 10 :halign "center"
+    (box :orientation "h" :class "network-box"
+      (label :text "󰦿" :width 10 :class "network-down")
+    )
+    (box :orientation "h" :width 130
+      (graph  :class "network-graph-down"
+        :thickness 2
+        :value {round(EWW_NET.wlan0.NET_DOWN / 1024 ,1)}
+        :time-range "2m"
+        :min 0
+        :max 101
+        :dynamic "true"
+        :line-style "round"
+      )
+    )
+  )
+)
 
-(defwidget left []
-  (box
-    :orientation "h"
-    :class "left"
-    :space-evenly "true"
-    :halign "start"
-    :spacing 5
-    (workspaces)))
+(defwidget system []
+  (box :class "sys_win" :orientation "h" :space-evenly "true" :hexpand "false" :vexpand "false"
+    (box :class "sys_cpu_box" :orientation "v" :space-evenly "false" :hexpand "false" :vexpand "false"
+      (circular-progress :value cpu :class "sys_cpu" :thickness 8 :start-at 75
+        (label :text "󰻠" :class "sys_icon_cpu" :limit-width 4 :wrap "false")
+      )
+      (label :class "cpu_perc" :halign "center" :text "${cpu}%")
+    )
+    (box :class "sys_mem_box" :orientation "v" :space-evenly "false" :hexpand "false" :vexpand "false"
+      (circular-progress :value memory :class "sys_mem" :thickness 8 :start-at 75
+        (label :text "" :class "sys_icon_mem" :limit-width 4 :wrap false :angle 0.0)
+      )
+      (label :class "mem_perc" :halign "center" :text "${memory}%")
+    )
+  )
+)
 
-(defwidget center []
-  (box
-    :orientation "h"
-    :class "center"
-    :space-evenly "false"
-    :halign "start"
-    (box
-      :class "dockbox"
-      (clock)
-      (weather))))
+(defwidget functions []
+  (box :class "function-container" :orientation "v" :space-evenly "true" :hexpand "false" :vexpand "false" :halign "center"
+    (label :text "Functions" :class "function-label")
+    (box :class "function-box" :orientation "h" :space-evenly "false" :hexpand "false" :vexpand "false" :spacing 10
+      (button :class "screenshot"
+        :onclick "bash $HOME/.config/scripts/screenshot.sh 2> /dev/null"
+        :tooltip "Screenshot"
+        (label :text "󰹑" :class "tooltip"))
+      (button :class "wallpaper"
+        :onclick "bash $HOME/.config/scripts/wallpaper.sh 2> /dev/null"
+        :tooltip "Wallpaper"
+        (label :text "" :class "tooltip"))
+      (button :class "keybind"
+        :onclick "$HOME/.config/scripts/keyhint"
+        :tooltip "Keybindings"
+        (label :text "" :class "tooltip"))
+      (button :class "logout"
+        :onclick "$HOME/.config/scripts/logout.sh"
+        :tooltip "Logout"
+        (label :text "󰍃" :class "logout"))
+    )
+  )
+)
 
-(defwidget right []
-  (button
-    :onclick "${EWW} open --toggle system && ${EWW} open --toggle system-closer"
-    (box
-      :orientation "h"
-      :class "right"
-      :space-evenly "false"
-      :halign "end"
-      (box
-        :class "dockbox"
-        (box
-          :orientation "h"
-          :spacing 5
-          :valign "center"
-          :halign "center"
-          :space-evenly "false"
-          :vexpand "false"
-          :hexpand "false"
-          (lan)
-          (sep)
-          (volume)
-          (sep)
-          (battery))))))
-
-;; ** Closer **
-
+;; Closer
 (defwidget closer [window]
   (eventbox
     :onclick "eww close ${window} && eww close ${window}-closer"))
 
-(defwindow system-closer
+(defwindow sidebar-closer
   :monitor 0
   :focusable "false"
   :stacking "fg"
@@ -241,47 +215,44 @@
     :width "100%"
     :height "100%")
   (closer
-    :window "system"))
+    :window "sidebar"))
 
-(defwindow calbox-closer
-  :monitor 0
-  :focusable "false"
-  :stacking "fg"
-  :geometry (geometry
-    :width "100%"
-    :height "100%")
-  (closer
-    :window "calbox"))
+;; Window setup
+(defwidget right []
+  (box :class "right" :orientation "v" :space-evenly "false"
+    (cal)
+    (dash)
+    (info)
+    (dash)
+    (apps)
+    (dash)
+    (weather)
+    (dash)
+    (volume)
+    (dash)
+    (network)
+    (network-up)
+    (network-down)
+    (dash)
+    (system)
+    (dash)
+    (functions)
+  )
+)
 
-;; ** Pop-ups **
-
-(include "./modules/sys.yuck")
-(include "./modules/cal.yuck")
-
-;; ** Bar **
-
-(defwidget bar []
-  (centerbox
-    :class "eww_bar"
-    :orientation "h"
-    :vexpand "false"
-    :hexpand "false"
-    (left)
-    (center)
-    (right)))
-
-;; bar
-(defwindow bar
+(defwindow sidebar
   :monitor 0
   :wm-ignore "true"
-  :windowtype "toolbar"
-  :exclusive "true"
+  :windowtype "dialog"
+  :exclusive "false"
   :focusable "false"
-  :stacking "fg"
+  :stacking "overlay"
   :geometry (geometry
-    :x "0%"
-    :y "0%"
-    :width "100%"
-    :height "0px"
-    :anchor "top center")
-  (bar))
+    :x "0px"
+    :y "0px"
+    :width "140px"
+    :anchor "right top")
+  (box :class "main-container"
+    (right)
+  )
+)
