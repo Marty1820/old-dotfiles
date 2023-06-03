@@ -34,7 +34,7 @@
     "custom/sep",
     "battery",
     "custom/sep",
-    "custom/power"
+    "custom/settings"
   ],
 
   // -------------------------------------------
@@ -69,16 +69,15 @@
   "clock": {
     "interval": 60,
     "format": "{:%I:%M %p} ",
-    "on-click": "/usr/bin/eww -c $HOME/.config/eww open --toggle calbox && /usr/bin/eww -c $HOME/.config/eww open --toggle calbox-closer",
-    "tooltip-format": "{:%A, %b %d}"
+    "format-alt": "{:%I:%M %p %A, %b %d}"
   },
 
   "custom/weather": {
-    "format": "| {}",
-    "format-alt": "| {} {alt}",
+    "format": "| {}F",
+    "format-alt": "| {}F {alt}",
     "interval": 300,
     "return-type": "json",
-    "exec": "~/.config/waybar/modules/weather.sh",
+    "exec": "~/.config/scripts/weather.sh --waybar",
     "exec-if": "ping -q -c 1 api.openweathermap.org >/dev/null 2>&1"
   },
 
@@ -131,10 +130,10 @@
     "format-discharging": "<span foreground=\"#8be9fd\">{icon}</span> {capacity}󰏰"
   },
 
-  "custom/power": {
-    "format": "<big>󰐦</big>",
+  "custom/settings": {
+    "format": "",
     "exec-on-event": "true",
     "tooltip": false,
-    "on-click": "/usr/bin/eww -c $HOME/.config/eww open --toggle system && /usr/bin/eww -c $HOME/.config/eww open --toggle system-closer"
+    "on-click": "/usr/bin/eww -c $HOME/.config/eww open --toggle sidebar && /usr/bin/eww -c $HOME/.config/eww open --toggle sidebar-closer"
   }
 }

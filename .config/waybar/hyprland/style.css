@@ -103,6 +103,7 @@ tooltip label {
 
 #bluetooth.disabled,
 #bluetooth.off {
+  padding-left: 10px;
   color: @red;
 }
 
@@ -140,7 +141,7 @@ tooltip label {
   color: @red;
 }
 
-#custom-power {
-  padding-right: 10px;
+#custom-settings {
+  padding-right: 15px;
   color: @purple;
 }
