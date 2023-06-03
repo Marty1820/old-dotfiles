@@ -2,7 +2,7 @@
 
 main_loop() {
   while ping -c 1 archlinux.org; do
-    ~/.config/eww/scripts/weather --getdata
+    ~/.config/scripts/weather --getdata
     sleep 300
   done
   int_loop
