@@ -65,9 +65,9 @@
     (box :class "info-box-top" :orientation "v" :space-evenly false
       (box :class "info-box-inner" :orientation "h" :space-evenly false
         (box :class "info-box-left" :orientation "v" :space-evenly false
-          (label :class "info-icon" :text " :")
-          (label :class "info-icon" :text "󰅐 :")
-          (label :class "info-icon" :text " :")
+          (label :class "info-icon" :text " :")
+          (label :class "info-icon" :text "󰥔 :")
+          (label :class "info-icon" :text "󰏖 :")
         )
         (box :class "info-box-right" :orientation "v" :space-evenly false
           (label :class "info-text" :halign "start" :text "${wm}")
@@ -84,11 +84,11 @@
     (label :text "Apps" :class "app-label")
     (box :class "app-box" :orientation "h" :space-evenly "false" :hexpand "false" :vexpand "false" :spacing 10
       (button :class "app-firefox"
-        :onclick "firefox 2> /dev/null" "")
+        :onclick "firefox 2> /dev/null" "󰈹")
       (button :class "app-files"
-        :onclick "pcmanfm 2> /dev/null" "")
+        :onclick "pcmanfm 2> /dev/null" "")
       (button :class "app-code"
-        :onclick "vscodium 2> /dev/null" "󰘦")
+        :onclick "vscodium 2> /dev/null" "󰨞")
     )
   )
 )
@@ -96,7 +96,7 @@
 (defwidget weather []
   (box :class "weather-container" :orientation "v" :space-evenly "false" :halign "center"
     (box :class "weather-box" :orientation "h" :space-evenly "false" :halign "center" :spacing 10
-      (label :class "weather-icon" :style "color: ${weather_color};" :text {weather_icon != "" ? "${weather_icon}" : ""})
+      (label :class "weather-icon" :style "color: ${weather_color};" :text {weather_icon != "" ? "${weather_icon}" : "󰼯"})
       (label :class "weather-temp" :text "${weather_temp}F")
     )
     (box :class "weather-window" :orientation "v" :space-evenly "false" :spacing 2
@@ -127,7 +127,7 @@
 (defwidget network-up []
   (box :class "network" :orientation "h" :space-evenly "false" :spacing 10 :halign "center"
     (box :orientation "h" :class "network-box"
-      (label :text "󰧇" :class "network-up")
+      (label :text "󰸇" :class "network-up")
     )
     (box :orientation "h" :width 130
       (graph  :class "network-graph-up"
@@ -145,7 +145,7 @@
 (defwidget network-down []
   (box :class "network" :orientation "h" :space-evenly "false" :spacing 10 :halign "center"
     (box :orientation "h" :class "network-box"
-      (label :text "󰦿" :width 10 :class "network-down")
+      (label :text "󰮏" :width 10 :class "network-down")
     )
     (box :orientation "h" :width 130
       (graph  :class "network-graph-down"
@@ -171,7 +171,7 @@
     )
     (box :class "sys_mem_box" :orientation "v" :space-evenly "false" :hexpand "false" :vexpand "false"
       (circular-progress :value memory :class "sys_mem" :thickness 8 :start-at 75
-        (label :text "" :class "sys_icon_mem" :limit-width 4 :wrap false :angle 0.0)
+        (label :text "󰘚" :class "sys_icon_mem" :limit-width 4 :wrap false :angle 0.0)
       )
       (label :class "mem_perc" :halign "center" :text "${memory}%")
     )
