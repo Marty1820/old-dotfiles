@@ -21,8 +21,8 @@ Current setup is running [Hyprland](https://hyprland.org/) and [Sway](https://sw
 |     `gedit`      |           `Super + a`            |
 |     `codium`     |       `Super + shift + a`        |
 |    `pcmanfm`     |           `Super + e`            |
-|     `brave`      |           `Super + b`            |
-|   `librewolf`    |       `Super + shift + b`        |
+|    `firefox`     |           `Super + b`            |
+|     `brave`      |       `Super + shift + b`        |
 |      `rofi`      |    `Super + d` = applications    |
 |      `rofi`      |    `Super + esc` = powermenu     |
 | `grim` & `slurp` | Print Screen key for screenshots |
