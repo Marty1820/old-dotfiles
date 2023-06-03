@@ -183,19 +183,15 @@
     (label :text "Functions" :class "function-label")
     (box :class "function-box" :orientation "h" :space-evenly "false" :hexpand "false" :vexpand "false" :spacing 10
       (button :class "screenshot"
-        :onclick "bash $HOME/.config/scripts/screenshot.sh 2> /dev/null"
+        :onclick "grim -t png -g '$(slurp)' ~/Pictures/Screenshot/$(date +%Y-%m-%d_%H-%m-%s).png &>/dev/null"
         :tooltip "Screenshot"
         (label :text "󰹑" :class "tooltip"))
       (button :class "wallpaper"
-        :onclick "bash $HOME/.config/scripts/wallpaper.sh 2> /dev/null"
+        :onclick "killall swaybg && swaybg -i `find $HOME/Pictures/wallpapers/ -type f | shuf -n 1` -m fill &"
         :tooltip "Wallpaper"
         (label :text "" :class "tooltip"))
-      (button :class "keybind"
-        :onclick "$HOME/.config/scripts/keyhint"
-        :tooltip "Keybindings"
-        (label :text "" :class "tooltip"))
       (button :class "logout"
-        :onclick "$HOME/.config/scripts/logout.sh"
+        :onclick "$HOME/.config/rofi/scripts/powermenu.sh"
         :tooltip "Logout"
         (label :text "󰍃" :class "logout"))
     )
