@@ -53,7 +53,7 @@
       (label :class "date" :text today)
     )
     (box :class "cal-window" :orientation "h"
-      (calendar 
+      (calendar
         :class "day-names" :day calendar_day
         :class "month-year" :year calendar_year)
     )
@@ -182,18 +182,8 @@
   (box :class "function-container" :orientation "v" :space-evenly "true" :hexpand "false" :vexpand "false" :halign "center"
     (label :text "Functions" :class "function-label")
     (box :class "function-box" :orientation "h" :space-evenly "false" :hexpand "false" :vexpand "false" :spacing 10
-      (button :class "screenshot"
-        :onclick "grim -t png -g '$(slurp)' ~/Pictures/Screenshot/$(date +%Y-%m-%d_%H-%m-%s).png &>/dev/null"
-        :tooltip "Screenshot"
-        (label :text "󰹑" :class "tooltip"))
-      (button :class "wallpaper"
-        :onclick "killall swaybg && swaybg -i `find $HOME/Pictures/wallpapers/ -type f | shuf -n 1` -m fill &"
-        :tooltip "Wallpaper"
-        (label :text "" :class "tooltip"))
-      (button :class "logout"
-        :onclick "$HOME/.config/rofi/scripts/powermenu.sh"
-        :tooltip "Logout"
-        (label :text "󰍃" :class "logout"))
+      (button :class "placeholder"
+        (label :text "" :class "placeholder"))
     )
   )
 )
