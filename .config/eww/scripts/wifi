@@ -12,46 +12,46 @@ vpn="wg0"
 rfblock=$(rfkill --output SOFT | grep wlan | awk '($1 == "blocked")')
 
 network_check() { # Checks Network connection
-  for interface in $(ls /sys/class/net/ | grep -v lo); do
-    if [ "$(cat /sys/class/net/"$interface"/carrier)" = 1 ]; then
-      OnLine=1
-    fi
-    if ! [ "$OnLine" ]; then
-      if [ "$rfblock" != "" ]; then
-        icon="󰤬"
-      elif nmcli general | grep -qo "disconnected"; then
-        icon="󰤮"
-      fi
-      col=$bad
-    else
-      col=$good
-      connection_type
-    fi
-  done
+	for interface in $(ls /sys/class/net/ | grep -v lo); do
+		if [ "$(cat /sys/class/net/"$interface"/carrier)" = 1 ]; then
+			OnLine=1
+		fi
+		if ! [ "$OnLine" ]; then
+			if [ "$rfblock" != "" ]; then
+				icon="󰀝"
+			elif nmcli general | grep -qo "disconnected"; then
+				icon="󰤭"
+			fi
+			col=$bad
+		else
+			col=$good
+			connection_type
+		fi
+	done
 }
 
 connection_type() { # Checks connection type and sets icon
-  if grep -q "1" /sys/class/net/$usb/carrier 2>/dev/null; then
-    icon="󰕓"
-    text="USB"
-  elif grep -q "1" /sys/class/net/$ethernet/carrier 2>/dev/null; then
-    icon="󰈀"
-    text="Wired"
-  elif grep -q "1" /sys/class/net/$wifi/carrier 2>/dev/null; then
-    icon="󰖩"
-    text=$(nmcli connection | grep "$wifi" | awk '{print ($1)}')
-  fi
-  if grep -q "1" /sys/class/net/$vpn/carrier 2>/dev/null; then
-    icon="󰖂"
-  fi
+	if grep -q "1" /sys/class/net/$usb/carrier 2>/dev/null; then
+		icon="󰕓"
+		text="USB"
+	elif grep -q "1" /sys/class/net/$ethernet/carrier 2>/dev/null; then
+		icon="󰈀"
+		text="Wired"
+	elif grep -q "1" /sys/class/net/$wifi/carrier 2>/dev/null; then
+		icon="󰤨"
+		text=$(nmcli connection | grep "$wifi" | awk '{print ($1)}')
+	fi
+	if grep -q "1" /sys/class/net/$vpn/carrier 2>/dev/null; then
+		icon="󰖂"
+	fi
 }
 
 network_check
 
 if [ "$1" = "--ICON" ]; then
-  echo "$icon"
+	echo "$icon"
 elif [ "$1" = "--ESSID" ]; then
-  echo "$text"
+	echo "$text"
 elif [ "$1" = "--COL" ]; then
-  echo "$col"
+	echo "$col"
 fi

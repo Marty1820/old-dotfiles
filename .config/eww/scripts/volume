@@ -4,25 +4,23 @@ status=$(pamixer --get-mute | grep -oE "true")
 percent=$(pamixer --get-volume)
 
 if [ "$status" ]; then
-    icon="󰝟"
-    col="#ff5555"
+	icon="󰝟"
+	col="#ff5555"
 else
-    if [ "$percent" -ge 75 ]; then
-        icon=""
-    elif [ "$percent" -ge 50 ]; then
-        icon="󰕾"
-    elif [ "$percent" -ge 25 ]; then
-        icon=""
-    else
-        icon=""
-    fi
-    col="#bd93f9"
+	if [ "$percent" -ge 66 ]; then
+		icon="󰕾"
+	elif [ "$percent" -ge 33 ]; then
+		icon="󰖀"
+	else
+		icon="󰕿"
+	fi
+	col="#bd93f9"
 fi
 
 if [ "$1" = "--COL" ]; then
-    echo $col
+	echo "$col"
 elif [ "$1" = "--PERC" ]; then
-    echo "$percent"
+	echo "$percent"
 elif [ "$1" = "--ICON" ]; then
-    echo $icon
+	echo "$icon"
 fi

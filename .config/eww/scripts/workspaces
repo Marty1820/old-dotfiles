@@ -1,33 +1,11 @@
 #!/usr/bin/env bash
 
-ic=(0       )
-
-list_workspaces() {
-  min_workspaces=7
-  workspaces=($(hyprctl -j workspaces | jq '.[].id' | sort))
-  current=${1-$(hyprctl -j monitors | jq -r '.[0].activeWorkspace.id')}
-  max_workspaces=$((${workspaces[-1]} > $min_workspaces ? ${workspaces[-1]} : $min_workspaces))
-
-  printf '(box :class "workspaces" :orientation "h" :spacing 3 :space-evenly "false" '
-  for w in $(seq $max_workspaces); do
-    if [[ $w == "$current" ]]; then
-      dot="${ic[$current]}"
-      class="focused"
-    else
-      if printf '%s\0' "${workspaces[@]}" | grep -Fxqz -- "$w"; then
-        class="unfocused"
-      else
-        class="empty"
-      fi
-      dot="${ic[$w]}"
-    fi
-
-    printf '(button :class "%s" :onclick "hyprctl dispatch workspace %s" "%s")' "$class" "$w" "$dot"
-  done
-  echo -e ')'
+spaces() {
+	WORKSPACE_WINDOWS=$(hyprctl workspaces -j | jq 'map({key: .id | tostring, value: .windows}) | from_entries')
+	seq 1 7 | jq --argjson windows "${WORKSPACE_WINDOWS}" --slurp -Mc 'map(tostring) | map({id: ., windows: ($windows[.]//0)})'
 }
 
-list_workspaces "$@"
-tail -f /tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/hyprland.log | grep -E --line-buffered "Changed to workspace" | while read -r; do
-  list_workspaces "$@"
+spaces
+socat -u UNIX-CONNECT:/tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock - | while read -r; do
+	spaces
 done
