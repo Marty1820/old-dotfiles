@@ -1,0 +1,400 @@
+;; Widgets
+(defwidget sdash []
+  (box
+    :class "sdash"
+    :orientation "h"
+  )
+)
+
+;; CALENDAR
+(defpoll calendar_day :interval "10h" "date '+%d'")
+(defpoll calendar_year :interval "10h" "date '+%Y'")
+(defpoll today :interval "12h" "date '+%a, %d %B'")
+(defpoll time :interval "5s" "date '+%H:%M'")
+
+(defwidget scal[]
+  (box
+    :class "scal-container"
+    :orientation "v"
+    :space-evenly "false"
+    :halign "center"
+    (box
+      :class "scal-box"
+      :orientation "v"
+      :space-evenly "false"
+      (label
+        :class "sclock"
+        :text time
+      )
+      (label
+        :class "sdate"
+        :text today
+      )
+    )
+    (box
+      :class "scal-window"
+      :orientation "h"
+      (calendar
+        :class "sday-names"
+        :day calendar_day
+        :class "smonth-year"
+        :year calendar_year
+      )
+    )
+  )
+)
+
+;; SYSTEM INFO
+(defpoll wm :interval "12h" "echo $XDG_CURRENT_DESKTOP")
+(defpoll uptime :interval "1m" "uptime -p | sed -e 's/up //;s/ hours,/h/;s/ minutes/m/'")
+(defpoll packages :interval "15m" "pacman -Q | wc -l")
+
+(defwidget sinfo []
+  (box
+    :class "sinfo-box-outer"
+    :orientation "h"
+    :space-evenly false
+    :halign "center"
+    (box
+      :class "sinfo-box-top"
+      :orientation "v"
+      :space-evenly false
+      (box
+        :class "sinfo-box-inner"
+        :orientation "h"
+        :space-evenly false
+        (box
+          :class "sinfo-box-left"
+          :orientation "v"
+          :space-evenly false
+          (label
+            :class "sinfo-icon"
+            :text " :"
+          )
+          (label
+            :class "sinfo-icon"
+            :text "󰥔 :"
+          )
+          (label
+            :class "sinfo-icon"
+            :text "󰏖 :"
+          )
+        )
+        (box
+          :class "sinfo-box-right"
+          :orientation "v"
+          :space-evenly false
+          (label
+            :class "sinfo-text"
+            :halign "start"
+            :text "${wm}"
+          )
+          (label
+            :class "sinfo-text"
+            :halign "start"
+            :text "${uptime}"
+          )
+          (label
+            :class "sinfo-text"
+            :halign "start"
+            :text "${packages}"
+          )
+        )
+      )
+    )
+  )
+)
+
+;; WEATHER
+(defpoll weather_temp :interval "10m" :initial "0"
+  "$HOME/.config/scripts/weather.sh --temp")
+(defpoll weather_desc :interval "10m"
+  "$HOME/.config/scripts/weather.sh --stat")
+(defpoll weather_feels_like :interval "10m"
+  "$HOME/.config/scripts/weather.sh --feel")
+(defpoll weather_humidity :interval "10m"
+  "$HOME/.config/scripts/weather.sh --humid")
+(defpoll weather_icon :interval "10m"
+  "$HOME/.config/scripts/weather.sh --icon")
+(defpoll weather_wind :interval "10m"
+  "$HOME/.config/scripts/weather.sh --wind")
+(defpoll weather_color :interval "10m"
+  "$HOME/.config/scripts/weather.sh --hex")
+
+(defwidget sweather []
+  (box
+    :class "sweather-container"
+    :orientation "v"
+    :space-evenly "false"
+    :halign "center"
+    (box
+      :class "sweather-box"
+      :orientation "h"
+      :space-evenly "false"
+      :halign "center"
+      :spacing 10
+      (label
+        :class "sweather-icon"
+        :style "color: ${weather_color};"
+        :text {weather_icon != "" ? "${weather_icon}" : "󰼯"}
+      )
+      (label
+        :class "sweather-temp"
+        :text "${weather_temp}F"
+      )
+    )
+    (box
+      :class "sweather-window"
+      :orientation "v"
+      :space-evenly "false"
+      :spacing 2
+      (label
+        :class "sweather-desc"
+        :text "${weather_desc}"
+        :limit-width 32
+        :wrap "true"
+      )
+      (label
+        :class "sweather-feel"
+        :text "Feels Like: ${weather_feels_like}F"
+      )
+      (label
+        :class "sweather-feel"
+        :halign "center"
+        :text "󰖝 ${weather_wind} mph"
+      )
+      (label
+        :class "sweather-feel"
+        :halign "center"
+        :text "  ${weather_humidity}󰏰"
+      )
+    )
+  )
+)
+
+;; VOLUME
+(defpoll volume :interval "1s" "pamixer --get-volume")
+(defpoll vol_col :interval "1s" "scripts/volume --COL")
+(defpoll vol_icon :interval "1s" "scripts/volume --ICON")
+(defvar vol_mute "pamixer -t")
+
+(defwidget svolume []
+  (box
+    :class "smetric"
+    :orientation "h"
+    :space-evenly "false"
+    :halign "center"
+    (button
+      :onclick vol_mute
+      (box
+        :class "svol-label"
+        :orientation "h"
+        :style "color: ${vol_col};"
+        vol_icon
+      )
+    )
+    (scale
+      :min 0
+      :max 100
+      :value volume
+      :orientation "h"
+      :onchange "~/.config/eww/scripts/vol-set {}"
+    )
+    (label
+      :class "svol-text"
+      :text "${volume}%"
+    )
+  )
+)
+
+;; NETWORK
+(defpoll IP_ADDR :interval "1h" "ip -br address | grep UP | awk '{ print $3 }'")
+
+(defwidget snetwork []
+  (box
+    :class "snetwork-label"
+    :orientation "h"
+    :space-evenly "false"
+    :spacing 10
+    :halign "center"
+    (label
+      :text "${IP_ADDR}"
+    )
+  )
+)
+
+(defwidget snetwork-up []
+  (box
+    :class "snetwork"
+    :orientation "h"
+    :space-evenly "false"
+    :spacing 10
+    :halign "center"
+    (box
+      :orientation "h"
+      :class "snetwork-box"
+      (label
+        :text "󰸇"
+        :class "snetwork-up"
+      )
+    )
+    (box
+      :orientation "h"
+      :width 130
+      (graph
+        :class "snetwork-graph-up"
+        :thickness 2
+        :value {round(EWW_NET.wlan0.NET_UP / 1024 ,1)}
+        :time-range "2m"
+        :min 0
+        :max 101
+        :dynamic "true"
+        :line-style "round"
+      )
+    )
+  )
+)
+
+(defwidget snetwork-down []
+  (box
+    :class "snetwork"
+    :orientation "h"
+    :space-evenly "false"
+    :spacing 10
+    :halign "center"
+    (box
+      :orientation "h"
+      :class "snetwork-box"
+      (label
+        :text "󰮏"
+        :width 10
+        :class "snetwork-down"
+      )
+    )
+    (box
+      :orientation "h"
+      :width 130
+      (graph
+        :class "snetwork-graph-down"
+        :thickness 2
+        :value {round(EWW_NET.wlan0.NET_DOWN / 1024 ,1)}
+        :time-range "2m"
+        :min 0
+        :max 101
+        :dynamic "true"
+        :line-style "round"
+      )
+    )
+  )
+)
+
+;; HARDWARE
+(defwidget ssystem []
+  (box
+    :class "ssys_win"
+    :orientation "h"
+    :space-evenly "true"
+    :hexpand "false"
+    :vexpand "false"
+    (box
+      :class "ssys_cpu_box"
+      :orientation "v"
+      :space-evenly "false"
+      :hexpand "false"
+      :vexpand "false"
+      (circular-progress
+        :value "${EWW_CPU.avg}"
+        :class "ssys_cpu"
+        :thickness 8
+        :start-at 75
+        (label
+          :text "󰻠"
+          :class "ssys_icon_cpu"
+          :limit-width 4
+          :wrap "false"
+        )
+      )
+      (label
+        :class "scpu_perc"
+        :halign "center"
+        :text "${round(EWW_CPU.avg, 0)}%"
+      )
+    )
+    (box
+      :class "ssys_mem_box"
+      :orientation "v"
+      :space-evenly "false"
+      :hexpand "false"
+      :vexpand "false"
+      (circular-progress
+        :value "${EWW_RAM.used_mem_perc}"
+        :class "ssys_mem"
+        :thickness 8
+        :start-at 75
+        (label
+          :text "󰘚"
+          :class "ssys_icon_mem"
+          :limit-width 4
+          :wrap false
+          :angle 0.0
+        )
+      )
+      (label
+        :class "smem_perc"
+        :halign "center"
+        :text "${round(EWW_RAM.used_mem_perc, 0)}%"
+      )
+    )
+  )
+)
+
+;; WINDOW SETUP
+(defwidget sidebar []
+  (box
+    :class "sidebar"
+    :orientation "v"
+    :space-evenly "false"
+    (scal)
+    (sdash)
+    (sinfo)
+    (sdash)
+    (sweather)
+    (sdash)
+    (svolume)
+    (sdash)
+    (snetwork)
+    (snetwork-up)
+    (snetwork-down)
+    (sdash)
+    (ssystem)
+  )
+)
+
+(defwindow sidebar
+  :monitor 0
+  :wm-ignore "true"
+  :windowtype "dialog"
+  :exclusive "false"
+  :focusable "false"
+  :stacking "overlay"
+  :geometry (geometry
+    :x "0px"
+    :y "0px"
+    :width "140px"
+    :anchor "left bottom")
+  (box
+    :class "main-container"
+    (sidebar)
+  )
+)
+
+;; CLOSER
+(defwindow sidebar-closer
+  :monitor 0
+  :focusable "false"
+  :stacking "fg"
+  :geometry (geometry
+    :width "100%"
+    :height "100%")
+  (closer
+    :window "sidebar"))
