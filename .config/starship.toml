@@ -17,7 +17,7 @@ continuation_prompt = "[➜➜](bold #bd93f9)"
 
 [battery]
 charging_symbol = ""
-discharging_symbol = ""
+discharging_symbol = "󰂃"
 [[battery.display]]
 threshold = 10
 style = "bold #ff5555"
@@ -50,5 +50,5 @@ disabled = true
 disabled = true
 
 [python]
-symbol = " "
+symbol = "󰌠 "
 
