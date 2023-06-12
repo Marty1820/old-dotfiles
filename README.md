@@ -12,7 +12,7 @@ Otherwise these are pretty basic configs with nothing special. Lots of older con
 
 ## Details
 
-Current setup is running [Hyprland](https://hyprland.org/) and [Sway](https://swaywm.org/) as a backup with [Waybar](https://github.com/Alexays/Waybar) & [eww](https://elkowar.github.io/eww/eww.html) widgets. Lastly [rofi](https://github.com/davatorium/rofi) (The wayland fork) for an application launcher and power menu.
+Current setup is running [Hyprland](https://hyprland.org/) & [EWW](https://elkowar.github.io/eww/eww.html) for bar and powermenu. Lastly [rofi](https://github.com/davatorium/rofi) (The wayland fork) for an application launcher.
 
 #### Keybound Apps
 
