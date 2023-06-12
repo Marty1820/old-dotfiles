@@ -35,8 +35,8 @@
 (defwidget workspaces []
   (box
     :space-evenly true
-    (label 
-      :text "${workspaces}${current_workspace}" 
+    (label
+      :text "${workspaces}${current_workspace}"
       :visible false
     )
     (for workspace in workspaces
@@ -62,7 +62,7 @@
     :spacing 0
     :valign "center"
     :halign "center"
-    (label 
+    (label
       :text win-title
       :limit-width 80
     )
@@ -92,7 +92,7 @@
     (label
       :class "wtr-temp"
       :halign "center"
-      :text "${wtr-temp}F" 
+      :text "${wtr-temp}F"
     )
   )
 )
@@ -221,8 +221,8 @@
 ;; Power button
 (defwidget powerbutton []
   (button
-    :onclick "${EWW} open --toggle powermenu && ${EWW} open powermenu-closer"
-    (label 
+    :onclick "${EWW} open --toggle powermenu-closer && ${EWW} open powermenu"
+    (label
       :class "powerbutton"
       :halign "center"
       :text ""
