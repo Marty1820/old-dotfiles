@@ -10,45 +10,60 @@
 # Shell Prompt Configuration
 # Configuration reference: https://starship.rs/config/
 
+# Inserts a blank line between shell prompts
+add_newline = true
+
+## Prompt options
+# Configure the format of the prompt.
 format = "$all"
 right_format = "$cmd_duration"
-add_newline = true
 continuation_prompt = "[➜➜](bold #bd93f9)"
+# Timeout for starship to scan files (in milliseconds).
+scan_timeout = 10
 
+## Battery Options
 [battery]
+# The symbol shown when the batterys is charging.
 charging_symbol = ""
+# The symbol shown when the battery is discharging.
 discharging_symbol = "󰂃"
 [[battery.display]]
-threshold = 10
+# The upper bound for the display option.
+threshold = 20
+# The style used if the display option is in use.
 style = "bold #ff5555"
 
+## Character Options
 [character]
+# The format string used before the text input if the previous command succeeded.
 success_symbol = "[➜](bold #bd93f9)"
+# The format string used before the text input if the previous command failed.
 error_symbol = "[✗](bold #ff5555)"
 
+## Command Duration Options
 [cmd_duration]
 format = "[ $duration]($style)"
 style = "bold #f1fa8c"
 
+## Directory Options
 [directory]
 style = "bold #50fa7b"
+# The symbol indicating the current directory is read only.
 read_only = ""
 read_only_style = "#ff5555"
+# The symbol indicating home directory.
 home_symbol = "~"
 
+## Git Options
 [git_branch]
 format = " [$symbol(:$remote_branch)]($style)"
 style = "bold #ff79c6"
-
 [git_status]
 style = "bold #ff5555"
 
 [line_break]
-disabled = true
-
-[package]
+# Disables the line_break module making the prompt a single line.
 disabled = true
 
 [python]
 symbol = "󰌠 "
-
