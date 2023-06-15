@@ -381,7 +381,7 @@
     :x "0px"
     :y "0px"
     :width "140px"
-    :anchor "left bottom")
+    :anchor "right bottom")
   (box
     :class "main-container"
     (sidebar)

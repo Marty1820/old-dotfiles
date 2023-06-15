@@ -1,6 +1,7 @@
 (defvar EWW "/usr/bin/eww -c $HOME/.config/eww")
 (include "./modules/sidebar.yuck")
 (include "./modules/powermenu.yuck")
+(include "./modules/cal.yuck")
 
 ;; CLOSER
 (defwidget closer [window]
@@ -149,25 +150,21 @@
 (defpoll vol-col :interval "2s" "scripts/volume --COL")
 
 (defwidget volume []
-  (box
-    :class "volume"
-    :orientation "h"
-    :spacing 0
-    :valign "center"
-    :halign "center"
-    (eventbox
-      :onclick "pamixer -t"
+  (eventbox
+    :onclick "pamixer -t"
+    (box
+      :class "volume"
+      :orientation "h"
+      :spacing 0
+      :valign "center"
+      :halign "center"
       (label
         :class "vol-icon"
         :halign "center"
         :style "color: ${vol-col};"
         :text vol-icon
+        :tooltip "${vol-perc}󰏰"
       )
-    )
-    (label
-      :class "vol-perc"
-      :halign "center"
-      :text "${vol-perc}󰏰"
     )
   )
 )
@@ -188,11 +185,7 @@
       :halign "center"
       :style "color: ${bat-col};"
       :text bat-icon
-    )
-    (label
-      :class "bat-perc"
-      :halign "center"
-      :text "${EWW_BATTERY["BAT1"].capacity}󰏰"
+      :tooltip "${EWW_BATTERY["BAT1"].capacity}󰏰" 
     )
   )
 )
@@ -202,18 +195,21 @@
 (defpoll DATE :interval "1h" "date +\"%A, %d %B %Y\"")
 
 (defwidget clock []
+  (eventbox
+    :onclick "${EWW} open --toggle calbox"
     (box
-    :class "clockbox"
-    :orientation "v"
-    :spacing 0
-    :valign "center"
-    :halign "center"
-    :space-evenly "false"
-    (label
-      :class "time"
+      :class "clockbox"
+      :orientation "v"
+      :spacing 0
+      :valign "center"
       :halign "center"
-      :text TIME
-      :tooltip DATE
+      :space-evenly "false"
+      (label
+        :class "time"
+        :halign "center"
+        :text TIME
+        :tooltip DATE
+      )
     )
   )
 )
@@ -247,7 +243,7 @@
         :space-evenly "false"
         :vexpand "false"
         :hexpand "false"
-        (settings)
+        (powerbutton)
         (workspaces)
       )
     )
@@ -295,14 +291,12 @@
         (weather)
         (spacer)
         (network)
-        (spacer)
         (volume)
-        (spacer)
         (battery)
         (spacer)
         (clock)
         (spacer)
-        (powerbutton)
+        (settings)
       )
     )
   )

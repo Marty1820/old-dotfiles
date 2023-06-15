@@ -27,7 +27,7 @@ $black: #1a1b26;
 }
 
 tooltip {
-  background-color: $background;
+  background-color: $black;
   color: $foreground;
   border-radius: 5px;
   border: 1px solid $black;
@@ -44,10 +44,10 @@ tooltip {
   padding-left: 10px;
 }
 
-// Settings
-.settings {
-  font-size: 1.5rem;
-  color: $cyan;
+// Powerbutton
+.powerbutton {
+  font-size: 1.3rem;
+  color: $red;
 }
 
 // Workspaces
@@ -80,29 +80,10 @@ tooltip {
   padding-right: 10px;
 }
 
-// Weather
-.wtr-icon {
-  font-size: 1.5rem;
-}
-
-// Bluetooth
-.blu-icon {
-  color: $orange;
-}
-
-// Network
-.net-icon {
-  font-size: 1.5rem;
-}
-
-// Volume
+.wtr-icon,
+.net-icon,
 .vol-icon {
-  font-size: 1.5rem;
-}
-
-// Battery
-.bat-icon {
-  font-size: 1.1rem;
+  font-size: 1.9rem;
 }
 
 // Clock
@@ -114,10 +95,10 @@ tooltip {
   font-weight: bold;
 }
 
-// Powerbutton
-.powerbutton {
-  font-size: 1.4rem;
-  color: $red;
+// Settings
+.settings {
+  font-size: 1.5rem;
+  color: $cyan;
 }
 
 // *** SIDEBAR *** ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -1,3 +1,5 @@
+(defpoll MONTH :interval "5h" "date +\"%B\"")
+
 ;; ** Calendar PopOut **
 
 (defwidget cal []
@@ -10,10 +12,14 @@
       :space-evenly "false"
       (calendar
         :class "cal"
-        :day "${day}"
+        :day "day"
         :show-details "false"
         :show-heading "true"
-        :show-day-names "true"))))
+        :show-day-names "true"
+      )
+    )
+  )
+)
 
 (defwidget weatherpop []
   (box
@@ -33,11 +39,14 @@
           :class "weatherdesc"
           :halign "start"
           :hexpand "true"
-          WTHR_STAT)
+          "WTHR_STAT"
+        )
         (box
           :class "weatherpoptemp"
           :halign "end"
-          WTHR_TEMP))
+          "WTHR_TEMP"
+        )
+      )
       (box
         :orientation "h"
         :class "weatherbot"
@@ -46,15 +55,22 @@
           :class "weathercity"
           :halign "start"
           :hexpand "true"
-          WTHR_LOC)
+          "WTHR_LOC"
+        )
         (box
           :class "weatherfeels"
           :halign "end"
-          "Real feel ${WTHR_FTEMP}")))
-  (box
-    :class "weatherpopicon"
-    :style "color: ${WTHR_HEX};"
-    WTHR_ICON)))
+          "Real feel WTHR_FTEMP"
+        )
+      )
+    )
+    (box
+      :class "weatherpopicon"
+      :style "color: #ff5555;"
+      "HOLDER"
+    )
+  )
+)
 
 (defwidget calbox []
   (box
@@ -65,9 +81,12 @@
     :class "calouterbox"
     (box
       :class "calday"
-      "${datemonth}")
+      MONTH
+    )
     (cal)
-    (weatherpop)))
+    (weatherpop)
+  )
+)
 
 (defwindow calbox
   :monitor 0
@@ -79,5 +98,6 @@
   :geometry (geometry
     :x "0%"
     :y "0%"
-    :anchor "top center")
-  (calbox))
+    :anchor "right bottom")
+  (calbox)
+)
