@@ -4,19 +4,18 @@
     :space-evenly "false"
     :spacing 15
     (button
-      :onclick
-      VOL_MUTE
+      :onclick "echo 'VOL_MUTE'"
       (box
         :orientation "h"
         :valign "center"
         :class "volicon"
-        :style "color: ${VOL_COL};"
-        VOL_ICON))
+        :style "color: #ff5555" ;;${VOL_COL};"
+        "VOL_ICON"))
     (scale
       :min 0
       :max 100
       :orientation "h"
-      :value VOLUME
+      :value 55 ;;VOLUME
       :onchange "~/.config/eww/scripts/vol-set {}"
       :valign "center")))
 
@@ -26,7 +25,7 @@
     :space-evenly "false"
     :spacing 15
     (button
-      :onclick BRIT_AUTO
+      :onclick "echo 'BRIT_AUTO'"
       (box
         :orientation "h"
         :valign "center"
@@ -37,7 +36,7 @@
       :min 0
       :max 100
       :orientation "h"
-      :value BRIT_PER
+      :value "echo 'BRIT_PER'"
       :onchange "xbacklight -set {}"
       :valign "center")))
 
@@ -52,13 +51,15 @@
       :space-evenly "false"
       :spacing 20
       (button
-        :onclick network_cmd
+        :onclick "echo 'network_cmd'"
         (cencirc
           :class "lancirc"
-          :icon "${LAN_ICON}"
+          :icon "LAN_ICON"
           :label "INTERNET"
-          :color LAN_COL
-          :value LAN_SPEED))
+          :color "ffffff"
+          :value 55 ;;LAN_SPEED
+        )
+      )
       (cencirc
         :class "diskcirc"
         :icon "󰋊"
@@ -72,9 +73,9 @@
       :spacing 20
       (cencirc
         :class "batcirc"
-        :icon BAT_ICON
+        :icon "BAT_ICON"
         :label "BATTERY"
-        :color BAT_COL
+        :color "BAT_COL"
         :value {EWW_BATTERY["BAT1"].capacity})
       (cencirc
         :class "cpucirc"
