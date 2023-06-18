@@ -17,10 +17,6 @@ if [ -z "${DISPLAY}" ] && [ "$(tty)" = "/dev/tty1" ]; then
   exec Hyprland >>/dev/null
 fi
 
-if [ -z "${DISPLAY}" ] && [ "$(tty)" = "/dev/tty2" ]; then
-  $HOME/.local/bin/sway_wrapper.sh
-fi
-
 # Exports
 export LIBVA_DRIVER_NAME='i965'
 export EDITOR=nvim
