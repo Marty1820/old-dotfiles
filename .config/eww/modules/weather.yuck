@@ -1,0 +1,70 @@
+
+(defwidget weatherpop []
+  (box
+    :orientation "h"
+    :class "wtrfullbox"
+    :space-evenly "false"
+    (box
+      :orientation "v"
+      :class "wtrpopbox"
+      :hexpand "true"
+      :space-evenly "false"
+      (box
+        :space-evenly "false"
+        :orientation "h"
+        :class "wtrtop"
+        (box
+          :class "wtrcity"
+          :halign "start"
+          :hexpand "true"
+          wtr-loc
+        )
+        (box
+          :class "weatherdesc"
+          :halign "end"
+          :hexpand "true"
+          wtr-stat
+        )
+      )
+      (box
+        :orientation "h"
+        :class "wtrbottom"
+        (box
+          :class "weatherpoptemp"
+          :halign "start"
+          "TEMP: ${wtr-temp}F"
+        )
+        (box
+          :class "wtrfeels"
+          :halign "end"
+          "FEEL: ${wtr-feel}F"
+        )
+      )
+    )
+  )
+)
+
+(defwidget wtrbox []
+  (box
+    :orientation "v"
+    :width 200
+    :vexpand "true"
+    :space-evenly "false"
+    :class "wtrouterbox"
+    (weatherpop)
+  )
+)
+
+(defwindow wtrbox
+  :monitor 0
+  :wm-ignore "true"
+  :windowtype "dialog"
+  :exclusive "false"
+  :focusable "false"
+  :stacking "overlay"
+  :geometry (geometry
+    :x "7%"
+    :y "5px"
+    :anchor "right bottom")
+  (wtrbox)
+)
