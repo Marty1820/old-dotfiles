@@ -2,6 +2,7 @@
 (include "./modules/sidebar.yuck")
 (include "./modules/powermenu.yuck")
 (include "./modules/cal.yuck")
+(include "./modules/weather.yuck")
 
 ;; CLOSER
 (defwidget closer [window]
@@ -75,25 +76,30 @@
 (defpoll wtr-icon :interval "5m" "$HOME/.config/scripts/weather.sh --icon")
 (defpoll wtr-col :interval "5m" "$HOME/.config/scripts/weather.sh --hex")
 (defpoll wtr-feel :interval "5m" "$HOME/.config/scripts/weather.sh --feel")
+(defpoll wtr-stat :interval "5m" "$HOME/.config/scripts/weather.sh --stat")
+(defpoll wtr-loc :interval "5m" "$HOME/.config/scripts/weather.sh --city")
 
 (defwidget weather []
-  (box
-    :class "weather"
-    :orientation "h"
-    :spacing 0
-    :valign "center"
-    :halign "center"
-    :tooltip "Real Feel: ${wtr-feel}F"
-    (label
-      :class "wtr-icon"
+  (eventbox
+    :onhover "${EWW} open wtrbox"
+    :onhoverlost "${EWW} close wtrbox"
+    (box
+      :class "weather"
+      :orientation "h"
+      :spacing 0
+      :valign "center"
       :halign "center"
-      :style "color: ${wtr-col};"
-      :text wtr-icon
-    )
-    (label
-      :class "wtr-temp"
-      :halign "center"
-      :text "${wtr-temp}F"
+      (label
+        :class "wtr-icon"
+        :halign "center"
+        :style "color: ${wtr-col};"
+        :text wtr-icon
+      )
+      (label
+        :class "wtr-temp"
+        :halign "center"
+        :text "${wtr-temp}F"
+      )
     )
   )
 )
