@@ -1,60 +1,3 @@
-(defwidget shutdown []
-  (button
-    :onclick "systemctl poweroff"
-    :class "shutdown"
-    "󰐥"
-  )
-)
-
-(defwidget restart []
-  (button
-    :onclick "systemctl reboot"
-    :class "restart"
-    (label
-      :class "restart"
-      :halign "center"
-      :valign "center"
-      :text "󰜉"
-    )
-  )
-)
-
-(defwidget lock []
-  (button
-    :onclick "eww close powermenu && swaylock"
-    (label
-      :class "lock"
-      :halign "center"
-      :valign "center"
-      :text "󰌾"
-    )
-  )
-)
-
-(defwidget hibernate []
-  (button
-    :onclick "eww close powermenu && systemctl hibernate"
-    (label
-      :class "hibernate"
-      :halign "center"
-      :valign "center"
-      :text "󰤁"
-    )
-  )
-)
-
-(defwidget logout []
-  (button
-    :onclick "hyprctl dispatch exit"
-    (label
-      :class "logout"
-      :halign "center"
-      :valign "center"
-      :text "󰍃"
-    )
-  )
-)
-
 (defpoll fulluptime :interval "1m" "uptime -p | sed -e 's/up //g'")
 
 (defwidget powermenu []
@@ -78,24 +21,45 @@
       :vexpand "false"
       :hexpand "false"
       :class "powermenu"
-      (shutdown)
-      (restart)
-      (lock)
-      (hibernate)
-      (logout)
+      (button
+        :class "shutdown"
+        :onclick "systemctl poweroff"
+        "󰐥"
+      )
+      (button
+        :class "restart"
+        :onclick "systemctl reboot"
+        "󰜉"
+      )
+      (button
+        :class "lock"
+        :onclick "eww close powermenu && swaylock"
+        "󰌾"
+      )
+      (button
+        :class "hibernate"
+        :onclick "eww close powermenu && systemctl hibernate"
+        "󰤁"
+      )
+      (button
+        :class "logout"
+        :onclick "hyprctl dispatch exit"
+        "󰍃")
     )
   )
 )
 (defwindow powermenu
   :monitor 0
   :wm-ignore "true"
-  :windowtype "toolbar"
+  :windowtype "dock"
   :exclusive "true"
   :focusable "false"
   :stacking "fg"
   :geometry (geometry
     :x "0%"
     :y "0%"
+    :width "20%"
+    :height "10%"
     :anchor "center center")
   (powermenu)
 )

@@ -1,4 +1,3 @@
-
 (defwidget weatherpop []
   (box
     :orientation "h"

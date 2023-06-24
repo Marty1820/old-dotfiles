@@ -345,14 +345,16 @@ calendar.highlight {
 }
 
 // *** POWERMENU *** ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-.uptime {
-  font-size: 16px;
-}
-
 .powerbox {
+  padding: 10px;
   background-color: $background;
   border-radius: 14px;
   border: 1px solid $purple;
+}
+
+.uptime {
+  font-size: 16px;
+  color: $foreground;
 }
 
 .powermenu {
@@ -365,7 +367,7 @@ calendar.highlight {
 }
 
 .powermenu button:hover {
-  color: $red;
+  color: $selection;
 }
 
 // *** WEATHER POP *** ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -378,4 +380,21 @@ calendar.highlight {
 
 .wtrtop {
   padding-bottom: 5px;
+}
+
+// *** CALENDAR POP *** ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+.calouterbox {
+  background-color: $black;
+  border-radius: 14px;
+  border: 1px solid $purple;
+  padding: 7px;
+}
+
+.calmonth,
+.cal {
+  color: $foreground;
+}
+
+.cal:hover {
+  color: $orange;
 }

@@ -8,11 +8,11 @@ if [ "$status" ]; then
 	col="#ff5555"
 else
 	if [ "$percent" -ge 66 ]; then
-		icon="󰕾"
+		icon=""
 	elif [ "$percent" -ge 33 ]; then
-		icon="󰖀"
+		icon=""
 	else
-		icon="󰕿"
+		icon=""
 	fi
 	col="#bd93f9"
 fi
