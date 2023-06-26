@@ -1,0 +1,25 @@
+// *** POWERMENU *** ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+.powerbox {
+  padding: 10px;
+  background-color: $background;
+  border-radius: 14px;
+  border: 1px solid $purple;
+}
+
+.uptime {
+  font-size: 16px;
+  color: $foreground;
+}
+
+.powermenu {
+  font-size: 80px;
+}
+
+.powermenu button {
+  color: $purple;
+  padding: 5px;
+}
+
+.powermenu button:hover {
+  color: $selection;
+}
