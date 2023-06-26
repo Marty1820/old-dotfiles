@@ -1,10 +1,5 @@
 (defvar EWW "/usr/bin/eww -c $HOME/.config/eww")
 
-(include "./modules/sidebar.yuck")
-(include "./modules/powermenu.yuck")
-(include "./modules/cal.yuck")
-(include "./modules/weather.yuck")
-
 ;; CLOSER
 (defwidget closer [window]
   (eventbox
@@ -338,3 +333,9 @@
     :anchor "bottom center")
   (bar)
 )
+
+;; MODULES
+(include "./modules/sidebar.yuck")
+(include "./modules/powermenu.yuck")
+(include "./modules/cal.yuck")
+(include "./modules/weather.yuck")

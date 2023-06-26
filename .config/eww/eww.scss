@@ -1,12 +1,6 @@
-// IMPORTS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-@import "css/colors";
-@import "css/weather";
-@import "css/sys";
-@import "css/sidebar";
-@import "css/powermenu";
-@import "css/cal";
-
 // GLOBAL ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@import "css/color";
+
 * {
   all: unset;
   font-family: mononoki Nerd Font Mono;
@@ -87,3 +81,9 @@ tooltip {
   font-size: 1.5rem;
   color: $cyan;
 }
+
+// IMPORTS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@import "css/weather";
+@import "css/sidebar";
+@import "css/powermenu";
+@import "css/cal";
