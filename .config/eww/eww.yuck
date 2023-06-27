@@ -73,29 +73,25 @@
 (defpoll wtr-col :interval "5m" "$HOME/.config/scripts/weather.sh --hex")
 (defpoll wtr-feel :interval "5m" "$HOME/.config/scripts/weather.sh --feel")
 (defpoll wtr-stat :interval "5m" "$HOME/.config/scripts/weather.sh --stat")
-(defpoll wtr-loc :interval "5m" "$HOME/.config/scripts/weather.sh --city")
 
 (defwidget weather []
-  (eventbox
-    :onhover "${EWW} open wtrbox"
-    :onhoverlost "${EWW} close wtrbox"
-    (box
-      :class "weather"
-      :orientation "h"
-      :spacing 0
-      :valign "center"
+  (box
+    :class "weather"
+    :orientation "h"
+    :spacing 0
+    :valign "center"
+    :halign "center"
+    :tooltip "${wtr-stat} | Real Feel ${wtr-feel}F"
+    (label
+      :class "wtr-icon"
       :halign "center"
-      (label
-        :class "wtr-icon"
-        :halign "center"
-        :style "color: ${wtr-col};"
-        :text wtr-icon
-      )
-      (label
-        :class "wtr-temp"
-        :halign "center"
-        :text "${wtr-temp}F"
-      )
+      :style "color: ${wtr-col};"
+      :text wtr-icon
+    )
+    (label
+      :class "wtr-temp"
+      :halign "center"
+      :text "${wtr-temp}F"
     )
   )
 )
@@ -338,4 +334,3 @@
 (include "./modules/sidebar.yuck")
 (include "./modules/powermenu.yuck")
 (include "./modules/cal.yuck")
-(include "./modules/weather.yuck")

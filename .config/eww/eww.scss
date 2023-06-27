@@ -4,14 +4,13 @@
 * {
   all: unset;
   font-family: mononoki Nerd Font Mono;
-  font-size: 16px;
 }
 
 tooltip {
   background-color: $black;
   color: $foreground;
   border-radius: 5px;
-  border: 1px solid $black;
+  border: 1px solid $selection;
 }
 
 // *** MAINBAR *** ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -83,7 +82,6 @@ tooltip {
 }
 
 // IMPORTS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-@import "css/weather";
 @import "css/sidebar";
 @import "css/powermenu";
 @import "css/cal";
