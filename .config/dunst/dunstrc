@@ -317,14 +317,14 @@
     foreground = "#6272a4"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
-    default_icon = /usr/share/icons/Adwaita/32x32/status/dialog-question-symbolic.symbolic.png
+    default_icon = /usr/share/icons/dracula-icons/32/actions/dialog-messages.svg
 
 [urgency_normal]
     background = "#282a36"
     foreground = "#bd93f9"
     timeout = 15
     # Icon for notifications with normal urgency, uncomment to enable
-    default_icon = /usr/share/icons/Adwaita/32x32/status/user-available-symbolic.symbolic.png
+    default_icon = /usr/share/icons/dracula-icons/16/panel/state-information.svg
 
 [urgency_critical]
     background = "#ff5555"
@@ -332,7 +332,7 @@
     frame_color = "#ff5555"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
-    default_icon = /usr/share/icons/Adwaita/32x32/status/dialog-warning-symbolic.symbolic.png
+    default_icon = /usr/share/icons/dracula-icons/16/panel/state-warning.svg
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
