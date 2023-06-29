@@ -143,9 +143,9 @@
 )
 
 ;; Volume
-(defpoll vol-icon :interval "2s" "scripts/volume --ICON")
+(defpoll vol-icon :interval "1s" "scripts/volume --ICON")
 (defpoll vol-perc :interval "1s" "scripts/volume --PERC")
-(defpoll vol-col :interval "2s" "scripts/volume --COL")
+(defpoll vol-col :interval "1s" "scripts/volume --COL")
 
 (defwidget volume []
   (eventbox
