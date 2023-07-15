@@ -245,7 +245,7 @@
           (button
             :class "button-hib"
             :tooltip "Hibernate"
-            :onclick "systemctl hibernate"
+            :onclick "${EWW} update powerbuttons=false && systemctl hibernate"
             "󰤁"
           )
         )
