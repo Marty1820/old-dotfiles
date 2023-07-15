@@ -42,7 +42,6 @@
         :onclick "hyprctl dispatch workspace ${workspace.id}"
         (box
           :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
-          ;;(label :text "${workspace.id}")
           (label :text "")
         )
       )
@@ -213,16 +212,48 @@
 )
 
 ;; Power button
+(defvar powerbuttons false)
+
 (defwidget powerbutton []
-  (button
-    :onclick "${EWW} open --toggle powermenu-closer && ${EWW} open powermenu"
-    (label
-      :class "powerbutton"
-      :halign "center"
-      :text ""
+  (eventbox
+    :onhover "${EWW} update powerbuttons=true"
+    :onhoverlost "${EWW} update powerbuttons=false"
+    (box
+      :orientation "h"
+      :space-evenly "false"
+      :hexpand "false"
+      :class "powerbuttons"
+      (button
+        :class "button-off"
+        :tooltip "Shutdown"
+        :onclick "systemctl poweroff"
+        ""
+      )
+      (revealer
+        :transition "slideleft"
+        :reveal powerbuttons
+        :duration "550ms"
+        (box
+          :orientation "h"
+          :space-evenly "false"
+          (button
+            :class "button-reb"
+            :tooltip "Restart"
+            :onclick "systemctl reboot"
+            "󰜉"
+          )
+          (button
+            :class "button-hib"
+            :tooltip "Hibernate"
+            :onclick "systemctl hibernate"
+            "󰤁"
+          )
+        )
+      )
     )
   )
 )
+
 
 ;; Sections
 (defwidget left []
@@ -332,5 +363,4 @@
 
 ;; MODULES
 (include "./modules/sidebar.yuck")
-(include "./modules/powermenu.yuck")
 (include "./modules/cal.yuck")

@@ -24,10 +24,28 @@ tooltip {
   padding-left: 10px;
 }
 
-// Powerbutton
-.powerbutton {
-  font-size: 1.3rem;
+// Powerbuttons
+.powerbuttons {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.button-off,
+.button-reb,
+.button-hib {
+  padding: 0rem 0.3rem;
+}
+
+.button-off {
   color: $red;
+}
+
+.button-reb {
+  color: $yellow;
+}
+
+.button-hib {
+  color: $green;
 }
 
 // Workspaces
@@ -83,5 +101,4 @@ tooltip {
 
 // IMPORTS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 @import "css/sidebar";
-@import "css/powermenu";
 @import "css/cal";
