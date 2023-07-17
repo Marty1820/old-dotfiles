@@ -178,18 +178,15 @@
 (defpoll DATE :interval "1h" "date +\"%A, %d %B %Y\"")
 
 (defwidget clock []
-  (eventbox
-    :onclick "${EWW} open --toggle calbox && ${EWW} open calbox-closer"
-    (box
-      :class "clockbox"
-      :spacing 0
-      :orientation "v"
-      (label
-        :class "time"
-        :halign "center"
-        :text TIME
-        :tooltip DATE
-      )
+  (box
+    :class "clockbox"
+    :spacing 0
+    :orientation "v"
+    (label
+      :class "time"
+      :halign "center"
+      :text TIME
+      :tooltip DATE
     )
   )
 )
@@ -330,4 +327,3 @@
 
 ;; MODULES
 (include "./modules/sidebar.yuck")
-(include "./modules/cal.yuck")
