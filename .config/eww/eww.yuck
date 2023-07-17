@@ -193,7 +193,7 @@
 
 (defwidget clock []
   (eventbox
-    :onclick "${EWW} open --toggle calbox"
+    :onclick "${EWW} open --toggle calbox && ${EWW} open calbox-closer"
     (box
       :class "clockbox"
       :orientation "v"

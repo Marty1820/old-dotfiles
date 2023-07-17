@@ -48,6 +48,12 @@ tooltip {
   color: $green;
 }
 
+.button-off:hover,
+.button-reb:hover,
+.button-hib:hover {
+  color: $selection;
+}
+
 // Workspaces
 .workspace-entry {
   padding-left: 2px;
