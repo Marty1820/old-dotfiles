@@ -2,34 +2,21 @@
 
 ;; ** Calendar PopOut **
 
-(defwidget cal []
+(defwidget calbox []
   (box
     :class "cal-box"
     :orientation "v"
-    (box
-      :orientation "v"
-      :class "cal-inner-box"
-      :space-evenly "false"
-      (calendar
-        :class "cal"
-        :day "day"
-        :month "month"
-        :show-details "false"
-        :show-heading "true"
-        :show-day-names "true"
-      )
-    )
-  )
-)
-
-(defwidget calbox []
-  (box
-    :orientation "v"
-    :width 200
-    :vexpand "true"
     :space-evenly "false"
-    :class "calouterbox"
-    (cal)
+    (calendar
+      :class "cal"
+      :day "day"
+      :month "month"
+      :year "year"
+      :show-details "false"
+      :show-heading "true"
+      :show-day-names "true"
+      :show-week-numbers "false"
+    )
   )
 )
 
@@ -41,8 +28,8 @@
   :focusable "false"
   :stacking "overlay"
   :geometry (geometry
-    :x "0%"
-    :y "5px"
+    :x "3px"
+    :y "3px"
     :anchor "right bottom")
   (calbox)
 )
@@ -53,8 +40,8 @@
   :focusable "false"
   :stacking "fg"
   :geometry (geometry
-              :width "100%"
-              :height "100%")
+    :width "100%"
+    :height "100%")
   (closer
     :window "calbox"
   )
