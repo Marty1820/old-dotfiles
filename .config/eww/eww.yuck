@@ -9,7 +9,6 @@
 (defwidget spacer []
   (label
     :class "spacer"
-    :halign "center"
     :text "|"
   )
 )
@@ -20,7 +19,6 @@
     :onclick "${EWW} open --toggle sidebar && ${EWW} open sidebar-closer"
     (label
       :class "settings"
-      :halign "start"
       :text "󰣇"
     )
   )
@@ -55,10 +53,8 @@
 (defwidget win-title []
   (box
     :class "win-title"
-    :orientation "v"
     :spacing 0
-    :valign "center"
-    :halign "center"
+    :orientation "v"
     (label
       :text win-title
       :limit-width 80
@@ -76,11 +72,9 @@
 (defwidget weather []
   (box
     :class "weather"
-    :orientation "h"
-    :spacing 0
-    :valign "center"
-    :halign "center"
     :tooltip "${wtr-stat} | Real Feel ${wtr-feel}F"
+    :spacing 0
+    :orientation "h"
     (label
       :class "wtr-icon"
       :halign "center"
@@ -99,10 +93,8 @@
 (defwidget bluetooth []
   (box
     :class "bluetooth"
-    :orientation "h"
     :spacing 0
-    :valign "center"
-    :halign "center"
+    :orientation "h"
     (label
       :class "blu-icon"
       :halign "center"
@@ -126,10 +118,8 @@
     :onclick "nm-connection-editor &"
     (box
       :class "network"
-      :orientation "h"
       :spacing 0
-      :valign "center"
-      :halign "center"
+      :orientation "h"
       (label
         :class "net-icon"
         :halign "center"
@@ -151,10 +141,8 @@
     :onclick "pamixer -t"
     (box
       :class "volume"
-      :orientation "h"
       :spacing 0
-      :valign "center"
-      :halign "center"
+      :orientation "h"
       (label
         :class "vol-icon"
         :halign "center"
@@ -173,10 +161,8 @@
 (defwidget battery []
   (box
     :class "battery"
-    :orientation "h"
     :spacing 0
-    :valign "center"
-    :halign "center"
+    :orientation "h"
     (label
       :class "bat-icon"
       :halign "center"
@@ -196,11 +182,8 @@
     :onclick "${EWW} open --toggle calbox && ${EWW} open calbox-closer"
     (box
       :class "clockbox"
-      :orientation "v"
       :spacing 0
-      :valign "center"
-      :halign "center"
-      :space-evenly "false"
+      :orientation "v"
       (label
         :class "time"
         :halign "center"
@@ -219,10 +202,9 @@
     :onhover "${EWW} update powerbuttons=true"
     :onhoverlost "${EWW} update powerbuttons=false"
     (box
+      :class "powerbuttons"
       :orientation "h"
       :space-evenly "false"
-      :hexpand "false"
-      :class "powerbuttons"
       (button
         :class "button-off"
         :tooltip "Shutdown"
@@ -258,75 +240,62 @@
 ;; Sections
 (defwidget left []
   (box
-    :orientation "h"
     :class "left"
-    :space-evenly "false"
     :halign "start"
+    :orientation "h"
     (box
       :class "dockbox"
-      (box
-        :orientation "h"
-        :spacing 5
-        :valign "center"
-        :halign "center"
-        :space-evenly "false"
-        :vexpand "false"
-        :hexpand "false"
-        (powerbutton)
-        (workspaces)
-      )
+      :orientation "h"
+      :spacing 5
+      :valign "center"
+      :halign "center"
+      :space-evenly "false"
+      :vexpand "false"
+      :hexpand "false"
+      (powerbutton)
+      (workspaces)
     )
   )
 )
 
 (defwidget center []
   (box
-    :orientation "h"
     :class "center"
-    :space-evenly "false"
-    :halign "start"
+    :halign "center"
+    :orientation "h"
     (box
       :class "dockbox"
-      (box
-        :orientation "h"
-        :spacing 5
-        :valign "center"
-        :halign "center"
-        :space-evenly "false"
-        :vexpand "false"
-        :hexpand "false"
-        (win-title)
-      )
+      :spacing 5
+      :orientation "h"
+      :space-evenly "false"
+      :vexpand "false"
+      :hexpand "false"
+      (win-title)
     )
   )
 )
 
 (defwidget right []
   (box
-    :orientation "h"
     :class "right"
-    :space-evenly "false"
     :halign "end"
+    :orientation "h"
     (box
       :class "dockbox"
-      (box
-        :orientation "h"
-        :spacing 5
-        :valign "center"
-        :halign "center"
-        :space-evenly "false"
-        :vexpand "false"
-        :hexpand "false"
-        (weather)
-        (spacer)
-        (network)
-        (volume)
-        (battery)
-        (spacer)
-        (clock)
-        (spacer)
-        (settings)
-      )
+      :spacing 5
+      :orientation "h"
+      :space-evenly "false"
+      :vexpand "false"
+      :hexpand "false"
+      (weather)
+      (spacer)
+      (network)
+      (volume)
+      (battery)
+      (spacer)
+      (clock)
+      (spacer)
+      (settings)
     )
   )
 )
@@ -336,8 +305,6 @@
   (centerbox
     :class "bar"
     :orientation "h"
-    :vexpand "false"
-    :hexpand "false"
     (left)
     (center)
     (right)
