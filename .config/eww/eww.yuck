@@ -181,7 +181,7 @@
   (box
     :class "clockbox"
     :spacing 0
-    :orientation "v"
+    :orientation "h"
     (label
       :class "time"
       :halign "center"
@@ -200,6 +200,7 @@
     :onhoverlost "${EWW} update powerbuttons=false"
     (box
       :class "powerbuttons"
+      :spacing 0
       :orientation "h"
       :space-evenly "false"
       (button
@@ -211,10 +212,9 @@
       (revealer
         :transition "slideleft"
         :reveal powerbuttons
-        :duration "550ms"
+        :duration "300ms"
         (box
           :orientation "h"
-          :space-evenly "false"
           (button
             :class "button-reb"
             :tooltip "Restart"
@@ -233,6 +233,16 @@
   )
 )
 
+;; Settings
+(defwidget hide []
+  (button
+    :onclick "${EWW} open --toggle bar && ${EWW} open --toggle hidden-bar"
+    (label
+      :class "bar-switch"
+      :text ""
+    )
+  )
+)
 
 ;; Sections
 (defwidget left []
@@ -241,7 +251,6 @@
     :halign "start"
     :orientation "h"
     (box
-      :class "dockbox"
       :orientation "h"
       :spacing 5
       :valign "center"
@@ -261,7 +270,6 @@
     :halign "center"
     :orientation "h"
     (box
-      :class "dockbox"
       :spacing 5
       :orientation "h"
       :space-evenly "false"
@@ -278,7 +286,6 @@
     :halign "end"
     :orientation "h"
     (box
-      :class "dockbox"
       :spacing 5
       :orientation "h"
       :space-evenly "false"
@@ -293,6 +300,7 @@
       (clock)
       (spacer)
       (settings)
+      (hide)
     )
   )
 )
@@ -327,3 +335,4 @@
 
 ;; MODULES
 (include "./modules/sidebar.yuck")
+(include "./modules/hidden-bar.yuck")

@@ -19,6 +19,11 @@ tooltip {
   font-size: 14px;
 }
 
+.dockbox {
+  border-radius: 10px;
+  padding: 0px 10px;
+}
+
 // Left ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 .left {
   padding-left: 10px;
@@ -30,10 +35,9 @@ tooltip {
   font-weight: bold;
 }
 
-.button-off,
 .button-reb,
 .button-hib {
-  padding: 0rem 0.3rem;
+  padding: 0rem 0.2rem;
 }
 
 .button-off {
@@ -42,6 +46,7 @@ tooltip {
 
 .button-reb {
   color: $yellow;
+  padding-left: 0.4rem;
 }
 
 .button-hib {
@@ -103,6 +108,10 @@ tooltip {
 .settings {
   font-size: 1.5rem;
   color: $cyan;
+}
+
+.bar-switch {
+  color: $orange;
 }
 
 // IMPORTS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

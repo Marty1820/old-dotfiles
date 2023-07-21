@@ -1,0 +1,31 @@
+(defwidget hidden-bar []
+  (box
+    :halign "end"
+    :class "dockbox bar"
+    :spacing 5
+    :orientation "h"
+    :space-evenly "false"
+    :vexpand "false"
+    :hexpand "false"
+    (powerbutton)
+    (network)
+    (battery)
+    (hide)
+  )
+)
+
+(defwindow hidden-bar
+  :monitor 0
+  :wm-ignore "true"
+  :windotype "toolbar"
+  :exclusive "false"
+  :focusable "false"
+  :stacking "fg"
+  :geometry (geometry
+              :x "10px"
+              :y "0%"
+              :width "0px"
+              :height "0px"
+              :anchor "bottom right")
+  (hidden-bar)
+)
