@@ -233,13 +233,14 @@
   )
 )
 
-;; Settings
-(defwidget hide []
+;; Bar switch
+(defwidget dock []
   (button
-    :onclick "${EWW} open --toggle bar && ${EWW} open --toggle hidden-bar"
+    :onclick "${EWW} open --toggle bar && ${EWW} open --toggle float-bar"
     (label
       :class "bar-switch"
-      :text ""
+      :tooltip "Auto hide Status Bar"
+      :text "󱂩"
     )
   )
 )
@@ -300,7 +301,7 @@
       (clock)
       (spacer)
       (settings)
-      (hide)
+      (dock)
     )
   )
 )

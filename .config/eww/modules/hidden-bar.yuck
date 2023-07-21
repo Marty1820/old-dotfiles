@@ -1,20 +1,25 @@
-(defwidget hidden-bar []
-  (box
-    :halign "end"
-    :class "dockbox bar"
-    :spacing 5
-    :orientation "h"
-    :space-evenly "false"
-    :vexpand "false"
-    :hexpand "false"
-    (powerbutton)
-    (network)
-    (battery)
-    (hide)
+(defvar float-bar false)
+
+(defwidget float-bar []
+  (eventbox
+    :onhover "${EWW} update float-bar=true"
+    :onhoverlost "${EWW} update float-bar=false"
+    (revealer
+      :transition "slideup"
+      :reveal float-bar
+      :duration "300ms"
+      (centerbox
+        :class "bar"
+        :orientation "h"
+        (left)
+        (center)
+        (right)
+      )
+    )
   )
 )
 
-(defwindow hidden-bar
+(defwindow float-bar
   :monitor 0
   :wm-ignore "true"
   :windotype "toolbar"
@@ -22,10 +27,10 @@
   :focusable "false"
   :stacking "fg"
   :geometry (geometry
-              :x "10px"
-              :y "0%"
-              :width "0px"
+              :x "0px"
+              :y "0px"
+              :width "100%"
               :height "0px"
-              :anchor "bottom right")
-  (hidden-bar)
+              :anchor "bottom center")
+  (float-bar)
 )

@@ -19,11 +19,6 @@ tooltip {
   font-size: 14px;
 }
 
-.dockbox {
-  border-radius: 10px;
-  padding: 0px 10px;
-}
-
 // Left ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 .left {
   padding-left: 10px;
@@ -110,6 +105,7 @@ tooltip {
   color: $cyan;
 }
 
+// Bar dock & un-dock
 .bar-switch {
   color: $orange;
 }
