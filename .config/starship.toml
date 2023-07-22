@@ -36,7 +36,7 @@ style = "bold #ff5555"
 ## Character Options
 [character]
 # The format string used before the text input if the previous command succeeded.
-success_symbol = "[➜](bold #bd93f9)"
+success_symbol = "[➜](bold #50fa7b)"
 # The format string used before the text input if the previous command failed.
 error_symbol = "[✗](bold #ff5555)"
 
@@ -47,7 +47,7 @@ style = "bold #f1fa8c"
 
 ## Directory Options
 [directory]
-style = "bold #50fa7b"
+style = "bold #bd93f9"
 # The symbol indicating the current directory is read only.
 read_only = ""
 read_only_style = "#ff5555"
