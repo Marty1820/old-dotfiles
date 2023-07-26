@@ -101,11 +101,14 @@ calendar.highlight {
   padding-bottom: 6px;
 }
 
-// VOLUME ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-.svol-label {
+// VOLUME & BRIGHTNESS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+.svol-label,
+.sbright-label {
   padding-right: 10px;
+  font-size: 20px;
 }
-.svol-text {
+.svol-text,
+.sbright-text {
   color: $foreground;
   padding-left: 10px;
 }
@@ -127,7 +130,7 @@ calendar.highlight {
   margin-left: 4px;
   margin-right: 4px;
 }
-.sscale trough {
+.scale trough {
   all: unset;
   background-color: $black;
   min-width: 150px;
