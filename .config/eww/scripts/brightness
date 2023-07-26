@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+
+# Script that run in background to control screen brightness
+bright_script="bash $HOME/.config/autostart/screen_brightness.sh"
+
+# Process ID of script
+bright_PID=$(pgrep -f "$bright_script")
+
+bright_toggle() { # Toggle process | STOP/CONT
+	if [ "$(ps -o state= -p "$bright_PID")" = S ]; then
+		kill -STOP "$bright_PID"
+	elif [ "$(ps -o state= -p "$bright_PID")" = T ]; then
+		kill -CONT "$bright_PID"
+	fi
+}
+
+bright_icon() { # Sets the brightness icon
+	if [ "$(ps -o state= -p "$bright_PID")" = S ]; then
+		icon="󰃡"
+	elif [ "$(ps -o state= -p "$bright_PID")" = T ]; then
+		icon="󰃠"
+	fi
+}
+
+if [ "$1" = "--TOGGLE" ]; then
+	bright_toggle
+elif [ "$1" = "--ICON" ]; then
+	bright_icon
+	echo "$icon"
+fi
