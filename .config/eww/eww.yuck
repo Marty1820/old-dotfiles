@@ -57,7 +57,7 @@
     :orientation "v"
     (label
       :text win-title
-      :limit-width 80
+      :limit-width 100
     )
   )
 )
@@ -112,20 +112,35 @@
 (defpoll net-icon :interval "30s" "scripts/wifi --ICON")
 (defpoll net-essid :interval "30s" "scripts/wifi --ESSID")
 (defpoll net-col :interval "30s" "scripts/wifi --COL")
+(defvar net-rev false)
 
 (defwidget network []
   (eventbox
+    :onhover "${EWW} update net-rev=true"
+    :onhoverlost "${EWW} update net-rev=false"
     :onclick "nm-connection-editor &"
     (box
       :class "network"
       :spacing 0
+      :space-evenly false
       :orientation "h"
       (label
         :class "net-icon"
         :halign "center"
         :style "color: ${net-col};"
         :text net-icon
-        :tooltip net-essid
+      )
+      (revealer
+        :transition "slideleft"
+        :reveal net-rev
+        :duration "300ms"
+        (box
+          :orientation "h"
+          (label
+            :class "net-text"
+            :text net-essid
+          )
+        )
       )
     )
   )
@@ -135,20 +150,35 @@
 (defpoll vol-icon :interval "1s" "scripts/volume --ICON")
 (defpoll vol-perc :interval "1s" "scripts/volume --PERC")
 (defpoll vol-col :interval "1s" "scripts/volume --COL")
+(defvar vol-rev false)
 
 (defwidget volume []
   (eventbox
+    :onhover "${EWW} update vol-rev=true"
+    :onhoverlost "${EWW} update vol-rev=false"
     :onclick "pamixer -t"
     (box
       :class "volume"
       :spacing 0
+      :space-evenly false
       :orientation "h"
       (label
         :class "vol-icon"
         :halign "center"
         :style "color: ${vol-col};"
         :text vol-icon
-        :tooltip "${vol-perc}󰏰"
+      )
+      (revealer
+        :transition "slideleft"
+        :reveal vol-rev
+        :duration "300ms"
+        (box
+          :orientation "h"
+          (label
+            :class "vol-text"
+            :text "${vol-perc}󰏰"
+          )
+        )
       )
     )
   )
@@ -157,36 +187,76 @@
 ;; Battery
 (defpoll bat-icon :interval "3s" "scripts/battery --ICON")
 (defpoll bat-col :interval "3s" "scripts/battery --COL")
+(defvar bat-rev false)
 
 (defwidget battery []
-  (box
-    :class "battery"
-    :spacing 0
-    :orientation "h"
-    (label
-      :class "bat-icon"
-      :halign "center"
-      :style "color: ${bat-col};"
-      :text bat-icon
-      :tooltip "${EWW_BATTERY["BAT1"].capacity}󰏰" 
+  (eventbox
+    :onhover "${EWW} update bat-rev=true"
+    :onhoverlost "${EWW} update bat-rev=false"
+    (box
+      :class "battery"
+      :spacing 0
+      :space-evenly false
+      :orientation "h"
+      (label
+        :class "bat-icon"
+        :halign "center"
+        :style "color: ${bat-col};"
+        :text bat-icon
+      )
+      (revealer
+        :transition "slideleft"
+        :reveal bat-rev
+        :duration "300ms"
+        (box
+          :orientation "h"
+          (label
+            :class "bat-text"
+            :text "${EWW_BATTERY["BAT1"].capacity}󰏰"
+          )
+        )
+      )
     )
   )
 )
 
 ;; Clock
 (defpoll TIME :interval "10s" "date +\"%I:%M %p\"")
-(defpoll DATE :interval "1h" "date +\"%A, %d %B %Y\"")
+(defpoll DATE :interval "1h" "date +\"%a, %d %b\"")
+(defvar time-rev true)
+(defvar date-rev false)
 
 (defwidget clock []
-  (box
-    :class "clockbox"
-    :spacing 0
-    :orientation "h"
-    (label
-      :class "time"
-      :halign "center"
-      :text TIME
-      :tooltip DATE
+  (eventbox
+    :onhover "${EWW} update date-rev=true && ${EWW} update time-rev=false"
+    :onhoverlost "${EWW} update date-rev=false && ${EWW} update time-rev=true"
+    (box
+      :class "clock"
+      :space-evenly false
+      (revealer
+        :transition "slideright"
+        :reveal time-rev
+        :duration "300ms"
+        (box
+          :orientation "h"
+          (label
+            :class "time"
+            :text TIME
+          )
+        )
+      )
+      (revealer
+        :transition "slideleft"
+        :reveal date-rev
+        :duration "300ms"
+        (box
+          :orientation "h"
+          (label
+            :class "date"
+            :text "  ${DATE}"
+          )
+        )
+      )
     )
   )
 )
@@ -227,20 +297,15 @@
             :onclick "${EWW} update powerbuttons=false && systemctl hibernate"
             "󰤁"
           )
+          (button
+            :class "bar-switch"
+            :tooltip "Toggle EWW bar"
+            :onclick "${EWW} open --toggle bar && ${EWW} open --toggle float-bar"
+            "󱂩"
+
+          )
         )
       )
-    )
-  )
-)
-
-;; Bar switch
-(defwidget dock []
-  (button
-    :onclick "${EWW} open --toggle bar && ${EWW} open --toggle float-bar"
-    (label
-      :class "bar-switch"
-      :tooltip "Auto hide Status Bar"
-      :text "󱂩"
     )
   )
 )
@@ -260,6 +325,7 @@
       :vexpand "false"
       :hexpand "false"
       (powerbutton)
+      (spacer)
       (workspaces)
     )
   )
@@ -301,7 +367,6 @@
       (clock)
       (spacer)
       (settings)
-      (dock)
     )
   )
 )

@@ -48,9 +48,14 @@ tooltip {
   color: $green;
 }
 
+.bar-switch {
+  color: $orange;
+}
+
 .button-off:hover,
 .button-reb:hover,
-.button-hib:hover {
+.button-hib:hover,
+.bar-switch:hover {
   color: $selection;
 }
 
@@ -77,6 +82,7 @@ tooltip {
 // Window Title
 .win-title {
   color: $foreground;
+  font-weight: bold;
 }
 
 // Right ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -91,11 +97,12 @@ tooltip {
 }
 
 // Clock
-.clockbox {
+.clock {
   color: $foreground;
 }
 
-.time {
+.time,
+.date {
   font-weight: bold;
 }
 
@@ -103,11 +110,6 @@ tooltip {
 .settings {
   font-size: 1.5rem;
   color: $cyan;
-}
-
-// Bar dock & un-dock
-.bar-switch {
-  color: $orange;
 }
 
 // IMPORTS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
