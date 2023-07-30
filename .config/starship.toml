@@ -53,6 +53,13 @@ read_only = ""
 read_only_style = "#ff5555"
 # The symbol indicating home directory.
 home_symbol = "~"
+[directory.substitutions]
+"Documents" = "󰈙"
+"Downloads" = ""
+"Music" = "󱍙"
+"Pictures" = ""
+"Videos" = "󰸬"
+".config" = ""
 
 ## Git Options
 [git_branch]
