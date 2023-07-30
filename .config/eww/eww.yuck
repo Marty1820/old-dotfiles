@@ -146,6 +146,22 @@
   )
 )
 
+;; Brightness
+(defpoll brightness :interval "1s" "xbacklight -get | cut -d '.' -f 1")
+(defpoll bright_icon :interval "1s" "scripts/brightness --ICON")
+(defvar bright_toggle "scripts/brightness --TOGGLE")
+
+(defwidget brightness []
+  (button
+    :onclick bright_toggle
+    (label
+      :class "bright-icon"
+      :tooltip "${brightness}󰏰"
+      :text bright_icon
+    )
+  )
+)
+
 ;; Volume
 (defpoll vol-icon :interval "1s" "scripts/volume --ICON")
 (defpoll vol-perc :interval "1s" "scripts/volume --PERC")
@@ -361,6 +377,7 @@
       (weather)
       (spacer)
       (network)
+      (brightness)
       (volume)
       (battery)
       (spacer)

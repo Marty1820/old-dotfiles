@@ -92,8 +92,13 @@ tooltip {
 
 .wtr-icon,
 .net-icon,
-.vol-icon {
+.vol-icon,
+.bright-icon {
   font-size: 1.9rem;
+}
+
+.bright-icon {
+  color: $yellow;
 }
 
 // Clock
