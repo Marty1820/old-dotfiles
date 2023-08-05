@@ -6,7 +6,7 @@ require("title_bar")
 -- All Other Settings
 return {
 	-- Fonts
-	font = wezterm.font("Hack Nerd Font Mono"),
+	font = wezterm.font("Hack Nerd Font Mono", { weight = "Regular" }),
 	font_size = 12.0,
 
 	-- Colors
