@@ -35,8 +35,7 @@ if grep -q "0" $power_supply; then
 		col="$colwarn"
 	elif [ "$bat_per" -gt "10" ]; then
 		icon="󰁺"
-		col="$colcrit"
-		notify-send -u critical "Battery Low" "Connect Charger"
+		col="$colwarn"
 	else
 		icon="󰂎"
 		col="$colcrit"
