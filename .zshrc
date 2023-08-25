@@ -7,7 +7,7 @@
 # ZSH CONFIGUARATION
 
 # EXPORT
-export HISTORY_IGNORE="([bf]g *|l[salt.]#( *)|l|cd(|*)|~|pwd|exit|history(|*)|cls)"
+export HISTORY_IGNORE='([bf]g *|l[salt.]#( *)#|l|cd(|*)|~|pwd|exit|history(|*)|cls)'
 
 ##Aliases
 [ -f "$HOME"/.config/shell/shellrc ] && . "$HOME"/.config/shell/shellrc
@@ -22,7 +22,7 @@ setopt CORRECT
 # Job Control
 setopt NOTIFY
 # History Options
-setopt APPEND_HISTORY HIST_EXPIRE_DUPS_FIRST HIST_FIND_NO_DUPS HIST_IGNORE_ALL_DUPS HIST_IGNORE_DUPS HIST_IGNORE_SPACE HIST_REDUCE_BLANKS HIST_SAVE_NO_DUPS
+setopt APPEND_HISTORY EXTENDED_HISTORY HIST_EXPIRE_DUPS_FIRST HIST_FIND_NO_DUPS HIST_IGNORE_ALL_DUPS HIST_IGNORE_DUPS HIST_IGNORE_SPACE HIST_REDUCE_BLANKS HIST_SAVE_NO_DUPS
 # Zle
 unsetopt beep
 
