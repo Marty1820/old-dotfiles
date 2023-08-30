@@ -7,7 +7,7 @@
 # ZSH CONFIGUARATION
 
 # EXPORT
-export HISTORY_IGNORE='([bf]g *|l[salt.]#( *)#|l|cd(|*)|~|pwd|exit|history(|*)|cls)'
+export HISTORY_IGNORE='(l[salt.]#( *)#|cd(|*)|~|pwd|exit|history(|*)|cls|nvim# *)'
 
 ##Aliases
 [ -f "$HOME"/.config/shell/shellrc ] && . "$HOME"/.config/shell/shellrc
