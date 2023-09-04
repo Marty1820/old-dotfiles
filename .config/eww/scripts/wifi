@@ -43,6 +43,7 @@ connection_type() { # Checks connection type and sets icon
 	fi
 	if grep -q "1" /sys/class/net/$vpn/carrier 2>/dev/null; then
 		icon="󰖂"
+		text="Secured $text"
 	fi
 }
 
