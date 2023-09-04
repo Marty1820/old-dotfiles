@@ -152,12 +152,19 @@
 (defvar bright_toggle "scripts/brightness --TOGGLE")
 
 (defwidget brightness []
-  (button
-    :onclick bright_toggle
-    (label
-      :class "bright-icon"
-      :tooltip "${brightness}󰏰"
-      :text bright_icon
+  (box
+    :class "brightness"
+    :spacing 0
+    :space-evenly false
+    :orientation "h"
+    (button
+      :onclick bright_toggle
+      (label
+        :class "bright-icon"
+        :halign "center"
+        :tooltip "${brightness}󰏰"
+        :text bright_icon
+      )
     )
   )
 )

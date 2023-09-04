@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Script that run in background to control screen brightness
-bright_script="bash $HOME/.config/autostart/screen_brightness.sh"
+bright_script="screen_brightness.sh"
 
 # Process ID of script
 bright_PID=$(pgrep -f "$bright_script")
