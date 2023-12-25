@@ -23,6 +23,7 @@ alias ..='cd ..'
 alias cd..='cd ..'
 alias mkdir='mkdir -p'
 alias psa='ps auxf'
+alias adb='HOME="$XDG_DATA_HOME"/android adb'
 # Interactive Mode
 alias cp='cp -i'
 alias mv='mv -i'
@@ -75,9 +76,8 @@ alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/mas
 # UTF-8 termnal display tester
 alias utftest="curl https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt"
 
-# paru -S pokemon-colorscripts-git
-if [ "$(tty)" != "/dev/tty1" ] && [ -f /usr/local/bin/pokemon-colorscripts ]; then
-  pokemon-colorscripts -r
+if [ "$(tty)" != "/dev/tty2" ] && [ -f ~/.local/bin/color10bit.sh ]; then
+  color10bit.sh
 fi
 
 ### BASH INSULTER (works in zsh too) ###
