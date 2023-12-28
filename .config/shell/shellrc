@@ -9,8 +9,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Source Profile when not on WezTerm
+# Terminal specific settings
 [ "$TERM" != wezterm ] && . "$HOME"/.config/shell/profile
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 # History file sizes
 HISTFILE="$XDG_CACHE_HOME/sh_hist"
@@ -23,7 +24,6 @@ alias ..='cd ..'
 alias cd..='cd ..'
 alias mkdir='mkdir -p'
 alias psa='ps auxf'
-alias adb='HOME="$XDG_DATA_HOME"/android adb'
 # Interactive Mode
 alias cp='cp -i'
 alias mv='mv -i'
@@ -48,6 +48,7 @@ alias wifikey="sudo grep -r '^psk=' /etc/NetworkManager/system-connections/"
 # Keeping $HOME(~) clean
 alias vim='vim -u "$XDG_CONFIG_HOME/vim/vimrc"'
 alias wget='wget --hsts-file="$XDG_DATA_HOME"/wget-hsts'
+alias adb='HOME="$XDG_DATA_HOME"/android adb'
 # Use bat instead of cat
 alias cat='bat'
 # Changing "ls" to "exa"
