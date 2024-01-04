@@ -1,126 +1,192 @@
-/* 
-███╗░░░███╗░█████╗░██████╗░████████╗██╗░░░██╗
-████╗░████║██╔══██╗██╔══██╗╚══██╔══╝╚██╗░██╔╝
-██╔████╔██║███████║██████╔╝░░░██║░░░░╚████╔╝░
-██║╚██╔╝██║██╔══██║██╔══██╗░░░██║░░░░░╚██╔╝░░
-██║░╚═╝░██║██║░░██║██║░░██║░░░██║░░░░░░██║░░░
-╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░
-*/
-
+/* vim: set filetype=json : */
 {
-  // -------------------------------------------
-  // Global configuration
-  // -------------------------------------------
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "spacing": 4,
 
-  "layer": "top", // Decide if the bar is displayed in front (top) of the windows or behind (bottom) them.
-  "position": "top", // Bar position, can be top,bottom,left,right.
-  "margin": 4, // Margin value using the css format without units
-  "height": 26, // Height to be used by the bar if possible, leave blank for a dynamic value.
-  "spacing": 0, // Size of gaps in between of the different modules.
 
-  // Modules that will be displayed on the left.
-  "modules-left": ["sway/window"],
-
-  // Modules that will be displayed in the center.
-  "modules-center": ["clock", "custom/weather"],
-
-  // Modules that will be displayed on the right.
-  "modules-right": [
-    "bluetooth",
-    "custom/sep",
-    "network",
-    "custom/sep",
-    "pulseaudio",
-    "custom/sep",
-    "battery",
-    "custom/sep",
-    "custom/power"
+  "modules-left": [
+    "clock",
+    "hyprland/workspaces",
+    "wlr/taskbar"
   ],
 
-  // -------------------------------------------
-  // Modules
-  // -------------------------------------------
+  "modules-center": [
+    "hyprland/window"
+  ],
 
-  "sway/window": {
-    "format": "{}",
-    "rewrite": {
-      "(.*) - Brave": "󰒙 $1",
-      "(.*) — Mozilla Firefox": " $1",
-      "(.*) - VSCodium": " $1",
-      "(.*) - gedit": " $1",
-      "(.*) - VLC media player": "󰕼 $1"
-    }
-  },
+  "modules-right": [
+    "custom/weather",
+    "group/system",
+    "battery",
+    "group/power"
+  ],
+
 
   "clock": {
     "interval": 60,
-    "format": "{:%I:%M %p} ",
-    "on-click": "/usr/bin/eww -c $HOME/.config/eww open --toggle calbox && /usr/bin/eww -c $HOME/.config/eww open --toggle calbox-closer",
-    "tooltip-format": "{:%A, %b %d}"
+    "format": "{:%I:%M %p}",
+    "on-click": "eww open --toggle cal && eww open --toggle cal-closer"
+  },
+  
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "active-only": false,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "",
+  		"2": "󰈹",
+	  	"3": "",
+	  	"4": ""
+    },
+    "persistent-workspaces": {
+      "*": 4
+    }
+  },
+
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 18,
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "ignore-list": [
+    ]
+  },
+
+  "hyrpland/window": {
+    "format": "{}",
+    "separate-outputs": true
   },
 
   "custom/weather": {
-    "format": "| {}",
-    "format-alt": "| {} {alt}",
+    "format": "{}",
+    "on-click": "eww open --toggle weather && eww open --toggle weather-closer",
     "interval": 300,
-    "return-type": "json",
-    "exec": "~/.config/waybar/modules/weather.sh",
-    "exec-if": "ping -q -c 1 api.openweathermap.org >/dev/null 2>&1"
+    "exec": "$HOME/.config/scripts/weather.sh --waybar",
+    "tooltip": false,
+    "return-type": "json"
   },
 
-  "custom/sep": {
-    "format": "|",
-    "tooltip": false
+  "group/system": {
+    "orientation": "horizontal",
+    "children-class": "system",
+    "modules": [
+      "bluetooth",
+      "network",
+      "backlight",
+      "pulseaudio",
+      "idle_inhibitor"
+    ]
   },
 
   "bluetooth": {
-    "format-disabled": "<big>󰂲</big>",
-    "format-off": "<big>󰂲</big>",
+    "format-disabled": "󰂲",
+    "format-off": "󰂲",
     "format-on": "󰂯",
-    "format-connected": "<big>󰂱</big>",
+    "format-connected": "󰂱",
     "on-click": "blueman-manager",
-    "format-connected-battery": "<big>󰂱</big> {device_battery_percentage}"
+    "format-connected-battery": "󰥉{device_battery_percentage}󰏰"
   },
 
   "network": {
-    "format-ethernet": "󰈀 {ifname}",
-    "format-wifi": "{icon} {essid}",
+    "format-ethernet": "󰈀",
+    "format-wifi": "{icon}",
     "format-disconnected": "󰤭",
     "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
     "on-click": "nm-connection-editor",
-    "tooltip": false
+    "tooltip-format": "{essid}"
+  },
+
+  "backlight": {
+    "format": "{icon}",
+    "format-icons": ["󰃝", "󰃞", "󰃟", "󰃠"],
+    "tooltip-format": "{percent}󰏰"
   },
 
   "pulseaudio": {
-    "format": "<span foreground=\"#bd93f9\"><big>{icon}</big></span> {volume}󰏰",
-    "format-bluetooth": "<span foreground=\"#bd93f9\"><big>{icon}</big></span> {volume}󰏰",
-    "format-muted": "<span foreground=\"#ff5555\"><big>󰝟</big></span> {volume}󰏰",
+    "format": "{icon}",
+    "format-bluetooth": "{icon}",
+    "format-muted": "󰝟",
     "format-icons": {
-      "headphone": "",
-      "headset": "",
-      "default": ["", "", "󰕾", ""]
+      "default": ["", "", ""]
     },
     "scroll-step": 1,
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "tooltip": false
+    "on-click": "pamixer -t",
+    "tooltip-format": "{volume}󰏰 {desc}"
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󱦠",
+      "deactivated": "󰔟"
+    }
   },
 
   "battery": {
-    "interval": 60,
     "states": {
       "warning": 30,
       "critical": 15
     },
-    "format": "<span foreground=\"#50fa7b\"></span> {capacity}󰏰",
-    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-    "tooltip": false,
-    "format-discharging": "<span foreground=\"#8be9fd\">{icon}</span> {capacity}󰏰"
+    "format": "{capacity}󰏰 {icon}",
+    "format-charging": "{capacity}󰏰 󰂄",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "tooltip": false
   },
 
-  "custom/power": {
-    "format": "<big>󰐦</big>",
-    "exec-on-event": "true",
-    "tooltip": false,
-    "on-click": "/usr/bin/eww -c $HOME/.config/eww open --toggle system && /usr/bin/eww -c $HOME/.config/eww open --toggle system-closer"
+  "group/power": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "power",
+      "transition-left-to-right": true
+    },
+    "modules": [
+      "custom/shutdown",
+      "custom/logout",
+      "custom/hibernate",
+      "custom/lock",
+      "custom/reboot"
+    ]
+  },
+  
+  "custom/shutdown": {
+    "format": "",
+    "exec-on-event": true,
+    "on-click": "systemctl poweroff",
+    "tooltip": false
+  },
+
+  "custom/reboot": {
+    "format": "󰜉",
+    "exec-on-event": true,
+    "on-click": "systemctl reboot",
+    "tooltip": false
+  },
+
+  "custom/hibernate": {
+    "format": "󰤁",
+    "exec-on-event": true,
+    "on-click": "systemctl hibernate",
+    "tooltip": false
+  },
+
+  "custom/lock": {
+    "format": "󰌾",
+    "exec-on-event": true,
+    "on-click": "swaylock",
+    "tooltip": false
+  },
+
+  "custom/logout": {
+    "format": "󰍃",
+    "exec-on-event": true,
+    "on-click": "hyprctl exit",
+    "tooltip": false
   }
 }

@@ -8,51 +8,36 @@
 */
 
 /* Colors */
-@define-color background #282a36;
-@define-color selection #44475a;
-@define-color foreground #f8f8f2;
-@define-color comment #6272a4;
-@define-color cyan #8be9fd;
-@define-color green #50fa7b;
-@define-color orange #ffb86c;
-@define-color pink #ff79c6;
-@define-color purple #bd93f9;
-@define-color red #ff5555;
-@define-color yellow #f1fa8c;
+@import url("./colors.css");
 
 /* Main */
 * {
   border: none;
-  border-radius: 10px;
-  font-family: "RobotoMono Nerd Font";
-  font-weight: bold;
-  font-size: 15px;
+  border-radius: 0;
+  font-family: "Mononoki Nerd Font Mono";
+  font-size: 14px;
+  min-height: 0;
 }
 
 /* Bar styling */
 window#waybar {
-  background: none;
   color: @foreground;
+  background: transparent;
 }
 
 /* Module Group Styling */
 .modules-left,
 .modules-center,
 .modules-right {
-  padding: 2px 5px;
-}
-
-.modules-center,
-.modules-right {
-  background: black;
-  border: 1px solid @selection;
+  padding: 2px 2px 1px;
 }
 
 /* Tooltips */
 tooltip {
   opacity: 0.95;
-  border: 2px solid @comment;
+  border: 2px solid @selection;
   background: @background;
+  border-radius: 20px;
 }
 
 tooltip label {
@@ -67,31 +52,95 @@ tooltip label {
 }
 
 /* Modules */
-
-#window {
-  padding-left: 5px;
-  padding-right: 5px;
-  background: black;
-  border: 1px solid @selection;
-}
-
-window#waybar.empty #window {
-  padding: 0px;
-  background: none;
-  border: none;
-}
-
+/* Left */
 #clock {
-  padding-left: 5px;
+  background-color: @background-darker;
+  color: @foreground;
+  border-radius: 20px;
+  padding: 0 10px;
 }
 
+#workspaces {
+  background-color: @background-darker;
+  border-radius: 20px;
+}
+
+#workspaces button {
+  padding: 0 0.5em;
+  background-color: @background-darker;
+  color: @foreground;
+  margin: 0.25em;
+  border-radius: 10px;
+}
+
+#workspaces button.empty {
+  color: @foreground;
+}
+
+#workspaces button:hover {
+  box-shadow: inherit;
+  text-shadow: inherit;
+  background-image: linear-gradient(0deg, @selection, @background-darker);
+}
+
+#workspaces button.active {
+  background-image: linear-gradient(0deg, @purple, @selection);
+}
+
+#workspaces button.urgent {
+  background-image: linear-gradient(0deg, @red, @background-darker);
+}
+
+#taskbar {
+  border-radius: 20px;
+  background: @background-darker;
+}
+
+#taskbar.empty {
+  background: transparent;
+}
+
+#taskbar button.active {
+  border-radius: 20px;
+  background-image: linear-gradient(0deg, @selection, @background-darker);
+}
+
+/* Middle */
+#window {
+  padding: 0 10px;
+  background-color: @background-darker;
+  border-radius: 20px;
+}
+
+#waybar.empty #window {
+  background-color: transparent;
+}
+
+/* Right */
 #custom-weather {
-  padding-right: 5px;
+  background-color: @background-darker;
+  border-radius: 20px;
+  padding: 0 10px;
 }
 
-#custom-sep {
-  padding-left: 5px;
-  padding-right: 5px;
+#system {
+  background-color: @background-darker;
+  border-radius: 20px;
+  padding: 0 10px;
+}
+
+#bluetooth,
+#network,
+#backlight,
+#pulseaudio,
+#idle_inhibitor {
+  padding: 0 2px;
+}
+
+#network,
+#backlight,
+#pulseaudio {
+  font-size: 1.9rem;
 }
 
 #bluetooth {
@@ -100,6 +149,7 @@ window#waybar.empty #window {
 
 #bluetooth.disabled,
 #bluetooth.off {
+  font-size: 1.4rem;
   color: @red;
 }
 
@@ -108,13 +158,45 @@ window#waybar.empty #window {
 }
 
 #network.disconnected {
-  padding-right: 4px;
   color: @red;
 }
 
-#battery.charging,
-#battery.discharging {
-  background: none;
+#backlight {
+  color: @yellow;
+}
+
+#pulseaudio {
+  color: @purple;
+}
+
+#pulseaudio.bluetooth {
+  color: @cyan;
+}
+
+#pulseaudio.muted {
+  color: @red;
+  padding-right: 4px;
+}
+
+#idle_inhibitor {
+  color: @orange;
+}
+
+#idle_inhibitor.activated {
+  color: @red;
+}
+
+#battery {
+  padding: 0 10px;
+  border-radius: 20px;
+  transition: none;
+  color: @cyan;
+  background: @background-darker;
+}
+
+#battery.charging {
+  color: @foreground;
+  background-image: linear-gradient(0deg, @green, @background);
 }
 
 #battery.warning:not(.charging) {
@@ -123,8 +205,8 @@ window#waybar.empty #window {
   animation-timing-function: linear;
   animation-iteration-count: 10;
   animation-direction: alternate;
-  background: none;
-  color: @orange;
+  background-image: linear-gradient(0deg, @orange, @background);
+  color: black;
 }
 
 #battery.critical:not(.charging) {
@@ -133,11 +215,42 @@ window#waybar.empty #window {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  background: none;
+  background-image: linear-gradient(0deg, @red, @background);
+  color: @foreground;
+}
+
+#power {
+  background: @background-darker;
+  border-radius: 20px;
+  padding: 0 5px;
+}
+
+#custom-shutdown {
+  font-size: 1.2rem;
+  padding: 0 3px;
   color: @red;
 }
 
-#custom-power {
-  padding-right: 5px;
+#custom-reboot {
+  font-size: 1.2rem;
+  padding: 0 3px;
+  color: @yellow;
+}
+
+#custom-lock {
+  font-size: 1.2rem;
+  padding: 0 3px;
+  color: @green;
+}
+
+#custom-hibernate {
+  font-size: 1.2rem;
+  padding: 0 3px;
   color: @purple;
+}
+
+#custom-logout {
+  font-size: 1.2rem;
+  padding: 0 3px;
+  color: @orange;
 }
