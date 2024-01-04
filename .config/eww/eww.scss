@@ -1,121 +1,80 @@
-// GLOBAL ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-@import "css/color";
+// Global
+@import "css/colors";
 
 * {
   all: unset;
   font-family: mononoki Nerd Font Mono;
 }
 
-tooltip {
-  background-color: $black;
+// Weather
+.weather-container {
+  background: $background-darker;
+  border: 2px solid $purple;
+  border-radius: 20px;
+}
+
+.weather-icon {
+  font-size: 120px;
+  font-weight: normal;
+  margin: 15px 0px 0px 30px;
+}
+
+.weather-temp {
   color: $foreground;
-  border-radius: 5px;
-  border: 1px solid $selection;
+  font-size: 60px;
+  font-weight: bold;
+  margin: -15px 30px 0px 0px;
 }
 
-// *** MAINBAR *** ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-.bar {
-  background-color: $black;
-  font-size: 14px;
-}
-
-// Left ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-.left {
-  padding-left: 10px;
-}
-
-// Powerbuttons
-.powerbuttons {
-  font-size: 1.4rem;
+.weather-desc {
+  color: $comment;
+  font-size: 38px;
   font-weight: bold;
 }
 
-.button-reb,
-.button-hib {
-  padding: 0rem 0.2rem;
-}
-
-.button-off {
-  color: $red;
-}
-
-.button-reb {
-  color: $yellow;
-  padding-left: 0.4rem;
-}
-
-.button-hib {
-  color: $green;
-}
-
-.bar-switch {
-  color: $orange;
-}
-
-.button-off:hover,
-.button-reb:hover,
-.button-hib:hover,
-.bar-switch:hover {
-  color: $selection;
-}
-
-// Workspaces
-.workspace-entry {
-  padding-left: 2px;
-  padding-right: 2px;
+.weather-feel {
   color: $foreground;
+  font-size: 18px;
+  font-weight: normal;
 }
 
-.occupied {
-  color: $orange;
+// Calendar
+.cal-box {
+  background: $background-darker;
+  border: 2px solid $purple;
+  border-radius: 20px;
 }
 
-.current {
-  color: $purple;
+.cal-inner-box {
+  padding: 1rem 1rem .3rem;
 }
 
-// Center ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-.center {
-  padding: 0px 5px 0px 5px;
+.cal {
+  &.highlight {
+    padding: 10rem;
+  }
+  padding: .8rem .25rem 0rem;
+  margin-left: 10px;
 }
 
-// Window Title
-.win-title {
-  color: $foreground;
-  font-weight: bold;
-}
-
-// Right ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-.right {
-  padding-right: 10px;
-}
-
-.wtr-icon,
-.net-icon,
-.vol-icon,
-.bright-icon {
-  font-size: 1.9rem;
-}
-
-.bright-icon {
-  color: $yellow;
-}
-
-// Clock
-.clock {
-  color: $foreground;
-}
-
-.time,
-.date {
-  font-weight: bold;
-}
-
-// Settings
-.settings {
-  font-size: 1.5rem;
+calendar:selected {
   color: $cyan;
 }
 
-// IMPORTS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-@import "css/sidebar";
+calendar.header {
+  color: $green;
+  font-weight: bold;
+}
+
+calendar.button {
+  color: $cyan;
+}
+
+calendar.highlight {
+  color: $green;
+  font-weight: bold;
+}
+
+calendar.indeterminate {
+  color: $background;
+}
