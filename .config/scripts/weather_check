@@ -5,6 +5,7 @@ main_loop() {
 		~/.config/scripts/weather.sh --getdata
 		sleep 300
 	done
+  ~/.config/script/weather.sh --getdata
 	int_loop
 }
 
