@@ -8,23 +8,21 @@
 
 **Warning:** If you want to give these files a try, you should first modify them to fit your needs, and remove things you don’t want or need. Don’t blindly use online code unless you know what's in it and what it does. Use at your own risk! NO WARRANTIES/NO REFUNDS!!!
 
-Otherwise these are pretty basic configs with nothing special. Lots of older configs for things like [qtile](http://www.qtile.org), [i3](https://i3wm.org/docs/), [conky](<https://en.wikipedia.org/wiki/Conky_(software)>), and others just look through .config
+Otherwise these are pretty basic configs with nothing special. Lots of older configs for things like [qtile](http://www.qtile.org), [i3](https://i3wm.org/docs/), [conky](<https://en.wikipedia.org/wiki/Conky_(software)>), and others just look through the [.config](https://github.com/Marty1820/dotfiles) folder.
 
 ## Details
 
-Current setup is running [Hyprland](https://hyprland.org/) & [EWW](https://elkowar.github.io/eww/eww.html) for bar and powermenu. Lastly [rofi](https://github.com/davatorium/rofi) (The wayland fork) for an application launcher.
+Current setup is running [Hyprland](https://hyprland.org/) for windows manager, [Waybar](https://github.com/Alexays/Waybar) for the status bar, [EWW](https://elkowar.github.io/eww/eww.html) for a couple widgets, & [rofi wayland fork](https://github.com/lbonn/rofi) for an application launcher.
 
 #### Keybound Apps
 
 |       Name       |           Description            |
 | :--------------: | :------------------------------: |
-|     `gedit`      |           `Super + a`            |
-|     `codium`     |       `Super + shift + a`        |
+|      `nvim`      |           `Super + a`            |
+|     `gedit`      |       `Super + shift + a`        |
 |    `pcmanfm`     |           `Super + e`            |
 |    `firefox`     |           `Super + b`            |
-|     `brave`      |       `Super + shift + b`        |
 |      `rofi`      |    `Super + d` = applications    |
-|      `rofi`      |    `Super + esc` = powermenu     |
 | `grim` & `slurp` | Print Screen key for screenshots |
 
 #### Bash & ZSH alias's
@@ -32,19 +30,13 @@ Current setup is running [Hyprland](https://hyprland.org/) & [EWW](https://elkow
 |       Name        |                   Description                    |
 | :---------------: | :----------------------------------------------: |
 |       `exa`       |                 `ls` replacement                 |
-|     `pacman`      |               Arch package manager               |
-|      `paru`       |             Arch AUR package manager             |
-|    `reflector`    |             Updates mirrors on Arch              |
+|       `cat`       |             Replace `cat` with `bat`             |
+|     `mirror`      |      Updates mirrors with reflector on Arch      |
 |    `starship`     |           Changes the terminal prompt            |
-| Compression Tools | `ex filename.ext` extracts most compressed files |
+| Compression Tools | `ex filename` extracts most compressed files |
 
-# Screenshots
-
-### Hyprland
+# Hyprland Screenshot
 
 ![screenshot](.screenshots/hyprland.png)
-
-### Extras/Menus
-
-![screenshot](.screenshots/logout-menu.png)
-![screenshot](.screenshots/apps-menu.png)
+Extended powermenu on hover
+![screenshot](.screenshots/hyprland2.png)
