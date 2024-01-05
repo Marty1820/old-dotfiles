@@ -7,3 +7,4 @@
 ;; Modules
 (include "./modules/weather.yuck")
 (include "./modules/calendar.yuck")
+(include "./modules/control-center.yuck")

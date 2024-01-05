@@ -1,0 +1,102 @@
+;; https://github.com/Syndrizzle/hotfiles/blob/worm/.config/eww/Control-Center
+
+;; for controls and tray
+(defvar net-toggle "scripts/net.sh --toggle")
+(defpoll net-status :interval "1s" "scripts/net.sh --status")
+(defpoll volume :interval "1s" "pamixer --get-volume")
+(defpoll volume-icon :interval "1s" "scripts/vol.sh")
+(defvar brightness-toggle "$HOME/.config/scripts/screen_brightness_info.sh --toggle")
+(defpoll brightness-icon :interval "2s" "$HOME/.config/scripts/screen_brightness_info.sh --icon")
+(defpoll brightness :interval "1s" "xbacklight -get | cut -d '.' -f 1")
+
+(defwidget control-center []
+  (box 
+    :class "control-center"
+    :orientation "v" 
+    :space-evenly "false"
+    (box 
+      :class "control-center-buttons" 
+      :orientation "h"
+      (button 
+        :tooltip "Toggle Network [Wi-Fi]" 
+        :class "net-status-button ${net-status == "󰤭" ? "net-status-off" : "net-status-on"}" 
+        :on-click net-toggle
+        net-status
+      )
+      (button 
+        :tooltip "Toggle Sound" 
+        :class "volume-status-button ${volume-icon == "󰝟" ? "volume-status-off" : "volume-status-on"}" 
+        :on-click "pamixer -t"
+        volume-icon
+      )
+      (button 
+        :tooltip "Toggle Auto-Brightness" 
+        :class "brightness-status-button ${brightness-icon == "󰃡" ? "brightness-status-on" : "brightness-status-off"}" 
+        :on-click brightness-toggle
+        brightness-icon
+      )
+    )
+    (box 
+      :orientation "h" 
+      :class "volume-slider-container" 
+      :space-evenly "false"
+      (button
+        :on-click "pamixer -t"
+        :class "volume-slider-icon" 
+        volume-icon
+      )
+      (scale :class "volume-slider"
+        :value volume
+        :orientation "h"
+        :width 370
+        :active true
+        :max 101
+        :min 0
+        :onchange "pamixer --set-volume {}"
+      )
+    )
+    (box
+      :orientation "h"
+      :class "brightness-slider-container"
+      :space-evenly "false"
+      (button
+        :onclick brightness-toggle
+        :class "brightness-slider-icon"
+        brightness-icon
+      )
+      (scale :class "brightness-slider"
+        :value brightness
+        :orientation "h"
+        :width 370
+        :active true
+        :max 101
+        :min 0
+        :onchange "xbacklight -set {}"
+      )
+    )
+  )
+)
+
+(defwindow control-center
+  :monitor 0
+  :wm-ignore "true"
+  :windowtype "dialog"
+  :exclusive "false"
+  :stacking "overlay"
+  :geometry (geometry
+    :x "2px"
+    :y "2px"
+    :anchor "right top")
+  (control-center)
+)
+
+;; Closer 
+(defwindow control-center-closer
+  :monitor 0
+  :focusable "false"
+  :stacking "fg"
+  :geometry (geometry
+    :width "100%"
+    :height "100%")
+  (closer
+    :window "contol-center"))
