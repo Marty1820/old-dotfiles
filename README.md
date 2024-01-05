@@ -27,12 +27,12 @@ Current setup is running [Hyprland](https://hyprland.org/) for windows manager, 
 
 #### Bash & ZSH alias's
 
-|       Name        |                   Description                    |
-| :---------------: | :----------------------------------------------: |
-|       `exa`       |                 `ls` replacement                 |
-|       `cat`       |             Replace `cat` with `bat`             |
-|     `mirror`      |      Updates mirrors with reflector on Arch      |
-|    `starship`     |           Changes the terminal prompt            |
+|       Name        |                 Description                  |
+| :---------------: | :------------------------------------------: |
+|       `exa`       |               `ls` replacement               |
+|       `cat`       |           Replace `cat` with `bat`           |
+|     `mirror`      |    Updates mirrors with reflector on Arch    |
+|    `starship`     |         Changes the terminal prompt          |
 | Compression Tools | `ex filename` extracts most compressed files |
 
 # Hyprland Screenshot
