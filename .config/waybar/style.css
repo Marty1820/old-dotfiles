@@ -161,6 +161,10 @@ tooltip label {
   color: @red;
 }
 
+#network.disabled {
+  color: @red;
+}
+
 #backlight {
   color: @yellow;
 }
