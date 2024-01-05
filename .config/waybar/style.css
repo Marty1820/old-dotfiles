@@ -226,18 +226,17 @@ tooltip label {
 #power {
   background: @background-darker;
   border-radius: 20px;
-  padding: 0 5px;
+  padding: 0 10px;
 }
 
 #custom-shutdown {
   font-size: 1.2rem;
-  padding: 0 3px;
   color: @red;
 }
 
 #custom-reboot {
   font-size: 1.2rem;
-  padding: 0 3px;
+  padding: 0 6px 0 3px;
   color: @yellow;
 }
 
@@ -249,12 +248,11 @@ tooltip label {
 
 #custom-hibernate {
   font-size: 1.2rem;
-  padding: 0 3px;
+  padding: 0 3px 0 6px;
   color: @purple;
 }
 
 #custom-logout {
   font-size: 1.2rem;
-  padding: 0 3px;
   color: @orange;
 }
