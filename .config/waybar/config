@@ -65,7 +65,7 @@
 
   "custom/weather": {
     "format": "{}",
-    "on-click": "eww open --toggle weather && eww open --toggle weather-closer",
+    "on-click": "eww open --toggle weather && eww open weather-closer",
     "interval": 300,
     "exec": "$HOME/.config/scripts/weather.sh --waybar",
     "tooltip": false,
@@ -99,13 +99,16 @@
     "format-disconnected": "󰤭",
     "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
     "on-click": "nm-connection-editor",
-    "tooltip-format": "{essid}"
+    "tooltip-format-ethernet": "{ipaddr}",
+    "tooltip-format-wifi": "{essid}",
+    "tooltip-format-disconnected": "Disconnected"
   },
 
   "backlight": {
     "format": "{icon}",
     "format-icons": ["󰃝", "󰃞", "󰃟", "󰃠"],
-    "tooltip-format": "{percent}󰏰"
+    "tooltip-format": "{percent}󰏰",
+    "on-click": ""
   },
 
   "pulseaudio": {
@@ -113,7 +116,7 @@
     "format-bluetooth": "{icon}",
     "format-muted": "󰝟",
     "format-icons": {
-      "default": ["", "", ""]
+      "default": ["", "", "󰕾"]
     },
     "scroll-step": 1,
     "on-click": "pamixer -t",
