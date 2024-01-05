@@ -1,0 +1,40 @@
+// Calendar
+.cal-box {
+  background: $background-darker;
+  border: 2px solid $purple;
+  border-radius: 20px;
+}
+
+.cal-inner-box {
+  padding: 1rem 1rem .3rem;
+}
+
+.cal {
+  &.highlight {
+    padding: 10rem;
+  }
+  padding: .8rem .25rem 0rem;
+  margin-left: 10px;
+}
+
+calendar:selected {
+  color: $cyan;
+}
+
+calendar.header {
+  color: $green;
+  font-weight: bold;
+}
+
+calendar.button {
+  color: $cyan;
+}
+
+calendar.highlight {
+  color: $green;
+  font-weight: bold;
+}
+
+calendar.indeterminate {
+  color: $background;
+}
