@@ -38,6 +38,13 @@
   font-weight: normal;
 }
 
+.weather-humidity {
+  color: $foreground;
+  font-size: 18px;
+  font-weight: normal;
+  padding-bottom: 10px;
+}
+
 // Calendar
 .cal-box {
   background: $background-darker;

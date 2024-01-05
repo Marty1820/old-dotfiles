@@ -13,7 +13,7 @@
 (defpoll weather_color :interval "10m"
   "$HOME/.config/scripts/weather.sh --hex")
 
-(defwidget weather2 [] 
+(defwidget weather [] 
 	(box :class "weather-container" 
 		(box :orientation "v"
       :spacing 10
@@ -40,58 +40,7 @@
         :hexpand "false" 
 				(label :class "weather-desc" :text "${weather_desc}")
 				(label :class "weather-feel" :text "Feels like ${weather_feels_like}F")
-				(label :class "weather-feel" :text "Humidity is ${weather_humidity}󰏰")
-      )
-    )
-  )
-)
-
-(defwidget weather []
-  (box
-    :class "weather-container"
-    :orientation "v"
-    :space-evenly "false"
-    :halign "center"
-    (box
-      :class "weather-box"
-      :orientation "h"
-      :space-evenly "false"
-      :halign "center"
-      :spacing 10
-      (label
-        :class "weather-icon"
-        :style "color: ${weather_color};"
-        :text {weather_icon != "" ? "${weather_icon}" : "󰼯"}
-      )
-      (label
-        :class "weather-temp"
-        :text "${weather_temp}F"
-      )
-    )
-    (box
-      :class "weather-window"
-      :orientation "v"
-      :space-evenly "false"
-      :spacing 2
-      (label
-        :class "weather-desc"
-        :text "${weather_desc}"
-        :limit-width 32
-        :wrap "true"
-      )
-      (label
-        :class "weather-feel"
-        :text "Feels Like: ${weather_feels_like}F"
-      )
-      (label
-        :class "weather-feel"
-        :halign "center"
-        :text "󰖝 ${weather_wind} mph"
-      )
-      (label
-        :class "weather-feel"
-        :halign "center"
-        :text "  ${weather_humidity}󰏰"
+				(label :class "weather-humidity" :text "Humidity is ${weather_humidity}󰏰")
       )
     )
   )
@@ -110,7 +59,7 @@
     :width "140px"
     :anchor "right top")
   (box :class "weather"
-    (weather2)
+    (weather)
   )
 )
 
