@@ -20,13 +20,13 @@
       (button 
         :tooltip "Toggle Network [Wi-Fi]" 
         :class "net-status-button ${net-status == "󰤭" ? "net-status-off" : "net-status-on"}" 
-        :on-click net-toggle
+        :onclick net-toggle
         net-status
       )
       (button 
         :tooltip "Toggle Sound" 
         :class "volume-status-button ${volume-icon == "󰝟" ? "volume-status-off" : "volume-status-on"}" 
-        :on-click "pamixer -t"
+        :onclick "pamixer -t"
         volume-icon
       )
       (button 
