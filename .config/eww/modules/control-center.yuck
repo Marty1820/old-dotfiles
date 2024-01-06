@@ -32,7 +32,7 @@
       (button 
         :tooltip "Toggle Auto-Brightness" 
         :class "brightness-status-button ${brightness-icon == "󰃡" ? "brightness-status-on" : "brightness-status-off"}" 
-        :on-click brightness-toggle
+        :onclick brightness-toggle
         brightness-icon
       )
     )
