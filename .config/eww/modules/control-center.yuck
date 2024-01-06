@@ -41,7 +41,7 @@
       :class "volume-slider-container" 
       :space-evenly "false"
       (button
-        :on-click "pamixer -t"
+        :onclick "pamixer -t"
         :class "volume-slider-icon" 
         volume-icon
       )
