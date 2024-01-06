@@ -68,8 +68,8 @@
     "modules": [
       "bluetooth",
       "network",
-      "backlight",
       "pulseaudio",
+      "backlight",
       "idle_inhibitor"
     ]
   },
@@ -96,17 +96,6 @@
     "tooltip-format-wifi": "{essid}",
     "tooltip-format-disconnected": "Disconnected"
   },
-  "backlight": {
-    "format": "{icon}",
-    "format-icons": [
-      "󰃝",
-      "󰃞",
-      "󰃟",
-      "󰃠"
-    ],
-    "tooltip-format": "{percent}󰏰",
-    "on-click": "$HOME/.config/scripts/screen_brightness_info.sh --toggle"
-  },
   "pulseaudio": {
     "format": "{icon}",
     "format-bluetooth": "{icon}",
@@ -121,6 +110,17 @@
     "scroll-step": 1,
     "on-click": "pamixer -t",
     "tooltip-format": "{volume}󰏰 {desc}"
+  },
+ "backlight": {
+    "format": "{icon}",
+    "format-icons": [
+      "󰃝",
+      "󰃞",
+      "󰃟",
+      "󰃠"
+    ],
+    "tooltip-format": "{percent}󰏰",
+    "on-click": "$HOME/.config/scripts/screen_brightness_info.sh --toggle"
   },
   "idle_inhibitor": {
     "format": "{icon}",

@@ -131,15 +131,15 @@ tooltip label {
 
 #bluetooth,
 #network,
-#backlight,
 #pulseaudio,
+#backlight,
 #idle_inhibitor {
   padding: 0 2px;
 }
 
 #network,
-#backlight,
-#pulseaudio {
+#pulseaudio,
+#backlight {
   font-size: 1.9rem;
 }
 
@@ -165,10 +165,6 @@ tooltip label {
   color: @red;
 }
 
-#backlight {
-  color: @yellow;
-}
-
 #pulseaudio {
   color: @purple;
 }
@@ -180,6 +176,10 @@ tooltip label {
 #pulseaudio.muted {
   color: @red;
   padding-right: 4px;
+}
+
+#backlight {
+  color: @yellow;
 }
 
 #idle_inhibitor {
