@@ -6,96 +6,80 @@
 
 .control-center-buttons {
   background: $background-darker;
-  margin: 20px 20px 0px;
+  margin: 10px 30px 0px;
   border-radius: 20px;
   box-shadow: 0px 0px 10px $background;
 }
 
-.bluetooth-status-button,
-.net-status-button,
-.volume-status-button,
-.brightness-status-button {
+.bluetooth-status,
+.net-status {
   color: $background-darker;
-  margin: 0px 19px;
-  padding: 0.5em 0em;
-  border-radius: 25px;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
   font-size: 24px;
 }
 
-.bluetooth-status-on {
-  background-color: $cyan
+.bluetooth-on {
+  background-color: $cyan;
 }
 
-.net-status-on {
+.net-on {
   background-color: $green;
 }
 
-.bluetooth-status-off,
-.net-status-off,
-.volume-status-off {
+.bluetooth-off,
+.net-off {
   background-color: $red;
 }
 
-.volume-status-on {
-  background-color: $purple;
+.setting-separator {
+  background-color: $background;
+  padding: 2px;
+  border-radius: 6px;
+  margin: 0px 5px;
 }
 
-.brightness-status-on {
-  background-color: $yellow;
+.volume-slider-container,
+.brightness-slider-container {
+  margin: 5px 20px;
 }
 
-.brightness-status-off {
-  background-color: $orange;
-}
-
-.volume-slider-container {
-  margin: 20px 20px 10px;
+.volume-slider-icon,
+.brightness-slider-icon {
+  padding: 5px 10px;
+  margin-right: 10px;
+  font-size: 22px;
+  background-color: $selection;
+  border-radius: 50px;
+  box-shadow: 0px 0px 7px $selection;
 }
 
 .volume-slider-icon {
   color: $purple;
-  padding: 5px 10px;
-  margin-right: 10px;
-  font-size: 22px;
-  background-color: $selection;
-  border-radius: 50px;
-  box-shadow: 0px 0px 7px $selection;
 }
 
-.volume-slider trough {
-  border-radius: 20px;
-  background-color: $selection;
-  box-shadow: 0px 0px 7px $selection;
-}
-
-.volume-slider highlight {
-  padding: 0.5em;
-  border-radius: 20px;
-  background: linear-gradient(to left, $red, $green);
-}
-
-.brightness-slider-container {
-  margin: 7px 20px;
-}
-
-.brightness-slider-icon {
-  color: $yellow;
-  padding: 5px 10px;
-  margin-right: 10px;
-  font-size: 22px;
-  background-color: $selection;
-  border-radius: 50px;
-  box-shadow: 0px 0px 7px $selection;
-}
-
+.volume-slider trough,
 .brightness-slider trough {
   border-radius: 20px;
   background-color: $selection;
   box-shadow: 0px 0px 7px $selection;
 }
 
+.volume-slider highlight,
 .brightness-slider highlight {
   padding: 0.5em;
   border-radius: 20px;
-  background: linear-gradient(to left, $foreground, $orange);
+}
+
+.volume-slider highlight {
+  background: linear-gradient(to right, $green, $red);
+}
+
+.brightness-slider-icon {
+  color: $yellow;
+}
+
+.brightness-slider highlight {
+  background: linear-gradient(to right, $orange, $foreground);
 }

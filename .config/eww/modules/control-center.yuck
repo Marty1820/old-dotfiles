@@ -4,7 +4,7 @@
 (defvar bluetooth-toggle "scripts/bluetooth.sh --toggle")
 (defpoll bluetooth-icon :interval "1s" "scripts/bluetooth.sh --icon")
 (defvar net-toggle "scripts/net.sh --toggle")
-(defpoll net-status :interval "1s" "scripts/net.sh --status")
+(defpoll net-icon :interval "1s" "scripts/net.sh --status")
 (defpoll volume :interval "1s" "pamixer --get-volume")
 (defpoll volume-icon :interval "1s" "scripts/vol.sh")
 (defvar brightness-toggle "$HOME/.config/scripts/screen_brightness_info.sh --toggle")
@@ -16,32 +16,62 @@
     :class "control-center"
     :orientation "v" 
     :space-evenly "false"
-    (box 
-      :class "control-center-buttons" 
+    (box
+      :class "control-center-buttons"
       :orientation "h"
-      (button
-        :tooltip "Toggle Bluetooth"
-        :class "bluetooth-status-button ${bluetooth-icon == "󰂯" ? "bluetooth-status-on" : "bluetooth-status-off"}"
-        :onclick bluetooth-toggle
-        bluetooth-icon
+      (box
+        :class "bluetooth-status ${bluetooth-icon == "󰂯" ? "bluetooth-on" : "bluetooth-off"}"
+        :orientation "h"
+        (overlay
+          (box
+            :class "bluetooth-container"
+            :orientation "h"
+            :tooltip "bluetooth"
+            (button
+              :halign "end"
+              :class "bluetooth-icon"
+              :onclick bluetooth-toggle
+              bluetooth-icon
+            )
+            (box
+              :class "setting-separator"
+              :halign "center"
+            )
+            (button
+              :halign "start"
+              :class "bluetooth-controls"
+              :onclick "blueman-manager &"
+              ""
+            )
+          )
+        )
       )
-      (button 
-        :tooltip "Toggle Network [Wi-Fi]" 
-        :class "net-status-button ${net-status == "󰤭" ? "net-status-off" : "net-status-on"}" 
-        :onclick net-toggle
-        net-status
-      )
-      (button 
-        :tooltip "Toggle Sound" 
-        :class "volume-status-button ${volume-icon == "󰝟" ? "volume-status-off" : "volume-status-on"}" 
-        :onclick "pamixer -t"
-        volume-icon
-      )
-      (button 
-        :tooltip "Toggle Auto-Brightness" 
-        :class "brightness-status-button ${brightness-icon == "󰃡" ? "brightness-status-on" : "brightness-status-off"}" 
-        :onclick brightness-toggle
-        brightness-icon
+      (box
+        :class "net-status ${net-icon == "󰤭" ? "net-off" : "net-on"}" 
+        :orientation "h"
+        (overlay
+          (box
+            :class "net-container"
+            :orientation "h"
+            :tooltip "WIFI"
+            (button
+              :halign "end"
+              :class "net-icon"
+              :onclick net-toggle
+              net-icon
+            )
+            (box
+              :class "setting-separator"
+              :halign "center"
+            )
+            (button
+              :halign "start"
+              :class "net-controls"
+              :onclick "nm-connection-editor &"
+              ""
+            )
+          )
+        )
       )
     )
     (box 
