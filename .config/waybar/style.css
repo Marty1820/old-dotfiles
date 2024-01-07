@@ -138,24 +138,25 @@ tooltip label {
   padding: 0 2px;
 }
 
+#custom-panel,
 #network,
 #pulseaudio,
 #backlight {
-  font-size: 1.9rem;
+  font-size: 1.7rem;
 }
 
 #custom-panel {
-  font-size: 1.4rem;
   color: @orange;
 }
 
 #bluetooth {
+  font-size: 1.3rem;
   color: @cyan;
 }
 
 #bluetooth.disabled,
 #bluetooth.off {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: @red;
 }
 
@@ -235,30 +236,32 @@ tooltip label {
   padding: 0 10px;
 }
 
+#custom-shutdown,
+#custom-reboot,
+#custom-lock,
+#custom-hibernate,
+#custom-logout {
+  font-size: 1.7rem;
+}
+
 #custom-shutdown {
-  font-size: 1.2rem;
   color: @red;
 }
 
 #custom-reboot {
-  font-size: 1.2rem;
-  padding: 0 6px 0 3px;
+  padding: 0 6px;
   color: @yellow;
 }
 
 #custom-lock {
-  font-size: 1.2rem;
-  padding: 0 3px;
   color: @green;
 }
 
 #custom-hibernate {
-  font-size: 1.2rem;
-  padding: 0 3px 0 6px;
+  padding: 0 6px;
   color: @purple;
 }
 
 #custom-logout {
-  font-size: 1.2rem;
   color: @orange;
 }
