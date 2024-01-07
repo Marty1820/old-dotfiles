@@ -66,12 +66,17 @@
     "orientation": "horizontal",
     "children-class": "system",
     "modules": [
+      "custom/panel",
       "bluetooth",
       "network",
       "pulseaudio",
       "backlight",
       "idle_inhibitor"
     ]
+  },
+  "custom/panel": {
+    "format": "󰙀",
+    "on-click": "eww open --toggle control-center && eww open control-center-closer"
   },
   "bluetooth": {
     "format-disabled": "󰂲",
@@ -111,7 +116,7 @@
     "on-click": "pamixer -t",
     "tooltip-format": "{volume}󰏰 {desc}"
   },
- "backlight": {
+  "backlight": {
     "format": "{icon}",
     "format-icons": [
       "󰃝",
