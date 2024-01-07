@@ -1,6 +1,8 @@
 ;; https://github.com/Syndrizzle/hotfiles/blob/worm/.config/eww/Control-Center
 
 ;; for controls and tray
+(defvar bluetooth-toggle "scripts/bluetooth.sh --toggle")
+(defpoll bluetooth-icon :interval "1s" "scripts/bluetooth.sh --icon")
 (defvar net-toggle "scripts/net.sh --toggle")
 (defpoll net-status :interval "1s" "scripts/net.sh --status")
 (defpoll volume :interval "1s" "pamixer --get-volume")
@@ -17,6 +19,12 @@
     (box 
       :class "control-center-buttons" 
       :orientation "h"
+      (button
+        :tooltip "Toggle Bluetooth"
+        :class "bluetooth-status-button ${bluetooth-icon == "󰂯" ? "bluetooth-status-on" : "bluetooth-status-off"}"
+        :onclick bluetooth-toggle
+        bluetooth-icon
+      )
       (button 
         :tooltip "Toggle Network [Wi-Fi]" 
         :class "net-status-button ${net-status == "󰤭" ? "net-status-off" : "net-status-on"}" 
@@ -99,4 +107,4 @@
     :width "100%"
     :height "100%")
   (closer
-    :window "contol-center"))
+    :window "control-center"))

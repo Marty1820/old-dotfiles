@@ -11,12 +11,10 @@
   box-shadow: 0px 0px 10px $background;
 }
 
-.net-status-on,
-.net-status-off,
-.volume-status-on,
-.volume-status-off,
-.brightness-status-on,
-.brightness-status-off {
+.bluetooth-status-button,
+.net-status-button,
+.volume-status-button,
+.brightness-status-button {
   color: $background-darker;
   margin: 0px 19px;
   padding: 0.5em 0em;
@@ -24,10 +22,15 @@
   font-size: 24px;
 }
 
+.bluetooth-status-on {
+  background-color: $cyan
+}
+
 .net-status-on {
   background-color: $green;
 }
 
+.bluetooth-status-off,
 .net-status-off,
 .volume-status-off {
   background-color: $red;
