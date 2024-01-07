@@ -1,12 +1,13 @@
 // Calendar
 .cal-box {
   background: $background-darker;
-  border: 2px solid $purple;
+  border: 1px solid $purple;
   border-radius: 20px;
 }
 
 .cal-inner-box {
   padding: 1rem 1rem .3rem;
+  border-radius: 20px;
 }
 
 .cal {
@@ -15,26 +16,23 @@
   }
   padding: .8rem .25rem 0rem;
   margin-left: 10px;
+  font-size: 18px;
 }
 
 calendar:selected {
-  color: $cyan;
+  color: $red;
 }
 
 calendar.header {
-  color: $green;
+  color: $purple;
   font-weight: bold;
 }
 
 calendar.button {
-  color: $cyan;
+  color: $green;
 }
 
 calendar.highlight {
-  color: $green;
+  color: $purple;
   font-weight: bold;
-}
-
-calendar.indeterminate {
-  color: $background;
 }
