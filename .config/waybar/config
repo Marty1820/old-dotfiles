@@ -76,6 +76,7 @@
   },
   "custom/panel": {
     "format": "󰙀",
+    "tooltip": false,
     "on-click": "eww open --toggle control-center && eww open control-center-closer"
   },
   "bluetooth": {
