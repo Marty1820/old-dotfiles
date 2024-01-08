@@ -56,7 +56,7 @@
   },
   "custom/weather": {
     "format": "{}",
-    "on-click": "eww open --toggle weather && eww open weather-closer",
+    "on-click": "eww open --toggle weather && eww open --toggle weather-closer",
     "interval": 300,
     "exec": "$HOME/.config/scripts/weather.sh --waybar",
     "tooltip": false,
