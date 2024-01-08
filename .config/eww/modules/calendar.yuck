@@ -1,22 +1,26 @@
-(defpoll calendar_day :interval "10h"
-  "date '+%d'")
-(defpoll calendar_month :interval "10h"
-  "date '+%m'")
-(defpoll calendar_year :interval "10h"
-  "date '+%Y'")
+(defpoll day :interval "1h" "date '+%a'")
+(defpoll month :interval "1h" "date '+%b'")
+(defpoll calendarDay :interval "1h" "date '+%d'")
+(defpoll calendarMonth :interval "1h" "date '+%m'")
+(defpoll calendarYear :interval "1h" "date '+%Y'")
 
 (defwidget cal []
-  (box :class "cal-box"
+  (box
+    :class "cal-container"
+    :width "350"
     :orientation "v"
-    (box :class "cal-inner-box"
-      (calendar
-        :day calendar_day
-        :month calendar_month
-        :year calendar_year
-        :halign "center"
-        :valign "center"
-        :class "cal"
-      )
+    :space-evenly "false"
+    :halign "center"
+    (label
+      :class "cal-date"
+      :text "${day}, ${month} ${calendarDay} ${calendarYear}"
+    )
+    (calendar
+      :class "cal-cal"
+      :day "${calendarDay}"
+      :month "${calendarMonth}"
+      :year "${calendarYear}"
+      :show-day-names "true"
     )
   )
 )
@@ -30,7 +34,7 @@
   :stacking "overlay"
   :geometry (geometry
     :x "2px"
-    :y "5px"
+    :y "2px"
     :anchor "left top")
   (cal)
 )

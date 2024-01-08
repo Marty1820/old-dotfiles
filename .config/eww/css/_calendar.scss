@@ -1,38 +1,39 @@
 // Calendar
-.cal-box {
-  background: $background-darker;
+.cal-container {
   border: 1px solid $purple;
+  background-color: $background-darker;
+  color: $foreground;
+  padding: 5px;
   border-radius: 20px;
 }
 
-.cal-inner-box {
-  padding: 1rem 1rem .3rem;
-  border-radius: 20px;
+.cal-date {
+  font-size: 20px;
+  margin: 10px;
 }
 
-.cal {
-  &.highlight {
-    padding: 10rem;
-  }
-  padding: .8rem .25rem 0rem;
-  margin-left: 10px;
-  font-size: 18px;
+.cal-cal {
+  font-size: 14px;
 }
 
-calendar:selected {
-  color: $red;
+.cal-cal.header {
+  color: $foreground;
 }
 
-calendar.header {
+.cal-cal.button {
+  color: $selection;
+}
+
+.cal-cal.highlight {
   color: $purple;
-  font-weight: bold;
 }
 
-calendar.button {
-  color: $green;
+.cal-cal {
+  color: $pink;
 }
 
-calendar.highlight {
-  color: $purple;
-  font-weight: bold;
+.cal-cal:selected {
+  background: linear-gradient($selection, $purple);
+  border-radius: 6px;
+  color: $foreground;
 }
