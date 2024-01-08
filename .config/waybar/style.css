@@ -67,7 +67,7 @@ tooltip label {
 
 #workspaces button {
   padding: 0 0.5em;
-  background-color: @background-darker;
+  background-color: @background;
   color: @foreground;
   margin: 0.25em;
   border-radius: 10px;
