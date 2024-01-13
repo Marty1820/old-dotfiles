@@ -22,7 +22,7 @@
 /* Bar styling */
 window#waybar {
   color: @foreground;
-  background: transparent;
+  background: linear-gradient(0deg, transparent, @background);
 }
 
 /* Module Group Styling */
