@@ -55,7 +55,7 @@
   :stacking "overlay"
   :geometry (geometry
     :x "140px"
-    :y "5px"
+    :y "2px"
     :width "140px"
     :anchor "right top")
   (box :class "weather"
