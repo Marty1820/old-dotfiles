@@ -40,13 +40,10 @@ tooltip {
   border-radius: 20px;
 }
 
-tooltip label {
-  color: @foreground;
-}
-
 /* KeyFrames */
 @keyframes blink {
   to {
+    background-color: @foreground;
     color: @red;
   }
 }
@@ -55,7 +52,6 @@ tooltip label {
 /* Left */
 #clock {
   background-color: @background-darker;
-  color: @foreground;
   border-radius: 20px;
   padding: 0 10px;
 }
@@ -67,28 +63,27 @@ tooltip label {
 
 #workspaces button {
   padding: 0 0.5em;
-  background-color: @background;
-  color: @foreground;
   margin: 0.25em;
   border-radius: 10px;
+  background-image: linear-gradient(0deg, @green, @background-darker);
 }
 
 #workspaces button.empty {
-  color: @foreground;
+  background-image: linear-gradient(0deg, @background, @background-darker);
+}
+
+#workspaces button.active {
+  background-image: linear-gradient(0deg, @purple, @background);
 }
 
 #workspaces button:hover {
   box-shadow: inherit;
   text-shadow: inherit;
-  background-image: linear-gradient(0deg, @selection, @background-darker);
-}
-
-#workspaces button.active {
-  background-image: linear-gradient(0deg, @purple, @selection);
+  background-image: linear-gradient(0deg, @selection, @background);
 }
 
 #workspaces button.urgent {
-  background-image: linear-gradient(0deg, @red, @background-darker);
+  background-image: linear-gradient(0deg, @red, @background);
 }
 
 #taskbar {
