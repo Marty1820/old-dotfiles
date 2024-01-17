@@ -26,6 +26,7 @@ return {
       dashboard.button('r', '󰤘 > Recent Files', ':Telescope oldfiles<CR>'),
       dashboard.button('s', '󱁻 > Settings', ':e $MYVIMRC | :cd %:p:h<CR>'),
       dashboard.button('l', '󰂓 > LazyVim', ':Lazy<CR>'),
+      dashboard.button('m', '󰟾 > Mason', ':Mason<CR>'),
       dashboard.button('q', '󰗼 > Quit NVIM', ':qa<CR>'),
     }
 
