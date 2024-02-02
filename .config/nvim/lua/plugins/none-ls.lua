@@ -1,7 +1,7 @@
 -- https://github.com/nvimtools/none-ls.nvim
 return {
   'nvimtools/none-ls.nvim',
-  dependencies = { "mason.nvim" },
+  dependencies = { 'mason.nvim', 'nvim-lua/plenary.nvim' },
   config = function()
     local null_ls = require('null-ls')
     null_ls.setup({

@@ -1,6 +1,7 @@
 return {
   'nvimdev/dashboard-nvim',
   event = 'VimEnter',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
     local logo = [[
       ███╗░░░███╗░█████╗░██████╗░████████╗██╗░░░██╗
@@ -55,5 +56,4 @@ return {
       },
     })
   end,
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
 }
