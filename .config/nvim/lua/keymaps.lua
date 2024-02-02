@@ -47,6 +47,7 @@ wk.register({
   ['<leader>f'] = { name = '+[F]iles' },
   ['<leader>fn'] = { ':enew<cr>', '[N]ew File' },
   ['<leader>ff'] = { vim.lsp.buf.format, '[F]ormat [F]ile' },
+  ['<leader>fp'] = { ':Prettier<cr>', '[F]ormat with [P]rettier' },
   -- See `:help telescope.builtin`
   ['<leader>fr'] = { ':Telescope oldfiles<cr>', '[F]ind [R]ecent files' },
   ['<leader>fg'] = { ':Telescope git_files<cr>', '[F]ind [G]it files' },
