@@ -11,7 +11,10 @@
 
 # Terminal specific settings
 [ "$TERM" != wezterm ] && . "$HOME"/.config/shell/profile
-[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+if [ "$TERM" = "xterm-kitty" ]; then
+  alias ssh="kitten ssh"
+  alias icat="kitten icat"
+fi
 
 # History file sizes
 HISTFILE="$XDG_CACHE_HOME/sh_hist"
