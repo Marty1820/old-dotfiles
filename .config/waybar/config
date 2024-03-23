@@ -161,7 +161,7 @@
     "drawer": {
       "transition-duration": 500,
       "children-class": "power",
-      "transition-left-to-right": true
+      "transition-left-to-right": false
     },
     "modules": [
       "custom/shutdown",
